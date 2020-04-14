@@ -1,0 +1,4 @@
+000+	0x40 (64) bytes data from 0x540c00 (last 4 bytes checksum)
+040+	0xA8 (168) bytes data from car handler
+120+	0x50 (80) bytes data from cars?
+1bf	end of frame

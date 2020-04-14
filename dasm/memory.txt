@@ -1,0 +1,538 @@
+--FC00 = blue
+--03E0 = green
+--001F = red
+01802358
+
+--- ROM MAP ---
+0000.00C0-00000170	??
+0000.0C90-00000CC4	cpu control / wait states
+0000.0CCC-00000CE8	palette
+
+---
+0x00200000		rom mirror?
+...
+0x0021ffff
+
+
+0x00500000		frame counter
+0x0050000c		-- pointer to some handler?
+
+
+-- steering related?
+0x00501000		1st copy of A0 - A7
+...
+0x0050101f
+
+0x00501020		2nd copy of A0 - A7
+...
+0x0050103f
+
+0x00501050		A0 as signed
+0x00501054		A1 as unsigned
+0x00501058		A2 as unsigned
+0x0050105C		A0 as signed
+0x00501060		A1 as unsigned
+0x00501064		A2 as unsigned
+0x00501068		00/01 (A1 related trigger)
+0x0050106C		00/01 (A2 related trigger)
+
+
+0x00501070		large attract mode (boolean)
+
+0x00501080		cars max
+0x00501084		cars max -1
+0x00501088		?
+
+0x00501090		gamestate
+0x00501094		? 0 on frame start - +1 on copro?
+
+0x005010a0		current gamestate
+0x005010a4		next gamestate
+0x005010a8		gamestate counter	(GAMESTATE TIME LEFT)
+
+0x005010b0		frame counter
+0x005010b4		late frame counter
+
+0x005010cc		TIME DONE
+0x005010d0		TIME LEFT
+
+0x005010e0		?
+0x005010e4		? (only used on recycle screen?)
+0x005010e8		0 on frame start (copro data count?)
+0x005010ec		lap count
+
+0x005010f4		0x1388 (copro data limit?)
+0x005010f8		game substate
+
+0x00501100		?
+0x00501104		?
+0x00501108		?
+0x0050110c		?
+
+0x00501120		0 on frame start (some counter)
+
+0x005011fc		max objects to handle
+
+0x00501200		object pointer table
+		00		?
+		04		pointer to car collision handler - ?? disabling removes collision between cars
+		20		pointer to first car handler
+		2c		pointer to gameover handler - ?? enabling shows gameover
+		30		pointer to goal handler - ?? enabling shows goal
+		40		pointer to car draw handler - ?? disabling removes cars
+		44		pointer to waitingentry handler
+		48		pointer to startinglight handler
+		50		? 50f280
+		54		pointer to pylon handler - disabling removes pylon collision
+		58		? 50de00
+		60		?
+		64		pointer to lod & window handler
+		70		?
+		84		pointer to track handler - ?? disabling removes (static) track
+		94		? 50e180
+		a0		pointer to comm handler
+
+0x00501300		s24control (get copied to 0x100a000+)
+...
+0x0050130f
+
+0x00501310		s24control (backup)
+...
+0x0050131e
+
+0x00501320			? 0 on init (something tilemap)
+0x00501321			? (44 on attact init)
+
+0x00501334...		2
+0x00501338...		5
+0x0050133c...		8000
+
+0x00501360		? 0 on frame start
+0x00501368		geo page toggle
+
+0x00501400		track data offset +4
+0x00501404		track data offset +8
+0x00501408		track data offset +c
+0x0050140c		track data offset +10
+0x00501410		track data offset +14
+0x00501414		track data offset +18
+
+0x00501420		track something offset 2		--
+
+0x00501428		track something offset 3
+0x0050142c		track something offset 4
+
+
+0x00501430		track data2 +8
+0x00501434		track data2
+0x00501438		track data2 +4
+0x0050143c		track something offset 1
+
+0x00501440		pointer to difficulty table?
+0x00501444		track something offset 5
+0x00501448		copy of 0x501414; +8			-- starting point data?
+0x0050144c		copy of 0x501410
+0x00501450		track something offset 6
+
+
+0x00501460		track no (used for texture ram0 offset, crashes if > 3)
+0x00501464		? (AT/MT?)
+0x00501468		?
+
+0x00501474		beginner id
+0x00501476		advanced id
+0x00501478		expert id
+
+0x00501480		?
+0x00501488		?	2 on link mode
+
+0x005014a4		?	0 on init
+
+0x00501600		?
+
+0x00501640		?
+
+0x00501680		?
+
+0x005016c0		track parts to be rendered
+0x005016c1		track parts
+...
+0x005016cf
+
+0x00501720...		copy from 283b840... (camera matrix?)
+0x00501724
+0x00501728
+0x0050172C
+0x00501730
+0x00501734
+0x00501738
+0x0050173a
+0x0050173c
+
+0x00501747		? 0/1 (0 on init)
+0x00501748
+0x0050174c
+0x00501752		3 on single, 3 on 1 node
+0x00501753		? 0
+0x00501754		? ffffffff
+0x0050175c		LOD (float)
+
+0x00501874		?
+
+0x00501a80		timeattack-switch (0 = arcade, 1 = time attack)
+0x00501a84		?
+
+0x00502000...		?
+
+0x00502800		LOD?
+0x00502804		window data 1		x-start ffff = -1, y-start 0080 = 128
+0x00502808		window data 2		x-end  01f0 = 496, x-end 0200 = 512
+0x0050280c		window data 3		?
+0x00502810		window data 4		?
+0x00502814		window data 5		?
+0x00502818		window data 6		?
+
+
+0x005028fe.		driveboard write offset
+0x005028ff.		driveboard read offset
+0x00502900...		driveboard buffer
+
+0x00503000...		serial buffer
+		001			tx bytes to send
+		002			tx offset read
+		003			tx offset write
+
+		006			? (ffff on init)
+
+		00a			= (ffff on init)
+		010			tx data
+		012?
+		014			tx suboffset (ff on init)
+		
+		020+		tx buffer
+		...
+		05f
+
+		068			? (ff on init)
+		069			? (ff on init)
+
+0x00503200			- counter
+		+4			- ?
+		+8			- pointer to car object
+		+c			- flags? (0x7fff)
+		..
+
+0x00503380			? some sort of table
+...
+0x00503578
+
+0x00503600			? pylon related
+
+0x00503628
+
+0x00503080
+
+0x00503690			?
+...
+0x00503698
+
+0x00504000			object table
+		00	flags
+		04	id
+		08	length
+		0c	handler
+
+		-- 3d objects
+		10	? 0x502000 (sometimes)
+		14	model data
+		18	?
+		1c	position y
+		20	position z
+		24	position x
+		28	roll
+		2a	yaw
+		2c	pitch
+		2e	sector*
+
+0x00540000			comm status
+0x00540001			comm size
+0x00540002			comm id
+0x00540003			comm size
+
+0x00540004			pointer1
+0x00540008			pointer2
+0x0054000c			pointer3
+
+0x00540027			nodes in game
+0x00540028			"master" node of game
+
+0x00540037			? 0
+
+0x0054004c			.
+0x00540054			copy of comm FG
+
+0x00540c00			start of comm frame
+0x00540c40			.
+0x00540dc0			end of comm frame
+
+0x005fe000...		8 analog axis
+
+0x005fe020			?	from 0x1d00128
+0x005fe024			?	from 0x1d0012a
+0x005fe028			?	from 0x1d0012c
+0x005fe02c			?	from 0x1d0012e
+
+0x005fe030			? 0
+		33			coins per chute 1
+0x005fe034			? 0 / 1
+0x005fe038			? 0
+		3b			coins per chute 2
+0x005fe03c			? 0 / 2
+0x005fe040			? 0/1 -- 0 if ok / 1 on error?
+0x005fe041			? 0/1 -- 0 if error / 1 on ok?
+0x005fe043			? 0
+0x005fe044			? 0
+
+0x005fe0a0			? (lamp output?)
+
+0x005fe130			coins to start
+0x005fe138			? 0		--
+0x005fe13a			? 0		--
+0x005fe13c			buttons changed?
+0x005fe140			button state 1 (used for detecting changes)
+0x005fe144			button state 2 (used for detecting changes)
+0x005fe148			button state 3 (used for detecting changes)
+
+0x005fe040			freeplay flag?
+
+0x005fe556			text cursor x
+0x005fe558			text cursor y
+0x005fe560			string buffer (car number, credits, setting etc.)
+
+0x005fe5a0			(last selection x) 0000 on service mode
+0x005fe5a2			(last selection y) 0000 on service mode
+0x005fe5a4			button state changes							-- D2 D1 IO D0
+0x005fe5a8			link id - 0 single, 1 master, 2 slave
+
+0x005fe5b0			DHMS seconds
+0x005fe5b1			DHMS minutes
+0x005fe5b2			DHMS hours
+0x005fe5b4			DHMS days
+
+0x005fe5b8			? 00 on track load
+
+0x005fe5ba			country (0-2)
+0x005fe5bc			difficulty (0-3)
+0x005fe5be			rival arrow (0-1)
+
+0x005fe5c0			? 0x0b on service mode		(selected line?)
+
+0x005fe5ec			?
+
+0x005fe5f0			A0
+0x005fe5f2			A1
+0x005fe5f4			A2
+0x005fe5f6			(A3)
+0x005fe5f8			(A4)
+0x005fe5fa			(A5)
+0x005fe5fc			(A6)
+0x005fe5fe			(A7)
+
+0x005fe600			gamemode (1-2)
+
+0x005fe602			cabinet type (0-3) [0 = deluxe, 1 = twin, 2 = special, 3 = upright]
+
+0x005fe604			track data offset // 00 on init, 02600020, 02600040, 02600060, 02600080
+
+0x005fe608...
+0x005fe60c...		last button i/o
+0x005fe610...
+
+0x005fe618			? 0/1 (irq0)
+0x005fe61a			text color
+0x005fe61c			? 0/1 (irq0)
+
+0x005fe620			total time DHMS
+0x005fe624			? possibly local node
+0x005fe626			ff/00 - ff on init, 00 on network check, 01 on service mode
+0x005fe627			(service sub menu)
+0x005fe62c			(countdown)
+0x005fe62e			saturn ads (0-2)
+
+0x005fe630			advertise sound (0-1)
+0x005fe632			frame number?
+0x005fe633			service menu - 00 in service mode; 0 = main menu, 2 = game system
+0x005fe634			service option -- 00 in service mode; 0 = exit?
+
+0x005ff000			rom copy fro 0x2802040
+...
+0x005ff3ff
+0x005ff400			rom copy from 0xC0
+...
+0x005ff4af
+
+0x00800000		geo memory
+...
+0x00803fff
+
+0x00980000		?
+
+0x00e80000...		irq control
+
+0x01000000--		tilemap 1
+0x01002000--		tilemap 2
+0x01004000--		tilemap 3
+0x01006000--		tilemap 4
+
+0x01008000---		tilemap window/scroll
+0x0100a000---		tilemap control
+0x0100c000---		tilemap mask?
+
+0x0100a000.		tilegen
+0x0100a002.		tilegen
+0x0100a004.		tilegen
+0x0100a006.		tilegen
+0x0100a008.		tilegen
+0x0100a00a.		tilegen
+0x0100a00c.		tilegen
+0x0100a00e.		tilegen
+
+0x01080000			charset
+
+
+0x01c00000			A0 (wheel)
+0x01c00002			A1 (gas)
+0x01c00004			A2 (brake)
+0x01c00006			A3 (N/A)
+0x01c00008			A4 (N/A)
+0x01c0000a			A5 (N/A)
+0x01c0000c			A6 (N/A)
+0x01c0000e			A7 (N/A)
+
+0x01c00010			D0 (Coin1 Coin2 Test Service Start View1 View2 View3)
+0x01c00012			D1 (View4 Course0 Course1 Emergency Shift0 Shift1 Shift2 ExStart)
+0x01c00014			D2 (RX0 RX1 RX2 RX3 RX4 RX5 RX6 RX7)
+0x01c00016			DSW1 (all off)
+0x01c00018			DSW2 (all off)
+0x01c0001a			DSW3 (all off)
+0x01c0001c			IOSW (SW1 SW2 SW3 SW4 -- -- -- --)
+0x01c0001e			Lamp Output
+
+0x01c00022			DriveOutput (TX0 TX1 TX2 TX3 TX4 TX5 TX6 TX7)
+
+0x01c00040			? possibly I/O Status
+
+
+
+0x01d00000			backup ram
+0x01d0000b			linkid (0-2)
+0x01d0000c			car number (0-7)
+0x01d00010			coin setting (0-1a)
+0x01d00011			..coin related - credits per coin
+0x01d00012			..coin related - coins per chute 1
+0x01d00013			..coin related - coins per chute 2
+0x01d00014			..coin related - extra credit per coins
+0x01d00015			coins to start
+0x01d00019			advertise (0-1)
+0x01d0001a			cabinet (0-3)
+0x01d0001b			country (0-2)
+0x01d0001c			gamemode (0-2)
+0x01d0001d			rival (0-1)
+0x01d0001e			saturn ads (0-2)
+0x01d00020			difficulty (0-3)
+
+0x01d00108			total time DHMS
+0x01d0010c			game play time DHMS
+0x01d00110			coin credits
+0x01d00114			service credits
+0x01d00118			coin counter #1
+0x01d0011c			coin counter #2
+
+0x01d00130			longest game time DHMS
+0x01d00134			shortest game time DHMS
+0x01d00138			game count 1
+0x01d0013a			game count 2
+0x01d00140			game count beginner
+0x01d00144			game count expert
+0x01d00148			game count advanced
+0x01d0014c			play time beginner
+0x01d00150			play time expert
+0x01d00154			play time advanced
+0x01d00158			fastest goal time beginner
+0x01d0015c			fastest goal time expert
+0x01d00160			fastest goal time advanced
+0x01d00164			goal count beginner
+0x01d0016c			goal count expert
+0x01d0016c			goal count advanced
+
+0x01d00360			hiscore table beginner
+		00			- place
+		04			- time
+		08			- ? (usually ffff)
+		0c			- flags
+		10			- time
+		14			- initials
+..
+0x01d005a0			hiscore table expert
+...
+0x01d007e0			hiscore table advanced
+..
+0x01d00a1f
+
+0x01d00b60			? 0x500
+0x01d00b64			? 0x800
+0x01d00b68			? 0x1e00
+
+0x01d00b80			? 0x500
+0x01d00b84			? 0x800
+0x01d00b88			? 0x1e00
+
+0x01d00b70			fastest time beginner
+0x01d00b74			fastest time expert
+0x01d00b78			fastest time advanced
+
+0x01d00b90			fastest time beginner
+0x01d00b94			fastest time expert
+0x01d00b98			fastest time advanced
+
+0x01d00ba4			gamemode of hiscores
+
+0x01d00be0			? 000018C0 (18 times)
+...
+0x01d00c27
+
+
+0x2073f9c			-- pointer to charset table?
+
+0x2073fc4			-- charset table
+
+0x2600000			-- some pointer
+
+0x2802444			-- object table length
+0x2802448+			-- object table data
+...
+0x2802f74
+
+
+
+
+0x02000000	mpr-16528.10 & mpr-16529.11
+	2200000 - track0 & track3
+	2300000 - track2
+0x02400000	mpr-16808.8 & mpr-16809.9
+	2400000 - track1
+	2500000 - models
+0x02800000	epr-16724a.6 & epr-16724a.7
+
+0x10000000...	render mode
+0x10400000...	polygon count
+
+0x12000000...	texture ram 0
+
+0x12400000...	texture ram 1
+
+0x12800000...	luma ram
+
+--
+2802444		-?
+2802448		first pointer ( length 0x80 )

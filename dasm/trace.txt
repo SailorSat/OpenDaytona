@@ -1,0 +1,121 @@
+{
+00000860:
+	-- MAIN: copy 0x38 bytes from 0xc90+ to 0xe00000+ (cpu control / wait states)
+	-- MAIN: burst copy 0x20000 bytes from 0x0+ to 0x200000+
+		00000910	-- burstcopy(g0 longs from g1 to g2)
+
+	-- MAIN: f80000=0x3 (unmapped in MAME)
+	-- MAIN: burst copy 0x400 bytes from 0x2802040+ to 0x5ff000+ (interupt vector table)
+		00000910	-- burstcopy(g0 longs from g1 to g2)
+
+	-- MAIN: burst copy 0xb0 bytes from 0xc0 to 0x5ff400 (prcb data)
+		00000910	-- burstcopy(g0 longs from g1 to g2)
+
+	-- MAIN: store pointer to interupt vector table in prcb data
+
+000008F8:
+	-- MAIN: reset game
+	-- MAIN: init serial 00,00,00,40,4e
+		0001e3b8	-- init io ports
+
+	-- MAIN: config render mode
+		00001038	-- call to ret
+
+	-- MAIN: init luma ram
+	-- MAIN: init video timing
+	-- MAIN: clear tilemap ram @ 0x1000000 - 0x100A00F
+	-- MAIN: clear tilemap ram @ 0x100c000 - 0x100dfff
+	-- MAIN: copy palette from 0x0ccc to 0x1800000 and 0x1802000 (32 bytes)
+
+	-- MAIN: read pfp from 0x854
+	-- MAIN: clear and enable irq 0
+	-- MAIN: setup arithmetic controls
+
+	-- MAIN: init geo engine
+		00001794	-- reset main ram & geo list
+
+	-- MAIN: begin boot
+		00028f40	-- backup config check
+		00029560	-- backup times check
+		00029800	-- backup coincounter check
+
+		000312a0	-- switch process controls priority low
+		00000a74	-- build color translation
+
+		00005cc0	-- copy palette
+		00005c10	-- reset 2d engine
+		00005cfc	-- reset and load charset1
+		00005d7c	-- load charset2
+
+		00001000	-- clear geo buffer
+		00000fa0	-- copro upload code
+		00000fe4	-- wait for copro
+		0000103c	-- setup copro fifo
+		000017f8	-- setup object table
+
+		00019898	-- setup serial
+		00005a20	-- set gamestate defaults
+		0002b0e0	-- show config
+
+		0000140c	-- setup luma ram
+		00001468	-- init t-ram1
+		0000144c	-- init t-ram0 (based on track)
+		000013e8	-- wait even frame
+		000015c4	-- push log data to geo list
+		000013e8	-- wait even frame
+
+		00005994	-- setup copro (texture parameters)
+		000059f0	-- setup copro (render mode & lod)
+		00001744	-- setup copro (polygon data)
+		00001678	-- setup copro (texture data #1)
+		000016e4	-- setup copro (texture data #2)
+		0001a90c	-- setup memory tables (0x503380 from 0x33f60)
+		00018448	-- setup memory tables (0x502000 from 0x33f94)
+
+		0001cf10	-- setup io (driveboard buffer)
+		00019958	-- setup audio (initialize)
+
+	-- MAIN: finish boot
+	-- MAIN: check link mode
+	(A) single mode, (B) linked mode
+
+	-- MAIN: compare gamemode
+	(NOT equal)
+		0022722c	-- rebuild hiscore tables
+
+00001330:
+	-- MAIN: start of main loop
+	-- MAIN: check mainstate (if != 0 goto 00029EE0)
+		000183d8	-- set geo zsort
+		00001850	-- process frame
+		00001918	-- process objects
+		000183f0	-- process geo list
+		0001cf88	-- write driveboard data
+
+		000013a0	-- wait frame and count
+	loop 00001330
+
+00029EE0:
+	-- MAIN: enter service mode
+		0002a358	-- service mode exit (will clear menu and cursor stuff)
+
+		00002834	-- set background to g0
+		0001ede0	-- clear screen
+
+		0001a554	-- push g0 to serial buffer
+		0001a554	-- push g0 to serial buffer
+
+		00030510	-- set driveboard to service
+		0002f0a0	-- set soundboard to service
+		0002ca98	-- ioboard turn of lamps
+
+00029F30:
+	-- MAIN: service loop
+		0001e570	-- read io (analog)
+		0001e4d8	-- read io (digital)
+		***			-- jump to servicehandler (based on 0x5fe633)
+		000183f0	-- process geo list
+		000013a0	-- wait frame and count
+	loop 00029F30 (while mainstate != 0)
+	jump to 000008F8
+}

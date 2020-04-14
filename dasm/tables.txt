@@ -1,0 +1,195 @@
+-- raw data (gamestate handler)
+000019AC: 00001A28          ? 00:4 00001a28 1 2			00 bootup
+000019B0: 00001A28          ? 00:4 00001a28 1 2			01 bootup
+000019B4: 00001A5C          ? 00:4 00001a5c 1 2			02 attract - link system init
+000019B8: 00001D9C          ? 00:b 00001d9c 1 3			03 attract - link system
+000019BC: 00001E00          ? 00:c 00001e00 1 3			04 attract - highscores init
+000019C0: 00001E70          ? 00:c 00001e70 1 3			05 attract - highscores
+000019C4: 00001EE0          ? 00:d 00001ee0 1 3			06 attract - views init
+000019C8: 0000206C          ? 00:0 0000206c 2 0			07 attract - views
+000019CC: 00002160          ? 00:2 00002160 2 0			08 attract - logo init
+000019D0: 000023D0          ? 00:7 000023d0 2 0			09 attract - logo
+000019D4: 00002424          ? 00:8 00002424 2 1			0a attract - recycle init
+000019D8: 00002628          ? 00:c 00002628 2 1			0b attract - recycle
+000019DC: 00002918          ? 00:2 00002918 2 2			0c dummy (jumps to 11)
+000019E0: 00002944          ? 00:2 00002944 2 2			0d empty
+000019E4: 00002944          ? 00:2 00002944 2 2			0e empty
+000019E8: 00002948          ? 00:2 00002948 2 2			0f waiting init
+000019EC: 00002BAC          ? 00:7 00002bac 2 2			10 waiting
+000019F0: 00002CF0          ? 00:9 00002cf0 2 3			11 setup init
+000019F4: 00003074          ? 00:0 00003074 3 0			12 setup
+000019F8: 00003898          ? 00:1 00003898 3 2			13 countdown init
+000019FC: 00003F74          ? 00:e 00003f74 3 3			14 countdown
+00001A00: 00003FC0          ? 00:f 00003fc0 3 3			15 ingame setup
+00001A04: 0000402C          ? 00:0 0000402c 0 0			16 ingame
+00001A08: 00005204          ? 00:4 00005204 1 0			17 goal init
+00001A0C: 00005304          ? 00:6 00005304 1 0			18 goal
+00001A10: 00004E8C          ? 00:d 00004e8c 0 3			19 results init
+00001A14: 00005190          ? 00:3 00005190 1 0			1a results
+00001A18: 000048F4          ? 00:1 000048f4 0 2			1b victory init
+00001A1C: 00004CD0          ? 00:9 00004cd0 0 3			1c victory
+00001A20: 000053B4          ? 00:7 000053b4 1 0			1d nameentry init
+00001A24: 00005594          ? 00:b 00005594 1 1			1e nameentry
+-- raw data (gamestate handler)
+
+-- raw data (gamestate setup handler?)
+00003098: 000030B8          ? 00:1 000030b8 3 0
+0000309C: 000031C0          ? 00:3 000031c0 3 0
+000030A0: 00003264          ? 00:4 00003264 3 0
+000030A4: 000033A0          ? 00:7 000033a0 3 0
+000030A8: 000033E8          ? 00:7 000033e8 3 0
+000030AC: 00003418          ? 00:8 00003418 3 1
+000030B0: 00003444          ? 00:8 00003444 3 1
+000030B4: 0000345C          ? 00:8 0000345c 3 1
+-- raw data (gamestate setup handler?)
+
+-- raw table (service handler)
+0003CBC0: 00229F70          ? 00:e 00229f70 1 3			-- 0 main menu
+0003CBC4: 0022CAD0          ? 00:5 0022cad0 0 2			-- 1 bookkeeping
+0003CBC8: 0022A470          ? 00:8 0022a470 2 1			-- 2 game system
+0003CBCC: 0022B560          ? 00:a 0022b560 3 1			-- 3 coin assignment
+0003CBD0: 0022BD40          ? 00:a 0022bd40 3 3			-- 4 input test
+0003CBD4: 0022C250          ? 00:4 0022c250 0 0			-- 5 output test
+0003CBD8: 0022F4F0          ? 00:9 0022f4f0 3 1			-- 6 drive bd test
+0003CBDC: 0022D930          ? 00:2 0022d930 1 2			-- 7 sound test
+0003CBE0: 00230730          ? 00:e 00230730 0 1			-- 8 tgp test
+0003CBE4: 00230BD0          ? 00:7 00230bd0 0 2			-- 9 memory test
+0003CBE8: 0022F110          ? 00:2 0022f110 3 0			-- A backup ram clear
+0003CBEC: 0022A290          ? 00:5 0022a290 2 0			-- B exit
+-- raw table (service handler)
+
+-- raw table (service main menu table)
+0003CBF0: 00229F90          ? 00:f 00229f90 1 3			-- 0 load menu
+0003CBF4: 0022A130          ? 00:2 0022a130 2 0			-- 1 run menu
+0003CBF8: 0022A2C0          ? 00:5 0022a2c0 2 0			-- 2 save menu
+0003CBFC: 0022A310          ? 00:6 0022a310 2 0			-- 3 exit menu
+-- raw table (service main menu table)
+
+-- raw data (service bookkeeping handler)
+0003D748: 0022CAF0          ? 00:5 0022caf0 0 2			-- 0 bookkeeping load
+0003D74C: 0022CB20          ? 00:6 0022cb20 0 2			-- 1 bookkeeping show
+--
+0003D750: 0022CB90          ? 00:7 0022cb90 0 2			-- 2 bookkeeping page 1
+0003D754: 0022CBF0          ? 00:7 0022cbf0 0 2			-- 3 bookkeeping page 2
+-- raw data (service bookkeeping handler)
+
+-- raw data (service game system handler))
+0003CD00: 0022A490          ? 00:9 0022a490 2 1			-- 0 show config
+0003CD04: 0022A620          ? 00:c 0022a620 2 1			-- 1 run config
+-- raw data (service game system handler))
+
+-- raw data (service game system handler table show)
+0003CD70: 0022A730          ? 00:e 0022a730 2 1			-- show config exit
+0003CD74: 0022AA10          ? 00:4 0022aa10 2 2			-- show config link id
+0003CD78: 0022A8F0          ? 00:1 0022a8f0 2 2			-- show config car number
+0003CD7C: 0022AD30          ? 00:a 0022ad30 2 3			-- show config cabinet
+0003CD80: 0022AB20          ? 00:6 0022ab20 2 2			-- show config country
+0003CD84: 0022AE40          ? 00:c 0022ae40 2 3			-- show config difficulty
+0003CD88: 0022A7E0          ? 00:f 0022a7e0 2 1			-- show config advertise sound
+0003CD8C: 0022AC30          ? 00:8 0022ac30 2 3			-- show config game mode
+0003CD90: 0022AF20          ? 00:e 0022af20 2 3			-- show config rival arrow
+0003CD94: 0022B030          ? 00:0 0022b030 3 0			-- show config promote saturn
+-- raw data (service game system handler table show)
+
+-- raw data (service game system handler table value up)
+0003CD10: 0022A700          ? 00:e 0022a700 2 1			-- service handler gamesystem exit
+0003CD14: 0022A9B0          ? 00:3 0022a9b0 2 2			-- service handler gamesystem linkid up
+0003CD18: 0022A890          ? 00:1 0022a890 2 2			-- service handler gamesystem car number up
+0003CD1C: 0022ACD0          ? 00:9 0022acd0 2 3			-- service handler gamesystem cabinet up
+0003CD20: 0022AAC0          ? 00:5 0022aac0 2 2			-- service handler gamesystem country up
+0003CD24: 0022ADE0          ? 00:b 0022ade0 2 3			-- service handler gamesystem difficulty up
+0003CD28: 0022A7B0          ? 00:f 0022a7b0 2 1			-- service handler gamesystem advertise toggle
+0003CD2C: 0022ABD0          ? 00:7 0022abd0 2 2			-- service handler gamesystem gamemode up
+0003CD30: 0022AEF0          ? 00:d 0022aef0 2 3			-- service handler gamesystem rivalarrow toggle
+0003CD34: 0022AFD0          ? 00:f 0022afd0 2 3			-- service handler gamesystem promotesaturn up
+-- raw data (service game system handler table value up)
+
+-- raw data (service game system handler table value down)
+0003CD40: 0022A700          ? 00:e 0022a700 2 1			-- service handler gamesystem exit
+0003CD44: 0022A9E0          ? 00:3 0022a9e0 2 2			-- service handler gamesystem linkid down
+0003CD48: 0022A8C0          ? 00:1 0022a8c0 2 2			-- service handler gamesystem car number down
+0003CD4C: 0022AD00          ? 00:a 0022ad00 2 3			-- service handler gamesystem cabinet down
+0003CD50: 0022AAF0          ? 00:5 0022aaf0 2 2			-- service handler gamesystem country down
+0003CD54: 0022AE10          ? 00:c 0022ae10 2 3			-- service handler gamesystem difficulty down
+0003CD58: 0022A7B0          ? 00:f 0022a7b0 2 1			-- service handler gamesystem advertise toggle
+0003CD5C: 0022AC00          ? 00:8 0022ac00 2 3			-- service handler gamesystem gamemode down
+0003CD60: 0022AEF0          ? 00:d 0022aef0 2 3			-- service handler gamesystem rivalarrow toggle
+0003CD64: 0022B000          ? 00:0 0022b000 3 0			-- service handler gamesystem promotesaturn down
+-- raw data (service game system handler table value down)
+
+-- raw data (service coin assigment handler)
+0003D2E8: 0022B580          ? 00:b 0022b580 3 1			-- 0 show assigment
+0003D2EC: 0022B680          ? 00:d 0022b680 3 1			-- 1 run assigment
+-- raw data (service coin assigment handler)
+
+-- raw data (service coin assigment handler table show)
+0003D310: 0022B790          ? 00:f 0022b790 3 1			-- show coinassign exit
+0003D314: 0022B840          ? 00:0 0022b840 3 2			-- show coinassign credits
+0003D318: 0022B960          ? 00:2 0022b960 3 2			-- show coinassign coinmode
+-- raw data (service coin assigment handler table show)
+
+-- raw data (service coin assigment handler table value down)
+0003D2F0: 0022B760          ? 00:e 0022b760 3 1			-- service handler coinassign exit
+0003D2F4: 0022B810          ? 00:0 0022b810 3 2			-- service handler coinassign credits up
+0003D2F8: 0022B8F0          ? 00:1 0022b8f0 3 2			-- service handler coinassign coinmode up
+-- raw data (service coin assigment handler table value down)
+
+-- raw data (service coin assigment handler table value up)
+0003D300: 0022B760          ? 00:e 0022b760 3 1			-- service handler coinassign exit
+0003D304: 0022B810          ? 00:0 0022b810 3 2			-- service handler coinassign credits up
+0003D308: 0022B920          ? 00:2 0022b920 3 2			-- service handler coinassign coinmode down
+-- raw data (service coin assigment handler table value up)
+
+-- raw data (service input handler)
+0003D3A8: 0022BD60          ? 00:a 0022bd60 3 3			-- 0 show input
+0003D3AC: 0022BE70          ? 00:c 0022be70 3 3			-- 1 run input
+-- raw data (service input handler)
+
+-- raw data (service output handler)
+0003D480: 0022C270          ? 00:4 0022c270 0 0			-- 0 show output
+0003D484: 0022C450          ? 00:8 0022c450 0 1			-- 1 run output
+0003D488: 0022C630          ? 00:c 0022c630 0 1			-- 2 wait output
+0003D48C: 0022C8C0          ? 00:1 0022c8c0 0 2			-- 3 lamp output
+-- raw data (service output handler)
+
+-- raw data (service output handler table)
+0003D48C: 0022C8C0          ? 00:1 0022c8c0 0 2			-- 0 (can't happen)
+0003D490: 0022C670          ? 00:c 0022c670 0 1			-- 1 crt size
+0003D494: 0022C750          ? 00:e 0022c750 0 1			-- 2 crt color
+0003D498: 0022C860          ? 00:0 0022c860 0 2			-- 3 lamp
+-- raw data (service output handler table)
+
+-- raw data service drivebd handler
+0003F680: 0022F510          ? 00:a 0022f510 3 1			-- 0 show drivebd
+0003F684: 0022F6D0          ? 00:d 0022f6d0 3 1			-- 1 run drivebd
+0003F688: 0022F890          ? 00:1 0022f890 3 2			-- 2 drivebd steering setup
+0003F68C: 0022FB60          ? 00:6 0022fb60 3 2			-- 3 drivebd steering test
+0003F690: 0022FE00          ? 00:c 0022fe00 3 3			-- 4 drivebd cylinder setup
+0003F694: 00230100          ? 00:2 00230100 0 0			-- 5 drivebd cylinder test
+-- raw data service drivebd handler
+
+-- raw data (service sound handler)
+0003F310: 0022D950          ? 00:2 0022d950 1 2
+0003F314: 0022DB20          ? 00:6 0022db20 1 2
+0003F318: 0022DE60          ? 00:c 0022de60 1 3
+0003F31C: 0022E380          ? 00:7 0022e380 2 0
+0003F320: 0022E730          ? 00:e 0022e730 2 1
+-- raw data (service sound handler)
+
+-- raw data (service tgp handler)
+0003F810: 00230770          ? 00:e 00230770 0 1
+0003F814: 00230840          ? 00:0 00230840 0 2
+-- raw data (service tgp handler)
+
+-- raw data (service memory handler)
+0003F8E0: 00230BF0          ? 00:7 00230bf0 0 2
+0003F8E4: 00230C60          ? 00:8 00230c60 0 3
+0003F8E8: 00230C90          ? 00:9 00230c90 0 3
+0003F8EC: 00230CE0          ? 00:9 00230ce0 0 3
+-- raw data (service memory handler)
+
+-- raw data (service backupclear handler)
+0003F470: 0022F130          ? 00:2 0022f130 3 0
+0003F474: 0022F2F0          ? 00:5 0022f2f0 3 0
+0003F478: 0022F490          ? 00:9 0022f490 3 1
+-- raw data (service backupclear handler)

@@ -1,0 +1,210 @@
+0000576C		?
+00005788		?
+
+0000579C		?
+000057AC		?
+
+00006348		? (track handler?)
+00006544		?
+
+00006608		?
+00006688		?
+00006720		?
+
+00006C30		? (attract camera??)
+
+00006E34		? (camera handler init?)
+00006EE4		? (camera handler?)
+
+0000B0F4		?
+0000B1F0		?
+0000B8B4		?
+0000BAB4		?
+
+0000CF8C		?
+
+0000D0CC		?
+0000D0F8		?
+0000D19C		?
+0000D1B0		?
+
+0000D484		?
+
+0000D4B4		? (ai cars expert?)
+
+0000D580		? ()
+
+0000DA04		? ()
+
+0000DA50		? (0000DC38 init)
+
+0000DAEC		? (0000DBB0 init)
+0000DBB0		? ()
+
+0000DBD8		? ()
+
+0000DC38		? ()
+
+0000DD30		? (player car beginner?)
+
+0000DFE8		? (0000E058 init)
+0000E058		? (ai cars beginner?)
+
+0000E150		? (player car expert?)
+
+0000E580		? (0000E5E0 init)
+0000E5E0		? ()
+
+00012A84		(car data init)
+00012AC4		(car data copy)
+
+00012B6C		(car collision handler?)
+
+00012B9C		? ()
+00012BB0		? ()
+00012BB8		? ()
+
+00013318		? ()
+
+000134A8		(minimap)
+
+000182CC		(LOD & Window init)
+00018320		(LOD & Window)
+
+0001ACE0		(comm handler)
+
+00220000		? ()
+00220010		? ()
+
+002200E4		(end of frame?)
+
+00220118		(roulette stand init?)
+00220138		(roulette stand?)
+
+002201BC		(animation init)
+00220218		(animation)
+
+002202C4		? (002202E0 init)
+002202E0		? ()
+
+00220364		(slotmachine init)
+0022039C		(slotmachine)
+
+00220698		? (002206B4 init)
+002206B4		? ()
+
+00220730		? (0022074C init)
+0022074C		? ()
+
+002207C8		(roulette wheel init)
+002207F0		(roulette wheel)
+
+00220898		(rotating dice init)
+002208B8		(rotating dice)
+
+00220948		? (00220968 init)
+00220968		? ()
+
+00220A6C		(goal board init)
+00220A8C		(goal board)
+
+00220B48		(leaderboard init?)
+00220BA0		(leaderboard)
+
+00220DD8		? (00220DF8 init)
+00220DF8		? ()
+
+00221144		(checkpoint init)
+002211A4		(checkpoint)
+
+002212A0		? (002212BC init)
+002212BC		? ()
+
+00221348		? (00221368 init)
+00221368		? ()
+
+002213B0		(pylon collision handler init)
+00221450		(pylon collision handler)
+
+002216E4		? ()
+
+00221730		(pylon v1 handler init)
+00221764		(pylon v2 handler init)
+00221798		(pylon v3 handler init)
+002217CC		(pylon v4 handler init)
+00221878		(pylon handler)
+
+00221F0C		(beginner convention center init)
+00221F2C		(beginner convention center)
+
+00221FC4		(expert glassfront init)
+00221FE4		(expert glassfront)
+
+002220E4		? (00222100 init)
+00222100		? ()
+
+0022214C		? (00222194 init)
+00222194		?
+
+002223E0		(seagull init)
+00222400		(seagull)
+
+002225C4		(seagull2 init)
+002225F0		(seagull2)
+
+002226D4		(horse init)
+002226FC		(horse)
+
+00222908		? ()
+00222938		? ()
+0022297C		? (00222AB0 init?)
+00222AB0		? (00222AC4 init)
+00222AC4		? (002226D4 init?)
+00222AEC		? (00222B08 init)
+00222B08		? ()
+
+00222ED4		? (00222ED4 init)
+00222F64		? ()
+
+00222FF8		? (00223068 init)
+00223068		? ()
+
+00223E74		?
+00223ED4		?
+
+00223FBC		?
+
+00224054		(gameover)
+
+002242F8		?
+0022444C		?
+
+00224698		?
+00224768		?
+
+00224D4C		? (00224E0C init)
+00224E0C		? ()
+
+00224E34		(startinglight init)
+00224E4C		(startinglight)
+
+0022540C		? ()
+00225454		? ()
+002255AC		? ()
+
+00226EC8		? ()
+00226EE4		? ()
+00226F00		? ()
+00226F5C		? ()
+
+002270E4		? ()
+
+00227380		? (002273EC init)
+002273EC		? (002274EC init)
+002274EC		? ()
+
+00227718		? (002277D8 init)
+002277D8		? ()
+
+00228860		? (00228990 init)
+00228990		? ()

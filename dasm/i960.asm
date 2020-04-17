@@ -1148,15 +1148,18 @@
 000010A0: 592C581F          addo    r5,0x11,0x1f
 000010A4: 5936981F          addo    r6,0x1a,0x1f
 000010A8: 5C381E00          mov     r7,0x0
+
 000010AC: 823C1C04          stob    r7,(g0)[r4*1]
 000010B0: 5A210B00          cmpdeco r4,r4,0x0
 000010B4: 1200001C          be      000010d0
+
 000010B8: 5838C88F          and     r7,r3,0xf
 000010BC: 5918CC04          shro    r3,r3,0x4
 000010C0: 5939C005          addo    r7,r7,r5
 000010C4: 3331DFE8          cmpobge r6,r7,0x10ac
 000010C8: 5939C807          addo    r7,r7,0x7
 000010CC: 08FFFFE0          b       000010ac
+
 000010D0: 0A000000          ret
 -- dead code?
 
@@ -1192,7 +1195,7 @@
 00001120: 80183000 01C0001E ldob    r3,0x1c0001e
 00001128: 59201905          subo    r4,0x0,0x5			-- 0xfffffffb
 0000112C: 5818C084          and     r3,r3,r4
-00001130: 82183000 01C0001E stob    r3,0x1c0001e
+00001130: 82183000 01C0001E stob    r3,0x1c0001e		-- disable start lamp?
 
 00001138: 0A000000          ret
 }
@@ -1417,7 +1420,7 @@
 -- init t-ram0
 0000144C: 58CB830E          xor     g9,r14,r14			0x0
 00001450: 80283000 00501460 ldob    r5,0x501460
-00001458: 90A83905 000015B4 ld      g5,0x15b4[r5*4]		(02200000,02400000,02300000,02200000)
+00001458: 90A83905 000015B4 ld      g5,0x15b4[r5*4]		(02200000,02400000,02300000,02200000 based on track)
 00001460: 09000020          call    00001480			upload texture g5 (g9 bool t-ram0/t-ram1)
 00001464: 0A000000          ret
 }
@@ -4165,13 +4168,13 @@
 00004254: 090162E8          call    0001a53c
 00004258: 8C803000 00004270 lda     g0,0x4270
 00004260: 8C883000 010000B8 lda     g1,0x10000b8
-00004268: 09014910          call    00018b78			-- print hiscores g0 to g1
+00004268: 09014910          call    00018b78			-- print hiscore string g0 to g1
 0000426C: 0800000C          b       00004278
 00004270: 20202020          testno r4
 00004274: 00202020          ? 00:0 00202020 2 0
 00004278: 8C803000 00004290 lda     g0,0x4290
 00004280: 8C883000 01000138 lda     g1,0x1000138
-00004288: 090148F0          call    00018b78			-- print hiscores g0 to g1
+00004288: 090148F0          call    00018b78			-- print hiscore string g0 to g1
 0000428C: 0800000C          b       00004298
 00004290: 20202020          testno r4
 00004294: 00202020          ? 00:0 00202020 2 0
@@ -5845,10 +5848,10 @@
 00005ECC: 5A003003          cmpo    0x0,r3
 00005ED0: 12000014          be      00005ee4
 00005ED4: 8C883000 01001198 lda     g1,0x1001198
-00005EDC: 09012C9C          call    00018b78			-- print hiscores g0 to g1
+00005EDC: 09012C9C          call    00018b78			-- print hiscore string g0 to g1
 00005EE0: 0A000000          ret
 00005EE4: 8C883000 01001318 lda     g1,0x1001318
-00005EEC: 09012C8C          call    00018b78			-- print hiscores g0 to g1
+00005EEC: 09012C8C          call    00018b78			-- print hiscore string g0 to g1
 00005EF0: 0A000000          ret
 }
 
@@ -5903,7 +5906,7 @@
 
 00005F84: 8C803000 00005F9C lda     g0,0x5f9c
 00005F8C: 8C883000 01001604 lda     g1,0x1001604
-00005F94: 09012BE4          call    00018b78			-- print hiscores g0 to g1
+00005F94: 09012BE4          call    00018b78			-- print hiscore string g0 to g1
 00005F98: 0800000C          b       00005fa4
 
 -- raw data ("CREDIT ")
@@ -5915,7 +5918,7 @@
 
 00005FA8: 8C803000 00005FC0 lda     g0,0x5fc0
 00005FB0: 8C883000 01001604 lda     g1,0x1001604
-00005FB8: 09012BC0          call    00018b78			-- print hiscores g0 to g1
+00005FB8: 09012BC0          call    00018b78			-- print hiscore string g0 to g1
 00005FBC: 0800000C          b       00005fc8
 
 -- raw data ("CREDITS")
@@ -5927,7 +5930,7 @@
 
 00005FCC: 8C803000 00005FE4 lda     g0,0x5fe4
 00005FD4: 8C883000 01001608 lda     g1,0x1001608
-00005FDC: 09012B9C          call    00018b78			-- print hiscores g0 to g1
+00005FDC: 09012B9C          call    00018b78			-- print hiscore string g0 to g1
 00005FE0: 08000010          b       00005ff0
 
 -- raw data ("FREEPLAY")
@@ -5941,14 +5944,16 @@
 00005FF4: 5C801606          mov     g0,r6
 00005FF8: 8C883000 01001624 lda     g1,0x1001624
 00006000: 5C901E02          mov     g2,0x2
-00006004: 09012C58          call    00018c5c
+00006004: 09012C58          call    00018c5c			-- print hiscore digit g0 to g1 len g2
+
 00006008: 5987D81F          addo    g0,0x1f,0x1f
 0000600C: 8C883000 0100162C lda     g1,0x100162c
-00006014: 09012BE4          call    00018bf8
+00006014: 09012BE4          call    00018bf8			-- print hiscore letter g0 at g1
+
 00006018: 5C801605          mov     g0,r5
 0000601C: 8C883000 01001630 lda     g1,0x1001630
 00006024: 5C901E01          mov     g2,0x1
-00006028: 09012C34          call    00018c5c
+00006028: 09012C34          call    00018c5c			-- print hiscore digit g0 to g1 len g2
 
 0000602C: 0A000000          ret
 }
@@ -11204,7 +11209,7 @@
 0000C170: 5918CE07          shlo    r3,r3,0x7
 0000C174: 598C4003          addo    g1,g1,r3
 0000C178: 90842004          ld      g0,0x4(g0)
-0000C17C: 0900D638          call    000197b4
+0000C17C: 0900D638          call    000197b4			-- clear tilemap data g0 at g1
 0000C180: 88803000 005FE5BA ldos    g0,0x5fe5ba
 0000C188: 58840881          and     g0,g0,0x1
 0000C18C: 8C803990 00234BD8 lda     g0,0x234bd8[g0*8]
@@ -11216,7 +11221,7 @@
 0000C1AC: 5918CE07          shlo    r3,r3,0x7
 0000C1B0: 598C4003          addo    g1,g1,r3
 0000C1B4: 90842004          ld      g0,0x4(g0)
-0000C1B8: 0900D5FC          call    000197b4
+0000C1B8: 0900D5FC          call    000197b4			-- clear tilemap data g0 at g1
 0000C1BC: 0A000000          ret
 0000C1C0: 901F6054          ld      r3,0x54(g13)
 0000C1C4: 5818C883          and     r3,r3,0x3
@@ -11250,7 +11255,7 @@
 0000C24C: 5918CE07          shlo    r3,r3,0x7
 0000C250: 598C4003          addo    g1,g1,r3
 0000C254: 90842004          ld      g0,0x4(g0)
-0000C258: 0900D55C          call    000197b4
+0000C258: 0900D55C          call    000197b4			-- clear tilemap data g0 at g1
 0000C25C: 901F6054          ld      r3,0x54(g13)
 0000C260: 5918C801          addo    r3,r3,0x1
 0000C264: 921F6054          st      r3,0x54(g13)
@@ -11281,7 +11286,7 @@
 0000C2E4: 5918CE07          shlo    r3,r3,0x7
 0000C2E8: 598C4003          addo    g1,g1,r3
 0000C2EC: 90842004          ld      g0,0x4(g0)
-0000C2F0: 0900D4C4          call    000197b4
+0000C2F0: 0900D4C4          call    000197b4			-- clear tilemap data g0 at g1
 0000C2F4: 0A000000          ret
 0000C2F8: 90183000 00540058 ld      r3,0x540058
 0000C300: 3718E044          bbs     3,r3,0xc344
@@ -11309,7 +11314,7 @@
 0000C370: 5918CE07          shlo    r3,r3,0x7
 0000C374: 598C4003          addo    g1,g1,r3
 0000C378: 90842004          ld      g0,0x4(g0)
-0000C37C: 0900D438          call    000197b4
+0000C37C: 0900D438          call    000197b4			-- clear tilemap data g0 at g1
 0000C380: 0A000000          ret
 0000C384: 90C83000 00501220 ld      g9,0x501220
 0000C38C: 90183000 00501A80 ld      r3,0x501a80
@@ -11520,7 +11525,7 @@
 0000C77C: 08000018          b       0000c794
 0000C780: 8C883000 01000A28 lda     g1,0x1000a28
 0000C788: 8C803000 02825F7A lda     g0,0x2825f7a
-0000C790: 0900D024          call    000197b4
+0000C790: 0900D024          call    000197b4			-- clear tilemap data g0 at g1
 0000C794: 0A000000          ret
 0000C798: C0183000 00501460 ldib    r3,0x501460
 0000C7A0: 5A003083          cmpi    0x0,r3
@@ -11579,7 +11584,7 @@
 0000C89C: 5918CE07          shlo    r3,r3,0x7
 0000C8A0: 598C4003          addo    g1,g1,r3
 0000C8A4: 90842004          ld      g0,0x4(g0)
-0000C8A8: 0900CF0C          call    000197b4
+0000C8A8: 0900CF0C          call    000197b4			-- clear tilemap data g0 at g1
 0000C8AC: C8283000 00501850 ldis    r5,0x501850
 0000C8B4: 3D19602C          cmpibne 0x3,r5,0xc8e0
 0000C8B8: 59294881          addi    r5,r5,0x1
@@ -11599,7 +11604,7 @@
 0000C908: 080000F4          b       0000c9fc
 0000C90C: 8C883000 0100072A lda     g1,0x100072a
 0000C914: 8C803000 02835476 lda     g0,0x2835476
-0000C91C: 0900CE98          call    000197b4
+0000C91C: 0900CE98          call    000197b4			-- clear tilemap data g0 at g1
 0000C920: 080000DC          b       0000c9fc
 0000C924: 8C883000 01000836 lda     g1,0x1000836
 0000C92C: 8C803000 0283530E lda     g0,0x283530e
@@ -11626,7 +11631,7 @@
 0000C9AC: 08000050          b       0000c9fc
 0000C9B0: 8C883000 010009A6 lda     g1,0x10009a6
 0000C9B8: 8C803000 02825DE2 lda     g0,0x2825de2
-0000C9C0: 0900CDF4          call    000197b4
+0000C9C0: 0900CDF4          call    000197b4			-- clear tilemap data g0 at g1
 0000C9C4: 8C883000 01000836 lda     g1,0x1000836
 0000C9CC: 8C803000 028353FE lda     g0,0x28353fe
 0000C9D4: 0900CE20          call    000197F4			-- copy tilemap data g0 to g1
@@ -11669,14 +11674,14 @@
 0000CAA4: 0800004C          b       0000caf0
 0000CAA8: 8C803000 0000CAC0 lda     g0,0xcac0
 0000CAB0: 8C883000 010007B0 lda     g1,0x10007b0
-0000CAB8: 0900C0C0          call    00018b78			-- print hiscores g0 to g1
+0000CAB8: 0900C0C0          call    00018b78			-- print hiscore string g0 to g1
 0000CABC: 08000010          b       0000cacc
 0000CAC0: 20202020          testno r4
 0000CAC4: 20202020          testno r4
 0000CAC8: 00000000          ? 00:0 00000000 0 0
 0000CACC: 8C803000 0000CAE4 lda     g0,0xcae4
 0000CAD4: 8C883000 0100082C lda     g1,0x100082c
-0000CADC: 0900C09C          call    00018b78			-- print hiscores g0 to g1
+0000CADC: 0900C09C          call    00018b78			-- print hiscore string g0 to g1
 0000CAE0: 08000010          b       0000caf0
 0000CAE4: 20202020          testno r4
 0000CAE8: 20202020          testno r4
@@ -11690,7 +11695,7 @@
 0000CB0C: 92183000 00501338 st      r3,0x501338
 0000CB14: 8C803000 0000CB2C lda     g0,0xcb2c
 0000CB1C: 8C883000 01000B2A lda     g1,0x1000b2a
-0000CB24: 0900C054          call    00018b78			-- print hiscores g0 to g1
+0000CB24: 0900C054          call    00018b78			-- print hiscore string g0 to g1
 0000CB28: 08000010          b       0000cb38
 0000CB2C: 54495020          ? 54:0 54495020 1 0
 0000CB30: 524F5720          ? 52:e 524f5720 1 1
@@ -11698,7 +11703,7 @@
 0000CB38: 08000028          b       0000cb60
 0000CB3C: 8C803000 0000CB54 lda     g0,0xcb54
 0000CB44: 8C883000 01000B2A lda     g1,0x1000b2a
-0000CB4C: 0900C02C          call    00018b78			-- print hiscores g0 to g1
+0000CB4C: 0900C02C          call    00018b78			-- print hiscore string g0 to g1
 0000CB50: 08000010          b       0000cb60
 0000CB54: 20202020          testno r4
 0000CB58: 20202020          testno r4
@@ -11723,10 +11728,10 @@
 0000CBBC: 0800002C          b       0000cbe8
 0000CBC0: 8C883000 01000626 lda     g1,0x1000626
 0000CBC8: 8C803000 0281E1B2 lda     g0,0x281e1b2
-0000CBD0: 0900CBE4          call    000197b4
+0000CBD0: 0900CBE4          call    000197b4			-- clear tilemap data g0 at g1
 0000CBD4: 8C883000 01000826 lda     g1,0x1000826
 0000CBDC: 8C803000 0281E1B2 lda     g0,0x281e1b2
-0000CBE4: 0900CBD0          call    000197b4
+0000CBE4: 0900CBD0          call    000197b4			-- clear tilemap data g0 at g1
 0000CBE8: 0A000000          ret
 0000CBEC: 90783000 00501220 ld      r15,0x501220
 0000CBF4: 90203000 00501854 ld      r4,0x501854
@@ -11846,7 +11851,7 @@
 0000CE30: 3B00E044          cmpibge 0x0,r3,0xce74
 0000CE34: 8C883000 010005C2 lda     g1,0x10005c2
 0000CE3C: 8C803000 0281DF4E lda     g0,0x281df4e
-0000CE44: 0900C970          call    000197b4
+0000CE44: 0900C970          call    000197b4			-- clear tilemap data g0 at g1
 0000CE48: 5920CC01          shro    r4,r3,0x1
 0000CE4C: 5918C901          subo    r3,r3,0x1
 0000CE50: CA1F6006          stis    r3,0x6(g13)
@@ -12880,16 +12885,16 @@
 0000DF54: 0A000000          ret
 0000DF58: 8C883000 010009A8 lda     g1,0x10009a8
 0000DF60: 8C803000 02825EB6 lda     g0,0x2825eb6
-0000DF68: 0900B84C          call    000197b4
+0000DF68: 0900B84C          call    000197b4			-- clear tilemap data g0 at g1
 0000DF6C: 8C883000 010009A6 lda     g1,0x10009a6
 0000DF74: 8C803000 02825DE2 lda     g0,0x2825de2
-0000DF7C: 0900B838          call    000197b4
+0000DF7C: 0900B838          call    000197b4			-- clear tilemap data g0 at g1
 0000DF80: 8C883000 01000B8E lda     g1,0x1000b8e
 0000DF88: 8C803000 02834F52 lda     g0,0x2834f52
-0000DF90: 0900B824          call    000197b4
+0000DF90: 0900B824          call    000197b4			-- clear tilemap data g0 at g1
 0000DF94: 8C883000 01000C00 lda     g1,0x1000c00
 0000DF9C: 8C803000 0283527C lda     g0,0x283527c
-0000DFA4: 0900B810          call    000197b4
+0000DFA4: 0900B810          call    000197b4			-- clear tilemap data g0 at g1
 0000DFA8: 90203000 0100A000 ld      r4,0x100a000
 0000DFB0: 58210E0F          clrbit  r4,r4,0xf
 0000DFB4: 92203000 0100A000 st      r4,0x100a000
@@ -23158,7 +23163,7 @@
 00018B74: 0A000000          ret
 
 {
--- print hiscores g0 to g1
+-- print hiscore string g0 to g1
 00018B78: 90183000 0050133C ld      r3,0x50133c
 00018B80: 90203000 00501338 ld      r4,0x501338
 00018B88: 59210E07          shlo    r4,r4,0x7
@@ -23191,6 +23196,8 @@
 00018BF4: 0A000000          ret
 }
 
+{
+-- print hiscore letter g0 at g1
 00018BF8: 5C201610          mov     r4,g0
 00018BFC: 5918581F          addo    r3,0x1,0x1f
 00018C00: 59190103          subo    r3,r4,r3
@@ -23214,6 +23221,10 @@
 00018C50: 59210801          addo    r4,r4,0x1
 00018C54: CA246102          stis    r4,0x102(g1)
 00018C58: 0A000000          ret
+}
+
+{
+-- print hiscore dec g0 at g1 len g2
 00018C5C: 583C888F          and     r7,g2,0xf
 00018C60: 5A01E800          cmpo    r7,0x0
 00018C64: 120000C0          be      00018d24
@@ -23263,6 +23274,8 @@
 00018D1C: 5A39CB01          cmpdeco r7,r7,0x1
 00018D20: 14FFFFE0          bl      00018d00
 00018D24: 0A000000          ret
+}
+
 00018D28: 5C501610          mov     r10,g0
 00018D2C: 5C581611          mov     r11,g1
 00018D30: 5C201610          mov     r4,g0
@@ -23279,41 +23292,41 @@
 00018D60: 59210007          addo    r4,r4,r7
 00018D64: 5C801604          mov     g0,r4
 00018D68: 598C4904          subo    g1,g1,0x4
-00018D6C: 09FFFE8C          call    00018bf8
+00018D6C: 09FFFE8C          call    00018bf8			-- print hiscore letter g0 at g1
 00018D70: 5C201605          mov     r4,r5
 00018D74: 5C281E00          mov     r5,0x0
 00018D78: 6721088A          ediv    r4,r4,0xa
 00018D7C: 59210007          addo    r4,r4,r7
 00018D80: 5C801604          mov     g0,r4
 00018D84: 598C4904          subo    g1,g1,0x4
-00018D88: 09FFFE70          call    00018bf8
+00018D88: 09FFFE70          call    00018bf8			-- print hiscore letter g0 at g1
 00018D8C: 8C803000 00008022 lda     g0,0x8022
 00018D94: 598C4904          subo    g1,g1,0x4
-00018D98: 09FFFE60          call    00018bf8
+00018D98: 09FFFE60          call    00018bf8			-- print hiscore letter g0 at g1
 00018D9C: 5C201605          mov     r4,r5
 00018DA0: 5C281E00          mov     r5,0x0
 00018DA4: 6721088A          ediv    r4,r4,0xa
 00018DA8: 59210007          addo    r4,r4,r7
 00018DAC: 5C801604          mov     g0,r4
 00018DB0: 598C4904          subo    g1,g1,0x4
-00018DB4: 09FFFE44          call    00018bf8
+00018DB4: 09FFFE44          call    00018bf8			-- print hiscore letter g0 at g1
 00018DB8: 5C201605          mov     r4,r5
 00018DBC: 5C281E00          mov     r5,0x0
 00018DC0: 67210886          ediv    r4,r4,0x6
 00018DC4: 59210007          addo    r4,r4,r7
 00018DC8: 5C801604          mov     g0,r4
 00018DCC: 598C4904          subo    g1,g1,0x4
-00018DD0: 09FFFE28          call    00018bf8
+00018DD0: 09FFFE28          call    00018bf8			-- print hiscore letter g0 at g1
 00018DD4: 8C803000 00008027 lda     g0,0x8027
 00018DDC: 598C4904          subo    g1,g1,0x4
-00018DE0: 09FFFE18          call    00018bf8
+00018DE0: 09FFFE18          call    00018bf8			-- print hiscore letter g0 at g1
 00018DE4: 5C201605          mov     r4,r5
 00018DE8: 5C281E00          mov     r5,0x0
 00018DEC: 6721088A          ediv    r4,r4,0xa
 00018DF0: 59210007          addo    r4,r4,r7
 00018DF4: 5C801604          mov     g0,r4
 00018DF8: 598C4904          subo    g1,g1,0x4
-00018DFC: 09FFFDFC          call    00018bf8
+00018DFC: 09FFFDFC          call    00018bf8			-- print hiscore letter g0 at g1
 00018E00: 5A016800          cmpo    r5,0x0
 00018E04: 12000024          be      00018e28
 00018E08: 5C201605          mov     r4,r5
@@ -23322,11 +23335,11 @@
 00018E14: 59210007          addo    r4,r4,r7
 00018E18: 5C801604          mov     g0,r4
 00018E1C: 598C4904          subo    g1,g1,0x4
-00018E20: 09FFFDD8          call    00018bf8
+00018E20: 09FFFDD8          call    00018bf8			-- print hiscore letter g0 at g1
 00018E24: 08000014          b       00018e38
 00018E28: 8C803000 00008020 lda     g0,0x8020
 00018E30: 598C4904          subo    g1,g1,0x4
-00018E34: 09FFFDC4          call    00018bf8
+00018E34: 09FFFDC4          call    00018bf8			-- print hiscore letter g0 at g1
 00018E38: 5C80160A          mov     g0,r10
 00018E3C: 5C88160B          mov     g1,r11
 00018E40: 0A000000          ret
@@ -23829,7 +23842,7 @@
 00019660: 09FFFE38          call    00019498
 00019664: 8C803000 00008022 lda     g0,0x8022
 0001966C: 598C4904          subo    g1,g1,0x4
-00019670: 09FFF588          call    00018bf8
+00019670: 09FFF588          call    00018bf8			-- print hiscore letter g0 at g1
 00019674: 5C201605          mov     r4,r5
 00019678: 5C281E00          mov     r5,0x0
 0001967C: 6721088A          ediv    r4,r4,0xa
@@ -23844,7 +23857,7 @@
 000196A0: 09FFFDF8          call    00019498
 000196A4: 8C803000 00008027 lda     g0,0x8027
 000196AC: 598C4904          subo    g1,g1,0x4
-000196B0: 09FFF548          call    00018bf8
+000196B0: 09FFF548          call    00018bf8			-- print hiscore letter g0 at g1
 000196B4: 5C201605          mov     r4,r5
 000196B8: 5C281E00          mov     r5,0x0
 000196BC: 6721088A          ediv    r4,r4,0xa
@@ -23912,22 +23925,28 @@
 000197B0: 0A000000          ret
 }
 
+{
+-- clear tilemap data g0 to g1
 000197B4: 59840884          addi    g0,g0,0x4
 000197B8: 5918581F          addo    r3,0x1,0x1f
 000197BC: 90241000          ld      r4,(g0)
 000197C0: 59840884          addi    g0,g0,0x4
 000197C4: 902C1000          ld      r5,(g0)
 000197C8: 59840884          addi    g0,g0,0x4
+
 000197CC: 5C301611          mov     r6,g1
 000197D0: 5C381605          mov     r7,r5
+
 000197D4: CA199000          stis    r3,(r6)
 000197D8: 59318882          addi    r6,r6,0x2
 000197DC: 5A39CB01          cmpdeco r7,r7,0x1
 000197E0: 14FFFFF4          bl      000197d4
+
 000197E4: 8C8C6080          lda     g1,0x80(g1)
 000197E8: 5A210B01          cmpdeco r4,r4,0x1
 000197EC: 14FFFFE0          bl      000197cc
 000197F0: 0A000000          ret
+}
 
 {
 -- copy tilemap data g0 to g1
@@ -28168,14 +28187,14 @@
 0001E2DC: 5C68161E          mov     r13,g14
 0001E2E0: 5CF01E00          mov     g14,0x0
 
-0001E2E4: 80A03000 01C00040 ldob    g4,0x1c00040
+0001E2E4: 80A03000 01C00040 ldob    g4,0x1c00040			-- read io status?
 0001E2EC: 3D052010          cmpibne 0x0,g4,0x1e2fc			-- 0x0 != g4 goto 0001E2FC
 
 -- ? (if zero)
 0001E2F0: 5CA81E01          mov     g5,0x1
 0001E2F4: 82A83000 01C00040 stob    g5,0x1c00040
 
--- ?
+-- ? (non zero)
 0001E2FC: 80A03000 005FE632 ldob    g4,0x5fe632
 0001E304: 59A05014          addo    g4,0x1,g4
 0001E308: 82A03000 005FE632 stob    g4,0x5fe632				-- increase counter
@@ -28193,19 +28212,19 @@
 0001E33C: 82A83000 005FE618 stob    g5,0x5fe618
 
 -- ?
-0001E344: 0B000124          bal     0001e468				-- 0001E460
+0001E344: 0B000124          bal     0001e468				-- read io (short digital)
 
 0001E348: 80A03000 005FE626 ldob    g4,0x5fe626
 0001E350: 3D052014          cmpibne 0x0,g4,0x1e364			-- 0x0 != g4 goto 0001E364
 
--- game mode
-0001E354: 0B000334          bal     0001e688
-0001E358: 09000368          call    0001e6c0
+-- if game mode
+0001E354: 0B000334          bal     0001e688				-- check test buttons
+0001E358: 09000368          call    0001e6c0				-- increase counters
 0001E35C: 0920B5A4          call    00229900				-- 00029900
 0001E360: 09000660          call    0001e9c0
 
 --
-0001E364: 59A81902          subo    g5,0x0,0x2
+0001E364: 59A81902          subo    g5,0x0,0x2				-- g5 = 0xfffffffe
 0001E368: 92A83000 00E80000 st      g5,0xe80000				-- clear/ack irq0?
 
 0001E370: 5F801604          movq    g0,0x0,r4
@@ -28219,11 +28238,16 @@
 0001E384: 00000000          ? 00:0 00000000 0 0
 0001E388: 00000000          ? 00:0 00000000 0 0
 0001E38C: 00000000          ? 00:0 00000000 0 0
+
+{
+-- dead code?
 0001E390: 8CF03000 0001E3A4 lda     g14,0x1e3a4
 0001E398: 5C80161E          mov     g0,g14
 0001E39C: 5CF01E00          mov     g14,0x0
 0001E3A0: 84041000          bx      pfp,(g0)
 0001E3A4: 0A000000          ret
+}
+
 0001E3A8: 00000000          ? 00:0 00000000 0 0
 0001E3AC: 00000000          ? 00:0 00000000 0 0
 
@@ -28265,22 +28289,22 @@
 }
 
 {
---
+-- read io (short digital)
 0001E460: 8CF03000 0001E4CC lda     g14,0x1e4cc
 0001E468: 5C80161E          mov     g0,g14
 0001E46C: 5CF01E00          mov     g14,0x0
-0001E470: 80A83000 01C00010 ldob    g5,0x1c00010
-0001E478: 80A03000 01C0001C ldob    g4,0x1c0001c
-0001E480: 8CB800FF          lda     g7,0xff
+0001E470: 80A83000 01C00010 ldob    g5,0x1c00010		-- read1 g5 from 0x1c00010
+0001E478: 80A03000 01C0001C ldob    g4,0x1c0001c		-- read1 g4 from 0x1c0001c
+0001E480: 8CB800FF          lda     g7,0xff				-- g7 = 0xff
 0001E484: 90B03000 005FE60C ld      g6,0x5fe60c
 0001E48C: 58ADC095          and     g5,g7,g5
 0001E490: 58A5C094          and     g4,g7,g4
 0001E494: 59A50E08          shlo    g4,g4,0x8
-0001E498: 58AD0395          or      g5,g4,g5
-0001E49C: 58A01515          not     g4,0x0,g5
+0001E498: 58AD0395          or      g5,g4,g5			-- g5 |= g4 (0x0000ffff)
+0001E49C: 58A01515          not     g4,0x0,g5			--          (0xffff0000)
 0001E4A0: 92A03000 005FE60C st      g4,0x5fe60c
 0001E4A8: 58A50116          andnot  g4,g4,g6
-0001E4AC: 92A03000 005FE13C st      g4,0x5fe13c
+0001E4AC: 92A03000 005FE13C st      g4,0x5fe13c			-- buttons changed?
 0001E4B4: 58AD8095          and     g5,g6,g5
 0001E4B8: 92B03000 005FE610 st      g6,0x5fe610
 0001E4C0: 92A83000 005FE608 st      g5,0x5fe608
@@ -28396,17 +28420,18 @@
 0001E67C: 00000000          ? 00:0 00000000 0 0
 
 {
---
+-- check test buttons
 0001E680: 8CF03000 0001E6B4 lda     g14,0x1e6b4
 0001E688: 5C80161E          mov     g0,g14
 0001E68C: 5CF01E00          mov     g14,0x0
-0001E690: 88A03000 005FE13C ldos    g4,0x5fe13c
-0001E698: 8CA80404          lda     g5,0x404
+0001E690: 88A03000 005FE13C ldos    g4,0x5fe13c				-- buttons changed
+0001E698: 8CA80404          lda     g5,0x404				-- (test / SW3)
 0001E69C: 58A54094          and     g4,g5,g4
-0001E6A0: 3A052010          cmpibe  0x0,g4,0x1e6b0			-- ? goto 0001E6B0
+0001E6A0: 3A052010          cmpibe  0x0,g4,0x1e6b0			-- if g4 == 0x0 goto 0001E6B0
 
+-- buttons pressed
 0001E6A4: 5CA81E01          mov     g5,0x1
-0001E6A8: 82A83000 005FE626 stob    g5,0x5fe626
+0001E6A8: 82A83000 005FE626 stob    g5,0x5fe626				-- enter service mode
 
 0001E6B0: 84041000          bx      pfp,(g0)
 0001E6B4: 0A000000          ret
@@ -28416,7 +28441,7 @@
 0001E6BC: 00000000          ? 00:0 00000000 0 0
 
 {
---
+-- increase counters
 0001E6C0: 90A03000 005FE620 ld      g4,0x5fe620
 0001E6C8: 59A85014          addo    g5,0x1,g4
 0001E6CC: 92A83000 005FE620 st      g5,0x5fe620				-- increase uptime
@@ -28431,18 +28456,20 @@
 0001E6EC: 92A83000 01D00108 st      g5,0x1d00108
 0001E6F4: 0920AFFC          call    002296f0				-- copy backup times1 to backup times2
 
+-- check flag
 0001E6F8: 80A03000 005FE5EC ldob    g4,0x5fe5ec
 0001E700: 373D202C          bbs     7,g4,0x1e72c			-- if g4 bit7 set goto 0001E72C
+
+-- flip flag and clear memory
 0001E704: 90A03000 005FE5EC ld      g4,0x5fe5ec
 0001E70C: 8C803000 005FE5D0 lda     g0,0x5fe5d0
 0001E714: 5C881E00          mov     g1,0x0
 0001E718: 58A50987          setbit  g4,g4,0x7
 0001E71C: 5C901E1C          mov     g2,0x1c
 0001E720: 92A03000 005FE5EC st      g4,0x5fe5ec
-
 0001E728: 08212C58          b       00231380				-- fillmemory (g0 destination, g1 value, g2 length)
 
---?
+-- increase counters (if enabled)
 0001E72C: 5CA01E00          mov     g4,0x0
 0001E730: 8CA83000 005FE5E0 lda     g5,0x5fe5e0
 0001E738: B0855000          ldq     g0,(g5)
@@ -28696,7 +28723,8 @@
 0001EB10: 598C4E10          shlo    g1,g1,0x10
 0001EB14: 59840D90          shri    g0,g0,0x10
 0001EB18: 598C4D90          shri    g1,g1,0x10
-0001EB1C: 09000034          call    0001eb50
+0001EB1C: 09000034          call    0001eb50				-- 0001EB50
+
 0001EB20: 3D042020          cmpibne 0x0,g0,0x1eb40			-- 0001EB40
 
 0001EB24: C8A03000 005FE13A ldis    g4,0x5fe13a
@@ -28713,18 +28741,18 @@
 0001EB4C: 00000000          ? 00:0 00000000 0 0
 
 {
---
+-- something background/sky related (returns g0)
 0001EB50: 90A03000 005FE604 ld      g4,0x5fe604
-0001EB58: 3D05200C          cmpibne 0x0,g4,0x1eb64
+0001EB58: 3D05200C          cmpibne 0x0,g4,0x1eb64			-- 0001EB64
 0001EB5C: 5C801E01          mov     g0,0x1
 0001EB60: 0A000000          ret
-}
 
 0001EB64: 906D1000          ld      r13,(g4)
 0001EB68: 90A36008          ld      g4,0x8(r13)
-0001EB6C: 3D05200C          cmpibne 0x0,g4,0x1eb78
+0001EB6C: 3D05200C          cmpibne 0x0,g4,0x1eb78			-- 0001EB78
 0001EB70: 5C801E01          mov     g0,0x1
 0001EB74: 0A000000          ret
+
 0001EB78: 8C783000 FFFFFF00 lda     r15,0xffffff00
 0001EB80: 58A3C091          and     g4,r15,g1
 0001EB84: 58ABC090          and     g5,r15,g0
@@ -28733,7 +28761,8 @@
 0001EB90: 8C7800FF          lda     r15,0xff
 0001EB94: 5853C094          and     r10,r15,g4
 0001EB98: 90483000 002312CC ld      r9,0x2312cc
-0001EBA0: 3A02A234          cmpibe  0x0,r10,0x1edd4
+0001EBA0: 3A02A234          cmpibe  0x0,r10,0x1edd4			-- 0001EDD4
+
 0001EBA4: 59A40C0D          shro    g4,g0,0xd
 0001EBA8: 58750887          and     r14,g4,0x7
 0001EBAC: 90AB7D0E 00000008 ld      g5,0x8(r13)[r14*4]
@@ -28742,42 +28771,50 @@
 0001EBBC: 5A01608E          cmpi    r5,r14
 0001EBC0: 90356008          ld      r6,0x8(g5)
 0001EBC4: 90456004          ld      r8,0x4(g5)
-0001EBC8: 12000198          be      0001ed60
+0001EBC8: 12000198          be      0001ed60				-- 0001ED60
+
 0001EBCC: 59A44C08          shro    g4,g1,0x8
 0001EBD0: 583D089F          and     r7,g4,0x1f
 0001EBD4: 5A003088          cmpi    0x0,r8
 0001EBD8: 5C981E00          mov     g3,0x0
-0001EBDC: 16000064          ble     0001ec40
+0001EBDC: 16000064          ble     0001ec40				-- 0001EC40
+
 0001EBE0: 5978581F          addo    r15,0x1,0x1f
 0001EBE4: 58A3C094          and     g4,r15,g4
 0001EBE8: 5920DE08          shlo    r4,0x3,0x8
 0001EBEC: 5C901E00          mov     g2,0x0
 0001EBF0: 59650E01          shlo    r12,g4,0x1
 0001EBF4: 905B7D05 00000008 ld      r11,0x8(r13)[r5*4]
+
 0001EBFC: 59A24004          addo    g4,r9,r4
 0001EC00: 59BD000C          addo    g7,g4,r12
 0001EC04: 5CA81607          mov     g5,r7
 0001EC08: 8CB2FC92 0000000C lda     g6,0xc(r11)[g2*2]
+
 0001EC10: 88A59000          ldos    g4,(g6)
 0001EC14: 59B09016          addo    g6,0x2,g6
 0001EC18: 59AD4901          subo    g5,g5,0x1
 0001EC1C: 5A003095          cmpi    0x0,g5
 0001EC20: 8AA5D000          stos    g4,(g7)
 0001EC24: 59B89017          addo    g7,0x2,g7
-0001EC28: 13FFFFE8          bge     0001ec10
+0001EC28: 13FFFFE8          bge     0001ec10				-- 0001EC10
+
 0001EC2C: 59985013          addo    g3,0x1,g3
 0001EC30: 5A022093          cmpi    r8,g3
 0001EC34: 8C212080          lda     r4,0x80(r4)
 0001EC38: 59918012          addo    g2,r6,g2
-0001EC3C: 14FFFFC0          bl      0001ebfc
+0001EC3C: 14FFFFC0          bl      0001ebfc				-- 0001EBFC
+
 0001EC40: 59A28901          subo    g4,r10,0x1
 0001EC44: 59550107          subo    r10,g4,r7
 0001EC48: 59294901          subo    r5,r5,0x1
 0001EC4C: 58294887          and     r5,r5,0x7
-0001EC50: 3A714110          cmpibe  r14,r5,0x1ed60
+0001EC50: 3A714110          cmpibe  r14,r5,0x1ed60			-- 0001ED60
+
 0001EC54: 5A003088          cmpi    0x0,r8
 0001EC58: 5C981E00          mov     g3,0x0
-0001EC5C: 16000100          ble     0001ed5c
+0001EC5C: 16000100          ble     0001ed5c				-- 0001ED5C
+
 0001EC60: 598C4C08          shro    g1,g1,0x8
 0001EC64: 5978581F          addo    r15,0x1,0x1f
 0001EC68: 588BC111          andnot  g1,r15,g1
@@ -28786,87 +28823,104 @@
 0001EC74: 5A022F00          chkbit  r8,0x0
 0001EC78: 902B7D05 00000008 ld      r5,0x8(r13)[r5*4]
 0001EC80: 5C881E00          mov     g1,0x0
-0001EC84: 1000004C          bno     0001ecd0
+0001EC84: 1000004C          bno     0001ecd0				-- 0001ECD0
+
 0001EC88: 59A98901          subo    g5,r6,0x1
 0001EC8C: 5A003095          cmpi    0x0,g5
 0001EC90: 8CB1600C          lda     g6,0xc(r5)
 0001EC94: 59A10009          addo    g4,r4,r9
 0001EC98: 59BD0007          addo    g7,g4,r7
-0001EC9C: 14000020          bl      0001ecbc
+0001EC9C: 14000020          bl      0001ecbc				-- 0001ECBC
+
 0001ECA0: 88959000          ldos    g2,(g6)
 0001ECA4: 59B09016          addo    g6,0x2,g6
 0001ECA8: 59AD4901          subo    g5,g5,0x1
 0001ECAC: 5A003095          cmpi    0x0,g5
 0001ECB0: 8A95D000          stos    g2,(g7)
 0001ECB4: 59B89017          addo    g7,0x2,g7
-0001ECB8: 13FFFFE8          bge     0001eca0
+0001ECB8: 13FFFFE8          bge     0001eca0				-- 0001ECA0
+
 0001ECBC: 59985013          addo    g3,0x1,g3
 0001ECC0: 5A022093          cmpi    r8,g3
 0001ECC4: 8C212080          lda     r4,0x80(r4)
 0001ECC8: 59898011          addo    g1,r6,g1
-0001ECCC: 13000090          bge     0001ed5c
+0001ECCC: 13000090          bge     0001ed5c				-- 0001ED5C
+
 0001ECD0: 59A24004          addo    g4,r9,r4
 0001ECD4: 59BD0007          addo    g7,g4,r7
 0001ECD8: 59A98901          subo    g5,r6,0x1
 0001ECDC: 5A003095          cmpi    0x0,g5
 0001ECE0: 8CB17C91 0000000C lda     g6,0xc(r5)[g1*2]
-0001ECE8: 14000020          bl      0001ed08
+0001ECE8: 14000020          bl      0001ed08				-- 0001ED08
+
 0001ECEC: 88959000          ldos    g2,(g6)
 0001ECF0: 59B09016          addo    g6,0x2,g6
 0001ECF4: 59AD4901          subo    g5,g5,0x1
 0001ECF8: 5A003095          cmpi    0x0,g5
 0001ECFC: 8A95D000          stos    g2,(g7)
 0001ED00: 59B89017          addo    g7,0x2,g7
-0001ED04: 13FFFFE8          bge     0001ecec
+0001ED04: 13FFFFE8          bge     0001ecec				-- 0001ECEC
+
 0001ED08: 59898011          addo    g1,r6,g1
 0001ED0C: 8CA13C09 00000080 lda     g4,0x80(r4)[r9*1]
 0001ED14: 59BD0007          addo    g7,g4,r7
 0001ED18: 59A98901          subo    g5,r6,0x1
 0001ED1C: 5A003095          cmpi    0x0,g5
 0001ED20: 8CB17C91 0000000C lda     g6,0xc(r5)[g1*2]
-0001ED28: 14000020          bl      0001ed48
+0001ED28: 14000020          bl      0001ed48				-- 0001ED48
+
 0001ED2C: 88959000          ldos    g2,(g6)
 0001ED30: 59B09016          addo    g6,0x2,g6
 0001ED34: 59AD4901          subo    g5,g5,0x1
 0001ED38: 5A003095          cmpi    0x0,g5
 0001ED3C: 8A95D000          stos    g2,(g7)
 0001ED40: 59B89017          addo    g7,0x2,g7
-0001ED44: 13FFFFE8          bge     0001ed2c
+0001ED44: 13FFFFE8          bge     0001ed2c				-- 0001ED2C
+
 0001ED48: 59989013          addo    g3,0x2,g3
 0001ED4C: 5A022093          cmpi    r8,g3
 0001ED50: 8C212100          lda     r4,0x100(r4)
 0001ED54: 59898011          addo    g1,r6,g1
-0001ED58: 14FFFF78          bl      0001ecd0
+0001ED58: 14FFFF78          bl      0001ecd0				-- 0001ECD0
+
 0001ED5C: 59528106          subo    r10,r10,r6
+
 0001ED60: 59840C08          shro    g0,g0,0x8
 0001ED64: 583C089F          and     r7,g0,0x1f
 0001ED68: 5A003088          cmpi    0x0,r8
 0001ED6C: 5C981E00          mov     g3,0x0
-0001ED70: 16000064          ble     0001edd4
+0001ED70: 16000064          ble     0001edd4				-- 0001EDD4
+
 0001ED74: 8C78003F          lda     r15,0x3f
 0001ED78: 58A3C090          and     g4,r15,g0
 0001ED7C: 5988DE08          shlo    g1,0x3,0x8
 0001ED80: 5C801607          mov     g0,r7
 0001ED84: 59250E01          shlo    r4,g4,0x1
 0001ED88: 90937D0E 00000008 ld      g2,0x8(r13)[r14*4]
+
 0001ED90: 59A24011          addo    g4,r9,g1
 0001ED94: 59BD0004          addo    g7,g4,r4
 0001ED98: 5CA8160A          mov     g5,r10
 0001ED9C: 8CB4BC90 0000000C lda     g6,0xc(g2)[g0*2]
+
 0001EDA4: 88A59000          ldos    g4,(g6)
 0001EDA8: 59B09016          addo    g6,0x2,g6
 0001EDAC: 59AD4901          subo    g5,g5,0x1
 0001EDB0: 5A003095          cmpi    0x0,g5
 0001EDB4: 8AA5D000          stos    g4,(g7)
 0001EDB8: 59B89017          addo    g7,0x2,g7
-0001EDBC: 13FFFFE8          bge     0001eda4
+0001EDBC: 13FFFFE8          bge     0001eda4				-- 0001EDA4
+
 0001EDC0: 59985013          addo    g3,0x1,g3
 0001EDC4: 5A022093          cmpi    r8,g3
 0001EDC8: 8C8C6080          lda     g1,0x80(g1)
 0001EDCC: 59818010          addo    g0,r6,g0
-0001EDD0: 14FFFFC0          bl      0001ed90
+0001EDD0: 14FFFFC0          bl      0001ed90				-- 0001ED90
+
 0001EDD4: 5C801E00          mov     g0,0x0
 0001EDD8: 0A000000          ret
+}
+
 0001EDDC: 00000000          ? 00:0 00000000 0 0
 
 {
@@ -32073,7 +32127,7 @@
 00022D10: 0A000000          ret
 00022D14: 8C803000 00222D2C lda     g0,0x222d2c
 00022D1C: 8C883000 01000C20 lda     g1,0x1000c20
-00022D24: 09DF5E54          call    00018b78			-- print hiscores g0 to g1
+00022D24: 09DF5E54          call    00018b78			-- print hiscore string g0 to g1
 00022D28: 08000008          b       00022d30
 00022D2C: 00000031          ? 00:0 00000031 0 0
 00022D30: 5C201E01          mov     r4,0x1
@@ -32084,7 +32138,7 @@
 00022D48: 0A000000          ret
 00022D4C: 8C803000 00222D64 lda     g0,0x222d64
 00022D54: 8C883000 01000C20 lda     g1,0x1000c20
-00022D5C: 09DF5E1C          call    00018b78			-- print hiscores g0 to g1
+00022D5C: 09DF5E1C          call    00018b78			-- print hiscore string g0 to g1
 00022D60: 08000008          b       00022d68
 00022D64: 00000032          ? 00:0 00000032 0 0
 00022D68: 5C201E01          mov     r4,0x1
@@ -32095,7 +32149,7 @@
 00022D80: 0A000000          ret
 00022D84: 8C803000 00222D9C lda     g0,0x222d9c
 00022D8C: 8C883000 01000C20 lda     g1,0x1000c20
-00022D94: 09DF5DE4          call    00018b78			-- print hiscores g0 to g1
+00022D94: 09DF5DE4          call    00018b78			-- print hiscore string g0 to g1
 00022D98: 08000008          b       00022da0
 00022D9C: 00000033          ? 00:0 00000033 0 0
 00022DA0: 5C201E01          mov     r4,0x1
@@ -32106,7 +32160,7 @@
 00022DB8: 0A000000          ret
 00022DBC: 8C803000 00222DD4 lda     g0,0x222dd4
 00022DC4: 8C883000 01000C20 lda     g1,0x1000c20
-00022DCC: 09DF5DAC          call    00018b78			-- print hiscores g0 to g1
+00022DCC: 09DF5DAC          call    00018b78			-- print hiscore string g0 to g1
 00022DD0: 08000008          b       00022dd8
 00022DD4: 00000034          ? 00:0 00000034 0 0
 00022DD8: 5C201E01          mov     r4,0x1
@@ -32117,7 +32171,7 @@
 00022DF0: 0A000000          ret
 00022DF4: 8C803000 00222E0C lda     g0,0x222e0c
 00022DFC: 8C883000 01000C20 lda     g1,0x1000c20
-00022E04: 09DF5D74          call    00018b78			-- print hiscores g0 to g1
+00022E04: 09DF5D74          call    00018b78			-- print hiscore string g0 to g1
 00022E08: 08000008          b       00022e10
 00022E0C: 00000035          ? 00:0 00000035 0 0
 00022E10: 5C201E01          mov     r4,0x1
@@ -32128,7 +32182,7 @@
 00022E28: 0A000000          ret
 00022E2C: 8C803000 00222E44 lda     g0,0x222e44
 00022E34: 8C883000 01000C20 lda     g1,0x1000c20
-00022E3C: 09DF5D3C          call    00018b78			-- print hiscores g0 to g1
+00022E3C: 09DF5D3C          call    00018b78			-- print hiscore string g0 to g1
 00022E40: 08000008          b       00022e48
 00022E44: 00000036          ? 00:0 00000036 0 0
 00022E48: 5C201E01          mov     r4,0x1
@@ -32139,7 +32193,7 @@
 00022E60: 0A000000          ret
 00022E64: 8C803000 00222E7C lda     g0,0x222e7c
 00022E6C: 8C883000 01000C20 lda     g1,0x1000c20
-00022E74: 09DF5D04          call    00018b78			-- print hiscores g0 to g1
+00022E74: 09DF5D04          call    00018b78			-- print hiscore string g0 to g1
 00022E78: 08000008          b       00022e80
 00022E7C: 00000037          ? 00:0 00000037 0 0
 00022E80: 5C201E01          mov     r4,0x1
@@ -32150,7 +32204,7 @@
 00022E98: 0A000000          ret
 00022E9C: 8C803000 00222EB4 lda     g0,0x222eb4
 00022EA4: 8C883000 01000C20 lda     g1,0x1000c20
-00022EAC: 09DF5CCC          call    00018b78			-- print hiscores g0 to g1
+00022EAC: 09DF5CCC          call    00018b78			-- print hiscore string g0 to g1
 00022EB0: 08000008          b       00022eb8
 00022EB4: 00000038          ? 00:0 00000038 0 0
 00022EB8: 5C201E01          mov     r4,0x1
@@ -32286,7 +32340,7 @@
 --
 0002309C: 8C883000 01004000 lda     g1,0x1004000
 000230A4: 8C803000 0282FD4C lda     g0,0x282fd4c
-000230AC: 09DF6708          call    000197b4
+000230AC: 09DF6708          call    000197b4			-- clear tilemap data g0 at g1
 000230B0: 8C883000 01000380 lda     g1,0x1000380
 000230B8: 8C803000 02824544 lda     g0,0x2824544
 000230C0: 09DF6734          call    000197F4			-- copy tilemap data g0 to g1
@@ -32577,7 +32631,7 @@
 00023550: 5918CE07          shlo    r3,r3,0x7
 00023554: 598C4003          addo    g1,g1,r3
 00023558: 90842004          ld      g0,0x4(g0)
-0002355C: 09DF6258          call    000197b4
+0002355C: 09DF6258          call    000197b4			-- clear tilemap data g0 at g1
 00023560: 0A000000          ret
 00023564: 90183000 005FE140 ld      r3,0x5fe140
 0002356C: 8C203000 000100E0 lda     r4,0x100e0
@@ -32951,7 +33005,7 @@
 00023C0C: 08000010          b       00023c1c
 
 00023C10: 90803000 028133D4 ld      g0,0x28133d4
-00023C18: 09DF5B9C          call    000197b4
+00023C18: 09DF5B9C          call    000197b4			-- clear tilemap data g0 at g1
 
 00023C1C: 5C881608          mov     g1,r8
 00023C20: 598C4908          subo    g1,g1,0x8
@@ -32988,7 +33042,7 @@
 00023CB8: 3D00E064          cmpibne 0x0,r3,0x23d1c
 00023CBC: 8C883000 010009A6 lda     g1,0x10009a6
 00023CC4: 8C803000 02825DE2 lda     g0,0x2825de2
-00023CCC: 09DF5AE8          call    000197b4
+00023CCC: 09DF5AE8          call    000197b4			-- clear tilemap data g0 at g1
 00023CD0: 8C883000 010009A8 lda     g1,0x10009a8
 00023CD8: 8C803000 02825EB6 lda     g0,0x2825eb6
 00023CE0: 09DF5B14          call    000197F4			-- copy tilemap data g0 to g1
@@ -32997,10 +33051,10 @@
 00023CF0: 3D00E02C          cmpibne 0x0,r3,0x23d1c
 00023CF4: 8C883000 010009A8 lda     g1,0x10009a8
 00023CFC: 8C803000 02825EB6 lda     g0,0x2825eb6
-00023D04: 09DF5AB0          call    000197b4
+00023D04: 09DF5AB0          call    000197b4			-- clear tilemap data g0 at g1
 00023D08: 8C883000 010009A6 lda     g1,0x10009a6
 00023D10: 8C803000 02825DE2 lda     g0,0x2825de2
-00023D18: 09DF5A9C          call    000197b4
+00023D18: 09DF5A9C          call    000197b4			-- clear tilemap data g0 at g1
 00023D1C: 90203000 0100A000 ld      r4,0x100a000
 00023D24: 5821098F          setbit  r4,r4,0xf
 00023D28: 92203000 0100A000 st      r4,0x100a000
@@ -33066,7 +33120,7 @@
 00023E60: 5918CE07          shlo    r3,r3,0x7
 00023E64: 598C4003          addo    g1,g1,r3
 00023E68: 90842004          ld      g0,0x4(g0)
-00023E6C: 09DF5948          call    000197b4
+00023E6C: 09DF5948          call    000197b4			-- clear tilemap data g0 at g1
 00023E70: 0A000000          ret
 
 {
@@ -33624,7 +33678,7 @@
 
 000247EC: 8C803000 00224804 lda     g0,0x224804
 000247F4: 8C883000 01000C2A lda     g1,0x1000c2a
-000247FC: 09DF437C          call    00018b78			-- print hiscores g0 to g1
+000247FC: 09DF437C          call    00018b78			-- print hiscore string g0 to g1
 00024800: 08000014          b       00024814
 
 -- raw data (string)
@@ -33638,7 +33692,7 @@
 
 00024818: 8C803000 00224830 lda     g0,0x224830
 00024820: 8C883000 01000C2A lda     g1,0x1000c2a
-00024828: 09DF4350          call    00018b78			-- print hiscores g0 to g1
+00024828: 09DF4350          call    00018b78			-- print hiscore string g0 to g1
 0002482C: 08000014          b       00024840
 
 -- raw data (string)
@@ -33674,7 +33728,7 @@
 00024894: 591A4E07          shlo    r3,r9,0x7
 00024898: 598C4003          addo    g1,g1,r3
 0002489C: 8C803000 02828206 lda     g0,0x2828206
-000248A4: 09DF4F10          call    000197b4
+000248A4: 09DF4F10          call    000197b4			-- clear tilemap data g0 at g1
 
 000248A8: 0A000000          ret
 }
@@ -33868,7 +33922,7 @@
 00024B30: 591A0E07          shlo    r3,r8,0x7
 00024B34: 598C4003          addo    g1,g1,r3
 00024B38: 9081A004          ld      g0,0x4(r6)
-00024B3C: 09DF4C78          call    000197b4
+00024B3C: 09DF4C78          call    000197b4			-- clear tilemap data g0 at g1
 00024B40: 08FFFF88          b       00024ac8
 
 00024B44: 9027604C          ld      r4,0x4c(g13)
@@ -33920,7 +33974,7 @@
 00024BE4: 591A0E07          shlo    r3,r8,0x7
 00024BE8: 598C4003          addo    g1,g1,r3
 00024BEC: 9081A004          ld      g0,0x4(r6)
-00024BF0: 09DF4BC4          call    000197b4
+00024BF0: 09DF4BC4          call    000197b4			-- clear tilemap data g0 at g1
 00024BF4: 08FFFFA4          b       00024b98
 
 00024BF8: 9027604C          ld      r4,0x4c(g13)
@@ -34720,13 +34774,13 @@
 000258EC: 0A000000          ret
 000258F0: 8C883000 010014B6 lda     g1,0x10014b6
 000258F8: 8C803000 0282F5A0 lda     g0,0x282f5a0
-00025900: 09DF3EB4          call    000197b4
+00025900: 09DF3EB4          call    000197b4			-- clear tilemap data g0 at g1
 00025904: 8C883000 0100128C lda     g1,0x100128c
 0002590C: 8C803000 0282F5EC lda     g0,0x282f5ec
-00025914: 09DF3EA0          call    000197b4
+00025914: 09DF3EA0          call    000197b4			-- clear tilemap data g0 at g1
 00025918: 8C883000 010012CA lda     g1,0x10012ca
 00025920: 8C803000 0282FAD4 lda     g0,0x282fad4
-00025928: 09DF3E8C          call    000197b4
+00025928: 09DF3E8C          call    000197b4			-- clear tilemap data g0 at g1
 0002592C: 90183000 00540058 ld      r3,0x540058
 00025934: 5818C89F          and     r3,r3,0x1f
 00025938: 5A023003          cmpo    0x8,r3
@@ -34742,7 +34796,7 @@
 0002596C: 5918CE07          shlo    r3,r3,0x7
 00025970: 598C4003          addo    g1,g1,r3
 00025974: 90842004          ld      g0,0x4(g0)
-00025978: 09DF3E3C          call    000197b4
+00025978: 09DF3E3C          call    000197b4			-- clear tilemap data g0 at g1
 0002597C: 88803000 005FE5BA ldos    g0,0x5fe5ba
 00025984: 58840881          and     g0,g0,0x1
 00025988: 8C803990 00234C68 lda     g0,0x234c68[g0*8]
@@ -34754,7 +34808,7 @@
 000259A8: 5918CE07          shlo    r3,r3,0x7
 000259AC: 598C4003          addo    g1,g1,r3
 000259B0: 90842004          ld      g0,0x4(g0)
-000259B4: 09DF3E00          call    000197b4
+000259B4: 09DF3E00          call    000197b4			-- clear tilemap data g0 at g1
 000259B8: 88803000 005FE5BA ldos    g0,0x5fe5ba
 000259C0: 58840881          and     g0,g0,0x1
 000259C4: 8C803990 00234C78 lda     g0,0x234c78[g0*8]
@@ -34766,7 +34820,7 @@
 000259E4: 5918CE07          shlo    r3,r3,0x7
 000259E8: 598C4003          addo    g1,g1,r3
 000259EC: 90842004          ld      g0,0x4(g0)
-000259F0: 09DF3DC4          call    000197b4
+000259F0: 09DF3DC4          call    000197b4			-- clear tilemap data g0 at g1
 000259F4: 0A000000          ret
 000259F8: 88803000 005FE5BA ldos    g0,0x5fe5ba
 00025A00: 58840881          and     g0,g0,0x1
@@ -35145,13 +35199,13 @@
 0002616C: 0A000000          ret
 00026170: 8C883000 010014B6 lda     g1,0x10014b6
 00026178: 8C803000 0282F5A0 lda     g0,0x282f5a0
-00026180: 09DF3634          call    000197b4
+00026180: 09DF3634          call    000197b4			-- clear tilemap data g0 at g1
 00026184: 8C883000 0100128C lda     g1,0x100128c
 0002618C: 8C803000 0282FC10 lda     g0,0x282fc10
-00026194: 09DF3620          call    000197b4
+00026194: 09DF3620          call    000197b4			-- clear tilemap data g0 at g1
 00026198: 8C883000 010012CA lda     g1,0x10012ca
 000261A0: 8C803000 0282F728 lda     g0,0x282f728
-000261A8: 09DF360C          call    000197b4
+000261A8: 09DF360C          call    000197b4			-- clear tilemap data g0 at g1
 000261AC: 80183000 00540027 ldob    r3,0x540027
 000261B4: 5CF01E01          mov     g14,0x1
 000261B8: 3EF0C00C          cmpible g14,r3,0x261c4
@@ -35174,7 +35228,7 @@
 00026208: 5918CE07          shlo    r3,r3,0x7
 0002620C: 598C4003          addo    g1,g1,r3
 00026210: 90842004          ld      g0,0x4(g0)
-00026214: 09DF35A0          call    000197b4
+00026214: 09DF35A0          call    000197b4			-- clear tilemap data g0 at g1
 00026218: 90183000 00540058 ld      r3,0x540058
 00026220: 5818C89F          and     r3,r3,0x1f
 00026224: 5A023083          cmpi    0x8,r3
@@ -35184,7 +35238,7 @@
 00026238: 12000034          be      0002626c
 0002623C: 8C803000 00226254 lda     g0,0x226254
 00026244: 8C883000 0100141C lda     g1,0x100141c
-0002624C: 09DF292C          call    00018b78			-- print hiscores g0 to g1
+0002624C: 09DF292C          call    00018b78			-- print hiscore string g0 to g1
 00026250: 08000018          b       00026268
 00026254: 20202020          testno r4
 00026258: 20202020          testno r4
@@ -35194,17 +35248,17 @@
 00026268: 0A000000          ret
 0002626C: 8C883000 01001492 lda     g1,0x1001492
 00026274: 8C803000 02822A52 lda     g0,0x2822a52
-0002627C: 09DF3538          call    000197b4
+0002627C: 09DF3538          call    000197b4			-- clear tilemap data g0 at g1
 00026280: 8C883000 010014B2 lda     g1,0x10014b2
 00026288: 8C803000 02822AF4 lda     g0,0x2822af4
-00026290: 09DF3524          call    000197b4
+00026290: 09DF3524          call    000197b4			-- clear tilemap data g0 at g1
 00026294: 0A000000          ret
 00026298: 80183000 005FE5BA ldob    r3,0x5fe5ba
 000262A0: 5A007003          cmpo    0x1,r3
 000262A4: 12000034          be      000262d8
 000262A8: 8C803000 002262C0 lda     g0,0x2262c0
 000262B0: 8C883000 0100141C lda     g1,0x100141c
-000262B8: 09DF28C0          call    00018b78			-- print hiscores g0 to g1
+000262B8: 09DF28C0          call    00018b78			-- print hiscore string g0 to g1
 000262BC: 08000018          b       000262d4
 000262C0: 49434544          ? 49:a 49434544 0 1
 000262C4: 20444544          testno r8
@@ -35528,7 +35582,7 @@
 000268B8: 5918CE07          shlo    r3,r3,0x7
 000268BC: 598C4003          addo    g1,g1,r3
 000268C0: 90842004          ld      g0,0x4(g0)
-000268C4: 09DF2EF0          call    000197b4
+000268C4: 09DF2EF0          call    000197b4			-- clear tilemap data g0 at g1
 000268C8: 90183000 00501A80 ld      r3,0x501a80
 000268D0: 5A003003          cmpo    0x0,r3
 000268D4: 12000120          be      000269f4
@@ -35782,13 +35836,13 @@
 00026DC8: 0A000000          ret
 00026DCC: 8C803000 00226DE4 lda     g0,0x226de4
 00026DD4: 8C883000 010001E8 lda     g1,0x10001e8
-00026DDC: 09DF1D9C          call    00018b78			-- print hiscores g0 to g1
+00026DDC: 09DF1D9C          call    00018b78			-- print hiscore string g0 to g1
 00026DE0: 08000008          b       00026de8
 00026DE4: 00002020          ? 00:0 00002020 2 0
 00026DE8: 0A000000          ret
 00026DEC: 8C803000 00226E04 lda     g0,0x226e04
 00026DF4: 8C883000 010001E8 lda     g1,0x10001e8
-00026DFC: 09DF1D7C          call    00018b78			-- print hiscores g0 to g1
+00026DFC: 09DF1D7C          call    00018b78			-- print hiscore string g0 to g1
 00026E00: 08000008          b       00026e08
 00026E04: 00002020          ? 00:0 00002020 2 0
 00026E08: 0A000000          ret
@@ -35799,7 +35853,7 @@
 00026E1C: 92183000 00501338 st      r3,0x501338
 00026E24: 8C803000 00226E3C lda     g0,0x226e3c
 00026E2C: 8C883000 01001018 lda     g1,0x1001018
-00026E34: 09DF1D44          call    00018b78			-- print hiscores g0 to g1
+00026E34: 09DF1D44          call    00018b78			-- print hiscore string g0 to g1
 00026E38: 0800001C          b       00026e54
 00026E3C: 52554F43          ? 52:e 52554f43 0 3
 00026E40: 49204553          ? 49:a 49204553 0 1
@@ -35809,7 +35863,7 @@
 00026E50: 00000000          ? 00:0 00000000 0 0
 00026E54: 8C803000 00226E6C lda     g0,0x226e6c
 00026E5C: 8C883000 01001298 lda     g1,0x1001298
-00026E64: 09DF1D14          call    00018b78			-- print hiscores g0 to g1
+00026E64: 09DF1D14          call    00018b78			-- print hiscore string g0 to g1
 00026E68: 08000018          b       00026e80
 00026E6C: 20202020          testno r4
 00026E70: 44414552          ? 44:a 44414552 0 1
@@ -36202,17 +36256,21 @@
 00027458: 70294083          mulo    r5,r5,r3
 0002745C: 598C4005          addo    g1,g1,r5
 00027460: 5C901E01          mov     g2,0x1
-00027464: 09DF17F8          call    00018c5c
+00027464: 09DF17F8          call    00018c5c			-- print hiscore digit g0 to g1 len g2
+
 00027468: 80843400 00227528 ldob    g0,0x227528(g0)
 00027470: 598C4804          addo    g1,g1,0x4
-00027474: 09DF1784          call    00018bf8
+00027474: 09DF1784          call    00018bf8			-- print hiscore letter g0 at g1
+
 00027478: 8C83A014          lda     g0,0x14(r14)
 0002747C: 598C4808          addo    g1,g1,0x8
-00027480: 09DF16F8          call    00018b78			-- print hiscores g0 to g1
+00027480: 09DF16F8          call    00018b78			-- print hiscore string g0 to g1
+
 00027484: 9083A010          ld      g0,0x10(r14)
 00027488: 591F5E02          shlo    r3,0x1d,0x2
 0002748C: 598C4103          subo    g1,g1,r3
 00027490: 09DF2184          call    00019614
+
 00027494: 9023A00C          ld      r4,0xc(r14)
 00027498: 8C803000 0282584A lda     g0,0x282584a
 000274A0: 591C581F          addo    r3,0x11,0x1f
@@ -36221,6 +36279,7 @@
 000274AC: 5918CC00          shro    r3,r3,0x0
 000274B0: 90183903 002274E4 ld      r3,0x2274e4[r3*4]
 000274B8: 8600D000          callx   pfp,(r3)
+
 000274BC: 8C803000 0282582C lda     g0,0x282582c
 000274C4: 8C180178          lda     r3,0x178
 000274C8: 598C4103          subo    g1,g1,r3
@@ -36228,6 +36287,7 @@
 000274D0: 5918CC01          shro    r3,r3,0x1
 000274D4: 90183903 002274E4 ld      r3,0x2274e4[r3*4]
 000274DC: 8600D000          callx   pfp,(r3)
+
 000274E0: 0A000000          ret
 }
 
@@ -37059,7 +37119,7 @@
 000282CC: 5C801603          mov     g0,r3
 000282D0: 8C883000 010002EC lda     g1,0x10002ec
 000282D8: 5C901E02          mov     g2,0x2
-000282DC: 09DF0980          call    00018c5c
+000282DC: 09DF0980          call    00018c5c			-- print hiscore digit g0 to g1 len g2
 000282E0: 0A000000          ret
 000282E4: 09000340          call    00028624
 000282E8: 5A003090          cmpi    0x0,g0
@@ -37374,7 +37434,7 @@
 00028910: 5918CE07          shlo    r3,r3,0x7
 00028914: 598C4003          addo    g1,g1,r3
 00028918: 90842004          ld      g0,0x4(g0)
-0002891C: 09DF0E98          call    000197b4
+0002891C: 09DF0E98          call    000197b4			-- clear tilemap data g0 at g1
 00028920: 88803000 005FE5BA ldos    g0,0x5fe5ba
 00028928: 58840881          and     g0,g0,0x1
 0002892C: 8C803990 00234B88 lda     g0,0x234b88[g0*8]
@@ -37386,12 +37446,12 @@
 0002894C: 5918CE07          shlo    r3,r3,0x7
 00028950: 598C4003          addo    g1,g1,r3
 00028954: 90842004          ld      g0,0x4(g0)
-00028958: 09DF0E5C          call    000197b4
+00028958: 09DF0E5C          call    000197b4			-- clear tilemap data g0 at g1
 0002895C: 8C803000 02834968 lda     g0,0x2834968
 00028964: 88183000 005FE5BA ldos    r3,0x5fe5ba
 0002896C: 5818C881          and     r3,r3,0x1
 00028970: 90883903 0023B028 ld      g1,0x23b028[r3*4]
-00028978: 09DF0E3C          call    000197b4
+00028978: 09DF0E3C          call    000197b4			-- clear tilemap data g0 at g1
 0002897C: 8C183000 00228A74 lda     r3,0x228a74
 00028984: 92183000 0050000C st      r3,0x50000c
 0002898C: 0A000000          ret
@@ -37425,7 +37485,7 @@
 000289E8: 58190881          and     r3,r4,0x1
 000289EC: 8C803000 0023B55C lda     g0,0x23b55c
 000289F4: 90883903 0023B030 ld      g1,0x23b030[r3*4]
-000289FC: 09DF0DB8          call    000197b4
+000289FC: 09DF0DB8          call    000197b4			-- clear tilemap data g0 at g1
 00028A00: 901F6040          ld      r3,0x40(g13)
 00028A04: 8C18DE04          lda     r3,(r3)[r4*16]
 00028A08: 9028E000          ld      r5,0x0(r3)
@@ -38190,25 +38250,31 @@
 
 {
 --
-00029900: 80A03000 01D0001B ldob    g4,0x1d0001b
+00029900: 80A03000 01D0001B ldob    g4,0x1d0001b			-- country
 00029908: 5A003094          cmpi    0x0,g4
 0002990C: 5CA81E09          mov     g5,0x9
-00029910: 15000008          bne     00029918
+00029910: 15000008          bne     00029918				-- if country == usa goto 00029918
 
+-- non usa
 00029914: 5CA81E18          mov     g5,0x18
 
+--
 00029918: 82A83000 005FE045 stob    g5,0x5fe045
 00029920: 80A03000 005FE040 ldob    g4,0x5fe040
 00029928: 3A052008          cmpibe  0x0,g4,0x29930			-- 00029930
 0002992C: 0A000000          ret
 
+-- if 0x5fe040 is zero
 00029930: 80A03000 005FE043 ldob    g4,0x5fe043
-00029938: 3A052024          cmpibe  0x0,g4,0x2995c
+00029938: 3A052024          cmpibe  0x0,g4,0x2995c			-- 0002995C
+
 0002993C: 8C803000 009E127F lda     g0,0x9e127f
 00029944: 09DF0C10          call    0001a554		push g0 to serial buffer
 00029948: 80A03000 005FE043 ldob    g4,0x5fe043
 00029950: 59A50901          subo    g4,g4,0x1
 00029954: 82A03000 005FE043 stob    g4,0x5fe043
+
+--
 0002995C: 80A03000 005FE044 ldob    g4,0x5fe044
 00029964: 3A052024          cmpibe  0x0,g4,0x29988			-- 00029988
 
@@ -38218,25 +38284,32 @@
 0002997C: 59A50901          subo    g4,g4,0x1
 00029980: 82A03000 005FE044 stob    g4,0x5fe044
 
-00029988: 90283000 005FE13C ld      r5,0x5fe13c
-00029990: 8CA80808          lda     g5,0x808
+00029988: 90283000 005FE13C ld      r5,0x5fe13c				-- buttons changed
+00029990: 8CA80808          lda     g5,0x808				-- (service / sw4)
 00029994: 58A54085          and     g4,g5,r5
 00029998: 3A052028          cmpibe  0x0,g4,0x299c0			-- 000299C0
+
+-- service buttons pressed
 0002999C: 8C803000 005FE020 lda     g0,0x5fe020
-000299A4: 0B0000E4          bal     00029a88
+000299A4: 0B0000E4          bal     00029a88				-- coin backlog? (g0)
+
 000299A8: 90A03000 01D00114 ld      g4,0x1d00114
 000299B0: 59850010          addo    g0,g4,g0
-000299B4: 92803000 01D00114 st      g0,0x1d00114
-000299BC: 090002E4          call    00029ca0
+000299B4: 92803000 01D00114 st      g0,0x1d00114			-- add service credit
+000299BC: 090002E4          call    00029ca0				-- copy coin holder to backup
 
-000299C0: 90283000 005FE608 ld      r5,0x5fe608
+000299C0: 90283000 005FE608 ld      r5,0x5fe608				-- button change?
 000299C8: 8CA800FF          lda     g5,0xff
 000299CC: 58A0D085          and     g4,0x3,r5
 000299D0: 58A50095          and     g4,g4,g5
 000299D4: 3A05207C          cmpibe  0x0,g4,0x29a50			-- 00029A50
+
+-- if coin in
 000299D8: 5A016F01          chkbit  r5,0x1
 000299DC: 5C201E00          mov     r4,0x0
-000299E0: 10000034          bno     00029a14
+000299E0: 10000034          bno     00029a14				-- 00029A14
+
+-- coin in chute #2
 000299E4: 80A03000 005FE041 ldob    g4,0x5fe041
 000299EC: 8C883000 005FE038 lda     g1,0x5fe038
 000299F4: 3A052008          cmpibe  0x0,g4,0x299fc			-- 000299FC
@@ -38245,20 +38318,24 @@
 
 000299FC: 8C803000 005FE020 lda     g0,0x5fe020
 00029A04: 8C903000 01D0011C lda     g2,0x1d0011c
-00029A0C: 090000E4          call    00029af0
+00029A0C: 090000E4          call    00029af0				-- coin counter (g0 compare, g1 counter1, g2 counter2)
 00029A10: 5C201610          mov     r4,g0
 
-00029A14: 30016024          bbc     0,r5,0x29a38
+00029A14: 30016024          bbc     0,r5,0x29a38			-- if r5 bit0 clear goto 00029A38
+
+-- coin in chute #1 
 00029A18: 8C803000 005FE020 lda     g0,0x5fe020
 00029A20: 8C883000 005FE030 lda     g1,0x5fe030
 00029A28: 8C903000 01D00118 lda     g2,0x1d00118
-00029A30: 090000C0          call    00029af0
+00029A30: 090000C0          call    00029af0				-- coin counter (g0 compare, g1 counter1, g2 counter2)
 00029A34: 59240004          addo    r4,g0,r4
+
 00029A38: 90A03000 01D00110 ld      g4,0x1d00110
 00029A40: 59A50004          addo    g4,g4,r4
-00029A44: 92A03000 01D00110 st      g4,0x1d00110
-00029A4C: 09000254          call    00029ca0
+00029A44: 92A03000 01D00110 st      g4,0x1d00110			-- add chute #1 credit
+00029A4C: 09000254          call    00029ca0				-- copy coin holder to backup
 
+-- no button change
 00029A50: 80A03000 005FE041 ldob    g4,0x5fe041
 00029A58: 3D052010          cmpibne 0x0,g4,0x29a68			-- 00029A68
 00029A5C: 8C803000 005FE038 lda     g0,0x5fe038
@@ -38273,13 +38350,14 @@
 00029A7C: 00000000          ? 00:0 00000000 0 0
 
 {
---
+-- coin backlog? (g0)
 00029A80: 8CF03000 00229AEC lda     g14,0x229aec
 00029A88: 5C88161E          mov     g1,g14
 00029A8C: 5CF01E00          mov     g14,0x0
 00029A90: 80A41000          ldob    g4,(g0)
 00029A94: 59A05014          addo    g4,0x1,g4
 00029A98: 82A41000          stob    g4,(g0)
+
 00029A9C: 80A83000 005FE045 ldob    g5,0x5fe045
 00029AA4: 5CB01E00          mov     g6,0x0
 00029AA8: 8CB800FF          lda     g7,0xff
@@ -38290,10 +38368,12 @@
 00029AB8: 82F42002          stob    g14,0x2(g0)
 00029ABC: 82F42001          stob    g14,0x1(g0)
 00029AC0: 36A54024          cmpoble g4,g5,0x29ae4			-- 00029AE4
+
 00029AC4: 80A03000 005FE045 ldob    g4,0x5fe045
 00029ACC: 82A41000          stob    g4,(g0)
 00029AD0: 08000014          b       00029ae4
 
+--
 00029AD4: 5CB81E01          mov     g7,0x1
 00029AD8: 5CB01E01          mov     g6,0x1
 00029ADC: 82B83000 005FE044 stob    g7,0x5fe044
@@ -38304,13 +38384,15 @@
 }
 
 {
---
+-- coin counter (g0 compare, g1 counter1, g2 counter2)
 00029AF0: 80A45000          ldob    g4,(g1)
 00029AF4: 59A05014          addo    g4,0x1,g4
 00029AF8: 82A45000          stob    g4,(g1)
+
 00029AFC: 90A49000          ld      g4,(g2)
 00029B00: 59A05014          addo    g4,0x1,g4
 00029B04: 92A49000          st      g4,(g2)
+
 00029B08: 80AC1000          ldob    g5,(g0)
 00029B0C: 80A03000 005FE045 ldob    g4,0x5fe045
 00029B14: 34AD000C          cmpobl  g5,g4,0x29b20			-- 00029B20
@@ -38377,16 +38459,18 @@
 
 {
 --
-00029BE0: 8CF03000 00229C90 lda     g14,0x229c90
+00029BE0: 8CF03000 00229C90 lda     g14,0x229c90			-- 00029C90
 00029BE8: 5C90161E          mov     g2,g14
 00029BEC: 5CF01E00          mov     g14,0x0
 00029BF0: 98B41000          ldl     g6,(g0)
 00029BF4: 59A91010          addo    g5,0x4,g0
 00029BF8: 8C883000 00FFFF00 lda     g1,0xffff00
 00029C00: 58A44096          and     g4,g1,g6
-00029C04: 3D052040          cmpibne 0x0,g4,0x29c44
+00029C04: 3D052040          cmpibne 0x0,g4,0x29c44			-- 00029C44
+
 00029C08: 80A41000          ldob    g4,(g0)
-00029C0C: 3A052034          cmpibe  0x0,g4,0x29c40
+00029C0C: 3A052034          cmpibe  0x0,g4,0x29c40			-- 00029C40
+
 00029C10: 5C881E06          mov     g1,0x6
 00029C14: 828C2001          stob    g1,0x1(g0)
 00029C18: 80A41000          ldob    g4,(g0)
@@ -38396,29 +38480,40 @@
 00029C28: 80AD5000          ldob    g5,(g5)
 00029C2C: 80A03000 01C0001E ldob    g4,0x1c0001e
 00029C34: 58A50395          or      g4,g4,g5
-00029C38: 82A03000 01C0001E stob    g4,0x1c0001e
+00029C38: 82A03000 01C0001E stob    g4,0x1c0001e			-- modify lamp outputs
+
 00029C40: 84049000          bx      pfp,(g2)
+
 00029C44: 80A42001          ldob    g4,0x1(g0)
-00029C48: 3A052038          cmpibe  0x0,g4,0x29c80
+00029C48: 3A052038          cmpibe  0x0,g4,0x29c80			-- 00029C80
+
 00029C4C: 59805010          addo    g0,0x1,g0
 00029C50: 80A41000          ldob    g4,(g0)
 00029C54: 8C8800FF          lda     g1,0xff
 00029C58: 59A50901          subo    g4,g4,0x1
 00029C5C: 58AD0091          and     g5,g4,g1
 00029C60: 82A41000          stob    g4,(g0)
-00029C64: 3D056018          cmpibne 0x0,g5,0x29c7c
+00029C64: 3D056018          cmpibne 0x0,g5,0x29c7c			-- 00029C7C
+
 00029C68: 80A03000 01C0001E ldob    g4,0x1c0001e
 00029C70: 58A50117          andnot  g4,g4,g7
 00029C74: 82A03000 01C0001E stob    g4,0x1c0001e
+
 00029C7C: 84049000          bx      pfp,(g2)
+
 00029C80: 80A42002          ldob    g4,0x2(g0)
 00029C84: 59A50901          subo    g4,g4,0x1
 00029C88: 82A42002          stob    g4,0x2(g0)
 00029C8C: 84049000          bx      pfp,(g2)
 00029C90: 0A000000          ret
+}
+
 00029C94: 00000000          ? 00:0 00000000 0 0
 00029C98: 00000000          ? 00:0 00000000 0 0
 00029C9C: 00000000          ? 00:0 00000000 0 0
+
+{
+-- copy coin holder to backup
 00029CA0: 88A03000 005FE020 ldos    g4,0x5fe020
 00029CA8: 8AA03000 01D00128 stos    g4,0x1d00128
 00029CB0: 88A03000 005FE024 ldos    g4,0x5fe024
@@ -38428,24 +38523,36 @@
 00029CD0: 88A03000 005FE02C ldos    g4,0x5fe02c
 00029CD8: 8AA03000 01D0012E stos    g4,0x1d0012e
 00029CE0: 08FFFA10          b       000296f0				-- copy backup times1 to backup times2
+}
+
 00029CE4: 00000000          ? 00:0 00000000 0 0
 00029CE8: 00000000          ? 00:0 00000000 0 0
 00029CEC: 00000000          ? 00:0 00000000 0 0
+
+{
+-- dead code?
 00029CF0: 80883000 01D00015 ldob    g1,0x1d00015
 00029CF8: 8C803000 005FE024 lda     g0,0x5fe024
 00029D00: 08000030          b       00029d30
+}
+
 00029D04: 00000000          ? 00:0 00000000 0 0
 00029D08: 00000000          ? 00:0 00000000 0 0
 00029D0C: 00000000          ? 00:0 00000000 0 0
+
+{
+-- dead code?
 00029D10: 80883000 01D00015 ldob    g1,0x1d00015
 00029D18: 8C803000 005FE020 lda     g0,0x5fe020
 00029D20: 08000010          b       00029d30
+}
+
 00029D24: 00000000          ? 00:0 00000000 0 0
 00029D28: 00000000          ? 00:0 00000000 0 0
 00029D2C: 00000000          ? 00:0 00000000 0 0
 
 {
---
+-- something coin related 00029D30
 00029D30: 80A03000 005FE040 ldob    g4,0x5fe040				-- load1 g4 from 0x5fe040
 00029D38: 3A05200C          cmpibe  0x0,g4,0x29d44			-- if g4 = 0x0 goto 00029D44
 00029D3C: 5C801E00          mov     g0,0x0
@@ -38473,19 +38580,32 @@
 00029DBC: 0A000000          ret
 }
 
+{
+-- dead code?
 00029DC0: 90803000 005FE024 ld      g0,0x5fe024
 00029DC8: 08000018          b       00029de0
+}
+
 00029DCC: 00000000          ? 00:0 00000000 0 0
+
+{
+-- dead code?
 00029DD0: 90803000 005FE020 ld      g0,0x5fe020
 00029DD8: 08000008          b       00029de0
+}
+
 00029DDC: 00000000          ? 00:0 00000000 0 0
+
+{
+-- dead code?
 00029DE0: 8CF03000 00229E28 lda     g14,0x229e28
 00029DE8: 5C88161E          mov     g1,g14
 00029DEC: 5CF01E00          mov     g14,0x0
 00029DF0: 80A03000 005FE040 ldob    g4,0x5fe040
-00029DF8: 3A05200C          cmpibe  0x0,g4,0x29e04
+00029DF8: 3A05200C          cmpibe  0x0,g4,0x29e04			-- 00029E04
 00029DFC: 59801901          subo    g0,0x0,0x1
 00029E00: 84045000          bx      pfp,(g1)
+
 00029E04: 90803000 005FE020 ld      g0,0x5fe020
 00029E0C: 8CA800FF          lda     g5,0xff
 00029E10: 58A54090          and     g4,g5,g0
@@ -38495,34 +38615,46 @@
 00029E20: 58840394          or      g0,g0,g4
 00029E24: 84045000          bx      pfp,(g1)
 00029E28: 0A000000          ret
+}
+
 00029E2C: 00000000          ? 00:0 00000000 0 0
 
 {
-00029E30: 80883000 01D00015 ldob    g1,0x1d00015
+--
+00029E30: 80883000 01D00015 ldob    g1,0x1d00015		-- coins to start
 00029E38: 90203000 005FE5A4 ld      r4,0x5fe5a4			-- read4 r4 from 0x5fe5a4 (button changes)
 00029E40: 8C803000 005FE020 lda     g0,0x5fe020
-00029E48: 09FFFEE8          call    00029d30
+00029E48: 09FFFEE8          call    00029d30			-- something coin related 00029D30
+
 00029E4C: 3D042018          cmpibne 0x0,g0,0x29e64		-- if g0 != 0x0 goto 00029E64
 00029E50: 80A03000 005FE040 ldob    g4,0x5fe040
 00029E58: 3D0D200C          cmpibne 0x1,g4,0x29e64		-- if g4 != 0x1 goto 00029E64
 00029E5C: 37212008          bbs     4,r4,0x29e64		-- if bit4 set on r4 goto 00029E64
 00029E60: 59801901          subo    g0,0x0,0x1
 
-00029E64: 30992008          bbc     19,r4,0x29e6c
+00029E64: 30992008          bbc     19,r4,0x29e6c		-- if bit19 clear on r4 goto 00029E6C
+
 00029E68: 5C801E00          mov     g0,0x0
+
 00029E6C: 0A000000          ret
+}
+
+{
+-- dead code?
 00029E70: 8CF03000 00229EC8 lda     g14,0x229ec8
 00029E78: 5C80161E          mov     g0,g14
 00029E7C: 5CF01E00          mov     g14,0x0
 00029E80: 80A03000 005FE134 ldob    g4,0x5fe134
 00029E88: 58B50884          and     g6,g4,0x4
+
 00029E8C: 90A83000 0098000C ld      g5,0x98000c
 00029E94: 58A54884          and     g4,g5,0x4
-00029E98: 3AB51FF4          cmpibe  g6,g4,0x29e8c
+00029E98: 3AB51FF4          cmpibe  g6,g4,0x29e8c		-- 00029E8C
+
 00029E9C: 92A83000 005FE134 st      g5,0x5fe134
 00029EA4: 5A056F02          chkbit  g5,0x2
 00029EA8: 58A01990          setbit  g4,0x0,0x10
-00029EAC: 12000008          be      00029eb4
+00029EAC: 12000008          be      00029eb4			-- 00029EB4
 
 00029EB0: 5CA01E00          mov     g4,0x0
 

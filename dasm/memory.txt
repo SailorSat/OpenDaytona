@@ -76,20 +76,36 @@
 0x00501200		object pointer table
 		00		?
 		04		pointer to car collision handler - ?? disabling removes collision between cars
+		0c		pointer to view cycle handler -- ?? disabling turns of view cycling
+		10		pointer to logo bounce handler
+		14		pointer to hiscore crawl handler 
+		18		? (22540c)
+		1c		? 504e00 (0000579c / 00005788)
 		20		pointer to first car handler
+		24		pointer to second car handler
 		2c		pointer to gameover handler - ?? enabling shows gameover
 		30		pointer to goal handler - ?? enabling shows goal
+		34		pointer to dummy handler (00001974)
 		40		pointer to car draw handler - ?? disabling removes cars
 		44		pointer to waitingentry handler
 		48		pointer to startinglight handler
+		4c		? 50e380 (0001cfc8)
 		50		? 50f280
 		54		pointer to pylon handler - disabling removes pylon collision
-		58		? 50de00
+		58		? 50de00 (002270e4)
+		5c		? 50d700 (00013318)
 		60		?
 		64		pointer to lod & window handler
-		70		?
+		68		? 50dd00 (0000b8b4)
+		6c		? 504d80 (00226ec8)
+		70		? 50d980 (00006544 / 00006720)
+		74		? 50df80 (0000ad00)
+		78		? 50e080 (0000ad1c)
+		80		pointer to car data handler
 		84		pointer to track handler - ?? disabling removes (static) track
-		94		? 50e180
+		94		? 50e180 (0000B0F4 / 0000B1F0)
+		98		? 50e280 (0000B698)
+		9c		? 504600 (00224768)
 		a0		pointer to comm handler
 
 0x00501300		s24control (get copied to 0x100a000+)
@@ -147,6 +163,7 @@
 0x00501488		?	2 on link mode
 
 0x005014a4		?	0 on init
+0x005014a8		?	camera rotation?
 
 0x00501600		?
 
@@ -246,13 +263,15 @@
 		10	? 0x502000 (sometimes)
 		14	model data
 		18	?
-		1c	position y
-		20	position z
-		24	position x
-		28	roll
-		2a	yaw
-		2c	pitch
+		1c	position y				(float)
+		20	position z				(float)
+		24	position x				(float)
+		28	rotation x (roll)		(int16)
+		2a	rotation y (yaw)		(int16)
+		2c	rotation z (pitch)		(int16)
 		2e	sector*
+
+		12c	?
 
 0x00540000			comm status
 0x00540001			comm size
@@ -268,7 +287,7 @@
 
 0x00540037			? 0
 
-0x0054004c			.
+0x0054004c			. (pointer somewhere, usually car object 0)
 0x00540054			copy of comm FG
 
 0x00540c00			start of comm frame
@@ -277,7 +296,7 @@
 
 0x005fe000...		8 analog axis
 
-0x005fe020			?	from 0x1d00128
+0x005fe020			?	from 0x1d00128			-- credits on hold
 0x005fe024			?	from 0x1d0012a
 0x005fe028			?	from 0x1d0012c
 0x005fe02c			?	from 0x1d0012e
@@ -292,6 +311,7 @@
 0x005fe041			? 0/1 -- 0 if error / 1 on ok?
 0x005fe043			? 0
 0x005fe044			? 0
+0x005fe045			credits on hold max 0x09/0x18 (depending on country)
 
 0x005fe0a0			? (lamp output?)
 
@@ -386,7 +406,8 @@
 
 0x01008000---		tilemap window/scroll
 0x0100a000---		tilemap control
-0x0100c000---		tilemap mask?
+0x0100c000---		tilemap mask123
+0x0100d000---		tilemap mask4
 
 0x0100a000.		tilegen
 0x0100a002.		tilegen
@@ -416,7 +437,7 @@
 0x01c00018			DSW2 (all off)
 0x01c0001a			DSW3 (all off)
 0x01c0001c			IOSW (SW1 SW2 SW3 SW4 -- -- -- --)
-0x01c0001e			Lamp Output
+0x01c0001e			Lamp Output (COIN1 COIN2 START VIEW1 VIEW2 VIEW3 VIEW4 LEADER)
 
 0x01c00022			DriveOutput (TX0 TX1 TX2 TX3 TX4 TX5 TX6 TX7)
 
@@ -447,6 +468,8 @@
 0x01d00114			service credits
 0x01d00118			coin counter #1
 0x01d0011c			coin counter #2
+
+0x01d00128			credits on hold
 
 0x01d00130			longest game time DHMS
 0x01d00134			shortest game time DHMS

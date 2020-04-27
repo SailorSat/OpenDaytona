@@ -1,23 +1,24 @@
-0000576C		?
-00005788		?
+0000576C		? (00005788 init)
+00005788		? ()
 
 0000579C		?
 000057AC		?
 
 00006348		? (track handler?)
-00006544		?
 
-00006608		?
-00006688		?
-00006720		?
+00006544		? (*)
+00006608		? (*)
+00006688		? ()
+00006720		? ()
 
 00006C30		? (attract camera??)
 
 00006E34		? (camera handler init?)
 00006EE4		? (camera handler?)
 
-0000B0F4		?
+0000B0F4		? (0000B1F0 init)
 0000B1F0		?
+
 0000B8B4		?
 0000BAB4		?
 
@@ -73,7 +74,10 @@
 
 0001ACE0		(comm handler)
 
-00220000		? ()
+0001CFC8		? ()
+0001D0B0		? ()
+
+00220000		? (00220010 init)
 00220010		? ()
 
 002200E4		(end of frame?)
@@ -163,11 +167,11 @@
 00222AEC		? (00222B08 init)
 00222B08		? ()
 
-00222ED4		? (00222ED4 init)
-00222F64		? ()
+00222ED4		(attract view cycle1 init)
+00222F64		(attract view cycle1)
 
-00222FF8		? (00223068 init)
-00223068		? ()
+00222FF8		? (logo bounce init)
+00223068		? (logo bounce)
 
 00223E74		?
 00223ED4		?
@@ -194,17 +198,16 @@
 
 00226EC8		? ()
 00226EE4		? ()
-00226F00		? ()
+00226F00		? (*)
 00226F5C		? ()
-
 002270E4		? ()
 
-00227380		? (002273EC init)
-002273EC		? (002274EC init)
-002274EC		? ()
+00227380		(hiscore crawl init)
+002273EC		(hiscore crawl)
+002274EC		(hiscore crawl done)
 
 00227718		? (002277D8 init)
 002277D8		? ()
 
-00228860		? (00228990 init)
-00228990		? ()
+00228860		(attract view cycle2 init)
+00228990		(attract view cycle2)

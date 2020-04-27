@@ -587,7 +587,7 @@
 -- MAIN: reset game
 000008F8: 8CA83000 FF000010 lda     g5,0xff000010
 00000900: 8CB03000 00000C80 lda     g6,0xc80
-00000908: 6005A115          synmov  pfp,0x115(g6)		jumps to 0x924, but why?
+00000908: 6005A115          synmov  pfp,0x115(g6)		hm... magic jump table @ 0xc80 - jumps to 0x924
 0000090C: 08000000          b       0000090c			causes a loop?
 
 {
@@ -755,7 +755,8 @@
 00000B40: 0A000000          ret
 }
 
--- dead code? referenced by 00000830+?
+{
+-- referenced by IRQ2 00000830+?
 00000B44: 8C203000 00000BEC lda     r4,0xbec			"Trace Faults"
 00000B4C: 08000058          b       00000ba4
 00000B50: 8C203000 00000BF9 lda     r4,0xbf9			"Operation Faults"
@@ -783,7 +784,7 @@
 00000BD0: 5C801602          mov     g0,rip
 00000BD4: 09017E34          call    00018a08
 00000BD8: 08000000          b       00000bd8			-- loop forever
--- dead code?
+}
 
 {
 -- wait 4 cycles
@@ -816,16 +817,16 @@
 00000C38: 746E6961          74 74:2 746e6961 2 2
 00000C3C: 75614620          ? 75:c 75614620 0 1
 00000C40: 0073746C          ? 00:8 0073746c 3 1
-00000C44: 746F7250          74 74:4 746f7250 3 0
+00000C44: 746F7250          74 74:4 746f7250 3 0		"Protection Faults"
 00000C48: 69746365          69 69:6 69746365 2 0
 00000C4C: 46206E6F          ? 46:c 46206e6f 2 3
 00000C50: 746C7561          74 74:a 746c7561 3 1
 00000C54: 614D0073          ? 61:0 614d0073 0 0
-00000C58: 6E696863          6E 6e:0 6e696863 2 2
+00000C58: 6E696863          6E 6e:0 6e696863 2 2		"Machine Faults"
 00000C5C: 61462065          ? 61:0 61462065 2 0
 00000C60: 73746C75          ? 73:8 73746c75 2 3
 00000C64: 70795400          remo    r15,0x5,pfp
-00000C68: 61462065          ? 61:0 61462065 2 0
+00000C68: 61462065          ? 61:0 61462065 2 0			"Type Faults"
 00000C6C: 73746C75          ? 73:8 73746c75 2 3
 00000C70: 20504900          testno r10
 00000C74: 0000003A          ? 00:0 0000003a 0 0
@@ -833,10 +834,13 @@
 
 00000C78: 00000000          ? 00:0 00000000 0 0
 00000C7C: 00000000          ? 00:0 00000000 0 0
-00000C80: 93000000          ? 93:0 93000000 0 0
-00000C84: 00000000          ? 00:0 00000000 0 0
-00000C88: 005FF400          ? 00:8 005ff400 3 1
-00000C8C: 00000924          ? 00:2 00000924 0 2
+
+-- raw data (magic jump)
+00000C80: 93000000          ? 93:0 93000000 0 0			-- ?
+00000C84: 00000000          ? 00:0 00000000 0 0			-- PFP?
+00000C88: 005FF400          ? 00:8 005ff400 3 1			-- SP
+00000C8C: 00000924          ? 00:2 00000924 0 2			-- IP
+-- raw data (magic jump)
 
 -- raw data (cpu control)
 00000C90: 00000004          ? 00:0 00000004 0 0
@@ -1053,7 +1057,7 @@
 00000F6C: 00000000          ? 00:0 00000000 0 0
 
 {
--- IRQ?
+-- IRQ2 continued
 00000F70: 8C883000 01000BA8 lda     g1,0x1000ba8
 00000F78: 8C803000 02800000 lda     g0,0x2800000		"Interupt Halt #"
 00000F80: 09017990          call    00018910			print string g0 at g1
@@ -1142,6 +1146,7 @@
 00001094: 0A000000          ret
 }
 
+{
 -- dead code?
 00001098: 5C181611          mov     r3,g1
 0000109C: 5C201612          mov     r4,g2
@@ -1162,6 +1167,7 @@
 
 000010D0: 0A000000          ret
 -- dead code?
+}
 
 {
 -- dec to string (dec g1, len g2, str g0)
@@ -1223,7 +1229,7 @@
 0000117C: 09230124          call    000312a0			-- switch process controls priority low
 00001180: 09FFF8F4          call    00000a74			-- build color translation
 
-00001184: 09004B3C          call    00005cc0			-- copy palette
+00001184: 09004B3C          call    00005cc0			-- copy palette data
 00001188: 09004A88          call    00005c10			-- reset 2d engine
 0000118C: 09004B70          call    00005cfc			-- reset and load charset1
 00001190: 09004BEC          call    00005d7c			-- load charset2
@@ -1242,6 +1248,7 @@
 000011B8: 090002B0          call    00001468			-- init t-ram1
 000011BC: 09000290          call    0000144c			-- init t-ram0 (based on track)
 000011C0: 09000228          call    000013e8			-- wait even frame
+
 000011C4: 09000400          call    000015c4			-- push log data to geo list
 000011C8: 09000220          call    000013e8			-- wait even frame
 
@@ -1746,7 +1753,7 @@
 
 00001864: 90203000 005010B0 ld      r4,0x5010b0
 0000186C: 59210881          addi    r4,r4,0x1
-00001870: 92203000 005010B0 st      r4,0x5010b0
+00001870: 92203000 005010B0 st      r4,0x5010b0			-- increase frame counter
 
 00001878: 88183000 00501300 ldos    r3,0x501300
 00001880: 8A183000 00501310 stos    r3,0x501310
@@ -1831,7 +1838,7 @@
 000019D0: 000023D0          ? 00:7 000023d0 2 0			09 attract - logo
 000019D4: 00002424          ? 00:8 00002424 2 1			0a attract - recycle init
 000019D8: 00002628          ? 00:c 00002628 2 1			0b attract - recycle
-000019DC: 00002918          ? 00:2 00002918 2 2			0c dummy (jumps to 11)
+000019DC: 00002918          ? 00:2 00002918 2 2			0c dummy (jumps to 0x11)
 000019E0: 00002944          ? 00:2 00002944 2 2			0d empty
 000019E4: 00002944          ? 00:2 00002944 2 2			0e empty
 000019E8: 00002948          ? 00:2 00002948 2 2			0f waiting init
@@ -1856,12 +1863,14 @@
 -- gamestate 0x00, 0x01 (bootup)
 00001A28: 5C181E00          mov     r3,0x0
 00001A2C: C2183000 00501480 stib    r3,0x501480
+
 00001A34: 5C181E00          mov     r3,0x0
 00001A38: 90203000 00501480 ld      r4,0x501480
-00001A40: 58210183          setbit  r4,r4,r3
+00001A40: 58210183          setbit  r4,r4,r3			-- r4 = 0, r3 = 0; r4 = 0x01?
 00001A44: 92203000 00501480 st      r4,0x501480
+
 00001A4C: 5C181E02          mov     r3,0x2
-00001A50: 82183000 005010A4 stob    r3,0x5010a4			next gamestate = 0x2
+00001A50: 82183000 005010A4 stob    r3,0x5010a4			-- next gamestate = 0x2
 00001A58: 0A000000          ret
 }
 
@@ -1875,71 +1884,80 @@
 
 00001A7C: 80183000 01C0001E ldob    r3,0x1c0001e		-- read lamp outputs
 00001A84: 8C203000 FFFFFF87 lda     r4,0xffffff87
-00001A8C: 5818C084          and     r3,r3,r4
+00001A8C: 5818C084          and     r3,r3,r4			-- (disable view buttons)
 00001A90: 82183000 01C0001E stob    r3,0x1c0001e
-00001A98: 80183000 01C0001E ldob    r3,0x1c0001e
+
+00001A98: 80183000 01C0001E ldob    r3,0x1c0001e		-- read lamp outputs
 00001AA0: 8C203000 FFFFFF7F lda     r4,0xffffff7f
-00001AA8: 5818C084          and     r3,r3,r4
+00001AA8: 5818C084          and     r3,r3,r4			-- (disable leader lamp)
 00001AAC: 82183000 01C0001E stob    r3,0x1c0001e
 
-00001AB4: 09000C90          call    00002744		-- clear all tilemaps
-00001AB8: 09000CBC          call    00002774		-- reset gamestate?
-00001ABC: 09003F34          call    000059f0		-- setup copro (render mode & lod)
-00001AC0: 09002CF0          call    000047b0		-- load track data
-00001AC4: 09002B38          call    000045fc		-- load track data 2
-00001AC8: 090022D0          call    00003d98		-- init car numbers 1
+00001AB4: 09000C90          call    00002744			-- clear all tilemaps
+00001AB8: 09000CBC          call    00002774			-- reset gamestate?
+00001ABC: 09003F34          call    000059f0			-- setup copro (render mode & lod)
+00001AC0: 09002CF0          call    000047b0			-- load track data
+00001AC4: 09002B38          call    000045fc			-- load track data 2
+00001AC8: 090022D0          call    00003d98			-- init car numbers 1
 
 00001ACC: 5C201E01          mov     r4,0x1
 
-00001AD0: 90183000 00501234 ld      r3,0x501234		-- load4 r3 from 0x501234 (some object pointer)
-00001AD8: 9028E000          ld      r5,0x0(r3)		-- load4 r5 from r3+0x0 (object flags)
-00001ADC: 58294E1F          clrbit  r5,r5,0x1f		-- clear bit31
-00001AE0: 9228E000          st      r5,0x0(r3)		-- write4 r5 to r3+0x0 (object flags)
+-- disable dummy handler
+00001AD0: 90183000 00501234 ld      r3,0x501234			-- load4 r3 from 0x501234 (dummy object pointer)
+00001AD8: 9028E000          ld      r5,0x0(r3)			-- load4 r5 from r3+0x0 (object flags)
+00001ADC: 58294E1F          clrbit  r5,r5,0x1f			-- clear bit31
+00001AE0: 9228E000          st      r5,0x0(r3)			-- write4 r5 to r3+0x0 (object flags)
 
-00001AE4: 59205E06          shlo    r4,0x1,0x6		-- r4 = 0x40
+-- disable 64 pylon handlers
+00001AE4: 59205E06          shlo    r4,0x1,0x6			-- r4 = 0x40
 
-00001AE8: 90183000 00501254 ld      r3,0x501254		-- load4 r3 from 0x501254 (some object pointer)
+00001AE8: 90183000 00501254 ld      r3,0x501254			-- load4 r3 from 0x501254 (some object pointer)
 
-00001AF0: 9028E000          ld      r5,0x0(r3)		-- load4 r5 from r3+0x0 (object flags)
-00001AF4: 58294E1F          clrbit  r5,r5,0x1f		-- clear bit31
-00001AF8: 9228E000          st      r5,0x0(r3)		-- write4 r5 to r3+0x0 (object flags)
+00001AF0: 9028E000          ld      r5,0x0(r3)			-- load4 r5 from r3+0x0 (object flags)
+00001AF4: 58294E1F          clrbit  r5,r5,0x1f			-- clear bit31
+00001AF8: 9228E000          st      r5,0x0(r3)			-- write4 r5 to r3+0x0 (object flags)
 
-00001AFC: 9028E008          ld      r5,0x8(r3)		-- load4 r5 from r3+0x8 (length)
-00001B00: 5918C085          addi    r3,r3,r5		-- r3 += r5
+00001AFC: 9028E008          ld      r5,0x8(r3)			-- load4 r5 from r3+0x8 (length)
+00001B00: 5918C085          addi    r3,r3,r5			-- r3 += r5
 
-00001B04: 5A210B01          cmpdeco r4,r4,0x1		-- r4 -= 1
-00001B08: 14FFFFE8          bl      00001af0		-- while r3 > 0 loop to 00001af0
+00001B04: 5A210B01          cmpdeco r4,r4,0x1			-- r4 -= 1
+00001B08: 14FFFFE8          bl      00001af0			-- while r3 > 0 loop to 00001af0
 
+--
 00001B0C: 5C201E01          mov     r4,0x1
 00001B10: 90183000 00501210 ld      r3,0x501210
 00001B18: 9028E000          ld      r5,0x0(r3)
-00001B1C: 58294E1F          clrbit  r5,r5,0x1f
+00001B1C: 58294E1F          clrbit  r5,r5,0x1f			-- clear bit31 on r5
 00001B20: 9228E000          st      r5,0x0(r3)
 
+--
 00001B24: 5C201E01          mov     r4,0x1
 00001B28: 90183000 0050125C ld      r3,0x50125c
 00001B30: 9028E000          ld      r5,0x0(r3)
-00001B34: 58294E1F          clrbit  r5,r5,0x1f
+00001B34: 58294E1F          clrbit  r5,r5,0x1f			-- clear bit31 on r5
 00001B38: 9228E000          st      r5,0x0(r3)
 
+-- disable goal handler
 00001B3C: 5C201E01          mov     r4,0x1
 00001B40: 90183000 00501230 ld      r3,0x501230
 00001B48: 9028E000          ld      r5,0x0(r3)
-00001B4C: 58294E1F          clrbit  r5,r5,0x1f
+00001B4C: 58294E1F          clrbit  r5,r5,0x1f			-- clear bit31 on r5
 00001B50: 9228E000          st      r5,0x0(r3)
 
+-- 
 00001B54: 5C201E01          mov     r4,0x1
 00001B58: 90183000 0050126C ld      r3,0x50126c
 00001B60: 9028E000          ld      r5,0x0(r3)
-00001B64: 58294E1F          clrbit  r5,r5,0x1f
+00001B64: 58294E1F          clrbit  r5,r5,0x1f			-- clear bit31 on r5
 00001B68: 9228E000          st      r5,0x0(r3)
 
+-- disable attract view cycle#
 00001B6C: 5C201E01          mov     r4,0x1
 00001B70: 90183000 0050120C ld      r3,0x50120c
 00001B78: 9028E000          ld      r5,0x0(r3)
-00001B7C: 58294E1F          clrbit  r5,r5,0x1f
+00001B7C: 58294E1F          clrbit  r5,r5,0x1f			-- clear bit31 on r5
 00001B80: 9228E000          st      r5,0x0(r3)
 
+-- enable 0xb0f4
 00001B84: 5C201E01          mov     r4,0x1
 00001B88: 90183000 00501294 ld      r3,0x501294
 00001B90: 9028E000          ld      r5,0x0(r3)
@@ -1948,6 +1966,7 @@
 00001B9C: 8C283000 0000B0F4 lda     r5,0xb0f4
 00001BA4: 9228E00C          st      r5,0xc(r3)			-- override handler on object
 
+-- enable 0x220000
 00001BA8: 5C201E01          mov     r4,0x1
 00001BAC: 90183000 00501250 ld      r3,0x501250
 00001BB4: 9028E000          ld      r5,0x0(r3)
@@ -1956,6 +1975,7 @@
 00001BC0: 8C283000 00220000 lda     r5,0x220000
 00001BC8: 9228E00C          st      r5,0xc(r3)			-- override handler on object
 
+-- enable car data
 00001BCC: 5C201E01          mov     r4,0x1
 00001BD0: 90183000 00501280 ld      r3,0x501280
 00001BD8: 9028E000          ld      r5,0x0(r3)
@@ -1964,6 +1984,7 @@
 00001BE4: 8C283000 00012A84 lda     r5,0x12a84
 00001BEC: 9228E00C          st      r5,0xc(r3)			-- override handler on object
 
+-- enable first car handler
 00001BF0: 5C201E01          mov     r4,0x1
 00001BF4: 90183000 00501220 ld      r3,0x501220
 00001BFC: 9028E000          ld      r5,0x0(r3)
@@ -1972,6 +1993,7 @@
 00001C08: 8C283000 0000D0F8 lda     r5,0xd0f8
 00001C10: 9228E00C          st      r5,0xc(r3)			-- override handler on object
 
+-- enable X other car handlers
 00001C14: 90203000 00501084 ld      r4,0x501084			-- read4 r4 from 0x501084 (cars max)
 00001C1C: 90183000 00501224 ld      r3,0x501224			-- read4 r3 from 0x501224 (some object pointer)
 
@@ -1985,6 +2007,7 @@
 00001C44: 5A210B01          cmpdeco r4,r4,0x1			-- r4 -= 1
 00001C48: 14FFFFDC          bl      00001c24			-- while r4 > 0 loop to 00001C24
 
+-- enable car draw handler
 00001C4C: 5C201E01          mov     r4,0x1
 00001C50: 90183000 00501240 ld      r3,0x501240
 00001C58: 9028E000          ld      r5,0x0(r3)
@@ -1993,6 +2016,7 @@
 00001C64: 8C283000 00006E34 lda     r5,0x6e34
 00001C6C: 9228E00C          st      r5,0xc(r3)
 
+-- enable track handler
 00001C70: 5C201E01          mov     r4,0x1
 00001C74: 90183000 00501284 ld      r3,0x501284
 00001C7C: 9028E000          ld      r5,0x0(r3)
@@ -2001,6 +2025,7 @@
 00001C88: 8C283000 00006348 lda     r5,0x6348
 00001C90: 9228E00C          st      r5,0xc(r3)
 
+-- enable 0x576c
 00001C94: 5C201E01          mov     r4,0x1
 00001C98: 90183000 0050121C ld      r3,0x50121c
 00001CA0: 9028E000          ld      r5,0x0(r3)
@@ -2009,6 +2034,7 @@
 00001CAC: 8C283000 0000576C lda     r5,0x576c
 00001CB4: 9228E00C          st      r5,0xc(r3)
 
+-- enable 0x6608
 00001CB8: 5C201E01          mov     r4,0x1
 00001CBC: 90183000 00501270 ld      r3,0x501270
 00001CC4: 9028E000          ld      r5,0x0(r3)
@@ -2018,6 +2044,7 @@
 00001CD8: 9228E00C          st      r5,0xc(r3)
 00001CDC: 5C201E01          mov     r4,0x1
 
+-- enable 50de00
 00001CE0: 90183000 00501258 ld      r3,0x501258
 00001CE8: 9028E000          ld      r5,0x0(r3)
 00001CEC: 5829499F          setbit  r5,r5,0x1f
@@ -2025,6 +2052,7 @@
 00001CF4: 8C283000 00226F00 lda     r5,0x226f00
 00001CFC: 9228E00C          st      r5,0xc(r3)
 
+-- enable car collision handler
 00001D00: 5C201E01          mov     r4,0x1
 00001D04: 90183000 00501204 ld      r3,0x501204
 00001D0C: 9028E000          ld      r5,0x0(r3)
@@ -2113,6 +2141,7 @@
 
 00001E2C: 09004118          call    00005f44			-- print logo and credits
 
+-- enable hiscore crawl
 00001E30: 5C201E01          mov     r4,0x1
 00001E34: 90183000 00501214 ld      r3,0x501214			-- load4 r3 from 0x501214 (pointer to object)
 00001E3C: 9028E000          ld      r5,0x0(r3)			-- load4 r5 from r3+0x0 (flags)
@@ -2121,6 +2150,7 @@
 00001E48: 8C283000 00227380 lda     r5,0x227380
 00001E50: 9228E00C          st      r5,0xc(r3)			-- overwrite handler
 
+-- disable ?
 00001E54: 5C201E01          mov     r4,0x1
 00001E58: 90183000 0050129C ld      r3,0x50129c			-- load4 r3 from 0x50129c (pointer to object)
 00001E60: 9028E000          ld      r5,0x0(r3)			-- load4 r5 from r3+0x0 (flags)
@@ -2171,11 +2201,15 @@
 00001EF4: 59210801          addo    r4,r4,0x1
 00001EF8: 82203000 005028FE stob    r4,0x5028fe
 00001F00: 09004E00          call    00006d00
+
+-- disable ?
 00001F04: 5C201E01          mov     r4,0x1
 00001F08: 90183000 00501258 ld      r3,0x501258
 00001F10: 9028E000          ld      r5,0x0(r3)
 00001F14: 58294E1F          clrbit  r5,r5,0x1f
 00001F18: 9228E000          st      r5,0x0(r3)
+
+-- enable 0x220000
 00001F1C: 5C201E01          mov     r4,0x1
 00001F20: 90183000 00501250 ld      r3,0x501250
 00001F28: 9028E000          ld      r5,0x0(r3)
@@ -2183,6 +2217,8 @@
 00001F30: 9228E000          st      r5,0x0(r3)
 00001F34: 8C283000 00220000 lda     r5,0x220000
 00001F3C: 9228E00C          st      r5,0xc(r3)
+
+-- enable car data handler
 00001F40: 5C201E01          mov     r4,0x1
 00001F44: 90183000 00501280 ld      r3,0x501280
 00001F4C: 9028E000          ld      r5,0x0(r3)
@@ -2190,6 +2226,8 @@
 00001F54: 9228E000          st      r5,0x0(r3)
 00001F58: 8C283000 00012A84 lda     r5,0x12a84
 00001F60: 9228E00C          st      r5,0xc(r3)
+
+-- enable first car handler
 00001F64: 5C201E01          mov     r4,0x1
 00001F68: 90183000 00501220 ld      r3,0x501220
 00001F70: 9028E000          ld      r5,0x0(r3)
@@ -2197,8 +2235,11 @@
 00001F78: 9228E000          st      r5,0x0(r3)
 00001F7C: 8C283000 0000D0F8 lda     r5,0xd0f8
 00001F84: 9228E00C          st      r5,0xc(r3)
+
+-- enable X other car handler
 00001F88: 90203000 00501084 ld      r4,0x501084
 00001F90: 90183000 00501224 ld      r3,0x501224
+
 00001F98: 9028E000          ld      r5,0x0(r3)
 00001F9C: 5829499F          setbit  r5,r5,0x1f
 00001FA0: 9228E000          st      r5,0x0(r3)
@@ -2208,6 +2249,8 @@
 00001FB4: 5918C085          addi    r3,r3,r5
 00001FB8: 5A210B01          cmpdeco r4,r4,0x1
 00001FBC: 14FFFFDC          bl      00001f98
+
+-- enable car draw handler
 00001FC0: 5C201E01          mov     r4,0x1
 00001FC4: 90183000 00501240 ld      r3,0x501240
 00001FCC: 9028E000          ld      r5,0x0(r3)
@@ -2215,6 +2258,8 @@
 00001FD4: 9228E000          st      r5,0x0(r3)
 00001FD8: 8C283000 00006E34 lda     r5,0x6e34
 00001FE0: 9228E00C          st      r5,0xc(r3)
+
+-- enable track handler
 00001FE4: 5C201E01          mov     r4,0x1
 00001FE8: 90183000 00501284 ld      r3,0x501284
 00001FF0: 9028E000          ld      r5,0x0(r3)
@@ -2222,6 +2267,8 @@
 00001FF8: 9228E000          st      r5,0x0(r3)
 00001FFC: 8C283000 00006348 lda     r5,0x6348
 00002004: 9228E00C          st      r5,0xc(r3)
+
+-- enable view cycle handler
 00002008: 5C201E01          mov     r4,0x1
 0000200C: 90183000 0050120C ld      r3,0x50120c
 00002014: 9028E000          ld      r5,0x0(r3)
@@ -2229,16 +2276,18 @@
 0000201C: 9228E000          st      r5,0x0(r3)
 00002020: 8C283000 00222ED4 lda     r5,0x222ed4
 00002028: 9228E00C          st      r5,0xc(r3)
+
 0000202C: 5918DE09          shlo    r3,0x3,0x9
 00002030: 92183000 005010A8 st      r3,0x5010a8
 00002038: 80183000 005010A4 ldob    r3,0x5010a4
 00002040: 5918C801          addo    r3,r3,0x1
 00002044: 82183000 005010A4 stob    r3,0x5010a4
-0000204C: 09000728          call    00002774		-- reset gamestate?
-00002050: 090039A0          call    000059f0		setup copro (render mode & lod)
+0000204C: 09000728          call    00002774			-- reset gamestate?
+00002050: 090039A0          call    000059f0			-- setup copro (render mode & lod)
+
 00002054: 5C201E00          mov     r4,0x0
 00002058: 82203000 005FE5B8 stob    r4,0x5fe5b8
-00002060: 09019FBC          call    0001c01c
+00002060: 09019FBC          call    0001c01c			-- reset tilemap 0
 00002064: 09003EE0          call    00005f44			-- print logo and credits
 00002068: 0A000000          ret
 }
@@ -2290,6 +2339,7 @@
 -- raw data (track order)
 
 {
+-- reset lod & window handler?
 00002114: 90183000 00501264 ld      r3,0x501264
 0000211C: 8C203000 000182CC lda     r4,0x182cc
 00002124: 9220E00C          st      r4,0xc(r3)
@@ -2328,41 +2378,56 @@
 00002198: 09018574          call    0001a70c		-- send be1900 to audio
 0000219C: 09004B64          call    00006d00
 
+-- disable ?
 000021A0: 5C201E01          mov     r4,0x1
 000021A4: 90183000 00501258 ld      r3,0x501258
 000021AC: 9028E000          ld      r5,0x0(r3)
 000021B0: 58294E1F          clrbit  r5,r5,0x1f
 000021B4: 9228E000          st      r5,0x0(r3)
+
+-- disable view cycle handler
 000021B8: 5C201E01          mov     r4,0x1
 000021BC: 90183000 0050120C ld      r3,0x50120c
 000021C4: 9028E000          ld      r5,0x0(r3)
 000021C8: 58294E1F          clrbit  r5,r5,0x1f
 000021CC: 9228E000          st      r5,0x0(r3)
+
+-- disable track handler
 000021D0: 5C201E01          mov     r4,0x1
 000021D4: 90183000 00501284 ld      r3,0x501284
 000021DC: 9028E000          ld      r5,0x0(r3)
 000021E0: 58294E1F          clrbit  r5,r5,0x1f
 000021E4: 9228E000          st      r5,0x0(r3)
+
+-- disable car draw handler
 000021E8: 5C201E01          mov     r4,0x1
 000021EC: 90183000 00501240 ld      r3,0x501240
 000021F4: 9028E000          ld      r5,0x0(r3)
 000021F8: 58294E1F          clrbit  r5,r5,0x1f
 000021FC: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 00002200: 5C201E01          mov     r4,0x1
 00002204: 90183000 00501270 ld      r3,0x501270
 0000220C: 9028E000          ld      r5,0x0(r3)
 00002210: 58294E1F          clrbit  r5,r5,0x1f
 00002214: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 00002218: 5C201E01          mov     r4,0x1
 0000221C: 90183000 0050121C ld      r3,0x50121c
 00002224: 9028E000          ld      r5,0x0(r3)
 00002228: 58294E1F          clrbit  r5,r5,0x1f
 0000222C: 9228E000          st      r5,0x0(r3)
+
+-- disable car data handler
 00002230: 5C201E01          mov     r4,0x1
 00002234: 90183000 00501280 ld      r3,0x501280
 0000223C: 9028E000          ld      r5,0x0(r3)
 00002240: 58294E1F          clrbit  r5,r5,0x1f
 00002244: 9228E000          st      r5,0x0(r3)
+
+-- disable X other car handler
 00002248: 5923181F          addo    r4,0xc,0x1f
 0000224C: 90183000 00501224 ld      r3,0x501224
 
@@ -2374,24 +2439,30 @@
 00002268: 5A210B01          cmpdeco r4,r4,0x1
 0000226C: 14FFFFE8          bl      00002254
 
+-- disable ?
 00002270: 5C201E01          mov     r4,0x1
 00002274: 90183000 0050125C ld      r3,0x50125c
 0000227C: 9028E000          ld      r5,0x0(r3)
 00002280: 58294E1F          clrbit  r5,r5,0x1f
 00002284: 9228E000          st      r5,0x0(r3)
+
+-- diable hiscore crawl
 00002288: 5C201E01          mov     r4,0x1
 0000228C: 90183000 00501214 ld      r3,0x501214
 00002294: 9028E000          ld      r5,0x0(r3)
 00002298: 58294E1F          clrbit  r5,r5,0x1f
 0000229C: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 000022A0: 5C201E01          mov     r4,0x1
 000022A4: 90183000 00501250 ld      r3,0x501250
 000022AC: 9028E000          ld      r5,0x0(r3)
 000022B0: 58294E1F          clrbit  r5,r5,0x1f
 000022B4: 9228E000          st      r5,0x0(r3)
+
+-- disable 64 pylon handler
 000022B8: 59205E06          shlo    r4,0x1,0x6
 000022BC: 90183000 00501254 ld      r3,0x501254
-
 000022C4: 9028E000          ld      r5,0x0(r3)
 000022C8: 58294E1F          clrbit  r5,r5,0x1f
 000022CC: 9228E000          st      r5,0x0(r3)
@@ -2400,31 +2471,42 @@
 000022D8: 5A210B01          cmpdeco r4,r4,0x1
 000022DC: 14FFFFE8          bl      000022c4
 
+-- disable goal handler
 000022E0: 5C201E01          mov     r4,0x1
 000022E4: 90183000 00501230 ld      r3,0x501230
 000022EC: 9028E000          ld      r5,0x0(r3)
 000022F0: 58294E1F          clrbit  r5,r5,0x1f
 000022F4: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 000022F8: 5C201E01          mov     r4,0x1
 000022FC: 90183000 00501294 ld      r3,0x501294
 00002304: 9028E000          ld      r5,0x0(r3)
 00002308: 58294E1F          clrbit  r5,r5,0x1f
 0000230C: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 00002310: 5C201E01          mov     r4,0x1
 00002314: 90183000 00501298 ld      r3,0x501298
 0000231C: 9028E000          ld      r5,0x0(r3)
 00002320: 58294E1F          clrbit  r5,r5,0x1f
 00002324: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 00002328: 5C201E01          mov     r4,0x1
 0000232C: 90183000 00501274 ld      r3,0x501274
 00002334: 9028E000          ld      r5,0x0(r3)
 00002338: 58294E1F          clrbit  r5,r5,0x1f
 0000233C: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 00002340: 5C201E01          mov     r4,0x1
 00002344: 90183000 00501278 ld      r3,0x501278
 0000234C: 9028E000          ld      r5,0x0(r3)
 00002350: 58294E1F          clrbit  r5,r5,0x1f
 00002354: 9228E000          st      r5,0x0(r3)
+
+-- enable logo bounce
 00002358: 5C201E01          mov     r4,0x1
 0000235C: 90183000 00501210 ld      r3,0x501210
 00002364: 9028E000          ld      r5,0x0(r3)
@@ -2432,6 +2514,8 @@
 0000236C: 9228E000          st      r5,0x0(r3)
 00002370: 8C283000 00222FF8 lda     r5,0x222ff8
 00002378: 9228E00C          st      r5,0xc(r3)
+
+-- enable 0x226ec8
 0000237C: 5C201E01          mov     r4,0x1
 00002380: 90183000 0050126C ld      r3,0x50126c
 00002388: 9028E000          ld      r5,0x0(r3)
@@ -2476,17 +2560,20 @@
 
 {
 -- gamestate 0x0a (attract - recycle setup)
-00002424: 09003958          call    00005d7c		-- load charset2
+00002424: 09003958          call    00005d7c			-- load charset2
 00002428: 88183000 005FE5BA ldos    r3,0x5fe5ba
 00002430: 3500E2BC          cmpobne 0x0,r3,0x26ec
+
 00002434: 59195E06          shlo    r3,0x5,0x6
 00002438: 92183000 005010A8 st      r3,0x5010a8
-00002440: 09019BDC          call    0001c01c
+00002440: 09019BDC          call    0001c01c			-- reset tilemap 0
+
 00002444: 90803000 02600018 ld      g0,0x2600018
 0000244C: 090038BC          call    00005d08
-00002450: 09000324          call    00002774		-- reset gamestate?
-00002454: 0900359C          call    000059f0		setup copro (render mode & lod)
+00002450: 09000324          call    00002774			-- reset gamestate?
+00002454: 0900359C          call    000059f0			-- setup copro (render mode & lod)
 00002458: 090002C8          call    00002720
+
 0000245C: 90203000 00501302 ld      r4,0x501302
 00002464: 58210E0E          clrbit  r4,r4,0xe
 00002468: 92203000 00501302 st      r4,0x501302
@@ -2498,34 +2585,47 @@
 00002490: CA183000 0050132C stis    r3,0x50132c
 00002498: 8C903000 01800CE0 lda     g2,0x1800ce0
 000024A0: 5C801E0D          mov     g0,0xd
+
 000024A4: 8C883000 00002700 lda     g1,0x2700
 000024AC: 5C981E10          mov     g3,0x10
+
 000024B0: C81C5000          ldis    r3,(g1)
 000024B4: CA1C9000          stis    r3,(g2)
 000024B8: 598C4882          addi    g1,g1,0x2
 000024BC: 59948882          addi    g2,g2,0x2
 000024C0: 5A9CCB01          cmpdeco g3,g3,0x1
 000024C4: 14FFFFEC          bl      000024b0
+
 000024C8: 5A840B01          cmpdeco g0,g0,0x1
 000024CC: 14FFFFD8          bl      000024a4
+
 000024D0: 09004830          call    00006d00
+
+-- disable logo bounce
 000024D4: 5C201E01          mov     r4,0x1
 000024D8: 90183000 00501210 ld      r3,0x501210
 000024E0: 9028E000          ld      r5,0x0(r3)
 000024E4: 58294E1F          clrbit  r5,r5,0x1f
 000024E8: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 000024EC: 5C201E01          mov     r4,0x1
 000024F0: 90183000 0050121C ld      r3,0x50121c
 000024F8: 9028E000          ld      r5,0x0(r3)
 000024FC: 58294E1F          clrbit  r5,r5,0x1f
 00002500: 9228E000          st      r5,0x0(r3)
+
+-- diable car data handler
 00002504: 5C201E01          mov     r4,0x1
 00002508: 90183000 00501280 ld      r3,0x501280
 00002510: 9028E000          ld      r5,0x0(r3)
 00002514: 58294E1F          clrbit  r5,r5,0x1f
 00002518: 9228E000          st      r5,0x0(r3)
+
+-- disable 43? other car handler
 0000251C: 5923181F          addo    r4,0xc,0x1f
 00002520: 90183000 00501224 ld      r3,0x501224
+
 00002528: 9028E000          ld      r5,0x0(r3)
 0000252C: 58294E1F          clrbit  r5,r5,0x1f
 00002530: 9228E000          st      r5,0x0(r3)
@@ -2533,33 +2633,46 @@
 00002538: 5918C085          addi    r3,r3,r5
 0000253C: 5A210B01          cmpdeco r4,r4,0x1
 00002540: 14FFFFE8          bl      00002528
+
+-- disable ?
 00002544: 5C201E01          mov     r4,0x1
 00002548: 90183000 0050125C ld      r3,0x50125c
 00002550: 9028E000          ld      r5,0x0(r3)
 00002554: 58294E1F          clrbit  r5,r5,0x1f
 00002558: 9228E000          st      r5,0x0(r3)
+
+-- disable car draw handler
 0000255C: 5C201E01          mov     r4,0x1
 00002560: 90183000 00501240 ld      r3,0x501240
 00002568: 9028E000          ld      r5,0x0(r3)
 0000256C: 58294E1F          clrbit  r5,r5,0x1f
 00002570: 9228E000          st      r5,0x0(r3)
+
+-- diable track handler
 00002574: 5C201E01          mov     r4,0x1
 00002578: 90183000 00501284 ld      r3,0x501284
 00002580: 9028E000          ld      r5,0x0(r3)
 00002584: 58294E1F          clrbit  r5,r5,0x1f
 00002588: 9228E000          st      r5,0x0(r3)
+
+-- disable hiscore crawl
 0000258C: 5C201E01          mov     r4,0x1
 00002590: 90183000 00501214 ld      r3,0x501214
 00002598: 9028E000          ld      r5,0x0(r3)
 0000259C: 58294E1F          clrbit  r5,r5,0x1f
 000025A0: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 000025A4: 5C201E01          mov     r4,0x1
 000025A8: 90183000 00501250 ld      r3,0x501250
 000025B0: 9028E000          ld      r5,0x0(r3)
 000025B4: 58294E1F          clrbit  r5,r5,0x1f
 000025B8: 9228E000          st      r5,0x0(r3)
+
+-- disable 64 pylon handlers
 000025BC: 59205E06          shlo    r4,0x1,0x6
 000025C0: 90183000 00501254 ld      r3,0x501254
+
 000025C8: 9028E000          ld      r5,0x0(r3)
 000025CC: 58294E1F          clrbit  r5,r5,0x1f
 000025D0: 9228E000          st      r5,0x0(r3)
@@ -2567,6 +2680,8 @@
 000025D8: 5918C085          addi    r3,r3,r5
 000025DC: 5A210B01          cmpdeco r4,r4,0x1
 000025E0: 14FFFFE8          bl      000025c8
+
+-- disable goal handler
 000025E4: 5C201E01          mov     r4,0x1
 000025E8: 90183000 00501230 ld      r3,0x501230
 000025F0: 9028E000          ld      r5,0x0(r3)
@@ -2635,6 +2750,7 @@
 000026FC: 080001F0          b       000028ec
 }
 
+-- raw data (recycle screen?)
 00002700: B989FFFF          ? b9:f b989ffff 3 3
 00002704: B24CA0C3          stq     r9,0xc3(g2)
 00002708: 99D79B1E          ? 99:6 99d79b1e 1 2
@@ -2643,14 +2759,21 @@
 00002714: FFFFFFFF          ? ff:f ffffffff 3 3
 00002718: FFFFFFFF          ? ff:f ffffffff 3 3
 0000271C: FC00FFFF          ? fc:f fc00ffff 3 3
+-- raw data (recycle screen?)
+
+{
+--
 00002720: 5980DE09          shlo    g0,0x3,0x9
 00002724: 8C883000 0100C000 lda     g1,0x100c000
 0000272C: 5C181E00          mov     r3,0x0
+
 00002730: 921C5000          st      r3,(g1)
 00002734: 598C4804          addo    g1,g1,0x4
 00002738: 5A840B01          cmpdeco g0,g0,0x1
 0000273C: 14FFFFF4          bl      00002730
+
 00002740: 0A000000          ret
+}
 
 {
 -- clear all tilemaps
@@ -2765,6 +2888,7 @@
 00002924: 5C181E00          mov     r3,0x0
 00002928: 80203000 005FE5A8 ldob    r4,0x5fe5a8
 00002930: 3520C010          cmpobne r4,r3,0x2940
+
 00002934: 8C803000 00AE1001 lda     g0,0xae1001
 0000293C: 09017C18          call    0001a554		push g0 to serial buffer
 00002940: 0A000000          ret
@@ -2783,26 +2907,36 @@
 00002954: 09003428          call    00005d7c		-- load charset2
 00002958: 09003098          call    000059f0		-- setup copro (render mode & lod)
 0000295C: 090043A4          call    00006d00
+
+-- disable view cycle handler
 00002960: 5C201E01          mov     r4,0x1
 00002964: 90183000 0050120C ld      r3,0x50120c
 0000296C: 9028E000          ld      r5,0x0(r3)
 00002970: 58294E1F          clrbit  r5,r5,0x1f
 00002974: 9228E000          st      r5,0x0(r3)
+
+-- disable logo bounce handler
 00002978: 5C201E01          mov     r4,0x1
 0000297C: 90183000 00501210 ld      r3,0x501210
 00002984: 9028E000          ld      r5,0x0(r3)
 00002988: 58294E1F          clrbit  r5,r5,0x1f
 0000298C: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 00002990: 5C201E01          mov     r4,0x1
 00002994: 90183000 0050121C ld      r3,0x50121c
 0000299C: 9028E000          ld      r5,0x0(r3)
 000029A0: 58294E1F          clrbit  r5,r5,0x1f
 000029A4: 9228E000          st      r5,0x0(r3)
+
+-- disable car data handler
 000029A8: 5C201E01          mov     r4,0x1
 000029AC: 90183000 00501280 ld      r3,0x501280
 000029B4: 9028E000          ld      r5,0x0(r3)
 000029B8: 58294E1F          clrbit  r5,r5,0x1f
 000029BC: 9228E000          st      r5,0x0(r3)
+
+-- disable 43 other car handlers
 000029C0: 5923181F          addo    r4,0xc,0x1f
 000029C4: 90183000 00501224 ld      r3,0x501224
 
@@ -2814,6 +2948,7 @@
 000029E0: 5A210B01          cmpdeco r4,r4,0x1
 000029E4: 14FFFFE8          bl      000029cc
 
+-- disable 16 ? handlers
 000029E8: 5C201E10          mov     r4,0x10
 000029EC: 90183000 0050124C ld      r3,0x50124c
 
@@ -2825,31 +2960,42 @@
 00002A08: 5A210B01          cmpdeco r4,r4,0x1
 00002A0C: 14FFFFE8          bl      000029f4
 
+-- diable ?
 00002A10: 5C201E01          mov     r4,0x1
 00002A14: 90183000 0050125C ld      r3,0x50125c
 00002A1C: 9028E000          ld      r5,0x0(r3)
 00002A20: 58294E1F          clrbit  r5,r5,0x1f
 00002A24: 9228E000          st      r5,0x0(r3)
+
+-- disable car draw handler
 00002A28: 5C201E01          mov     r4,0x1
 00002A2C: 90183000 00501240 ld      r3,0x501240
 00002A34: 9028E000          ld      r5,0x0(r3)
 00002A38: 58294E1F          clrbit  r5,r5,0x1f
 00002A3C: 9228E000          st      r5,0x0(r3)
+
+-- disable track handler
 00002A40: 5C201E01          mov     r4,0x1
 00002A44: 90183000 00501284 ld      r3,0x501284
 00002A4C: 9028E000          ld      r5,0x0(r3)
 00002A50: 58294E1F          clrbit  r5,r5,0x1f
 00002A54: 9228E000          st      r5,0x0(r3)
+
+-- disable hiscore crawl
 00002A58: 5C201E01          mov     r4,0x1
 00002A5C: 90183000 00501214 ld      r3,0x501214
 00002A64: 9028E000          ld      r5,0x0(r3)
 00002A68: 58294E1F          clrbit  r5,r5,0x1f
 00002A6C: 9228E000          st      r5,0x0(r3)
+
+-- diable ?
 00002A70: 5C201E01          mov     r4,0x1
 00002A74: 90183000 00501250 ld      r3,0x501250
 00002A7C: 9028E000          ld      r5,0x0(r3)
 00002A80: 58294E1F          clrbit  r5,r5,0x1f
 00002A84: 9228E000          st      r5,0x0(r3)
+
+-- disable 64 pylon handlers
 00002A88: 59205E06          shlo    r4,0x1,0x6
 00002A8C: 90183000 00501254 ld      r3,0x501254
 
@@ -2861,51 +3007,69 @@
 00002AA8: 5A210B01          cmpdeco r4,r4,0x1
 00002AAC: 14FFFFE8          bl      00002a94
 
+-- disable goal handler
 00002AB0: 5C201E01          mov     r4,0x1
 00002AB4: 90183000 00501230 ld      r3,0x501230
 00002ABC: 9028E000          ld      r5,0x0(r3)
 00002AC0: 58294E1F          clrbit  r5,r5,0x1f
 00002AC4: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 00002AC8: 5C201E01          mov     r4,0x1
 00002ACC: 90183000 0050126C ld      r3,0x50126c
 00002AD4: 9028E000          ld      r5,0x0(r3)
 00002AD8: 58294E1F          clrbit  r5,r5,0x1f
 00002ADC: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 00002AE0: 5C201E01          mov     r4,0x1
 00002AE4: 90183000 0050129C ld      r3,0x50129c
 00002AEC: 9028E000          ld      r5,0x0(r3)
 00002AF0: 58294E1F          clrbit  r5,r5,0x1f
 00002AF4: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 00002AF8: 5C201E01          mov     r4,0x1
 00002AFC: 90183000 00501294 ld      r3,0x501294
 00002B04: 9028E000          ld      r5,0x0(r3)
 00002B08: 58294E1F          clrbit  r5,r5,0x1f
 00002B0C: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 00002B10: 5C201E01          mov     r4,0x1
 00002B14: 90183000 00501298 ld      r3,0x501298
 00002B1C: 9028E000          ld      r5,0x0(r3)
 00002B20: 58294E1F          clrbit  r5,r5,0x1f
 00002B24: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 00002B28: 5C201E01          mov     r4,0x1
 00002B2C: 90183000 00501274 ld      r3,0x501274
 00002B34: 9028E000          ld      r5,0x0(r3)
 00002B38: 58294E1F          clrbit  r5,r5,0x1f
 00002B3C: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 00002B40: 5C201E01          mov     r4,0x1
 00002B44: 90183000 00501278 ld      r3,0x501278
 00002B4C: 9028E000          ld      r5,0x0(r3)
 00002B50: 58294E1F          clrbit  r5,r5,0x1f
 00002B54: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 00002B58: 5C201E01          mov     r4,0x1
 00002B5C: 90183000 00501258 ld      r3,0x501258
 00002B64: 9028E000          ld      r5,0x0(r3)
 00002B68: 58294E1F          clrbit  r5,r5,0x1f
 00002B6C: 9228E000          st      r5,0x0(r3)
+
+-- disable car collision
 00002B70: 5C201E01          mov     r4,0x1
 00002B74: 90183000 00501204 ld      r3,0x501204
 00002B7C: 9028E000          ld      r5,0x0(r3)
 00002B80: 58294E1F          clrbit  r5,r5,0x1f
 00002B84: 9228E000          st      r5,0x0(r3)
+
 00002B88: 80183000 005010A4 ldob    r3,0x5010a4
 00002B90: 5918C881          addi    r3,r3,0x1
 00002B94: 82183000 005010A4 stob    r3,0x5010a4
@@ -2921,14 +3085,14 @@
 00002BBC: 84041000          bx      pfp,(g0)
 }
 
--- raw data (gamestate waiting handler)
+-- raw data (gamestate waiting subhandler)
 00002BC0: 00002BCC          ? 00:7 00002bcc 2 2
 00002BC4: 00002C18          ? 00:8 00002c18 2 3
 00002BC8: 00002C64          ? 00:8 00002c64 2 3
--- raw data (gamestate waiting handler)
+-- raw data (gamestate waiting subhandler)
 
 {
---
+-- gamestate 0x10 - 0
 00002BCC: 8C803000 01002000 lda     g0,0x1002000
 00002BD4: 09016B68          call    0001973c		--clear tilemap g0
 00002BD8: 8C803000 00BE1A10 lda     g0,0xbe1a10
@@ -2946,7 +3110,7 @@
 }
 
 {
---
+-- gamestate 0x10 - 1
 00002C18: 5C181E02          mov     r3,0x2
 00002C1C: 82183000 005010F8 stob    r3,0x5010f8
 00002C24: 90183000 00540008 ld      r3,0x540008
@@ -2964,21 +3128,26 @@
 }
 
 {
---
+-- gamestate 0x10 - 2
 00002C64: 0900004C          call    00002cb0
 00002C68: 90783000 00540008 ld      r15,0x540008
 00002C70: C823E008          ldis    r4,0x8(r15)
 00002C74: 3B81200C          cmpibge 0x10,r4,0x2c80
+
 00002C78: 09FFE4A0          call    00001118			-- modify lamp output
 00002C7C: 3E042024          cmpible 0x0,g0,0x2ca0
+
 00002C80: 90783000 00540008 ld      r15,0x540008
 00002C88: C81BE008          ldis    r3,0x8(r15)
 00002C8C: 3C00E020          cmpibl  0x0,r3,0x2cac
+
 00002C90: 5C181E08          mov     r3,0x8
 00002C94: 82183000 005010A4 stob    r3,0x5010a4
 00002C9C: 08000010          b       00002cac
+
 00002CA0: 5C181E11          mov     r3,0x11
 00002CA4: 82183000 005010A4 stob    r3,0x5010a4
+
 00002CAC: 0A000000          ret
 }
 
@@ -3000,6 +3169,7 @@
 00002CE0: 598C4801          addo    g1,g1,0x1
 00002CE4: 5A18CB01          cmpdeco r3,r3,0x1
 00002CE8: 14FFFFF4          bl      00002cdc
+
 00002CEC: 0A000000          ret
 }
 
@@ -3008,6 +3178,7 @@
 00002CF0: 5C181E01          mov     r3,0x1
 00002CF4: 82183000 005FE5EC stob    r3,0x5fe5ec
 00002CFC: 09226764          call    00229460
+
 00002D00: 5C181E03          mov     r3,0x3
 00002D04: 80203000 005028FE ldob    r4,0x5028fe
 00002D0C: 82193400 00502900 stob    r3,0x502900(r4)
@@ -3033,23 +3204,27 @@
 00002D90: 5818C084          and     r3,r3,r4
 00002D94: 82183000 01C0001E stob    r3,0x1c0001e
 00002D9C: 88183000 005FE5A8 ldos    r3,0x5fe5a8
-00002DA4: 3200E010          cmpobe  0x0,r3,0x2db4
+00002DA4: 3200E010          cmpobe  0x0,r3,0x2db4			00002DB4
+
 00002DA8: 5C181E01          mov     r3,0x1
 00002DAC: 82183000 00540C19 stob    r3,0x540c19
+
 00002DB4: 8C803000 00AE207C lda     g0,0xae207c
 00002DBC: 09017798          call    0001a554		push g0 to serial buffer
 00002DC0: 09016B98          call    00019958		setup audio (initialize)
 00002DC4: 09FFF980          call    00002744		-- clear all tilemaps
+
 00002DC8: 5C181E00          mov     r3,0x0
 00002DCC: 92183000 0050000C st      r3,0x50000c
 00002DD4: 90803000 02600004 ld      g0,0x2600004
 00002DDC: 09002F2C          call    00005d08
 00002DE0: 09002FCC          call    00005dac
 00002DE4: 09002F98          call    00005d7c		-- load charset2
-00002DE8: 090192A8          call    0001c090
+00002DE8: 090192A8          call    0001c090			-- reset tilemap 1
 00002DEC: 09FFF988          call    00002774		-- reset gamestate?
 00002DF0: 09002C00          call    000059f0		setup copro (render mode & lod)
 00002DF4: 09FFF92C          call    00002720
+
 00002DF8: 5C181E0E          mov     r3,0xe
 00002DFC: 90203000 00501302 ld      r4,0x501302
 00002E04: 58210603          clrbit  r4,r4,r3
@@ -3061,31 +3236,43 @@
 00002E2C: 5C181E00          mov     r3,0x0
 00002E30: CA183000 0050132C stis    r3,0x50132c
 00002E38: 09003EC8          call    00006d00
+
+-- disable view cycle handler
 00002E3C: 5C201E01          mov     r4,0x1
 00002E40: 90183000 0050120C ld      r3,0x50120c
 00002E48: 9028E000          ld      r5,0x0(r3)
 00002E4C: 58294E1F          clrbit  r5,r5,0x1f
 00002E50: 9228E000          st      r5,0x0(r3)
+
+-- disable logo bounce handler
 00002E54: 5C201E01          mov     r4,0x1
 00002E58: 90183000 00501210 ld      r3,0x501210
 00002E60: 9028E000          ld      r5,0x0(r3)
 00002E64: 58294E1F          clrbit  r5,r5,0x1f
 00002E68: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 00002E6C: 5C201E01          mov     r4,0x1
 00002E70: 90183000 0050126C ld      r3,0x50126c
 00002E78: 9028E000          ld      r5,0x0(r3)
 00002E7C: 58294E1F          clrbit  r5,r5,0x1f
 00002E80: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 00002E84: 5C201E01          mov     r4,0x1
 00002E88: 90183000 0050121C ld      r3,0x50121c
 00002E90: 9028E000          ld      r5,0x0(r3)
 00002E94: 58294E1F          clrbit  r5,r5,0x1f
 00002E98: 9228E000          st      r5,0x0(r3)
+
+-- disable car data handler
 00002E9C: 5C201E01          mov     r4,0x1
 00002EA0: 90183000 00501280 ld      r3,0x501280
 00002EA8: 9028E000          ld      r5,0x0(r3)
 00002EAC: 58294E1F          clrbit  r5,r5,0x1f
 00002EB0: 9228E000          st      r5,0x0(r3)
+
+-- disable 43 other car handlers
 00002EB4: 5923181F          addo    r4,0xc,0x1f
 00002EB8: 90183000 00501224 ld      r3,0x501224
 
@@ -3097,41 +3284,56 @@
 00002ED4: 5A210B01          cmpdeco r4,r4,0x1
 00002ED8: 14FFFFE8          bl      00002ec0
 
+-- disable waiting entry handler
 00002EDC: 5C201E01          mov     r4,0x1
 00002EE0: 90183000 00501244 ld      r3,0x501244
 00002EE8: 9028E000          ld      r5,0x0(r3)
 00002EEC: 58294E1F          clrbit  r5,r5,0x1f
 00002EF0: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 00002EF4: 5C201E01          mov     r4,0x1
 00002EF8: 90183000 0050129C ld      r3,0x50129c
 00002F00: 9028E000          ld      r5,0x0(r3)
 00002F04: 58294E1F          clrbit  r5,r5,0x1f
 00002F08: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 00002F0C: 5C201E01          mov     r4,0x1
 00002F10: 90183000 0050125C ld      r3,0x50125c
 00002F18: 9028E000          ld      r5,0x0(r3)
 00002F1C: 58294E1F          clrbit  r5,r5,0x1f
 00002F20: 9228E000          st      r5,0x0(r3)
+
+-- disable car draw handler
 00002F24: 5C201E01          mov     r4,0x1
 00002F28: 90183000 00501240 ld      r3,0x501240
 00002F30: 9028E000          ld      r5,0x0(r3)
 00002F34: 58294E1F          clrbit  r5,r5,0x1f
 00002F38: 9228E000          st      r5,0x0(r3)
+
+-- diable track handler
 00002F3C: 5C201E01          mov     r4,0x1
 00002F40: 90183000 00501284 ld      r3,0x501284
 00002F48: 9028E000          ld      r5,0x0(r3)
 00002F4C: 58294E1F          clrbit  r5,r5,0x1f
 00002F50: 9228E000          st      r5,0x0(r3)
+
+-- disable hiscore crawl
 00002F54: 5C201E01          mov     r4,0x1
 00002F58: 90183000 00501214 ld      r3,0x501214
 00002F60: 9028E000          ld      r5,0x0(r3)
 00002F64: 58294E1F          clrbit  r5,r5,0x1f
 00002F68: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 00002F6C: 5C201E01          mov     r4,0x1
 00002F70: 90183000 00501250 ld      r3,0x501250
 00002F78: 9028E000          ld      r5,0x0(r3)
 00002F7C: 58294E1F          clrbit  r5,r5,0x1f
 00002F80: 9228E000          st      r5,0x0(r3)
+
+-- disable 64 pylon handler
 00002F84: 59205E06          shlo    r4,0x1,0x6
 00002F88: 90183000 00501254 ld      r3,0x501254
 
@@ -3143,44 +3345,59 @@
 00002FA4: 5A210B01          cmpdeco r4,r4,0x1
 00002FA8: 14FFFFE8          bl      00002f90
 
+-- disable goal handler
 00002FAC: 5C201E01          mov     r4,0x1
 00002FB0: 90183000 00501230 ld      r3,0x501230
 00002FB8: 9028E000          ld      r5,0x0(r3)
 00002FBC: 58294E1F          clrbit  r5,r5,0x1f
 00002FC0: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 00002FC4: 5C201E01          mov     r4,0x1
 00002FC8: 90183000 00501294 ld      r3,0x501294
 00002FD0: 9028E000          ld      r5,0x0(r3)
 00002FD4: 58294E1F          clrbit  r5,r5,0x1f
 00002FD8: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 00002FDC: 5C201E01          mov     r4,0x1
 00002FE0: 90183000 00501298 ld      r3,0x501298
 00002FE8: 9028E000          ld      r5,0x0(r3)
 00002FEC: 58294E1F          clrbit  r5,r5,0x1f
 00002FF0: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 00002FF4: 5C201E01          mov     r4,0x1
 00002FF8: 90183000 00501274 ld      r3,0x501274
 00003000: 9028E000          ld      r5,0x0(r3)
 00003004: 58294E1F          clrbit  r5,r5,0x1f
 00003008: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 0000300C: 5C201E01          mov     r4,0x1
 00003010: 90183000 00501278 ld      r3,0x501278
 00003018: 9028E000          ld      r5,0x0(r3)
 0000301C: 58294E1F          clrbit  r5,r5,0x1f
 00003020: 9228E000          st      r5,0x0(r3)
+
+-- disable ?
 00003024: 5C201E01          mov     r4,0x1
 00003028: 90183000 00501258 ld      r3,0x501258
 00003030: 9028E000          ld      r5,0x0(r3)
 00003034: 58294E1F          clrbit  r5,r5,0x1f
 00003038: 9228E000          st      r5,0x0(r3)
+
+-- disable car collision handler
 0000303C: 5C201E01          mov     r4,0x1
 00003040: 90183000 00501204 ld      r3,0x501204
 00003048: 9028E000          ld      r5,0x0(r3)
 0000304C: 58294E1F          clrbit  r5,r5,0x1f
 00003050: 9228E000          st      r5,0x0(r3)
+
 00003054: 80183000 005010A4 ldob    r3,0x5010a4
 0000305C: 5918C881          addi    r3,r3,0x1
 00003060: 82183000 005010A4 stob    r3,0x5010a4
+
 00003068: 5C181E00          mov     r3,0x0
 0000306C: 82183000 005010F8 stob    r3,0x5010f8
 -- this will run through
@@ -3225,6 +3442,7 @@
 000030F4: 82203000 00501478 stob    r4,0x501478
 000030FC: 82283000 00501476 stob    r5,0x501476
 
+-- enable 0x22540c
 00003104: 5C201E01          mov     r4,0x1
 00003108: 90183000 00501218 ld      r3,0x501218
 00003110: 9028E000          ld      r5,0x0(r3)
@@ -3263,8 +3481,11 @@
 000031AC: 591BDE06          shlo    r3,0xf,0x6
 000031B0: CA183000 005010F0 stis    r3,0x5010f0
 000031B8: 92183000 005010A8 st      r3,0x5010a8
+-- will run through
+}
 
--- substate 1
+{
+-- gamestate 0x12 - 1
 000031C0: 5C181E00          mov     r3,0x0
 000031C4: 80203000 005FE5A8 ldob    r4,0x5fe5a8
 000031CC: 3220C068          cmpobe  r4,r3,0x3234		-- if r4 == r3 goto 00003228
@@ -3303,8 +3524,10 @@
 00003254: 5C181E02          mov     r3,0x2
 00003258: 82183000 005010F8 stob    r3,0x5010f8
 00003260: 0A000000          ret
+}
 
--- substate 2
+{
+-- gamestate 0x12 - 2
 00003264: 09223BA8          call    00226e0c
 00003268: 09018690          call    0001b8f8
 0000326C: C0183000 00540000 ldib    r3,0x540000
@@ -3364,7 +3587,10 @@
 00003394: 8023E01C          ldob    r4,0x1c(r15)
 00003398: 3320C050          cmpobge r4,r3,0x33e8
 0000339C: 0A000000          ret
+}
 
+{
+-- gamestate 0x12 - 3
 000033A0: 5C881E00          mov     g1,0x0
 000033A4: 5C901E00          mov     g2,0x0
 000033A8: 8C583000 00501474 lda     r11,0x501474
@@ -3380,7 +3606,10 @@
 000033D8: 5C181E04          mov     r3,0x4
 000033DC: 82183000 005010F8 stob    r3,0x5010f8
 000033E4: 0A000000          ret
+}
 
+{
+-- gamestate 0x12 - 4
 000033E8: 5C181E00          mov     r3,0x0
 000033EC: 80203000 005FE5A8 ldob    r4,0x5fe5a8
 000033F4: 3520C014          cmpobne r4,r3,0x3408
@@ -3390,7 +3619,10 @@
 00003408: 5C181E05          mov     r3,0x5
 0000340C: 82183000 005010F8 stob    r3,0x5010f8
 00003414: 0A000000          ret
+}
 
+{
+-- gamestate 0x12 - 5
 00003418: 90683000 00501218 ld      r13,0x501218
 00003420: 801B7400 00000062 ldob    r3,0x62(r13)
 00003428: 8C203000 0000000B lda     r4,0xb
@@ -3398,21 +3630,27 @@
 00003434: 5C181E06          mov     r3,0x6
 00003438: 82183000 005010F8 stob    r3,0x5010f8
 00003440: 0A000000          ret
+}
 
+{
+-- gamestate 0x12 - 6
 00003444: 090001F0          call    00003634
 00003448: 3D042010          cmpibne 0x0,g0,0x3458
 0000344C: 5C181E07          mov     r3,0x7
 00003450: 82183000 005010F8 stob    r3,0x5010f8
 00003458: 0A000000          ret
+}
 
+{
+-- gamestate 0x12 - 7
 0000345C: 0900026C          call    000036c8
-00003460: 350420F8          cmpobne 0x0,g0,0x3558
+00003460: 350420F8          cmpobne 0x0,g0,0x3558			00003558
 00003464: 0900034C          call    000037b0
-00003468: 350420F0          cmpobne 0x0,g0,0x3558
+00003468: 350420F0          cmpobne 0x0,g0,0x3558			00003558
 0000346C: 90683000 00501218 ld      r13,0x501218
 00003474: 801B7400 00000062 ldob    r3,0x62(r13)
 0000347C: 8C203000 00000010 lda     r4,0x10
-00003484: 341900D4          cmpobl  r3,r4,0x3558
+00003484: 341900D4          cmpobl  r3,r4,0x3558			00003558
 00003488: 90483000 005FE140 ld      r9,0x5fe140
 00003490: 80183000 005FE5A8 ldob    r3,0x5fe5a8
 00003498: 3200E070          cmpobe  0x0,r3,0x3508
@@ -3436,9 +3674,10 @@
 000034F4: 5C181E02          mov     r3,0x2
 000034F8: 08000008          b       00003500
 000034FC: 5C181E01          mov     r3,0x1
+
 00003500: 92183000 00501A98 st      r3,0x501a98
 00003508: 90183000 005010A8 ld      r3,0x5010a8
-00003510: 3C00E048          cmpibl  0x0,r3,0x3558
+00003510: 3C00E048          cmpibl  0x0,r3,0x3558			00003558
 00003514: 5C201E01          mov     r4,0x1
 00003518: 90183000 00501218 ld      r3,0x501218
 00003520: 9028E000          ld      r5,0x0(r3)
@@ -3451,15 +3690,22 @@
 00003544: 90183000 00501264 ld      r3,0x501264
 0000354C: 8C203000 000182CC lda     r4,0x182cc
 00003554: 9220E00C          st      r4,0xc(r3)
+
 00003558: 0A000000          ret
+}
+
 0000355C: 00020001          ? 00:0 00020001 0 0
 00003560: 00030000          ? 00:0 00030000 0 0
+
+{
+--
 00003564: 8C583000 00501473 lda     r11,0x501473
 0000356C: 90783000 00540008 ld      r15,0x540008
 00003574: 8C53E00B          lda     r10,0xb(r15)
 00003578: 80CA9000          ldob    g9,(r10)
 0000357C: 59528801          addo    r10,r10,0x1
-00003580: 320660A4          cmpobe  0x0,g9,0x3624
+00003580: 320660A4          cmpobe  0x0,g9,0x3624			00003624
+
 00003584: 808A9000          ldob    g1,(r10)
 00003588: 59528801          addo    r10,r10,0x1
 0000358C: 9A205000          stl     r4,(sp)
@@ -3477,13 +3723,13 @@
 000035C8: 98205000          ldl     r4,(sp)
 000035CC: 8023A01C          ldob    r4,0x1c(r14)
 000035D0: 5C181E02          mov     r3,0x2
-000035D4: 3420C048          cmpobl  r4,r3,0x361c
+000035D4: 3420C048          cmpobl  r4,r3,0x361c			0000361C
 000035D8: 80203000 00501470 ldob    r4,0x501470
 000035E0: 598C4901          subo    g1,g1,0x1
 000035E4: 5A012711          chkbit  r4,g1
 000035E8: 58210191          setbit  r4,r4,g1
 000035EC: 82203000 00501470 stob    r4,0x501470
-000035F4: 12000028          be      0000361c
+000035F4: 12000028          be      0000361c				0000361C
 000035F8: 801AD000          ldob    r3,(r11)
 000035FC: 5918C801          addo    r3,r3,0x1
 00003600: 821AD000          stob    r3,(r11)
@@ -3492,22 +3738,29 @@
 00003610: 801B2001          ldob    r3,0x1(r12)
 00003614: 5918C801          addo    r3,r3,0x1
 00003618: 821B2001          stob    r3,0x1(r12)
+
 0000361C: 5ACE4B01          cmpdeco g9,g9,0x1
 00003620: 14FFFF64          bl      00003584
+
 00003624: 801BE00B          ldob    r3,0xb(r15)
 00003628: 8022D000          ldob    r4,(r11)
 0000362C: 5980C184          subi    g0,r3,r4
 00003630: 0A000000          ret
+}
+
+{
+--
 00003634: 5C801E00          mov     g0,0x0
 00003638: C0183000 00540000 ldib    r3,0x540000
-00003640: 3900E084          cmpibg  0x0,r3,0x36c4
+00003640: 3900E084          cmpibg  0x0,r3,0x36c4			000036C4
 00003644: 59801901          subo    g0,0x0,0x1
 00003648: 90783000 00540008 ld      r15,0x540008
 00003650: 8C53E00B          lda     r10,0xb(r15)
 00003654: 802A9000          ldob    r5,(r10)
 00003658: 59528801          addo    r10,r10,0x1
-0000365C: 32016068          cmpobe  0x0,r5,0x36c4
+0000365C: 32016068          cmpobe  0x0,r5,0x36c4			000036C4
 00003660: 5C801605          mov     g0,r5
+
 00003664: 808A9000          ldob    g1,(r10)
 00003668: 59528801          addo    r10,r10,0x1
 0000366C: 9A205000          stl     r4,(sp)
@@ -3525,19 +3778,26 @@
 000036A8: 98205000          ldl     r4,(sp)
 000036AC: 801BA01C          ldob    r3,0x1c(r14)
 000036B0: 5C201E06          mov     r4,0x6
-000036B4: 34190008          cmpobl  r3,r4,0x36bc
+000036B4: 34190008          cmpobl  r3,r4,0x36bc			000036BC
 000036B8: 59840981          subi    g0,g0,0x1
+
 000036BC: 5A294B01          cmpdeco r5,r5,0x1
 000036C0: 14FFFFA4          bl      00003664
+
 000036C4: 0A000000          ret
+}
+
+{
+--
 000036C8: 5C801E00          mov     g0,0x0
 000036CC: 5C181E00          mov     r3,0x0
 000036D0: 80203000 005FE5A8 ldob    r4,0x5fe5a8
-000036D8: 3220C0D4          cmpobe  r4,r3,0x37ac
+000036D8: 3220C0D4          cmpobe  r4,r3,0x37ac			000037AC
 000036DC: 8C503000 00540027 lda     r10,0x540027
 000036E4: 802A9000          ldob    r5,(r10)
 000036E8: 59528801          addo    r10,r10,0x1
-000036EC: 330960C0          cmpobge 0x1,r5,0x37ac
+000036EC: 330960C0          cmpobge 0x1,r5,0x37ac			000037AC
+
 000036F0: 808A9000          ldob    g1,(r10)
 000036F4: 59528801          addo    r10,r10,0x1
 000036F8: 9A205000          stl     r4,(sp)
@@ -3554,36 +3814,49 @@
 00003730: 59084908          subo    sp,sp,0x8
 00003734: 98205000          ldl     r4,(sp)
 00003738: 8023A01E          ldob    r4,0x1e(r14)
-0000373C: 35092008          cmpobne 0x1,r4,0x3744
+0000373C: 35092008          cmpobne 0x1,r4,0x3744			00003744
+
 00003740: 59840801          addo    g0,g0,0x1
+
 00003744: 5A294B01          cmpdeco r5,r5,0x1
 00003748: 14FFFFA8          bl      000036f0
+
 0000374C: 5C381E01          mov     r7,0x1
 00003750: 80283000 00540027 ldob    r5,0x540027
 00003758: 59240E01          shlo    r4,g0,0x1
-0000375C: 31214008          cmpobg  r4,r5,0x3764
+0000375C: 31214008          cmpobg  r4,r5,0x3764			00003764
 00003760: 5C381E00          mov     r7,0x0
+
 00003764: 90183000 00540008 ld      r3,0x540008
 0000376C: 90203000 00540004 ld      r4,0x540004
-00003774: 3520C010          cmpobne r4,r3,0x3784
+00003774: 3520C010          cmpobne r4,r3,0x3784			00003784
+
 00003778: 92383000 00501A80 st      r7,0x501a80
 00003780: 0800001C          b       0000379c
+
 00003784: 90783000 00540008 ld      r15,0x540008
 0000378C: 801BE01E          ldob    r3,0x1e(r15)
-00003790: 3519C00C          cmpobne r3,r7,0x379c
+00003790: 3519C00C          cmpobne r3,r7,0x379c			0000379C
 00003794: 92383000 00501A80 st      r7,0x501a80
+
 0000379C: 80283000 00540027 ldob    r5,0x540027
-000037A4: 35814008          cmpobne g0,r5,0x37ac
+000037A4: 35814008          cmpobne g0,r5,0x37ac			000037AC
 000037A8: 5C801E00          mov     g0,0x0
+
 000037AC: 0A000000          ret
+}
+
+{
 000037B0: 5C801E00          mov     g0,0x0
 000037B4: 5C181E00          mov     r3,0x0
 000037B8: 80203000 005FE5A8 ldob    r4,0x5fe5a8
-000037C0: 3220C0D4          cmpobe  r4,r3,0x3894
+000037C0: 3220C0D4          cmpobe  r4,r3,0x3894			00003894
+
 000037C4: 8C503000 00540027 lda     r10,0x540027
 000037CC: 802A9000          ldob    r5,(r10)
 000037D0: 59528801          addo    r10,r10,0x1
-000037D4: 330960C0          cmpobge 0x1,r5,0x3894
+000037D4: 330960C0          cmpobge 0x1,r5,0x3894			00003894
+
 000037D8: 808A9000          ldob    g1,(r10)
 000037DC: 59528801          addo    r10,r10,0x1
 000037E0: 9A205000          stl     r4,(sp)
@@ -3600,28 +3873,37 @@
 00003818: 59084908          subo    sp,sp,0x8
 0000381C: 98205000          ldl     r4,(sp)
 00003820: 8023A032          ldob    r4,0x32(r14)
-00003824: 35092008          cmpobne 0x1,r4,0x382c
+00003824: 35092008          cmpobne 0x1,r4,0x382c			0000382C
+
 00003828: 59840801          addo    g0,g0,0x1
+
 0000382C: 5A294B01          cmpdeco r5,r5,0x1
 00003830: 14FFFFA8          bl      000037d8
+
 00003834: 5C381E01          mov     r7,0x1
 00003838: 80283000 00540027 ldob    r5,0x540027
 00003840: 59240E01          shlo    r4,g0,0x1
-00003844: 31214008          cmpobg  r4,r5,0x384c
+00003844: 31214008          cmpobg  r4,r5,0x384c			0000384C
 00003848: 5C381E00          mov     r7,0x0
+
 0000384C: 90183000 00540008 ld      r3,0x540008
 00003854: 90203000 00540004 ld      r4,0x540004
-0000385C: 3520C010          cmpobne r4,r3,0x386c
+0000385C: 3520C010          cmpobne r4,r3,0x386c			0000386C
 00003860: 92383000 00501AB8 st      r7,0x501ab8
 00003868: 0800001C          b       00003884
+
 0000386C: 90783000 00540008 ld      r15,0x540008
 00003874: 801BE032          ldob    r3,0x32(r15)
-00003878: 3519C00C          cmpobne r3,r7,0x3884
+00003878: 3519C00C          cmpobne r3,r7,0x3884			00003884
 0000387C: 92383000 00501AB8 st      r7,0x501ab8
+
 00003884: 80283000 00540027 ldob    r5,0x540027
-0000388C: 35814008          cmpobne g0,r5,0x3894
+0000388C: 35814008          cmpobne g0,r5,0x3894			00003894
+
 00003890: 5C801E00          mov     g0,0x0
+
 00003894: 0A000000          ret
+}
 
 {
 -- gamestate 0x13 (countdown init)
@@ -3632,6 +3914,7 @@
 000038B0: 82203000 005028FE stob    r4,0x5028fe
 000038B8: 8C803000 00BE1A10 lda     g0,0xbe1a10
 000038C0: 09016C94          call    0001a554		push g0 to serial buffer
+
 000038C4: 80183000 00501460 ldob    r3,0x501460
 000038CC: 82183000 00540C17 stob    r3,0x540c17
 000038D4: 8A183000 00501468 stos    r3,0x501468
@@ -3651,22 +3934,29 @@
 00003930: 09FFEE14          call    00002744		-- clear all tilemaps
 00003934: 09FFEE40          call    00002774		-- reset gamestate?
 00003938: 090020B8          call    000059f0		-- setup copro (render mode & lod)
+
 0000393C: 591C5E02          shlo    r3,0x11,0x2
 00003940: 82183000 00501321 stob    r3,0x501321
 00003948: 09000E68          call    000047b0		-- load track data
 0000394C: 09000424          call    00003d70
 00003950: 09000CAC          call    000045fc		-- load track data 2
 00003954: 0900044C          call    00003da0		-- init car numbers 2
+
+-- disable ?
 00003958: 5C201E01          mov     r4,0x1
 0000395C: 90183000 00501218 ld      r3,0x501218
 00003964: 9028E000          ld      r5,0x0(r3)
 00003968: 58294E1F          clrbit  r5,r5,0x1f
 0000396C: 9228E000          st      r5,0x0(r3)
+
+-- disable goal handler
 00003970: 5C201E01          mov     r4,0x1
 00003974: 90183000 00501230 ld      r3,0x501230
 0000397C: 9028E000          ld      r5,0x0(r3)
 00003980: 58294E1F          clrbit  r5,r5,0x1f
 00003984: 9228E000          st      r5,0x0(r3)
+
+-- enable 0xb0f4
 00003988: 5C201E01          mov     r4,0x1
 0000398C: 90183000 00501294 ld      r3,0x501294
 00003994: 9028E000          ld      r5,0x0(r3)
@@ -3674,6 +3964,8 @@
 0000399C: 9228E000          st      r5,0x0(r3)
 000039A0: 8C283000 0000B0F4 lda     r5,0xb0f4
 000039A8: 9228E00C          st      r5,0xc(r3)
+
+-- enable starting light handler
 000039AC: 5C201E01          mov     r4,0x1
 000039B0: 90183000 00501248 ld      r3,0x501248
 000039B8: 9028E000          ld      r5,0x0(r3)
@@ -3681,6 +3973,8 @@
 000039C0: 9228E000          st      r5,0x0(r3)
 000039C4: 8C283000 00224D4C lda     r5,0x224d4c
 000039CC: 9228E00C          st      r5,0xc(r3)
+
+-- enable ?
 000039D0: 5C201E01          mov     r4,0x1
 000039D4: 90183000 00501250 ld      r3,0x501250
 000039DC: 9028E000          ld      r5,0x0(r3)
@@ -3688,6 +3982,8 @@
 000039E4: 9228E000          st      r5,0x0(r3)
 000039E8: 8C283000 00220000 lda     r5,0x220000
 000039F0: 9228E00C          st      r5,0xc(r3)
+
+-- enable ?
 000039F4: 5C201E01          mov     r4,0x1
 000039F8: 90183000 0050125C ld      r3,0x50125c
 00003A00: 9028E000          ld      r5,0x0(r3)
@@ -3695,6 +3991,8 @@
 00003A08: 9228E000          st      r5,0x0(r3)
 00003A0C: 8C283000 00013318 lda     r5,0x13318
 00003A14: 9228E00C          st      r5,0xc(r3)
+
+-- enable car data handler
 00003A18: 5C201E01          mov     r4,0x1
 00003A1C: 90183000 00501280 ld      r3,0x501280
 00003A24: 9028E000          ld      r5,0x0(r3)
@@ -3702,6 +4000,8 @@
 00003A2C: 9228E000          st      r5,0x0(r3)
 00003A30: 8C283000 00012A84 lda     r5,0x12a84
 00003A38: 9228E00C          st      r5,0xc(r3)
+
+-- enable first car handler
 00003A3C: 5C201E01          mov     r4,0x1
 00003A40: 90183000 00501220 ld      r3,0x501220
 00003A48: 9028E000          ld      r5,0x0(r3)
@@ -3711,6 +4011,8 @@
 00003A5C: 9228E00C          st      r5,0xc(r3)
 00003A60: 09000264          call    00003cc4
 00003A64: 0900018C          call    00003bf0
+
+-- enable car draw handler
 00003A68: 5C201E01          mov     r4,0x1
 00003A6C: 90183000 00501240 ld      r3,0x501240
 00003A74: 9028E000          ld      r5,0x0(r3)
@@ -3718,6 +4020,8 @@
 00003A7C: 9228E000          st      r5,0x0(r3)
 00003A80: 8C283000 00006E34 lda     r5,0x6e34
 00003A88: 9228E00C          st      r5,0xc(r3)
+
+-- enable track handler
 00003A8C: 5C201E01          mov     r4,0x1
 00003A90: 90183000 00501284 ld      r3,0x501284
 00003A98: 9028E000          ld      r5,0x0(r3)
@@ -3725,6 +4029,8 @@
 00003AA0: 9228E000          st      r5,0x0(r3)
 00003AA4: 8C283000 00006348 lda     r5,0x6348
 00003AAC: 9228E00C          st      r5,0xc(r3)
+
+-- enable 0x579c
 00003AB0: 5C201E01          mov     r4,0x1
 00003AB4: 90183000 0050121C ld      r3,0x50121c
 00003ABC: 9028E000          ld      r5,0x0(r3)
@@ -3732,14 +4038,17 @@
 00003AC4: 9228E000          st      r5,0x0(r3)
 00003AC8: 8C283000 0000579C lda     r5,0x579c
 00003AD0: 9228E00C          st      r5,0xc(r3)
+
+-- enable 0xb8b4
 00003AD4: 5C201E01          mov     r4,0x1
 00003AD8: 90183000 00501268 ld      r3,0x501268
 00003AE0: 9028E000          ld      r5,0x0(r3)
 00003AE4: 5829499F          setbit  r5,r5,0x1f
 00003AE8: 9228E000          st      r5,0x0(r3)
-
 00003AEC: 8C283000 0000B8B4 lda     r5,0xb8b4
 00003AF4: 9228E00C          st      r5,0xc(r3)
+
+-- enable car collision handler
 00003AF8: 5C201E01          mov     r4,0x1
 00003AFC: 90183000 00501204 ld      r3,0x501204
 00003B04: 9028E000          ld      r5,0x0(r3)
@@ -3747,6 +4056,8 @@
 00003B0C: 9228E000          st      r5,0x0(r3)
 00003B10: 8C283000 00012B6C lda     r5,0x12b6c
 00003B18: 9228E00C          st      r5,0xc(r3)
+
+-- enable 0x6544
 00003B1C: 5C201E01          mov     r4,0x1
 00003B20: 90183000 00501270 ld      r3,0x501270
 00003B28: 9028E000          ld      r5,0x0(r3)
@@ -3754,6 +4065,8 @@
 00003B30: 9228E000          st      r5,0x0(r3)
 00003B34: 8C283000 00006544 lda     r5,0x6544
 00003B3C: 9228E00C          st      r5,0xc(r3)
+
+--
 00003B40: C0803000 00501460 ldib    g0,0x501460
 00003B48: C8183890 028050E8 ldis    r3,0x28050e8[g0*2]
 00003B50: CA183000 00501850 stis    r3,0x501850
@@ -3785,50 +4098,67 @@
 00003BEC: 0A000000          ret
 }
 
+{
+--
 00003BF0: 90483000 005FE140 ld      r9,0x5fe140
 00003BF8: 80183000 00540027 ldob    r3,0x540027
-00003C00: 3308E030          cmpobge 0x1,r3,0x3c30
+00003C00: 3308E030          cmpobge 0x1,r3,0x3c30			00003C30
 00003C04: 90203000 00501A80 ld      r4,0x501a80
 00003C0C: 5C281E00          mov     r5,0x0
-00003C10: 32214020          cmpobe  r4,r5,0x3c30
+00003C10: 32214020          cmpobe  r4,r5,0x3c30			00003C30
 00003C14: 92283000 00501A80 st      r5,0x501a80
 00003C1C: 92183000 00501080 st      r3,0x501080
 00003C24: 5918C981          subi    r3,r3,0x1
 00003C28: 92183000 00501084 st      r3,0x501084
+
 00003C30: 90183000 00501A80 ld      r3,0x501a80
 00003C38: 92183000 00501A84 st      r3,0x501a84
 00003C40: 80183000 005FE5A8 ldob    r3,0x5fe5a8
-00003C48: 3500E04C          cmpobne 0x0,r3,0x3c94
+00003C48: 3500E04C          cmpobne 0x0,r3,0x3c94			00003C94
 00003C4C: 8C183000 000100E0 lda     r3,0x100e0
 00003C54: 584A4083          and     r9,r9,r3
 00003C58: 80183000 00501460 ldob    r3,0x501460
 00003C60: 3A02602C          cmpibe  0x0,r9,0x3c8c
-00003C64: 372A6014          bbs     5,r9,0x3c78
-00003C68: 37326018          bbs     6,r9,0x3c80
-00003C6C: 373A601C          bbs     7,r9,0x3c88
+00003C64: 372A6014          bbs     5,r9,0x3c78				00003C78
+00003C68: 37326018          bbs     6,r9,0x3c80				00003C80
+00003C6C: 373A601C          bbs     7,r9,0x3c88				00003C88
 00003C70: 5C181E03          mov     r3,0x3
 00003C74: 08000018          b       00003c8c
+
 00003C78: 5C181E00          mov     r3,0x0
 00003C7C: 08000010          b       00003c8c
+
 00003C80: 5C181E02          mov     r3,0x2
 00003C84: 08000008          b       00003c8c
+
 00003C88: 5C181E01          mov     r3,0x1
+
 00003C8C: 92183000 00501A98 st      r3,0x501a98
 00003C94: 90183000 00501A98 ld      r3,0x501a98
+
 00003C9C: 90803903 028050F0 ld      g0,0x28050f0[r3*4]
 00003CA4: 090168B0          call    0001a554		push g0 to serial buffer
+
 00003CA8: 5A00B083          cmpi    0x2,r3
-00003CAC: 15000014          bne     00003cc0
-00003CB0: 37226010          bbs     4,r9,0x3cc0
+00003CAC: 15000014          bne     00003cc0			00003CC0
+00003CB0: 37226010          bbs     4,r9,0x3cc0			00003CC0
+
 00003CB4: 8C803000 00B70700 lda     g0,0xb70700
 00003CBC: 09016898          call    0001a554		push g0 to serial buffer
+
 00003CC0: 0A000000          ret
+}
+
+{
+--
 00003CC4: 5C181E00          mov     r3,0x0
 00003CC8: 92183000 00501208 st      r3,0x501208
 00003CD0: 90183000 00501A80 ld      r3,0x501a80
-00003CD8: 3A08E040          cmpibe  0x1,r3,0x3d18
+00003CD8: 3A08E040          cmpibe  0x1,r3,0x3d18			00003D18
+
 00003CDC: 90203000 00501084 ld      r4,0x501084
 00003CE4: 90183000 00501224 ld      r3,0x501224
+
 00003CEC: 9028E000          ld      r5,0x0(r3)
 00003CF0: 5829499F          setbit  r5,r5,0x1f
 00003CF4: 9228E000          st      r5,0x0(r3)
@@ -3838,33 +4168,47 @@
 00003D08: 5918C085          addi    r3,r3,r5
 00003D0C: 5A210B01          cmpdeco r4,r4,0x1
 00003D10: 14FFFFDC          bl      00003cec
+
 00003D14: 0A000000          ret
+
 00003D18: 90483000 00501220 ld      r9,0x501220
 00003D20: 90403000 00540030 ld      r8,0x540030
 00003D28: 5C381E00          mov     r7,0x0
+
 00003D2C: 5A022707          chkbit  r8,r7
 00003D30: 12000008          be      00003d38
 00003D34: 08000024          b       00003d58
+
 00003D38: 901A6000          ld      r3,0x0(r9)
 00003D3C: 5A00EF1F          chkbit  r3,0x1f
 00003D40: 12000018          be      00003d58
+
 00003D44: 5818C99F          setbit  r3,r3,0x1f
 00003D48: 921A6000          st      r3,0x0(r9)
 00003D4C: 8C183000 0000D0CC lda     r3,0xd0cc
 00003D54: 921A600C          st      r3,0xc(r9)
+
 00003D58: 901A6008          ld      r3,0x8(r9)
 00003D5C: 594A4083          addi    r9,r9,r3
 00003D60: 5939C881          addi    r7,r7,0x1
 00003D64: 5A023007          cmpo    0x8,r7
 00003D68: 14FFFFC4          bl      00003d2c
+
 00003D6C: 0A000000          ret
+}
+
+{
+--
 00003D70: C0183000 00540000 ldib    r3,0x540000
-00003D78: 3E00E01C          cmpible 0x0,r3,0x3d94
+00003D78: 3E00E01C          cmpible 0x0,r3,0x3d94			00003D94
+
 00003D7C: 5C181E00          mov     r3,0x0
 00003D80: 5C201E01          mov     r4,0x1
 00003D84: 82183000 00501088 stob    r3,0x501088
 00003D8C: 82203000 00540027 stob    r4,0x540027
+
 00003D94: 0A000000          ret
+}
 
 {
 -- init car numbers 1
@@ -4035,22 +4379,30 @@
 {
 -- gamestate 0x15 (ingame setup)
 00003FC0: 09000888          call    00004848
+
 00003FC4: 5C181E00          mov     r3,0x0
 00003FC8: 92183000 005010DC st      r3,0x5010dc
+
 00003FD0: 5C181E05          mov     r3,0x5
 00003FD4: 92183000 00501338 st      r3,0x501338
+
 00003FDC: 88183000 00501308 ldos    r3,0x501308
 00003FE4: 88183000 0050130A ldos    r3,0x50130a
 00003FEC: 8A183000 00501318 stos    r3,0x501318
 00003FF4: 8A183000 0050131A stos    r3,0x50131a
+
+-- disable goal handler
 00003FFC: 5C201E01          mov     r4,0x1
 00004000: 90183000 00501230 ld      r3,0x501230
 00004008: 9028E000          ld      r5,0x0(r3)
 0000400C: 58294E1F          clrbit  r5,r5,0x1f
 00004010: 9228E000          st      r5,0x0(r3)
+
+-- increase gamestate
 00004014: 80183000 005010A4 ldob    r3,0x5010a4
 0000401C: 5918C881          addi    r3,r3,0x1
 00004020: 82183000 005010A4 stob    r3,0x5010a4
+
 00004028: 0A000000          ret
 }
 
@@ -4333,7 +4685,7 @@
 00004590: 9228E000          st      r5,0x0(r3)
 00004594: 090160CC          call    0001a660		-- send be1700 to audio
 00004598: 09016174          call    0001a70c		-- send be1900 to audio
-0000459C: 09017A80          call    0001c01c
+0000459C: 09017A80          call    0001c01c			-- reset tilemap 0
 000045A0: 5C201E01          mov     r4,0x1
 000045A4: 90183000 005012A4 ld      r3,0x5012a4
 000045AC: 9028E000          ld      r5,0x0(r3)
@@ -4709,8 +5061,8 @@
 00004C68: 9228E000          st      r5,0x0(r3)
 00004C6C: 8C283000 00012B6C lda     r5,0x12b6c
 00004C74: 9228E00C          st      r5,0xc(r3)
-00004C78: 090173A4          call    0001c01c
-00004C7C: 09017414          call    0001c090
+00004C78: 090173A4          call    0001c01c			-- reset tilemap 0
+00004C7C: 09017414          call    0001c090			-- reset tilemap 1
 00004C80: 5C201E01          mov     r4,0x1
 00004C84: 90183000 0050129C ld      r3,0x50129c
 00004C8C: 9028E000          ld      r5,0x0(r3)
@@ -6584,6 +6936,7 @@
 00006B70: 92F6E060          st      g14,0x60(g11)			(copro matrix_pop)
 00006B74: 5CF01E00          mov     g14,0x0
 00006B78: 0A000000          ret
+
 00006B7C: 3A04E010          cmpibe  0x0,g3,0x6b8c
 00006B80: 901CD000          ld      r3,(g3)
 00006B84: 90249000          ld      r4,(g2)
@@ -6623,6 +6976,7 @@
 00006C24: 922EDC1C          st      r5,(g11)[g12*1]
 00006C28: 5CF01E00          mov     g14,0x0
 00006C2C: 0A000000          ret
+
 00006C30: 5C201E01          mov     r4,0x1
 00006C34: 90183000 00501270 ld      r3,0x501270
 00006C3C: 9028E000          ld      r5,0x0(r3)
@@ -21928,22 +22282,24 @@
 
 {
 -- convert xy position to sector
-0001778C: 901F601C          ld      r3,0x1c(g13)			car y
-00017790: 6C801003          cvtri   g0,0x0,r3
-00017794: 59185E0A          shlo    r3,0x1,0xa
-00017798: 59840083          addi    g0,g0,r3
-0001779C: 59840C07          shro    g0,g0,0x7
+0001778C: 901F601C          ld      r3,0x1c(g13)			-- car y				; 0x42E00000	112
+00017790: 6C801003          cvtri   g0,0x0,r3				-- g0 = (int)r3			; 0x00000070	112
+00017794: 59185E0A          shlo    r3,0x1,0xa				-- r3 = 0x400			; 0x00000400	1024
+00017798: 59840083          addi    g0,g0,r3										; 0x00000470	1136
+0001779C: 59840C07          shro    g0,g0,0x7										; 0x00000008	8		(1136 / 128 = 8.875)
 000177A0: 5C181E0F          mov     r3,0xf
 000177A4: 58840083          and     g0,g0,r3
-000177A8: 901F6024          ld      r3,0x24(g13)			car x
-000177AC: 6C881003          cvtri   g1,0x0,r3
-000177B0: 59185E0A          shlo    r3,0x1,0xa
-000177B4: 598C4083          addi    g1,g1,r3
-000177B8: 598C4C07          shro    g1,g1,0x7
+
+000177A8: 901F6024          ld      r3,0x24(g13)			car x					; 0x430a7e7e	138.4941
+000177AC: 6C881003          cvtri   g1,0x0,r3				-- g1 = int(r3)			; 0x0000008a	138
+000177B0: 59185E0A          shlo    r3,0x1,0xa				-- r3 = 0x400			; 0x00000400	1024
+000177B4: 598C4083          addi    g1,g1,r3										; 0x00000470	1162
+000177B8: 598C4C07          shro    g1,g1,0x7										; 0x00000009	9		(1162 / 128 = 9.078125)
 000177BC: 5C181E0F          mov     r3,0xf
 000177C0: 588C4083          and     g1,g1,r3
-000177C4: 598C4E04          shlo    g1,g1,0x4
-000177C8: 59840011          addo    g0,g0,g1
+
+000177C4: 598C4E04          shlo    g1,g1,0x4										; 0x00000090
+000177C8: 59840011          addo    g0,g0,g1										; 0x00000098
 000177CC: 8A87602E          stos    g0,0x2e(g13)			sector
 000177D0: 0A000000          ret
 }
@@ -21975,14 +22331,15 @@
 0001783C: 5A9CCB01          cmpdeco g3,g3,0x1
 00017840: 14FFFFEC          bl      0001782c			-- copy track parts from 0x501600 to 0x501680
 
-00017844: 09FFFF48          call    0001778c			-- convert position to int - return g0
-00017848: 8887602E          ldos    g0,0x2e(g13)
+00017844: 09FFFF48          call    0001778c			-- convert xy position to sector
+00017848: 8887602E          ldos    g0,0x2e(g13)		-- sector
 0001784C: 5C901610          mov     g2,g0
 00017850: 5C981610          mov     g3,g0
-00017854: 5894888F          and     g2,g2,0xf			-- x
-00017858: 599CCC04          shro    g3,g3,0x4			-- y
+00017854: 5894888F          and     g2,g2,0xf			-- y
+00017858: 599CCC04          shro    g3,g3,0x4			-- x
 0001785C: 5C681E00          mov     r13,0x0
-00017860: 3C0CA024          cmpibl  0x1,g2,0x17884		00017884
+-- check y
+00017860: 3C0CA024          cmpibl  0x1,g2,0x17884		-- if 0x1 < g2 goto 00017884
 
 00017864: 8C183000 00108421 lda     r3,0x108421
 0001786C: 586B4383          or      r13,r13,r3
@@ -21991,7 +22348,7 @@
 0001787C: 586B4383          or      r13,r13,r3
 00017880: 08000024          b       000178a4
 
-00017884: 3974A020          cmpibg  0xe,g2,0x178a4		000178A4
+00017884: 3974A020          cmpibg  0xe,g2,0x178a4		-- if 0xe > g2 goto 000178A4
 
 00017888: 8C183000 01084210 lda     r3,0x1084210
 00017890: 586B4383          or      r13,r13,r3
@@ -21999,7 +22356,8 @@
 00017898: 8C183000 00842108 lda     r3,0x842108
 000178A0: 586B4383          or      r13,r13,r3
 
-000178A4: 3C0CE01C          cmpibl  0x1,g3,0x178c0		000178C0
+-- check x
+000178A4: 3C0CE01C          cmpibl  0x1,g3,0x178c0		-- if 0x1 < g3 goto 000178C0
 000178A8: 5C181E1F          mov     r3,0x1f
 000178AC: 586B4383          or      r13,r13,r3
 000178B0: 3C04E028          cmpibl  0x0,g3,0x178d8		000178D8
@@ -22007,21 +22365,22 @@
 000178B8: 586B4383          or      r13,r13,r3
 000178BC: 0800001C          b       000178d8
 
-000178C0: 3974E018          cmpibg  0xe,g3,0x178d8		000178D8
+000178C0: 3974E018          cmpibg  0xe,g3,0x178d8		-- if 0xe > g3 goto 000178D8
 000178C4: 591FDE14          shlo    r3,0x1f,0x14
 000178C8: 586B4383          or      r13,r13,r3
 000178CC: 397CE00C          cmpibg  0xf,g3,0x178d8		000178D8
 000178D0: 591FDE0F          shlo    r3,0x1f,0xf
 000178D4: 586B4383          or      r13,r13,r3
 
+-- ?
 000178D8: 5C88160D          mov     g1,r13
-
 000178DC: 09000298          call    00017b74
-
 000178E0: 5C681611          mov     r13,g1
-000178E4: 9097601C          ld      g2,0x1c(g13)
-000178E8: 909F6024          ld      g3,0x24(g13)
+
+000178E4: 9097601C          ld      g2,0x1c(g13)		-- y
+000178E8: 909F6024          ld      g3,0x24(g13)		-- x
 000178EC: 0900030C          call    00017bf8
+
 000178F0: 5C381E19          mov     r7,0x19
 000178F4: 5C401610          mov     r8,g0
 000178F8: 5C481611          mov     r9,g1
@@ -22040,6 +22399,7 @@
 0001793C: 59318881          addi    r6,r6,0x1
 00017940: 5A036710          chkbit  r13,g0
 00017944: 12000080          be      000179c4
+
 00017948: C08C3400 00017AB2 ldib    g1,0x17ab2(g0)
 00017950: 598C4088          addi    g1,g1,r8
 00017954: 5C901611          mov     g2,g1
@@ -22052,20 +22412,25 @@
 00017974: 92203912 00501500 st      r4,0x501500[g2*4]
 0001797C: 5A026710          chkbit  r9,g0
 00017980: 10000020          bno     000179a0
+
 00017984: 90203912 00501540 ld      r4,0x501540[g2*4]
 0001798C: 58210193          setbit  r4,r4,g3
 00017990: 92203912 00501540 st      r4,0x501540[g2*4]
 00017998: 82895000          stob    g1,(r5)
 0001799C: 59294801          addo    r5,r5,0x1
+
 000179A0: 5A026710          chkbit  r9,g0
 000179A4: 10000020          bno     000179c4
+
 000179A8: 90203912 00501520 ld      r4,0x501520[g2*4]
 000179B0: 58210193          setbit  r4,r4,g3
 000179B4: 92203912 00501520 st      r4,0x501520[g2*4]
 000179BC: C28B1000          stib    g1,(r12)			-- add track part
 000179C0: 59630881          addi    r12,r12,0x1
+
 000179C4: 5A39CB01          cmpdeco r7,r7,0x1
 000179C8: 14FFFF70          bl      00017938
+
 000179CC: 8C183000 00501601 lda     r3,0x501601
 000179D4: 59294103          subo    r5,r5,r3
 000179D8: 82283000 00501600 stob    r5,0x501600
@@ -22079,32 +22444,38 @@
 00017A10: C0A45000          ldib    g4,(g1)
 00017A14: 59840881          addi    g0,g0,0x1
 00017A18: 598C4881          addi    g1,g1,0x1
-00017A1C: 3A04E04C          cmpibe  0x0,g3,0x17a68
-00017A20: 3A052048          cmpibe  0x0,g4,0x17a68
+00017A1C: 3A04E04C          cmpibe  0x0,g3,0x17a68			00017A68
+00017A20: 3A052048          cmpibe  0x0,g4,0x17a68			00017A68
 00017A24: 5CA81611          mov     g5,g1
 00017A28: 5CB01614          mov     g6,g4
+
 00017A2C: 5C881615          mov     g1,g5
 00017A30: 5CA01616          mov     g4,g6
+
 00017A34: C01C1000          ldib    r3,(g0)
 00017A38: C0245000          ldib    r4,(g1)
 00017A3C: 5A00E084          cmpi    r3,r4
 00017A40: 598C4881          addi    g1,g1,0x1
 00017A44: 12000018          be      00017a5c
+
 00017A48: 5AA50B01          cmpdeco g4,g4,0x1
 00017A4C: 14FFFFE8          bl      00017a34
+
 00017A50: C01C1000          ldib    r3,(g0)
 00017A54: C21C9000          stib    r3,(g2)
 00017A58: 59948881          addi    g2,g2,0x1
+
 00017A5C: 59840881          addi    g0,g0,0x1
 00017A60: 5A9CCB01          cmpdeco g3,g3,0x1
 00017A64: 14FFFFC8          bl      00017a2c
+
 00017A68: 8C183000 00501641 lda     r3,0x501641
 00017A70: 59948183          subi    g2,g2,r3
 00017A74: C2903000 00501640 stib    g2,0x501640
 00017A7C: 0A000000          ret
 }
 
---
+-- raw data (? used at 000178FC+)
 00017A80: 070D110C          ? 07:2 070d110c 1 0
 00017A84: 0608120B          ? 06:4 0608120b 1 0
 00017A88: 020E1610          ? 02:c 020e1610 1 1
@@ -22124,17 +22495,20 @@
 00017AC0: 100F0E02          bno     001088c0
 00017AC4: 1F1E1211          faulto 1f:4 1f1e1211 1 0
 00017AC8: 00222120          ? 00:2 00222120 2 0
+-- raw data (? used at 000178FC+)
 
 -- raw data (offset table?)
-00017ACC: 00017ADC          ? 00:5 00017adc 3 2
-00017AD0: 00017ADC          ? 00:5 00017adc 3 2
-00017AD4: 00017AE0          ? 00:5 00017ae0 3 2
-00017AD8: 00017ADC          ? 00:5 00017adc 3 2
+00017ACC: 00017ADC          ? 00:5 00017adc 3 2			-- track 0 (beginner)
+00017AD0: 00017ADC          ? 00:5 00017adc 3 2			-- track 1 (expert)
+00017AD4: 00017AE0          ? 00:5 00017ae0 3 2			-- track 2 (advanced)
+00017AD8: 00017ADC          ? 00:5 00017adc 3 2			-- track 3 (test)
 -- raw data (offset table?)
 
 -- raw data (?)
-00017ADC: 270F270F          testo sp
-00017AE0: 011500BE          ? 01:1 011500be 0 0
+00017ADC: 270F 270F          testo sp					
+00017AE0: 0115 00BE          ? 01:1 011500be 0 0
+-- raw data (?)
+
 00017AE4: 00000000          ? 00:0 00000000 0 0
 00017AE8: 00000000          ? 00:0 00000000 0 0
 00017AEC: 01000000          ? 01:0 01000000 0 0
@@ -22142,8 +22516,10 @@
 00017AF4: 00000000          ? 00:0 00000000 0 0
 00017AF8: 00000000          ? 00:0 00000000 0 0
 00017AFC: 00000000          ? 00:0 00000000 0 0
+
 00017B00: 00000000          ? 00:0 00000000 0 0
 00017B04: 0151011E          ? 01:2 0151011e 0 0
+
 00017B08: 00000000          ? 00:0 00000000 0 0
 00017B0C: 00C000C0          ? 00:1 00c000c0 0 0
 00017B10: 00C000C0          ? 00:1 00c000c0 0 0
@@ -22151,8 +22527,10 @@
 00017B18: 00000000          ? 00:0 00000000 0 0
 00017B1C: 00000000          ? 00:0 00000000 0 0
 00017B20: 00000000          ? 00:0 00000000 0 0
+
 00017B24: 00000000          ? 00:0 00000000 0 0
 00017B28: 015F0152          ? 01:2 015f0152 0 0
+
 00017B2C: 00000000          ? 00:0 00000000 0 0
 00017B30: 0E400000          ? 0e:0 0e400000 0 0
 00017B34: 0CC00CC0          ? 0c:9 0cc00cc0 0 3
@@ -22160,8 +22538,10 @@
 00017B3C: 00000000          ? 00:0 00000000 0 0
 00017B40: 00000000          ? 00:0 00000000 0 0
 00017B44: 00000000          ? 00:0 00000000 0 0
+
 00017B48: 00000000          ? 00:0 00000000 0 0
 00017B4C: 01B00178          ? 01:2 01b00178 0 0
+
 00017B50: 00000000          ? 00:0 00000000 0 0
 00017B54: 0F000000          ? 0f:0 0f000000 0 0
 00017B58: 0C700E00          ? 0c:c 0c700e00 0 3
@@ -22169,23 +22549,27 @@
 00017B60: 00000000          ? 00:0 00000000 0 0
 00017B64: 00000000          ? 00:0 00000000 0 0
 00017B68: 00000000          ? 00:0 00000000 0 0
+
 00017B6C: 00000000          ? 00:0 00000000 0 0
 00017B70: 270F270F          testo sp
 
 {
---
-00017B74: 90483000 0054004C ld      r9,0x54004c
-00017B7C: 881A612C          ldos    r3,0x12c(r9)
-00017B80: 80203000 00501460 ldob    r4,0x501460
-00017B88: 90203904 00017ACC ld      r4,0x17acc[r4*4]
-00017B90: 5929581F          addo    r5,0x5,0x1f
-00017B94: 88312002          ldos    r6,0x2(r4)
-00017B98: 3619800C          cmpoble r3,r6,0x17ba4			00017BA4
-00017B9C: 59210005          addo    r4,r4,r5
-00017BA0: 08FFFFF4          b       00017b94
+-- g1 ?, g2 x, g3 y
+00017B74: 90483000 0054004C ld      r9,0x54004c				-- pointer to handler?
+00017B7C: 881A612C          ldos    r3,0x12c(r9)			-- offset 12c
 
-00017BA4: 88312000          ldos    r6,0x0(r4)
-00017BA8: 3419804C          cmpobl  r3,r6,0x17bf4			00017BF4
+00017B80: 80203000 00501460 ldob    r4,0x501460				-- track no
+00017B88: 90203904 00017ACC ld      r4,0x17acc[r4*4]		-- read table 0x17acc, offset r4*4 
+
+00017B90: 5929581F          addo    r5,0x5,0x1f				-- r5 = 0x24
+00017B94: 88312002          ldos    r6,0x2(r4)				-- r6 = 270F / 0115
+00017B98: 3619800C          cmpoble r3,r6,0x17ba4			-- if r3 <= r6 goto 00017BA4
+00017B9C: 59210005          addo    r4,r4,r5				-- r4 += r5
+00017BA0: 08FFFFF4          b       00017b94				-- while r3 <= r6 loop 00017B94
+
+00017BA4: 88312000          ldos    r6,0x0(r4)				-- read2 r6 from r4 + 0x0
+00017BA8: 3419804C          cmpobl  r3,r6,0x17bf4			-- if r3 < r6 goto 00017BF4
+
 00017BAC: 8C212004          lda     r4,0x4(r4)
 00017BB0: 5C281612          mov     r5,g2
 00017BB4: 5934C982          subi    r6,g3,0x2
@@ -22211,7 +22595,7 @@
 }
 
 {
---
+-- g2 y, g3 x
 00017BF8: 6C301012          cvtri   r6,0x0,g2
 00017BFC: 6C381013          cvtri   r7,0x0,g3
 00017C00: 8C183000 FFFFFF80 lda     r3,0xffffff80
@@ -22219,37 +22603,44 @@
 00017C0C: 5839C083          and     r7,r7,r3
 00017C10: 67301206          cvtir   r6,0x0,r6
 00017C14: 67381207          cvtir   r7,0x0,r7
-00017C18: 88403000 005014A8 ldos    r8,0x5014a8
-00017C20: 59185E0D          shlo    r3,0x1,0xd
+
+00017C18: 88403000 005014A8 ldos    r8,0x5014a8			-- read2 r8 from 0x5014a8 (cam rotation?)
+00017C20: 59185E0D          shlo    r3,0x1,0xd			-- r3 = 0x2000
 00017C24: 59420003          addo    r8,r8,r3
 00017C28: 59420C0E          shro    r8,r8,0xe
 00017C2C: 58420883          and     r8,r8,0x3
+
 00017C30: 90403908 00017DF4 ld      r8,0x17df4[r8*4]
 00017C38: 5C481E00          mov     r9,0x0
 00017C3C: 901A2000          ld      r3,0x0(r8)
-00017C40: 78A18783          addr    g4,r6,r3
+00017C40: 78A18783          addr    g4,r6,r3			-- g4 = r6 + r3
 00017C44: 901A2004          ld      r3,0x4(r8)
-00017C48: 78A9C783          addr    g5,r7,r3
+00017C48: 78A9C783          addr    g5,r7,r3			-- g5 = r7 + r3
 00017C4C: 090001B8          call    00017e04
 00017C50: 14000010          bl      00017c60
+
 00017C54: 901A2008          ld      r3,0x8(r8)
 00017C58: 584A4383          or      r9,r9,r3
 00017C5C: 080000B4          b       00017d10
+
 00017C60: 901A200C          ld      r3,0xc(r8)
 00017C64: 78A18783          addr    g4,r6,r3
 00017C68: 901A2010          ld      r3,0x10(r8)
 00017C6C: 78A9C783          addr    g5,r7,r3
 00017C70: 09000194          call    00017e04
 00017C74: 14000010          bl      00017c84
+
 00017C78: 901A2014          ld      r3,0x14(r8)
 00017C7C: 584A4383          or      r9,r9,r3
 00017C80: 08000090          b       00017d10
+
 00017C84: 901A2018          ld      r3,0x18(r8)
 00017C88: 78A18783          addr    g4,r6,r3
 00017C8C: 901A201C          ld      r3,0x1c(r8)
 00017C90: 78A9C783          addr    g5,r7,r3
 00017C94: 09000170          call    00017e04
 00017C98: 1400000C          bl      00017ca4
+
 00017C9C: 901A2020          ld      r3,0x20(r8)
 00017CA0: 584A4383          or      r9,r9,r3
 00017CA4: 901A2024          ld      r3,0x24(r8)
@@ -22258,51 +22649,62 @@
 00017CB0: 78A9C783          addr    g5,r7,r3
 00017CB4: 09000150          call    00017e04
 00017CB8: 1400000C          bl      00017cc4
+
 00017CBC: 901A202C          ld      r3,0x2c(r8)
 00017CC0: 584A4383          or      r9,r9,r3
 00017CC4: 5A003089          cmpi    0x0,r9
 00017CC8: 15000048          bne     00017d10
+
 00017CCC: 901A2030          ld      r3,0x30(r8)
 00017CD0: 78A18783          addr    g4,r6,r3
 00017CD4: 901A2034          ld      r3,0x34(r8)
 00017CD8: 78A9C783          addr    g5,r7,r3
 00017CDC: 09000128          call    00017e04
 00017CE0: 14000010          bl      00017cf0
+
 00017CE4: 901A2038          ld      r3,0x38(r8)
 00017CE8: 584A4383          or      r9,r9,r3
 00017CEC: 08000024          b       00017d10
+
 00017CF0: 901A203C          ld      r3,0x3c(r8)
 00017CF4: 78A18783          addr    g4,r6,r3
 00017CF8: 901A2040          ld      r3,0x40(r8)
 00017CFC: 78A9C783          addr    g5,r7,r3
 00017D00: 09000104          call    00017e04
 00017D04: 1400000C          bl      00017d10
+
 00017D08: 901A2044          ld      r3,0x44(r8)
 00017D0C: 584A4383          or      r9,r9,r3
+
 00017D10: 901A2050          ld      r3,0x50(r8)
 00017D14: 78A18783          addr    g4,r6,r3
 00017D18: 901A2054          ld      r3,0x54(r8)
 00017D1C: 78A9C783          addr    g5,r7,r3
 00017D20: 090000E4          call    00017e04
 00017D24: 14000010          bl      00017d34
+
 00017D28: 901A2058          ld      r3,0x58(r8)
 00017D2C: 584A4383          or      r9,r9,r3
 00017D30: 080000B4          b       00017de4
+
 00017D34: 901A205C          ld      r3,0x5c(r8)
 00017D38: 78A18783          addr    g4,r6,r3
 00017D3C: 901A2060          ld      r3,0x60(r8)
 00017D40: 78A9C783          addr    g5,r7,r3
 00017D44: 090000C0          call    00017e04
 00017D48: 14000010          bl      00017d58
+
 00017D4C: 901A2064          ld      r3,0x64(r8)
 00017D50: 584A4383          or      r9,r9,r3
 00017D54: 08000090          b       00017de4
+
 00017D58: 901A2068          ld      r3,0x68(r8)
 00017D5C: 78A18783          addr    g4,r6,r3
 00017D60: 901A206C          ld      r3,0x6c(r8)
 00017D64: 78A9C783          addr    g5,r7,r3
 00017D68: 0900009C          call    00017e04
 00017D6C: 1400000C          bl      00017d78
+
 00017D70: 901A2070          ld      r3,0x70(r8)
 00017D74: 584A4383          or      r9,r9,r3
 00017D78: 901A2074          ld      r3,0x74(r8)
@@ -22311,27 +22713,33 @@
 00017D84: 78A9C783          addr    g5,r7,r3
 00017D88: 0900007C          call    00017e04
 00017D8C: 1400000C          bl      00017d98
+
 00017D90: 901A207C          ld      r3,0x7c(r8)
 00017D94: 584A4383          or      r9,r9,r3
 00017D98: 5A003089          cmpi    0x0,r9
 00017D9C: 15000048          bne     00017de4
+
 00017DA0: 901A2080          ld      r3,0x80(r8)
 00017DA4: 78A18783          addr    g4,r6,r3
 00017DA8: 901A2084          ld      r3,0x84(r8)
 00017DAC: 78A9C783          addr    g5,r7,r3
 00017DB0: 09000054          call    00017e04
 00017DB4: 14000010          bl      00017dc4
+
 00017DB8: 901A2088          ld      r3,0x88(r8)
 00017DBC: 584A4383          or      r9,r9,r3
 00017DC0: 08000024          b       00017de4
+
 00017DC4: 901A208C          ld      r3,0x8c(r8)
 00017DC8: 78A18783          addr    g4,r6,r3
 00017DCC: 901A2090          ld      r3,0x90(r8)
 00017DD0: 78A9C783          addr    g5,r7,r3
 00017DD4: 09000030          call    00017e04
 00017DD8: 1400000C          bl      00017de4
+
 00017DDC: 901A2094          ld      r3,0x94(r8)
 00017DE0: 584A4383          or      r9,r9,r3
+
 00017DE4: 59185E0C          shlo    r3,0x1,0xc
 00017DE8: 584A4383          or      r9,r9,r3
 00017DEC: 5C881609          mov     g1,r9
@@ -22345,41 +22753,57 @@
 00017E00: 0283BBA0          ? 02:7 0283bba0 3 2
 -- raw data (offset table?)
 
-00017E04: 781D0692          subr    r3,g4,g2
-00017E08: 78254693          subr    r4,g5,g3
+{
+-- compare something camera? (g2 y, g3 x, g4 y2, g5 x2)
+00017E04: 781D0692          subr    r3,g4,g2				-- r3 = g4 - g2
+00017E08: 78254693          subr    r4,g5,g3				-- r4 = g5 - g3
+
 00017E0C: 88283000 005014A8 ldos    r5,0x5014a8
-00017E14: 59281185          subi    r5,0x0,r5
-00017E18: 59305E0D          shlo    r6,0x1,0xd
-00017E1C: 59294186          subi    r5,r5,r6
+00017E14: 59281185          subi    r5,0x0,r5				-- r5 *= -1
+
+00017E18: 59305E0D          shlo    r6,0x1,0xd				-- r6 = 0x2000
+00017E1C: 59294186          subi    r5,r5,r6				-- r5 -= r6
+
+-- r6 = r3 * cos(r5)
 00017E20: 8CF03000 00001E1E lda     g14,0x1e1e
 00017E28: 92F6E1E0          st      g14,0x1e0(g11)			(copro fcosm)
 00017E2C: 922EDC1C          st      r5,(g11)[g12*1]
 00017E30: 921EDC1C          st      r3,(g11)[g12*1]
 00017E34: 9036DC1C          ld      r6,(g11)[g12*1]
 00017E38: 5CF01E00          mov     g14,0x0
+
+-- r7 = r4 * sin(r5)
 00017E3C: 8CF03000 00001D1D lda     g14,0x1d1d
 00017E44: 92F6E1D0          st      g14,0x1d0(g11)			(copro fsinm)
 00017E48: 922EDC1C          st      r5,(g11)[g12*1]
 00017E4C: 9226DC1C          st      r4,(g11)[g12*1]
 00017E50: 903EDC1C          ld      r7,(g11)[g12*1]
 00017E54: 5CF01E00          mov     g14,0x0
-00017E58: 78318687          subr    r6,r6,r7
+
+00017E58: 78318687          subr    r6,r6,r7				-- r6 -= r7
+
+-- r8 = r5 * sin(r3)
 00017E5C: 8CF03000 00001D1D lda     g14,0x1d1d
 00017E64: 92F6E1D0          st      g14,0x1d0(g11)			(copro fsinm)
 00017E68: 922EDC1C          st      r5,(g11)[g12*1]
 00017E6C: 921EDC1C          st      r3,(g11)[g12*1]
 00017E70: 9046DC1C          ld      r8,(g11)[g12*1]
 00017E74: 5CF01E00          mov     g14,0x0
+
+-- r9 = r5 * sin(r4)
 00017E78: 8CF03000 00001E1E lda     g14,0x1e1e
 00017E80: 92F6E1E0          st      g14,0x1e0(g11)			(copro fcosm)
 00017E84: 922EDC1C          st      r5,(g11)[g12*1]
 00017E88: 9226DC1C          st      r4,(g11)[g12*1]
 00017E8C: 904EDC1C          ld      r9,(g11)[g12*1]
 00017E90: 5CF01E00          mov     g14,0x0
-00017E94: 78420789          addr    r8,r8,r9
-00017E98: 581A0386          or      r3,r8,r6
-00017E9C: 5A003083          cmpi    0x0,r3
+
+00017E94: 78420789          addr    r8,r8,r9				--  r8 += r9
+00017E98: 581A0386          or      r3,r8,r6				-- r3 = r8 OR r6
+00017E9C: 5A003083          cmpi    0x0,r3					-- if 0x0 < r3 ...
 00017EA0: 0A000000          ret
+}
+
 00017EA4: 5C901610          mov     g2,g0
 00017EA8: 5C981611          mov     g3,g1
 00017EAC: 59B05E0F          shlo    g6,0x1,0xf
@@ -26296,58 +26720,80 @@
 0001BF78: 0A000000          ret
 }
 
+{
+-- dead code?
 0001BF7C: 5C181610          mov     r3,g0
+
 0001BF80: 9020D000          ld      r4,(r3)
 0001BF84: 5918C884          addi    r3,r3,0x4
-0001BF88: 3A012034          cmpibe  0x0,r4,0x1bfbc
+0001BF88: 3A012034          cmpibe  0x0,r4,0x1bfbc		-- 0001BFBC
+
 0001BF8C: 9028D000          ld      r5,(r3)
 0001BF90: 90311000          ld      r6,(r4)
 0001BF94: 5918C884          addi    r3,r3,0x4
 0001BF98: 59210884          addi    r4,r4,0x4
 0001BF9C: 59318E04          shlo    r6,r6,0x4
+
 0001BFA0: C8391000          ldis    r7,(r4)
 0001BFA4: CA395000          stis    r7,(r5)
 0001BFA8: 59210882          addi    r4,r4,0x2
 0001BFAC: 59294882          addi    r5,r5,0x2
 0001BFB0: 5A318B01          cmpdeco r6,r6,0x1
-0001BFB4: 14FFFFEC          bl      0001bfa0
-0001BFB8: 08FFFFC8          b       0001bf80
-0001BFBC: 0A000000          ret
+0001BFB4: 14FFFFEC          bl      0001bfa0			-- 0001BFA0
+0001BFB8: 08FFFFC8          b       0001bf80			-- 0001BF80
 
+0001BFBC: 0A000000          ret
+}
+
+{
+-- dead code?
 0001BFC0: 5C181610          mov     r3,g0
 0001BFC4: 8C200002          lda     r4,0x2
+
 0001BFC8: 9028D000          ld      r5,(r3)
 0001BFCC: 5918C884          addi    r3,r3,0x4
-0001BFD0: 3A01602C          cmpibe  0x0,r5,0x1bffc
+0001BFD0: 3A01602C          cmpibe  0x0,r5,0x1bffc		-- 0001BFFC
+
 0001BFD4: 9030D000          ld      r6,(r3)
 0001BFD8: 5918C884          addi    r3,r3,0x4
+
 0001BFDC: C838D000          ldis    r7,(r3)
 0001BFE0: CA395000          stis    r7,(r5)
 0001BFE4: 5918C882          addi    r3,r3,0x2
 0001BFE8: 59294882          addi    r5,r5,0x2
 0001BFEC: 5A318B01          cmpdeco r6,r6,0x1
-0001BFF0: 14FFFFEC          bl      0001bfdc
+0001BFF0: 14FFFFEC          bl      0001bfdc			-- 0001BFDC
 0001BFF4: 5A210B01          cmpdeco r4,r4,0x1
-0001BFF8: 14FFFFD0          bl      0001bfc8
-0001BFFC: 0A000000          ret
+0001BFF8: 14FFFFD0          bl      0001bfc8			-- 0001BFC8
 
-0001C000: 0900001C          call    0001c01c
-0001C004: 0900008C          call    0001c090
-0001C008: 090000FC          call    0001c104
-0001C00C: 0900016C          call    0001c178
+0001BFFC: 0A000000          ret
+}
+
+{
+-- dead code?
+0001C000: 0900001C          call    0001c01c			-- reset tilemap 0
+0001C004: 0900008C          call    0001c090			-- reset tilemap 1
+0001C008: 090000FC          call    0001c104			-- reset tilemap 2
+0001C00C: 0900016C          call    0001c178			-- reset tilemap 3
 0001C010: 090001DC          call    0001c1ec			-- clear tilemap 0x100c000
 0001C014: 09000208          call    0001c21c			-- clear tilemap 0x100d000
 0001C018: 0A000000          ret
+}
+
+{
+-- reset tilemap 0
 0001C01C: 8C583000 01000000 lda     r11,0x1000000
 0001C024: 8C203000 00200020 lda     r4,0x200020
 0001C02C: 8C283000 00200020 lda     r5,0x200020
 0001C034: 8C303000 00200020 lda     r6,0x200020
 0001C03C: 8C383000 00200020 lda     r7,0x200020
 0001C044: 59C85E09          shlo    g9,0x1,0x9
+
 0001C048: B222D000          stq     r4,(r11)
 0001C04C: 595AC890          addi    r11,r11,0x10
 0001C050: 5ACE4B01          cmpdeco g9,g9,0x1
 0001C054: 14FFFFF4          bl      0001c048
+
 0001C058: 5C181E00          mov     r3,0x0
 0001C05C: CA183000 00501300 stis    r3,0x501300
 0001C064: CA183000 00501302 stis    r3,0x501302
@@ -26356,16 +26802,22 @@
 0001C07C: CA183000 0100A000 stis    r3,0x100a000
 0001C084: CA183000 0100A008 stis    r3,0x100a008
 0001C08C: 0A000000          ret
+}
+
+{
+-- reset tilemap 1
 0001C090: 8C583000 01002000 lda     r11,0x1002000
 0001C098: 8C203000 00200020 lda     r4,0x200020
 0001C0A0: 8C283000 00200020 lda     r5,0x200020
 0001C0A8: 8C303000 00200020 lda     r6,0x200020
 0001C0B0: 8C383000 00200020 lda     r7,0x200020
 0001C0B8: 59C85E09          shlo    g9,0x1,0x9
+
 0001C0BC: B222D000          stq     r4,(r11)
 0001C0C0: 595AC890          addi    r11,r11,0x10
 0001C0C4: 5ACE4B01          cmpdeco g9,g9,0x1
 0001C0C8: 14FFFFF4          bl      0001c0bc
+
 0001C0CC: 5C181E00          mov     r3,0x0
 0001C0D0: CA183000 00501304 stis    r3,0x501304
 0001C0D8: CA183000 00501306 stis    r3,0x501306
@@ -26374,16 +26826,22 @@
 0001C0F0: CA183000 0100A002 stis    r3,0x100a002
 0001C0F8: CA183000 0100A00A stis    r3,0x100a00a
 0001C100: 0A000000          ret
+}
+
+{
+-- reset tilemap 2
 0001C104: 8C583000 01004000 lda     r11,0x1004000
 0001C10C: 8C203000 00200020 lda     r4,0x200020
 0001C114: 8C283000 00200020 lda     r5,0x200020
 0001C11C: 8C303000 00200020 lda     r6,0x200020
 0001C124: 8C383000 00200020 lda     r7,0x200020
 0001C12C: 59C85E09          shlo    g9,0x1,0x9
+
 0001C130: B222D000          stq     r4,(r11)
 0001C134: 595AC890          addi    r11,r11,0x10
 0001C138: 5ACE4B01          cmpdeco g9,g9,0x1
 0001C13C: 14FFFFF4          bl      0001c130
+
 0001C140: 5C181E00          mov     r3,0x0
 0001C144: CA183000 00501308 stis    r3,0x501308
 0001C14C: CA183000 0050130A stis    r3,0x50130a
@@ -26392,16 +26850,22 @@
 0001C164: CA183000 0100A004 stis    r3,0x100a004
 0001C16C: CA183000 0100A00C stis    r3,0x100a00c
 0001C174: 0A000000          ret
+}
+
+{
+-- reset tilemap 3
 0001C178: 8C583000 01006000 lda     r11,0x1006000
 0001C180: 8C203000 00200020 lda     r4,0x200020
 0001C188: 8C283000 00200020 lda     r5,0x200020
 0001C190: 8C303000 00200020 lda     r6,0x200020
 0001C198: 8C383000 00200020 lda     r7,0x200020
 0001C1A0: 59C85E09          shlo    g9,0x1,0x9
+
 0001C1A4: 9222D000          st      r4,(r11)
 0001C1A8: 595AC890          addi    r11,r11,0x10
 0001C1AC: 5ACE4B01          cmpdeco g9,g9,0x1
 0001C1B0: 14FFFFF4          bl      0001c1a4
+
 0001C1B4: 5C181E00          mov     r3,0x0
 0001C1B8: CA183000 0050130C stis    r3,0x50130c
 0001C1C0: CA183000 0050130E stis    r3,0x50130e
@@ -26410,6 +26874,7 @@
 0001C1D8: CA183000 0100A006 stis    r3,0x100a006
 0001C1E0: CA183000 0100A00E stis    r3,0x100a00e
 0001C1E8: 0A000000          ret
+}
 
 {
 -- clear tilemap 0x100c000
@@ -26457,43 +26922,59 @@
 0001C288: 0A000000          ret
 }
 
+{
+--
 0001C28C: 88183000 005FE602 ldos    r3,0x5fe602
-0001C294: 3510E220          cmpobne 0x2,r3,0x1c4b4
+0001C294: 3510E220          cmpobne 0x2,r3,0x1c4b4			-- 0001C4B4
+
 0001C298: 90183000 005FE140 ld      r3,0x5fe140
 0001C2A0: 90203000 005FE144 ld      r4,0x5fe144
 0001C2A8: 5818C384          or      r3,r3,r4
-0001C2AC: 3798E75C          bbs     19,r3,0x1ca08
+0001C2AC: 3798E75C          bbs     19,r3,0x1ca08			-- 0001CA08
+
 0001C2B0: 90303000 00501220 ld      r6,0x501220
 0001C2B8: C819A0D2          ldis    r3,0xd2(r6)
-0001C2BC: 3D00E20C          cmpibne 0x0,r3,0x1c4c8
+0001C2BC: 3D00E20C          cmpibne 0x0,r3,0x1c4c8			-- 0001C4C8
+
 0001C2C0: C019A0D8          ldib    r3,0xd8(r6)
-0001C2C4: 3D00E430          cmpibne 0x0,r3,0x1c6f4
+0001C2C4: 3D00E430          cmpibne 0x0,r3,0x1c6f4			-- 0001C6F4
+
 0001C2C8: C019A0F0          ldib    r3,0xf0(r6)
-0001C2CC: 3D00E234          cmpibne 0x0,r3,0x1c500
+0001C2CC: 3D00E234          cmpibne 0x0,r3,0x1c500			-- 0001C500
+
 0001C2D0: C019A281          ldib    r3,0x281(r6)
-0001C2D4: 30F8E2A8          bbc     31,r3,0x1c57c
+0001C2D4: 30F8E2A8          bbc     31,r3,0x1c57c			-- 0001C57C
+
 0001C2D8: C019A09D          ldib    r3,0x9d(r6)
-0001C2DC: 3D00E3A0          cmpibne 0x0,r3,0x1c67c
+0001C2DC: 3D00E3A0          cmpibne 0x0,r3,0x1c67c			-- 0001C67C
+
 0001C2E0: 9021A1BE          ld      r4,0x1be(r6)
-0001C2E4: 37412488          bbs     8,r4,0x1c76c
+0001C2E4: 37412488          bbs     8,r4,0x1c76c			-- 0001C76C
+
 0001C2E8: 9029A1C0          ld      r5,0x1c0(r6)
-0001C2EC: 374164B8          bbs     8,r5,0x1c7a4
+0001C2EC: 374164B8          bbs     8,r5,0x1c7a4			-- 0001C7A4
+
 0001C2F0: 5C181E0C          mov     r3,0xc
 0001C2F4: 58214384          or      r4,r5,r4
 0001C2F8: 58190083          and     r3,r4,r3
-0001C2FC: 3500E4E0          cmpobne 0x0,r3,0x1c7dc
+0001C2FC: 3500E4E0          cmpobne 0x0,r3,0x1c7dc			-- 0001C7DC
+
 0001C300: C021A160          ldib    r4,0x160(r6)
-0001C304: 3E5125BC          cmpible 0xa,r4,0x1c8c0
-0001C308: 39012624          cmpibg  0x0,r4,0x1c92c
+0001C304: 3E5125BC          cmpible 0xa,r4,0x1c8c0			-- 0001C8C0
+0001C308: 39012624          cmpibg  0x0,r4,0x1c92c			-- 0001C92C
+
 0001C30C: 90183000 0050176C ld      r3,0x50176c
-0001C314: 3708E6BC          bbs     1,r3,0x1c9d0
-0001C318: 3700E680          bbs     0,r3,0x1c998
+0001C314: 3708E6BC          bbs     1,r3,0x1c9d0			-- 0001C9D0
+0001C318: 3700E680          bbs     0,r3,0x1c998			-- 0001C998
+
 0001C31C: 90183000 00501768 ld      r3,0x501768
-0001C324: 3500E194          cmpobne 0x0,r3,0x1c4b8
+0001C324: 3500E194          cmpobne 0x0,r3,0x1c4b8			-- 0001C4B8
+
 0001C328: 5C401E00          mov     r8,0x0
 0001C32C: 593A5E04          shlo    r7,0x9,0x4
 0001C330: 9019A018          ld      r3,0x18(r6)
-0001C334: 3A00E134          cmpibe  0x0,r3,0x1c468
+0001C334: 3A00E134          cmpibe  0x0,r3,0x1c468			-- 0001C468
+
 0001C338: C899A02C          ldis    g3,0x2c(r6)
 0001C33C: 8CF03000 00001C1C lda     g14,0x1c1c
 0001C344: 92F6E1C0          st      g14,0x1c0(g11)			(copro fcos)
@@ -26523,22 +27004,26 @@
 0001C3B8: 92F6E250          st      g14,0x250(g11)			(copro acc_get)
 0001C3BC: 901EDC1C          ld      r3,(g11)[g12*1]
 0001C3C0: 5CF01E00          mov     g14,0x0
-0001C3C4: 37F8E028          bbs     31,r3,0x1c3ec
+0001C3C4: 37F8E028          bbs     31,r3,0x1c3ec			-- 0001C3EC
 0001C3C8: 8C203000 3FA00000 lda     r4,0x3fa00000
 0001C3D0: 68012283          cmpr    r4,r3
-0001C3D4: 14000038          bl      0001c40c
+0001C3D4: 14000038          bl      0001c40c				-- 0001C40C
 0001C3D8: 5C401E05          mov     r8,0x5
 0001C3DC: C819A270          ldis    r3,0x270(r6)
-0001C3E0: 3B00E02C          cmpibge 0x0,r3,0x1c40c
+0001C3E0: 3B00E02C          cmpibge 0x0,r3,0x1c40c			-- 0001C40C
+
 0001C3E4: 5C401E06          mov     r8,0x6
-0001C3E8: 08000024          b       0001c40c
+0001C3E8: 08000024          b       0001c40c				-- 0001C40C
+
 0001C3EC: 8C203000 BFA00000 lda     r4,0xbfa00000
 0001C3F4: 68012283          cmpr    r4,r3
-0001C3F8: 11000014          bg      0001c40c
+0001C3F8: 11000014          bg      0001c40c				-- 0001C40C
 0001C3FC: 5C401E01          mov     r8,0x1
 0001C400: C819A270          ldis    r3,0x270(r6)
-0001C404: 3B00E008          cmpibge 0x0,r3,0x1c40c
+0001C404: 3B00E008          cmpibge 0x0,r3,0x1c40c			-- 0001C40C
+
 0001C408: 5C401E02          mov     r8,0x2
+
 0001C40C: 9029A03C          ld      r5,0x3c(r6)
 0001C410: 90203000 0283B8A4 ld      r4,0x283b8a4
 0001C418: 8CF00202          lda     g14,0x202
@@ -26549,33 +27034,44 @@
 0001C42C: 5CF01E00          mov     g14,0x0
 0001C430: 8C183000 BF4CCCCD lda     r3,0xbf4ccccd
 0001C438: 6800E285          cmpr    r3,r5
-0001C43C: 1100000C          bg      0001c448
+0001C43C: 1100000C          bg      0001c448				-- 0001C448
+
 0001C440: 59395E05          shlo    r7,0x5,0x5
-0001C444: 08000024          b       0001c468
+
+0001C444: 08000024          b       0001c468				-- 0001C468
+
 0001C448: 9021A14C          ld      r4,0x14c(r6)
-0001C44C: 3501201C          cmpobne 0x0,r4,0x1c468
+0001C44C: 3501201C          cmpobne 0x0,r4,0x1c468			-- 0001C468
+
 0001C450: 8C183000 3F333333 lda     r3,0x3f333333
 0001C458: 6800E285          cmpr    r3,r5
-0001C45C: 1400000C          bl      0001c468
+0001C45C: 1400000C          bl      0001c468				-- 0001C468
+
 0001C460: 5C401E00          mov     r8,0x0
 0001C464: 8C380094          lda     r7,0x94
+
 0001C468: 58420387          or      r8,r8,r7
 0001C46C: 591A5E04          shlo    r3,0x9,0x4
-0001C470: 351A0010          cmpobne r3,r8,0x1c480
+0001C470: 351A0010          cmpobne r3,r8,0x1c480			-- 0001C480
 0001C474: 90183000 00501764 ld      r3,0x501764
-0001C47C: 3D00E3DC          cmpibne 0x0,r3,0x1c858
+0001C47C: 3D00E3DC          cmpibne 0x0,r3,0x1c858			-- 0001C858
+
 0001C480: 5C181608          mov     r3,r8
 0001C484: 80203000 005028FB ldob    r4,0x5028fb
-0001C48C: 3A20C028          cmpibe  r4,r3,0x1c4b4
+0001C48C: 3A20C028          cmpibe  r4,r3,0x1c4b4			-- 0001C4B4
+
 0001C490: 82183000 005028FB stob    r3,0x5028fb
 0001C498: 80203000 005028FE ldob    r4,0x5028fe
 0001C4A0: 82193400 00502900 stob    r3,0x502900(r4)
 0001C4A8: 59210801          addo    r4,r4,0x1
 0001C4AC: 82203000 005028FE stob    r4,0x5028fe
+
 0001C4B4: 0A000000          ret
+
 0001C4B8: 5918C981          subi    r3,r3,0x1
 0001C4BC: 92183000 00501768 st      r3,0x501768
 0001C4C4: 0A000000          ret
+
 0001C4C8: 8C1800BF          lda     r3,0xbf
 0001C4CC: 80203000 005028FB ldob    r4,0x5028fb
 0001C4D4: 3A20C028          cmpibe  r4,r3,0x1c4fc
@@ -26585,167 +27081,185 @@
 0001C4F0: 59210801          addo    r4,r4,0x1
 0001C4F4: 82203000 005028FE stob    r4,0x5028fe
 0001C4FC: 0A000000          ret
+
 0001C500: 9019A000          ld      r3,0x0(r6)
 0001C504: 37C8E040          bbs     25,r3,0x1c544
 0001C508: 37B8E03C          bbs     23,r3,0x1c544
 0001C50C: 8C1800B6          lda     r3,0xb6
 0001C510: 80203000 005028FB ldob    r4,0x5028fb
-0001C518: 3A20C028          cmpibe  r4,r3,0x1c540
+0001C518: 3A20C028          cmpibe  r4,r3,0x1c540			-- 0001C540
 0001C51C: 82183000 005028FB stob    r3,0x5028fb
 0001C524: 80203000 005028FE ldob    r4,0x5028fe
 0001C52C: 82193400 00502900 stob    r3,0x502900(r4)
 0001C534: 59210801          addo    r4,r4,0x1
 0001C538: 82203000 005028FE stob    r4,0x5028fe
 0001C540: 0A000000          ret
+
 0001C544: 8C1800B2          lda     r3,0xb2
 0001C548: 80203000 005028FB ldob    r4,0x5028fb
-0001C550: 3A20C028          cmpibe  r4,r3,0x1c578
+0001C550: 3A20C028          cmpibe  r4,r3,0x1c578			-- 0001C578
 0001C554: 82183000 005028FB stob    r3,0x5028fb
 0001C55C: 80203000 005028FE ldob    r4,0x5028fe
 0001C564: 82193400 00502900 stob    r3,0x502900(r4)
 0001C56C: 59210801          addo    r4,r4,0x1
 0001C570: 82203000 005028FE stob    r4,0x5028fe
 0001C578: 0A000000          ret
+
 0001C57C: 5C201E08          mov     r4,0x8
 0001C580: 92203000 00501768 st      r4,0x501768
-0001C588: 3218E014          cmpobe  0x3,r3,0x1c59c
-0001C58C: 3200E048          cmpobe  0x0,r3,0x1c5d4
-0001C590: 3210E07C          cmpobe  0x2,r3,0x1c60c
-0001C594: 3208E0B0          cmpobe  0x1,r3,0x1c644
+0001C588: 3218E014          cmpobe  0x3,r3,0x1c59c			-- 0001C59C
+0001C58C: 3200E048          cmpobe  0x0,r3,0x1c5d4			-- 0001C5D4
+0001C590: 3210E07C          cmpobe  0x2,r3,0x1c60c			-- 0001C60C
+0001C594: 3208E0B0          cmpobe  0x1,r3,0x1c644			-- 0001C644
 0001C598: 0A000000          ret
+
 0001C59C: 591ADE04          shlo    r3,0xb,0x4
 0001C5A0: 80203000 005028FB ldob    r4,0x5028fb
-0001C5A8: 3A20C028          cmpibe  r4,r3,0x1c5d0
+0001C5A8: 3A20C028          cmpibe  r4,r3,0x1c5d0			-- 0001C5D0
 0001C5AC: 82183000 005028FB stob    r3,0x5028fb
 0001C5B4: 80203000 005028FE ldob    r4,0x5028fe
 0001C5BC: 82193400 00502900 stob    r3,0x502900(r4)
 0001C5C4: 59210801          addo    r4,r4,0x1
 0001C5C8: 82203000 005028FE stob    r4,0x5028fe
 0001C5D0: 0A000000          ret
+
 0001C5D4: 8C1800B1          lda     r3,0xb1
 0001C5D8: 80203000 005028FB ldob    r4,0x5028fb
-0001C5E0: 3A20C028          cmpibe  r4,r3,0x1c608
+0001C5E0: 3A20C028          cmpibe  r4,r3,0x1c608			-- 0001C608
 0001C5E4: 82183000 005028FB stob    r3,0x5028fb
 0001C5EC: 80203000 005028FE ldob    r4,0x5028fe
 0001C5F4: 82193400 00502900 stob    r3,0x502900(r4)
 0001C5FC: 59210801          addo    r4,r4,0x1
 0001C600: 82203000 005028FE stob    r4,0x5028fe
 0001C608: 0A000000          ret
+
 0001C60C: 8C1800B5          lda     r3,0xb5
 0001C610: 80203000 005028FB ldob    r4,0x5028fb
-0001C618: 3A20C028          cmpibe  r4,r3,0x1c640
+0001C618: 3A20C028          cmpibe  r4,r3,0x1c640			-- 0001C640
 0001C61C: 82183000 005028FB stob    r3,0x5028fb
 0001C624: 80203000 005028FE ldob    r4,0x5028fe
 0001C62C: 82193400 00502900 stob    r3,0x502900(r4)
 0001C634: 59210801          addo    r4,r4,0x1
 0001C638: 82203000 005028FE stob    r4,0x5028fe
 0001C640: 0A000000          ret
+
 0001C644: 591DDE03          shlo    r3,0x17,0x3
 0001C648: 80203000 005028FB ldob    r4,0x5028fb
-0001C650: 3A20C028          cmpibe  r4,r3,0x1c678
+0001C650: 3A20C028          cmpibe  r4,r3,0x1c678			-- 0001C678
 0001C654: 82183000 005028FB stob    r3,0x5028fb
 0001C65C: 80203000 005028FE ldob    r4,0x5028fe
 0001C664: 82193400 00502900 stob    r3,0x502900(r4)
 0001C66C: 59210801          addo    r4,r4,0x1
 0001C670: 82203000 005028FE stob    r4,0x5028fe
 0001C678: 0A000000          ret
+
 0001C67C: 8019A0F1          ldob    r3,0xf1(r6)
-0001C680: 3008E03C          bbc     1,r3,0x1c6bc
+0001C680: 3008E03C          bbc     1,r3,0x1c6bc			-- 0001C6BC
 0001C684: 8C1800B5          lda     r3,0xb5
 0001C688: 80203000 005028FB ldob    r4,0x5028fb
-0001C690: 3A20C028          cmpibe  r4,r3,0x1c6b8
+0001C690: 3A20C028          cmpibe  r4,r3,0x1c6b8			-- 0001C6B8
 0001C694: 82183000 005028FB stob    r3,0x5028fb
 0001C69C: 80203000 005028FE ldob    r4,0x5028fe
 0001C6A4: 82193400 00502900 stob    r3,0x502900(r4)
 0001C6AC: 59210801          addo    r4,r4,0x1
 0001C6B0: 82203000 005028FE stob    r4,0x5028fe
 0001C6B8: 0A000000          ret
+
 0001C6BC: 8C1800B1          lda     r3,0xb1
 0001C6C0: 80203000 005028FB ldob    r4,0x5028fb
-0001C6C8: 3A20C028          cmpibe  r4,r3,0x1c6f0
+0001C6C8: 3A20C028          cmpibe  r4,r3,0x1c6f0			-- 0001C6F0
 0001C6CC: 82183000 005028FB stob    r3,0x5028fb
 0001C6D4: 80203000 005028FE ldob    r4,0x5028fe
 0001C6DC: 82193400 00502900 stob    r3,0x502900(r4)
 0001C6E4: 59210801          addo    r4,r4,0x1
 0001C6E8: 82203000 005028FE stob    r4,0x5028fe
 0001C6F0: 0A000000          ret
+
 0001C6F4: C019A0D9          ldib    r3,0xd9(r6)
-0001C6F8: 3C00E03C          cmpibl  0x0,r3,0x1c734
+0001C6F8: 3C00E03C          cmpibl  0x0,r3,0x1c734			-- 0001C734
 0001C6FC: 8C180093          lda     r3,0x93
 0001C700: 80203000 005028FB ldob    r4,0x5028fb
-0001C708: 3A20C028          cmpibe  r4,r3,0x1c730
+0001C708: 3A20C028          cmpibe  r4,r3,0x1c730			-- 0001C730
 0001C70C: 82183000 005028FB stob    r3,0x5028fb
 0001C714: 80203000 005028FE ldob    r4,0x5028fe
 0001C71C: 82193400 00502900 stob    r3,0x502900(r4)
 0001C724: 59210801          addo    r4,r4,0x1
 0001C728: 82203000 005028FE stob    r4,0x5028fe
 0001C730: 0A000000          ret
+
 0001C734: 8C180097          lda     r3,0x97
 0001C738: 80203000 005028FB ldob    r4,0x5028fb
-0001C740: 3A20C028          cmpibe  r4,r3,0x1c768
+0001C740: 3A20C028          cmpibe  r4,r3,0x1c768			-- 0001C768
 0001C744: 82183000 005028FB stob    r3,0x5028fb
 0001C74C: 80203000 005028FE ldob    r4,0x5028fe
 0001C754: 82193400 00502900 stob    r3,0x502900(r4)
 0001C75C: 59210801          addo    r4,r4,0x1
 0001C760: 82203000 005028FE stob    r4,0x5028fe
 0001C768: 0A000000          ret
+
 0001C76C: 8C1800B3          lda     r3,0xb3
 0001C770: 80203000 005028FB ldob    r4,0x5028fb
-0001C778: 3A20C028          cmpibe  r4,r3,0x1c7a0
+0001C778: 3A20C028          cmpibe  r4,r3,0x1c7a0			-- 0001C7A0
 0001C77C: 82183000 005028FB stob    r3,0x5028fb
 0001C784: 80203000 005028FE ldob    r4,0x5028fe
 0001C78C: 82193400 00502900 stob    r3,0x502900(r4)
 0001C794: 59210801          addo    r4,r4,0x1
 0001C798: 82203000 005028FE stob    r4,0x5028fe
 0001C7A0: 0A000000          ret
+
 0001C7A4: 8C1800B7          lda     r3,0xb7
 0001C7A8: 80203000 005028FB ldob    r4,0x5028fb
-0001C7B0: 3A20C028          cmpibe  r4,r3,0x1c7d8
+0001C7B0: 3A20C028          cmpibe  r4,r3,0x1c7d8			-- 0001C7D8
 0001C7B4: 82183000 005028FB stob    r3,0x5028fb
 0001C7BC: 80203000 005028FE ldob    r4,0x5028fe
 0001C7C4: 82193400 00502900 stob    r3,0x502900(r4)
 0001C7CC: 59210801          addo    r4,r4,0x1
 0001C7D0: 82203000 005028FE stob    r4,0x5028fe
 0001C7D8: 0A000000          ret
+
 0001C7DC: C0183000 005028FC ldib    r3,0x5028fc
-0001C7E4: 3E60E03C          cmpible 0xc,r3,0x1c820
+0001C7E4: 3E60E03C          cmpible 0xc,r3,0x1c820			-- 0001C820
 0001C7E8: 8C1800B3          lda     r3,0xb3
 0001C7EC: 80203000 005028FB ldob    r4,0x5028fb
-0001C7F4: 3A20C028          cmpibe  r4,r3,0x1c81c
+0001C7F4: 3A20C028          cmpibe  r4,r3,0x1c81c			-- 0001C81C
 0001C7F8: 82183000 005028FB stob    r3,0x5028fb
 0001C800: 80203000 005028FE ldob    r4,0x5028fe
 0001C808: 82193400 00502900 stob    r3,0x502900(r4)
 0001C810: 59210801          addo    r4,r4,0x1
 0001C814: 82203000 005028FE stob    r4,0x5028fe
 0001C81C: 0A000000          ret
+
 0001C820: 8C1800B7          lda     r3,0xb7
 0001C824: 80203000 005028FB ldob    r4,0x5028fb
-0001C82C: 3A20C028          cmpibe  r4,r3,0x1c854
+0001C82C: 3A20C028          cmpibe  r4,r3,0x1c854			-- 0001C854
 0001C830: 82183000 005028FB stob    r3,0x5028fb
 0001C838: 80203000 005028FE ldob    r4,0x5028fe
 0001C840: 82193400 00502900 stob    r3,0x502900(r4)
 0001C848: 59210801          addo    r4,r4,0x1
 0001C84C: 82203000 005028FE stob    r4,0x5028fe
 0001C854: 0A000000          ret
+
 0001C858: 5918C981          subi    r3,r3,0x1
 0001C85C: 92183000 00501764 st      r3,0x501764
 0001C864: 80283803 0001C8B0 ldob    r5,0x1c8b0[r3*1]
-0001C86C: 32016040          cmpobe  0x0,r5,0x1c8ac
+0001C86C: 32016040          cmpobe  0x0,r5,0x1c8ac			-- 0001C8AC
 0001C870: 9019A018          ld      r3,0x18(r6)
-0001C874: 31F8E038          cmpobg  0x1f,r3,0x1c8ac
+0001C874: 31F8E038          cmpobg  0x1f,r3,0x1c8ac			-- 0001C8AC
 0001C878: 5C181605          mov     r3,r5
 0001C87C: 80203000 005028FB ldob    r4,0x5028fb
-0001C884: 3A20C028          cmpibe  r4,r3,0x1c8ac
+0001C884: 3A20C028          cmpibe  r4,r3,0x1c8ac			-- 0001C8AC
 0001C888: 82183000 005028FB stob    r3,0x5028fb
 0001C890: 80203000 005028FE ldob    r4,0x5028fe
 0001C898: 82193400 00502900 stob    r3,0x502900(r4)
 0001C8A0: 59210801          addo    r4,r4,0x1
 0001C8A4: 82203000 005028FE stob    r4,0x5028fe
 0001C8AC: 0A000000          ret
+
 0001C8B0: 00000090          ? 00:1 00000090 0 0
 0001C8B4: 0000B000          ? 00:0 0000b000 3 0
 0001C8B8: 90000000          ld      pfp,0x0
 0001C8BC: B0000000          ldq     pfp,0x0
+
 0001C8C0: 9029A16C          ld      r5,0x16c(r6)
 0001C8C4: 90203000 0283B8C0 ld      r4,0x283b8c0
 0001C8CC: 8CF00303          lda     g14,0x303
@@ -26756,16 +27270,18 @@
 0001C8E0: 5CF01E00          mov     g14,0x0
 0001C8E4: 8C183000 3EE66666 lda     r3,0x3ee66666
 0001C8EC: 5A00E085          cmpi    r3,r5
-0001C8F0: 14000038          bl      0001c928
+0001C8F0: 14000038          bl      0001c928				-- 0001C928
+
 0001C8F4: 59195E05          shlo    r3,0x5,0x5
 0001C8F8: 80203000 005028FB ldob    r4,0x5028fb
-0001C900: 3A20C028          cmpibe  r4,r3,0x1c928
+0001C900: 3A20C028          cmpibe  r4,r3,0x1c928			-- 0001C928
 0001C904: 82183000 005028FB stob    r3,0x5028fb
 0001C90C: 80203000 005028FE ldob    r4,0x5028fe
 0001C914: 82193400 00502900 stob    r3,0x502900(r4)
 0001C91C: 59210801          addo    r4,r4,0x1
 0001C920: 82203000 005028FE stob    r4,0x5028fe
 0001C928: 0A000000          ret
+
 0001C92C: 9029A03C          ld      r5,0x3c(r6)
 0001C930: 90203000 0283B8A4 ld      r4,0x283b8a4
 0001C938: 8CF00202          lda     g14,0x202
@@ -26776,162 +27292,198 @@
 0001C94C: 5CF01E00          mov     g14,0x0
 0001C950: 8C183000 BF000000 lda     r3,0xbf000000
 0001C958: 6800E285          cmpr    r3,r5
-0001C95C: 11000038          bg      0001c994
+0001C95C: 11000038          bg      0001c994				-- 0001C994
+
 0001C960: 59195E05          shlo    r3,0x5,0x5
 0001C964: 80203000 005028FB ldob    r4,0x5028fb
-0001C96C: 3A20C028          cmpibe  r4,r3,0x1c994
+0001C96C: 3A20C028          cmpibe  r4,r3,0x1c994			-- 0001C994
 0001C970: 82183000 005028FB stob    r3,0x5028fb
 0001C978: 80203000 005028FE ldob    r4,0x5028fe
 0001C980: 82193400 00502900 stob    r3,0x502900(r4)
 0001C988: 59210801          addo    r4,r4,0x1
 0001C98C: 82203000 005028FE stob    r4,0x5028fe
 0001C994: 0A000000          ret
+
 0001C998: 8C1800A2          lda     r3,0xa2
 0001C99C: 80203000 005028FB ldob    r4,0x5028fb
-0001C9A4: 3A20C028          cmpibe  r4,r3,0x1c9cc
+0001C9A4: 3A20C028          cmpibe  r4,r3,0x1c9cc			-- 0001C9CC
 0001C9A8: 82183000 005028FB stob    r3,0x5028fb
 0001C9B0: 80203000 005028FE ldob    r4,0x5028fe
 0001C9B8: 82193400 00502900 stob    r3,0x502900(r4)
 0001C9C0: 59210801          addo    r4,r4,0x1
 0001C9C4: 82203000 005028FE stob    r4,0x5028fe
 0001C9CC: 0A000000          ret
+
 0001C9D0: 8C180096          lda     r3,0x96
 0001C9D4: 80203000 005028FB ldob    r4,0x5028fb
-0001C9DC: 3A20C028          cmpibe  r4,r3,0x1ca04
+0001C9DC: 3A20C028          cmpibe  r4,r3,0x1ca04			-- 0001CA04
 0001C9E0: 82183000 005028FB stob    r3,0x5028fb
 0001C9E8: 80203000 005028FE ldob    r4,0x5028fe
 0001C9F0: 82193400 00502900 stob    r3,0x502900(r4)
 0001C9F8: 59210801          addo    r4,r4,0x1
 0001C9FC: 82203000 005028FE stob    r4,0x5028fe
 0001CA04: 0A000000          ret
+
 0001CA08: 90183000 005FE144 ld      r3,0x5fe144
-0001CA10: 3798E040          bbs     19,r3,0x1ca50
+0001CA10: 3798E040          bbs     19,r3,0x1ca50			-- 0001CA50
 0001CA14: 90183000 005010B0 ld      r3,0x5010b0
 0001CA1C: 5820C88F          and     r4,r3,0xf
-0001CA20: 35012054          cmpobne 0x0,r4,0x1ca74
-0001CA24: 3020E02C          bbc     4,r3,0x1ca50
+0001CA20: 35012054          cmpobne 0x0,r4,0x1ca74			-- 0001CA74
+0001CA24: 3020E02C          bbc     4,r3,0x1ca50			-- 0001CA50
 0001CA28: 8C803000 0001CA40 lda     g0,0x1ca40
 0001CA30: 8C883000 01001404 lda     g1,0x1001404
 0001CA38: 09FFBED8          call    00018910		print string g0 at g1
 0001CA3C: 08000010          b       0001ca4c
-0001CA40: 45464153          ? 45:2 45464153 0 0
+
+-- raw data (string)
+0001CA40: 45464153          ? 45:2 45464153 0 0		"SAFEGUARD"
 0001CA44: 52415547          ? 52:a 52415547 1 1
 0001CA48: 00000044          ? 00:0 00000044 0 0
+-- raw data (string)
+
 0001CA4C: 0A000000          ret
+
 0001CA50: 8C803000 0001CA68 lda     g0,0x1ca68
 0001CA58: 8C883000 01001404 lda     g1,0x1001404
 0001CA60: 09FFBEB0          call    00018910		print string g0 at g1
-0001CA64: 08000010          b       0001ca74
-0001CA68: 20202020          testno r4
+0001CA64: 08000010          b       0001ca74				-- 0001CA74
+
+-- raw data (string)
+0001CA68: 20202020          testno r4				"         "
 0001CA6C: 20202020          testno r4
 0001CA70: 00000020          ? 00:0 00000020 0 0
+-- raw data (string)
+
 0001CA74: 0A000000          ret
+}
+
+{
+--
 0001CA78: 90303000 00501220 ld      r6,0x501220
 0001CA80: C019A281          ldib    r3,0x281(r6)
-0001CA84: 30F8E0B4          bbc     31,r3,0x1cb38
+0001CA84: 30F8E0B4          bbc     31,r3,0x1cb38			-- 0001CB38
 0001CA88: C819A0D2          ldis    r3,0xd2(r6)
-0001CA8C: 3D00E190          cmpibne 0x0,r3,0x1cc1c
+0001CA8C: 3D00E190          cmpibne 0x0,r3,0x1cc1c			-- 0001CC1C
 0001CA90: C019A0D8          ldib    r3,0xd8(r6)
-0001CA94: 3D00E1CC          cmpibne 0x0,r3,0x1cc60
+0001CA94: 3D00E1CC          cmpibne 0x0,r3,0x1cc60			-- 0001CC60
 0001CA98: C019A0F0          ldib    r3,0xf0(r6)
-0001CA9C: 3D00E21C          cmpibne 0x0,r3,0x1ccb8
+0001CA9C: 3D00E21C          cmpibne 0x0,r3,0x1ccb8			-- 0001CCB8
 0001CAA0: C019A09D          ldib    r3,0x9d(r6)
-0001CAA4: 3D00E2A0          cmpibne 0x0,r3,0x1cd44
+0001CAA4: 3D00E2A0          cmpibne 0x0,r3,0x1cd44			-- 0001CD44
 0001CAA8: 9021A1BE          ld      r4,0x1be(r6)
-0001CAAC: 37412410          bbs     8,r4,0x1cebc
+0001CAAC: 37412410          bbs     8,r4,0x1cebc			-- 0001CEBC
 0001CAB0: 9029A1C0          ld      r5,0x1c0(r6)
-0001CAB4: 37416400          bbs     8,r5,0x1ceb4
+0001CAB4: 37416400          bbs     8,r5,0x1ceb4			-- 0001CEB4
 0001CAB8: 5C181E0C          mov     r3,0xc
 0001CABC: 58214384          or      r4,r5,r4
 0001CAC0: 58190083          and     r3,r4,r3
-0001CAC4: 3500E308          cmpobne 0x0,r3,0x1cdcc
+0001CAC4: 3500E308          cmpobne 0x0,r3,0x1cdcc			-- 0001CDCC
 0001CAC8: 9019A018          ld      r3,0x18(r6)
 0001CACC: 8C20003F          lda     r4,0x3f
-0001CAD0: 3320C014          cmpobge r4,r3,0x1cae4
+0001CAD0: 3320C014          cmpobge r4,r3,0x1cae4			-- 0001CAE4
 0001CAD4: 5918C104          subo    r3,r3,r4
 0001CAD8: 5918CC06          shro    r3,r3,0x6
 0001CADC: 5926581F          addo    r4,0x19,0x1f
-0001CAE0: 08000010          b       0001caf0
+0001CAE0: 08000010          b       0001caf0				-- 0001CAF0
+
 0001CAE4: 59190103          subo    r3,r4,r3
 0001CAE8: 5918CC03          shro    r3,r3,0x3
 0001CAEC: 5920581F          addo    r4,0x1,0x1f
+
 0001CAF0: 58290383          or      r5,r4,r3
 0001CAF4: 5C181605          mov     r3,r5
 0001CAF8: 80203000 005028FD ldob    r4,0x5028fd
-0001CB00: 3A20C028          cmpibe  r4,r3,0x1cb28
+0001CB00: 3A20C028          cmpibe  r4,r3,0x1cb28			-- 0001CB28
+
 0001CB04: 82183000 005028FD stob    r3,0x5028fd
 0001CB0C: 80203000 005028FE ldob    r4,0x5028fe
 0001CB14: 82193400 00502900 stob    r3,0x502900(r4)
 0001CB1C: 59210801          addo    r4,r4,0x1
 0001CB20: 82203000 005028FE stob    r4,0x5028fe
+
 0001CB28: 5C181E00          mov     r3,0x0
 0001CB2C: C2183000 005028FC stib    r3,0x5028fc
 0001CB34: 0A000000          ret
-0001CB38: 3A10E074          cmpibe  0x2,r3,0x1cbac
-0001CB3C: 3A00E0A8          cmpibe  0x0,r3,0x1cbe4
+
+0001CB38: 3A10E074          cmpibe  0x2,r3,0x1cbac			-- 0001CBAC
+0001CB3C: 3A00E0A8          cmpibe  0x0,r3,0x1cbe4			-- 0001CBE4
 0001CB40: 8C180052          lda     r3,0x52
 0001CB44: 80203000 005028FD ldob    r4,0x5028fd
-0001CB4C: 3A20C028          cmpibe  r4,r3,0x1cb74
+0001CB4C: 3A20C028          cmpibe  r4,r3,0x1cb74			-- 0001CB74
+
 0001CB50: 82183000 005028FD stob    r3,0x5028fd
 0001CB58: 80203000 005028FE ldob    r4,0x5028fe
 0001CB60: 82193400 00502900 stob    r3,0x502900(r4)
 0001CB68: 59210801          addo    r4,r4,0x1
 0001CB6C: 82203000 005028FE stob    r4,0x5028fe
+
 0001CB74: 8C180042          lda     r3,0x42
 0001CB78: 80203000 005028FD ldob    r4,0x5028fd
-0001CB80: 3A20C028          cmpibe  r4,r3,0x1cba8
+0001CB80: 3A20C028          cmpibe  r4,r3,0x1cba8			-- 0001CBA8
+
 0001CB84: 82183000 005028FD stob    r3,0x5028fd
 0001CB8C: 80203000 005028FE ldob    r4,0x5028fe
 0001CB94: 82193400 00502900 stob    r3,0x502900(r4)
 0001CB9C: 59210801          addo    r4,r4,0x1
 0001CBA0: 82203000 005028FE stob    r4,0x5028fe
-0001CBA8: 08000070          b       0001cc18
+
+0001CBA8: 08000070          b       0001cc18				-- 0001CC18
+
 0001CBAC: 8C180052          lda     r3,0x52
 0001CBB0: 80203000 005028FD ldob    r4,0x5028fd
-0001CBB8: 3A20C028          cmpibe  r4,r3,0x1cbe0
+0001CBB8: 3A20C028          cmpibe  r4,r3,0x1cbe0			-- 0001CBE0
 0001CBBC: 82183000 005028FD stob    r3,0x5028fd
 0001CBC4: 80203000 005028FE ldob    r4,0x5028fe
 0001CBCC: 82193400 00502900 stob    r3,0x502900(r4)
 0001CBD4: 59210801          addo    r4,r4,0x1
 0001CBD8: 82203000 005028FE stob    r4,0x5028fe
-0001CBE0: 08000038          b       0001cc18
+0001CBE0: 08000038          b       0001cc18				-- 0001CC18
+
 0001CBE4: 8C180062          lda     r3,0x62
 0001CBE8: 80203000 005028FD ldob    r4,0x5028fd
-0001CBF0: 3A20C028          cmpibe  r4,r3,0x1cc18
+0001CBF0: 3A20C028          cmpibe  r4,r3,0x1cc18			-- 0001CC18
 0001CBF4: 82183000 005028FD stob    r3,0x5028fd
 0001CBFC: 80203000 005028FE ldob    r4,0x5028fe
 0001CC04: 82193400 00502900 stob    r3,0x502900(r4)
 0001CC0C: 59210801          addo    r4,r4,0x1
 0001CC10: 82203000 005028FE stob    r4,0x5028fe
+
 0001CC18: 0A000000          ret
+
 0001CC1C: 59195E04          shlo    r3,0x5,0x4
 0001CC20: C821A0D2          ldis    r4,0xd2(r6)
-0001CC24: 3920C094          cmpibg  r4,r3,0x1ccb8
+0001CC24: 3920C094          cmpibg  r4,r3,0x1ccb8			-- 0001CCB8
+
 0001CC28: 5C181E10          mov     r3,0x10
 0001CC2C: 80203000 005028FD ldob    r4,0x5028fd
-0001CC34: 3A20C028          cmpibe  r4,r3,0x1cc5c
+0001CC34: 3A20C028          cmpibe  r4,r3,0x1cc5c			-- 0001CC5C
+
 0001CC38: 82183000 005028FD stob    r3,0x5028fd
 0001CC40: 80203000 005028FE ldob    r4,0x5028fe
 0001CC48: 82193400 00502900 stob    r3,0x502900(r4)
 0001CC50: 59210801          addo    r4,r4,0x1
 0001CC54: 82203000 005028FE stob    r4,0x5028fe
+
 0001CC5C: 0A000000          ret
+
 0001CC60: 8C183000 0000FF90 lda     r3,0xff90
 0001CC68: C821A0D8          ldis    r4,0xd8(r6)
-0001CC6C: 3A20C014          cmpibe  r4,r3,0x1cc80
+0001CC6C: 3A20C014          cmpibe  r4,r3,0x1cc80			-- 0001CC80
 0001CC70: 591E5E04          shlo    r3,0x19,0x4
 0001CC74: C821A0D8          ldis    r4,0xd8(r6)
-0001CC78: 3A20C008          cmpibe  r4,r3,0x1cc80
+0001CC78: 3A20C008          cmpibe  r4,r3,0x1cc80			-- 0001CC80
 0001CC7C: 0A000000          ret
+
 0001CC80: 591A181F          addo    r3,0x8,0x1f
 0001CC84: 80203000 005028FD ldob    r4,0x5028fd
-0001CC8C: 3A20C028          cmpibe  r4,r3,0x1ccb4
+0001CC8C: 3A20C028          cmpibe  r4,r3,0x1ccb4			-- 0001CCB4
 0001CC90: 82183000 005028FD stob    r3,0x5028fd
 0001CC98: 80203000 005028FE ldob    r4,0x5028fe
 0001CCA0: 82193400 00502900 stob    r3,0x502900(r4)
 0001CCA8: 59210801          addo    r4,r4,0x1
 0001CCAC: 82203000 005028FE stob    r4,0x5028fe
 0001CCB4: 0A000000          ret
+
 0001CCB8: 5918581F          addo    r3,0x1,0x1f
 0001CCBC: C021A0F0          ldib    r4,0xf0(r6)
 0001CCC0: 3A190008          cmpibe  r3,r4,0x1ccc8
@@ -26957,6 +27509,7 @@
 0001CD34: 59210801          addo    r4,r4,0x1
 0001CD38: 82203000 005028FE stob    r4,0x5028fe
 0001CD40: 0A000000          ret
+
 0001CD44: 5C181E10          mov     r3,0x10
 0001CD48: C021A09D          ldib    r4,0x9d(r6)
 0001CD4C: 3A190008          cmpibe  r3,r4,0x1cd54
@@ -26981,6 +27534,7 @@
 0001CDBC: 59210801          addo    r4,r4,0x1
 0001CDC0: 82203000 005028FE stob    r4,0x5028fe
 0001CDC8: 0A000000          ret
+
 0001CDCC: 9019A018          ld      r3,0x18(r6)
 0001CDD0: 3A00E0AC          cmpibe  0x0,r3,0x1ce7c
 0001CDD4: C0183000 005028FC ldib    r3,0x5028fc
@@ -26996,6 +27550,7 @@
 0001CE14: 59210801          addo    r4,r4,0x1
 0001CE18: 82203000 005028FE stob    r4,0x5028fe
 0001CE20: 08000058          b       0001ce78
+
 0001CE24: C0183000 005028FC ldib    r3,0x5028fc
 0001CE2C: 5918C981          subi    r3,r3,0x1
 0001CE30: C2183000 005028FC stib    r3,0x5028fc
@@ -27010,6 +27565,7 @@
 0001CE6C: 59210801          addo    r4,r4,0x1
 0001CE70: 82203000 005028FE stob    r4,0x5028fe
 0001CE78: 0A000000          ret
+
 0001CE7C: 5C181E10          mov     r3,0x10
 0001CE80: 80203000 005028FD ldob    r4,0x5028fd
 0001CE88: 3A20C028          cmpibe  r4,r3,0x1ceb0
@@ -27019,8 +27575,10 @@
 0001CEA4: 59210801          addo    r4,r4,0x1
 0001CEA8: 82203000 005028FE stob    r4,0x5028fe
 0001CEB0: 0A000000          ret
+
 0001CEB4: 59295E04          shlo    r5,0x5,0x4
 0001CEB8: 08000008          b       0001cec0
+
 0001CEBC: 5928DE05          shlo    r5,0x3,0x5
 0001CEC0: C0183000 005028FC ldib    r3,0x5028fc
 0001CEC8: 3D00E044          cmpibne 0x0,r3,0x1cf0c
@@ -27035,6 +27593,7 @@
 0001CF00: 5918581F          addo    r3,0x1,0x1f
 0001CF04: C2183000 005028FC stib    r3,0x5028fc
 0001CF0C: 0A000000          ret
+}
 
 {
 -- setup io (driveboard buffer)
@@ -27083,6 +27642,8 @@
 0001CFC4: 0A000000          ret
 }
 
+{
+-- object handler 0001CFC8
 0001CFC8: C0183000 00501460 ldib    r3,0x501460
 0001CFD0: 90203903 0023822C ld      r4,0x23822c[r3*4]
 0001CFD8: 90483000 00501220 ld      r9,0x501220
@@ -27134,6 +27695,10 @@
 0001D0A4: 5C181E04          mov     r3,0x4
 0001D0A8: 921F6074          st      r3,0x74(g13)
 0001D0AC: 0A000000          ret
+}
+
+{
+-- object handler 0001D0B0
 0001D0B0: 90483000 00501220 ld      r9,0x501220
 0001D0B8: 901A601C          ld      r3,0x1c(r9)
 0001D0BC: 8C203000 42C80000 lda     r4,0x42c80000
@@ -27173,6 +27738,7 @@
 0001D158: 59185E06          shlo    r3,0x1,0x6
 0001D15C: 59B58083          addi    g6,g6,r3
 0001D160: 8CA83000 00501780 lda     g5,0x501780
+
 0001D168: 0900001C          call    0001d184
 0001D16C: 090005B4          call    0001d720
 0001D170: 090002F0          call    0001d460
@@ -27180,6 +27746,10 @@
 0001D178: 0900060C          call    0001d784
 0001D17C: 0900003C          call    0001d1b8
 0001D180: 0A000000          ret
+}
+
+{
+--
 0001D184: 90476044          ld      r8,0x44(g13)
 0001D188: 903F607C          ld      r7,0x7c(g13)
 0001D18C: 5931CF01          shli    r6,r7,0x1
@@ -27192,29 +27762,44 @@
 0001D1AC: 5939C881          addi    r7,r7,0x1
 0001D1B0: 923F607C          st      r7,0x7c(g13)
 0001D1B4: 0A000000          ret
+}
+
+{
+--
 0001D1B8: 907F6044          ld      r15,0x44(g13)
 0001D1BC: 90703000 0050176C ld      r14,0x50176c
 0001D1C4: 58738E01          clrbit  r14,r14,0x1
 0001D1C8: 5C681E00          mov     r13,0x0
 0001D1CC: 90603000 0001D220 ld      r12,0x1d220
+
 0001D1D4: 8C18390D 0001D214 lda     r3,0x1d214[r13*4]
 0001D1DC: 8820E000          ldos    r4,0x0(r3)
 0001D1E0: 8828E002          ldos    r5,0x2(r3)
 0001D1E4: 5A03E005          cmpo    r15,r5
 0001D1E8: 5A03E104          concmpo r15,r4
 0001D1EC: 12000010          be      0001d1fc
+
 0001D1F0: 5A6B420C          cmpinco r13,r13,r12
 0001D1F4: 11FFFFE0          bg      0001d1d4
 0001D1F8: 08000010          b       0001d208
+
 0001D1FC: 581BC887          and     r3,r15,0x7
 0001D200: 3320E008          cmpobge 0x4,r3,0x1d208
 0001D204: 58738981          setbit  r14,r14,0x1
+
 0001D208: 92703000 0050176C st      r14,0x50176c
 0001D210: 0A000000          ret
+}
+
+-- raw data
 0001D214: 005C0042          ? 00:0 005c0042 0 0
 0001D218: 01660160          ? 01:2 01660160 0 0
 0001D21C: 01D801BE          ? 01:3 01d801be 0 0
 0001D220: 00000003          ? 00:0 00000003 0 0
+-- raw data
+
+{
+--
 0001D224: 8C9E2000          lda     g3,0x0(g8)
 0001D228: 090001A4          call    0001d3cc
 0001D22C: 929F6080          st      g3,0x80(g13)
@@ -27321,10 +27906,15 @@
 0001D3C0: 09000060          call    0001d420
 0001D3C4: 929F60CA          st      g3,0xca(g13)
 0001D3C8: 0A000000          ret
+}
+
+{
+--
 0001D3CC: 904F6034          ld      r9,0x34(g13)
 0001D3D0: 744A4C02          remi    r9,r9,0x2
 0001D3D4: 5A003089          cmpi    0x0,r9
-0001D3D8: 12000040          be      0001d418
+0001D3D8: 12000040          be      0001d418				-- 0001D418
+
 0001D3DC: 9024D000          ld      r4,(g3)
 0001D3E0: 591CDE02          shlo    r3,0x13,0x2
 0001D3E4: 5918C093          addi    r3,r3,g3
@@ -27339,12 +27929,17 @@
 0001D40C: 5CF01E00          mov     g14,0x0
 0001D410: 7899C784          addr    g3,r7,r4
 0001D414: 0A000000          ret
+
 0001D418: 909CD000          ld      g3,(g3)
 0001D41C: 0A000000          ret
+}
+
+{
+--
 0001D420: 904F6034          ld      r9,0x34(g13)
 0001D424: 744A4C02          remi    r9,r9,0x2
 0001D428: 5A003089          cmpi    0x0,r9
-0001D42C: 1200002C          be      0001d458
+0001D42C: 1200002C          be      0001d458				-- 0001D458
 0001D430: C824D000          ldis    r4,(g3)
 0001D434: 591CDE02          shlo    r3,0x13,0x2
 0001D438: 5918C093          addi    r3,r3,g3
@@ -27355,15 +27950,21 @@
 0001D44C: 7439CD82          divi    r7,r7,0x2
 0001D450: 5999C084          addi    g3,r7,r4
 0001D454: 0A000000          ret
+
 0001D458: 909CD000          ld      g3,(g3)
 0001D45C: 0A000000          ret
+}
+
+{
+--
 0001D460: 90483000 00501220 ld      r9,0x501220
 0001D468: 901A6018          ld      r3,0x18(r9)
 0001D46C: 5A003083          cmpi    0x0,r3
-0001D470: 15000094          bne     0001d504
+0001D470: 15000094          bne     0001d504				-- 0001D504
+
 0001D474: 90183000 00501128 ld      r3,0x501128
 0001D47C: 5A003083          cmpi    0x0,r3
-0001D480: 15000034          bne     0001d4b4
+0001D480: 15000034          bne     0001d4b4				-- 0001D4B4
 0001D484: 5C201E01          mov     r4,0x1
 0001D488: 90183000 00501270 ld      r3,0x501270
 0001D490: 9028E000          ld      r5,0x0(r3)
@@ -27373,6 +27974,7 @@
 0001D4A4: 9228E00C          st      r5,0xc(r3)
 0001D4A8: 5C181E01          mov     r3,0x1
 0001D4AC: 92183000 00501128 st      r3,0x501128
+
 0001D4B4: 90CF6064          ld      g9,0x64(g13)
 0001D4B8: 90276044          ld      r4,0x44(g13)
 0001D4BC: 901F6048          ld      r3,0x48(g13)
@@ -27380,11 +27982,12 @@
 0001D4C4: 59CE4083          addi    g9,g9,r3
 0001D4C8: 901E6000          ld      r3,0x0(g9)
 0001D4CC: 5A00E084          cmpi    r3,r4
-0001D4D0: 14000014          bl      0001d4e4
-0001D4D4: 09000034          call    0001d508
+0001D4D0: 14000014          bl      0001d4e4				-- 0001D4E4
+0001D4D4: 09000034          call    0001d508				-- 0001d508
 0001D4D8: 901F6048          ld      r3,0x48(g13)
 0001D4DC: 5918C881          addi    r3,r3,0x1
 0001D4E0: 921F6048          st      r3,0x48(g13)
+
 0001D4E4: 901F604C          ld      r3,0x4c(g13)
 0001D4E8: 8C183903 0001D6F0 lda     r3,0x1d6f0[r3*4]
 0001D4F0: 9018D000          ld      r3,(r3)
@@ -27393,6 +27996,10 @@
 0001D4FC: 594A4881          addi    r9,r9,0x1
 0001D500: 924F6044          st      r9,0x44(g13)
 0001D504: 0A000000          ret
+}
+
+{
+--
 0001D508: 901F604C          ld      r3,0x4c(g13)
 0001D50C: 921F6050          st      r3,0x50(g13)
 0001D510: 901E6004          ld      r3,0x4(g9)
@@ -27402,22 +28009,38 @@
 0001D520: 901E600C          ld      r3,0xc(g9)
 0001D524: 921F6058          st      r3,0x58(g13)
 0001D528: 0A000000          ret
+}
+
+{
+--
 0001D52C: 0A000000          ret
+}
+
+{
+--
 0001D530: 901F6034          ld      r3,0x34(g13)
 0001D534: 5918C881          addi    r3,r3,0x1
 0001D538: 9027606C          ld      r4,0x6c(g13)
 0001D53C: 5A012083          cmpi    r4,r3
-0001D540: 14000008          bl      0001d548
+0001D540: 14000008          bl      0001d548				-- 0001D548
+
 0001D544: 5C181604          mov     r3,r4
+
 0001D548: 921F6034          st      r3,0x34(g13)
 0001D54C: 0A000000          ret
 0001D550: 901F6034          ld      r3,0x34(g13)
 0001D554: 5918C981          subi    r3,r3,0x1
 0001D558: 5A003083          cmpi    0x0,r3
-0001D55C: 11000008          bg      0001d564
+0001D55C: 11000008          bg      0001d564				-- 0001D564
+
 0001D560: 5C181E00          mov     r3,0x0
+
 0001D564: 921F6034          st      r3,0x34(g13)
 0001D568: 0A000000          ret
+}
+
+{
+--
 0001D56C: 901F6050          ld      r3,0x50(g13)
 0001D570: 921F604C          st      r3,0x4c(g13)
 0001D574: 901E6008          ld      r3,0x8(g9)
@@ -27427,17 +28050,26 @@
 0001D584: 901E6010          ld      r3,0x10(g9)
 0001D588: 921F6034          st      r3,0x34(g13)
 0001D58C: 0A000000          ret
+}
+
+{
+--
 0001D590: 901E6008          ld      r3,0x8(g9)
 0001D594: 921F605C          st      r3,0x5c(g13)
 0001D598: 901F6050          ld      r3,0x50(g13)
 0001D59C: 921F604C          st      r3,0x4c(g13)
 0001D5A0: 901E600C          ld      r3,0xc(g9)
 0001D5A4: 5A003083          cmpi    0x0,r3
-0001D5A8: 12000010          be      0001d5b8
+0001D5A8: 12000010          be      0001d5b8				-- 0001D5B8
+
 0001D5AC: 90276074          ld      r4,0x74(g13)
 0001D5B0: 58210003          notbit  r4,r4,r3
 0001D5B4: 92276074          st      r4,0x74(g13)
 0001D5B8: 0A000000          ret
+}
+
+{
+--
 0001D5BC: 90483000 00501220 ld      r9,0x501220
 0001D5C4: 5C201E00          mov     r4,0x0
 0001D5C8: CA22605A          stis    r4,0x5a(r9)
@@ -27451,6 +28083,10 @@
 0001D5EC: 5818C801          notbit  r3,r3,0x1
 0001D5F0: 92183000 00501A9C st      r3,0x501a9c
 0001D5F8: 0A000000          ret
+}
+
+{
+--
 0001D5FC: 90483000 00501220 ld      r9,0x501220
 0001D604: 9022620C          ld      r4,0x20c(r9)
 0001D608: 58210E06          clrbit  r4,r4,0x6
@@ -27461,6 +28097,10 @@
 0001D620: 5818C800          notbit  r3,r3,0x0
 0001D624: 92183000 00501A9C st      r3,0x501a9c
 0001D62C: 0A000000          ret
+}
+
+{
+--
 0001D630: 90483000 00501220 ld      r9,0x501220
 0001D638: 9022620C          ld      r4,0x20c(r9)
 0001D63C: 58210E05          clrbit  r4,r4,0x5
@@ -27471,6 +28111,10 @@
 0001D654: 5818C803          notbit  r3,r3,0x3
 0001D658: 92183000 00501A9C st      r3,0x501a9c
 0001D660: 0A000000          ret
+}
+
+{
+--
 0001D664: 90483000 00501220 ld      r9,0x501220
 0001D66C: 9022620C          ld      r4,0x20c(r9)
 0001D670: 58210E04          clrbit  r4,r4,0x4
@@ -27481,6 +28125,10 @@
 0001D688: 5818C802          notbit  r3,r3,0x2
 0001D68C: 92183000 00501A9C st      r3,0x501a9c
 0001D694: 0A000000          ret
+}
+
+{
+--
 0001D698: 90483000 00501220 ld      r9,0x501220
 0001D6A0: 8C183000 3F23D70A lda     r3,0x3f23d70a
 0001D6A8: 921A605C          st      r3,0x5c(r9)
@@ -27488,6 +28136,10 @@
 0001D6B4: 5818C980          setbit  r3,r3,0x0
 0001D6B8: 92183000 0050176C st      r3,0x50176c
 0001D6C0: 0A000000          ret
+}
+
+{
+--
 0001D6C4: 90483000 00501220 ld      r9,0x501220
 0001D6CC: 8C183000 00000000 lda     r3,0x0
 0001D6D4: 921A605C          st      r3,0x5c(r9)
@@ -27495,6 +28147,9 @@
 0001D6E0: 5818CE00          clrbit  r3,r3,0x0
 0001D6E4: 92183000 0050176C st      r3,0x50176c
 0001D6EC: 0A000000          ret
+}
+
+-- raw data (pointer table)
 0001D6F0: 0001D52C          ? 00:a 0001d52c 1 1
 0001D6F4: 0001D52C          ? 00:a 0001d52c 1 1
 0001D6F8: 0001D530          ? 00:a 0001d530 1 1
@@ -27507,6 +28162,10 @@
 0001D714: 0001D664          ? 00:c 0001d664 1 1
 0001D718: 0001D698          ? 00:d 0001d698 1 1
 0001D71C: 0001D6C4          ? 00:d 0001d6c4 1 1
+-- raw data (pointer table)
+
+{
+--
 0001D720: 8CF00505          lda     g14,0x505
 0001D724: 92F6E050          st      g14,0x50(g11)			(copro matrix_push)
 0001D728: 5CF01E00          mov     g14,0x0
@@ -27531,6 +28190,10 @@
 0001D778: 92F6E060          st      g14,0x60(g11)			(copro matrix_pop)
 0001D77C: 5CF01E00          mov     g14,0x0
 0001D780: 0A000000          ret
+}
+
+{
+--
 0001D784: 8CF00505          lda     g14,0x505
 0001D788: 92F6E050          st      g14,0x50(g11)			(copro matrix_push)
 0001D78C: 5CF01E00          mov     g14,0x0
@@ -27555,9 +28218,13 @@
 0001D7DC: 92F6E060          st      g14,0x60(g11)			(copro matrix_pop)
 0001D7E0: 5CF01E00          mov     g14,0x0
 0001D7E4: 0A000000          ret
+}
+
+{
+--
 0001D7E8: 901F6004          ld      r3,0x4(g13)
 0001D7EC: 5A013083          cmpi    0x4,r3
-0001D7F0: 13000178          bge     0001d968
+0001D7F0: 13000178          bge     0001d968				-- 0001D968
 0001D7F4: 90576074          ld      r10,0x74(g13)
 0001D7F8: 8CF00505          lda     g14,0x505
 0001D7FC: 92F6E050          st      g14,0x50(g11)			(copro matrix_push)
@@ -27634,6 +28301,10 @@
 0001D960: 92F6E060          st      g14,0x60(g11)			(copro matrix_pop)
 0001D964: 5CF01E00          mov     g14,0x0
 0001D968: 0A000000          ret
+}
+
+{
+--
 0001D96C: 8CF00505          lda     g14,0x505
 0001D970: 92F6E050          st      g14,0x50(g11)			(copro matrix_push)
 0001D974: 5CF01E00          mov     g14,0x0
@@ -28171,13 +28842,18 @@
 0001E2A8: 92F6E060          st      g14,0x60(g11)			(copro matrix_pop)
 0001E2AC: 5CF01E00          mov     g14,0x0
 0001E2B0: 0A000000          ret
+}
+
 0001E2B4: 00000000          ? 00:0 00000000 0 0
 0001E2B8: 00000000          ? 00:0 00000000 0 0
 0001E2BC: 00000000          ? 00:0 00000000 0 0
-0001E2C0: 30363969          bbc     6,g8,0x1dc28
+
+-- raw data (string)
+0001E2C0: 30363969          bbc     6,g8,0x1dc28	"i960_pragma_isr"
 0001E2C4: 6172705F          ? 61:0 6172705f 3 0
 0001E2C8: 5F616D67          5F 5f:a 5f616d67 2 3
 0001E2CC: 00727369          ? 00:6 00727369 3 0
+-- raw data (string)
 
 {
 --
@@ -28928,7 +29604,7 @@
 0001EDE0: 5C801E00          mov     g0,0x0
 0001EDE4: 5C881E00          mov     g1,0x0
 0001EDE8: 0B000350          bal     0001f138			-- set cursor to g0, g1
-0001EDEC: 09000114          call    0001ef00			-- clear tilemap priority
+0001EDEC: 09000114          call    0001ef00			-- clear tilemap mask0
 0001EDF0: 08000010          b       0001ee00			-- clear tilemap 1
 }
 
@@ -29001,7 +29677,7 @@
 0001EEFC: 00000000          ? 00:0 00000000 0 0
 
 {
--- clear tilemap priority
+-- clear tilemap mask0
 0001EF00: 8C803000 0100C000 lda     g0,0x100c000
 0001EF08: 5C881E00          mov     g1,0x0
 0001EF0C: 5890198B          setbit  g2,0x0,0xb		0x800
@@ -29011,27 +29687,38 @@
 0001EF14: 00000000          ? 00:0 00000000 0 0
 0001EF18: 00000000          ? 00:0 00000000 0 0
 0001EF1C: 00000000          ? 00:0 00000000 0 0
+
+{
+-- clear tilemap mask1
 0001EF20: 8C803000 0100D000 lda     g0,0x100d000
 0001EF28: 5C881E00          mov     g1,0x0
 0001EF2C: 5890198B          setbit  g2,0x0,0xb
 0001EF30: 080003A0          b       0001f2d0		fill g0 with g1 (len g2)
+}
+
 0001EF34: 00000000          ? 00:0 00000000 0 0
 0001EF38: 00000000          ? 00:0 00000000 0 0
 0001EF3C: 00000000          ? 00:0 00000000 0 0
+
+{
+-- dead code?
 0001EF40: 88A42002          ldos    g4,0x2(g0)
 0001EF44: 88941000          ldos    g2,(g0)
 0001EF48: 90242004          ld      r4,0x4(g0)
 0001EF4C: 909C2008          ld      g3,0x8(g0)
 0001EF50: 3D0520C8          cmpibne 0x0,g4,0x1f018
+
 0001EF54: 5A003084          cmpi    0x0,r4
 0001EF58: 8C84200C          lda     g0,0xc(g0)
 0001EF5C: 5CB81E00          mov     g7,0x0
 0001EF60: 160000B4          ble     0001f014
+
 0001EF64: 3001203C          bbc     0,r4,0x1efa0
 0001EF68: 59ACC901          subo    g5,g3,0x1
 0001EF6C: 5A003095          cmpi    0x0,g5
 0001EF70: 5CB01611          mov     g6,g1
 0001EF74: 14000024          bl      0001ef98
+
 0001EF78: 80A41000          ldob    g4,(g0)
 0001EF7C: 59805010          addo    g0,0x1,g0
 0001EF80: 59AD4901          subo    g5,g5,0x1
@@ -29040,13 +29727,16 @@
 0001EF8C: 8AA59000          stos    g4,(g6)
 0001EF90: 59B09016          addo    g6,0x2,g6
 0001EF94: 13FFFFE4          bge     0001ef78
+
 0001EF98: 59B85017          addo    g7,0x1,g7
 0001EF9C: 3BB90078          cmpibge g7,r4,0x1f014
+
 0001EFA0: 59A5CE07          shlo    g4,g7,0x7
 0001EFA4: 59ACC901          subo    g5,g3,0x1
 0001EFA8: 5A003095          cmpi    0x0,g5
 0001EFAC: 59B50011          addo    g6,g4,g1
 0001EFB0: 14000024          bl      0001efd4
+
 0001EFB4: 80A41000          ldob    g4,(g0)
 0001EFB8: 59805010          addo    g0,0x1,g0
 0001EFBC: 59AD4901          subo    g5,g5,0x1
@@ -29055,11 +29745,13 @@
 0001EFC8: 8AA59000          stos    g4,(g6)
 0001EFCC: 59B09016          addo    g6,0x2,g6
 0001EFD0: 13FFFFE4          bge     0001efb4
+
 0001EFD4: 59A5CE07          shlo    g4,g7,0x7
 0001EFD8: 59ACC901          subo    g5,g3,0x1
 0001EFDC: 5A003095          cmpi    0x0,g5
 0001EFE0: 8CB53C11 00000080 lda     g6,0x80(g4)[g1*1]
 0001EFE8: 14000024          bl      0001f00c
+
 0001EFEC: 80A41000          ldob    g4,(g0)
 0001EFF0: 59805010          addo    g0,0x1,g0
 0001EFF4: 59AD4901          subo    g5,g5,0x1
@@ -29068,9 +29760,12 @@
 0001F000: 8AA59000          stos    g4,(g6)
 0001F004: 59B09016          addo    g6,0x2,g6
 0001F008: 13FFFFE4          bge     0001efec
+
 0001F00C: 59B89017          addo    g7,0x2,g7
 0001F010: 3CB91F90          cmpibl  g7,r4,0x1efa0
+
 0001F014: 0A000000          ret
+
 0001F018: 5A003084          cmpi    0x0,r4
 0001F01C: 8C84200C          lda     g0,0xc(g0)
 0001F020: 5CB81E00          mov     g7,0x0
@@ -29080,6 +29775,7 @@
 0001F030: 5A003095          cmpi    0x0,g5
 0001F034: 5CB01611          mov     g6,g1
 0001F038: 14000020          bl      0001f058
+
 0001F03C: 88A41000          ldos    g4,(g0)
 0001F040: 59809010          addo    g0,0x2,g0
 0001F044: 59AD4901          subo    g5,g5,0x1
@@ -29087,13 +29783,16 @@
 0001F04C: 8AA59000          stos    g4,(g6)
 0001F050: 59B09016          addo    g6,0x2,g6
 0001F054: 13FFFFE8          bge     0001f03c
+
 0001F058: 59B85017          addo    g7,0x1,g7
 0001F05C: 3BB90070          cmpibge g7,r4,0x1f0cc
+
 0001F060: 59A5CE07          shlo    g4,g7,0x7
 0001F064: 59ACC901          subo    g5,g3,0x1
 0001F068: 5A003095          cmpi    0x0,g5
 0001F06C: 59B50011          addo    g6,g4,g1
 0001F070: 14000020          bl      0001f090
+
 0001F074: 88A41000          ldos    g4,(g0)
 0001F078: 59809010          addo    g0,0x2,g0
 0001F07C: 59AD4901          subo    g5,g5,0x1
@@ -29101,11 +29800,13 @@
 0001F084: 8AA59000          stos    g4,(g6)
 0001F088: 59B09016          addo    g6,0x2,g6
 0001F08C: 13FFFFE8          bge     0001f074
+
 0001F090: 59A5CE07          shlo    g4,g7,0x7
 0001F094: 59ACC901          subo    g5,g3,0x1
 0001F098: 5A003095          cmpi    0x0,g5
 0001F09C: 8CB53C11 00000080 lda     g6,0x80(g4)[g1*1]
 0001F0A4: 14000020          bl      0001f0c4
+
 0001F0A8: 88A41000          ldos    g4,(g0)
 0001F0AC: 59809010          addo    g0,0x2,g0
 0001F0B0: 59AD4901          subo    g5,g5,0x1
@@ -29113,29 +29814,41 @@
 0001F0B8: 8AA59000          stos    g4,(g6)
 0001F0BC: 59B09016          addo    g6,0x2,g6
 0001F0C0: 13FFFFE8          bge     0001f0a8
+
 0001F0C4: 59B89017          addo    g7,0x2,g7
 0001F0C8: 3CB91F98          cmpibl  g7,r4,0x1f060
+
 0001F0CC: 0A000000          ret
+}
+
+{
+-- dead code?
 0001F0D0: 8CF03000 0001F120 lda     g14,0x1f120
 0001F0D8: 5C98161E          mov     g3,g14
 0001F0DC: 5CF01E00          mov     g14,0x0
 0001F0E0: 98B42004          ldl     g6,0x4(g0)
 0001F0E4: 08000030          b       0001f114
+
 0001F0E8: 59A58E07          shlo    g4,g6,0x7
 0001F0EC: 59ADC901          subo    g5,g7,0x1
 0001F0F0: 5A003095          cmpi    0x0,g5
 0001F0F4: 59A50011          addo    g4,g4,g1
 0001F0F8: 1400001C          bl      0001f114
+
 0001F0FC: 5990581F          addo    g2,0x1,0x1f
 0001F100: 59AD4901          subo    g5,g5,0x1
 0001F104: 8A951000          stos    g2,(g4)
 0001F108: 5A003095          cmpi    0x0,g5
 0001F10C: 8CA52002          lda     g4,0x2(g4)
 0001F110: 13FFFFEC          bge     0001f0fc
+
 0001F114: 59B58901          subo    g6,g6,0x1
+
 0001F118: 3E05BFD0          cmpible 0x0,g6,0x1f0e8
 0001F11C: 8404D000          bx      pfp,(g3)
 0001F120: 0A000000          ret
+}
+
 0001F124: 00000000          ? 00:0 00000000 0 0
 0001F128: 00000000          ? 00:0 00000000 0 0
 0001F12C: 00000000          ? 00:0 00000000 0 0
@@ -29226,7 +29939,7 @@
 0001F23C: 5C801E00          mov     g0,0x0
 0001F240: 5C881E00          mov     g1,0x0
 0001F244: 0BFFFEF4          bal     0001f138			-- set cursor to g0, g1		set cursor g0, g1
-0001F248: 09FFFCB8          call    0001ef00			-- clear tilemap priority
+0001F248: 09FFFCB8          call    0001ef00			-- clear tilemap mask0
 0001F24C: 09FFFBB4          call    0001ee00			-- clear tilemap 1
 
 0001F250: 5C901E00          mov     g2,0x0
@@ -29535,41 +30248,55 @@
 000203A8: 5918CC05          shro    r3,r3,0x5
 000203AC: 90183903 00501520 ld      r3,0x501520[r3*4]
 000203B4: 5A00E704          chkbit  r3,r4
-000203B8: 10000084          bno     0002043c
+000203B8: 10000084          bno     0002043c			-- 0002043C
+
 000203BC: C8576040          ldis    r10,0x40(g13)
 000203C0: 90183000 005FE5A4 ld      r3,0x5fe5a4
-000203C8: 3020E018          bbc     4,r3,0x203e0
+000203C8: 3020E018          bbc     4,r3,0x203e0		-- 000203E0
+
 000203CC: 59528881          addi    r10,r10,0x1
 000203D0: 5A02A884          cmpi    r10,0x4
-000203D4: 15000008          bne     000203dc
+000203D4: 15000008          bne     000203dc			-- 000203DC
+
 000203D8: 5C501E00          mov     r10,0x0
 000203DC: CA576040          stis    r10,0x40(g13)
+
 000203E0: 5A02A880          cmpi    r10,0x0
-000203E4: 12000018          be      000203fc
+000203E4: 12000018          be      000203fc			-- 000203FC
+
 000203E8: 5A02A881          cmpi    r10,0x1
-000203EC: 12000020          be      0002040c
+000203EC: 12000020          be      0002040c			-- 0002040C
+
 000203F0: 5A02A882          cmpi    r10,0x2
-000203F4: 12000028          be      0002041c
+000203F4: 12000028          be      0002041c			-- 0002041C
+
 000203F8: 08000034          b       0002042c
+
 000203FC: 09000044          call    00020440
 00020400: 0900006C          call    0002046c
 00020404: 09000084          call    00020488
 00020408: 0A000000          ret
+
 0002040C: 09000098          call    000204a4
 00020410: 0900005C          call    0002046c
 00020414: 09000074          call    00020488
 00020418: 0A000000          ret
+
 0002041C: 09000088          call    000204a4
 00020420: 090000BC          call    000204dc
 00020424: 09000064          call    00020488
 00020428: 0A000000          ret
+
 0002042C: 09000078          call    000204a4
 00020430: 090000AC          call    000204dc
 00020434: 090000D0          call    00020504
 00020438: 090001D8          call    00020610
+
 0002043C: 0A000000          ret
 }
 
+{
+--
 00020440: 90183000 00540058 ld      r3,0x540058
 00020448: 5818C881          and     r3,r3,0x1
 0002044C: 3D08E018          cmpibne 0x1,r3,0x20464
@@ -29580,6 +30307,10 @@
 00020460: CA276034          stis    r4,0x34(g13)
 00020464: 090000C8          call    0002052c
 00020468: 0A000000          ret
+}
+
+{
+--
 0002046C: C8276038          ldis    r4,0x38(g13)
 00020470: 59210881          addi    r4,r4,0x1
 00020474: 8C18003F          lda     r3,0x3f
@@ -29587,6 +30318,10 @@
 0002047C: CA276038          stis    r4,0x38(g13)
 00020480: 090000E0          call    00020560
 00020484: 0A000000          ret
+}
+
+{
+--
 00020488: C827603C          ldis    r4,0x3c(g13)
 0002048C: 59210882          addi    r4,r4,0x2
 00020490: 8C18003F          lda     r3,0x3f
@@ -29594,6 +30329,10 @@
 00020498: CA27603C          stis    r4,0x3c(g13)
 0002049C: 090000F8          call    00020594
 000204A0: 0A000000          ret
+}
+
+{
+--
 000204A4: C8276034          ldis    r4,0x34(g13)
 000204A8: 74290C04          remi    r5,r4,0x4
 000204AC: 5A003085          cmpi    0x0,r5
@@ -29607,6 +30346,10 @@
 000204D0: CA276034          stis    r4,0x34(g13)
 000204D4: 09000058          call    0002052c
 000204D8: 0A000000          ret
+}
+
+{
+--
 000204DC: C8276038          ldis    r4,0x38(g13)
 000204E0: 74290C04          remi    r5,r4,0x4
 000204E4: 5A003085          cmpi    0x0,r5
@@ -29617,6 +30360,8 @@
 000204F8: CA276038          stis    r4,0x38(g13)
 000204FC: 09000064          call    00020560
 00020500: 0A000000          ret
+}
+
 00020504: C827603C          ldis    r4,0x3c(g13)
 00020508: 74290C04          remi    r5,r4,0x4
 0002050C: 5A003085          cmpi    0x0,r5
@@ -29627,6 +30372,9 @@
 00020520: CA27603C          stis    r4,0x3c(g13)
 00020524: 09000070          call    00020594
 00020528: 0A000000          ret
+
+{
+--
 0002052C: 8CF00505          lda     g14,0x505
 00020530: 92F6E050          st      g14,0x50(g11)			(copro matrix_push)
 00020534: 5CF01E00          mov     g14,0x0
@@ -29636,6 +30384,10 @@
 00020550: 8C303000 0000382D lda     r6,0x382d
 00020558: C83F6034          ldis    r7,0x34(g13)
 0002055C: 08000068          b       000205c4
+}
+
+{
+--
 00020560: 8CF00505          lda     g14,0x505
 00020564: 92F6E050          st      g14,0x50(g11)			(copro matrix_push)
 00020568: 5CF01E00          mov     g14,0x0
@@ -29645,6 +30397,10 @@
 00020584: 8C303000 0000382D lda     r6,0x382d
 0002058C: C83F6038          ldis    r7,0x38(g13)
 00020590: 08000034          b       000205c4
+}
+
+{
+--
 00020594: 8CF00505          lda     g14,0x505
 00020598: 92F6E050          st      g14,0x50(g11)			(copro matrix_push)
 0002059C: 5CF01E00          mov     g14,0x0
@@ -29653,6 +30409,11 @@
 000205B0: 8C283000 43141405 lda     r5,0x43141405
 000205B8: 8C303000 0000382D lda     r6,0x382d
 000205C0: C83F603C          ldis    r7,0x3c(g13)
+-- does run through
+}
+
+{
+--
 000205C4: 8CF03000 00001212 lda     g14,0x1212
 000205CC: 92F6E120          st      g14,0x120(g11)			(copro matrix_trans)
 000205D0: 921EDC1C          st      r3,(g11)[g12*1]
@@ -29669,6 +30430,10 @@
 00020604: 92F6E060          st      g14,0x60(g11)			(copro matrix_pop)
 00020608: 5CF01E00          mov     g14,0x0
 0002060C: 0A000000          ret
+}
+
+{
+--
 00020610: 90376044          ld      r6,0x44(g13)
 00020614: 3D01A03C          cmpibne 0x0,r6,0x20650
 00020618: 88183000 005FE5A8 ldos    r3,0x5fe5a8
@@ -29679,24 +30444,28 @@
 00020634: C8276038          ldis    r4,0x38(g13)
 00020638: C82F603C          ldis    r5,0x3c(g13)
 0002063C: 5960581F          addo    r12,0x1,0x1f
-00020640: 3D190010          cmpibne r3,r4,0x20650
-00020644: 3D21400C          cmpibne r4,r5,0x20650
-00020648: 3A016020          cmpibe  0x0,r5,0x20668
-0002064C: 3A614008          cmpibe  r12,r5,0x20654
+00020640: 3D190010          cmpibne r3,r4,0x20650			-- 00020650
+00020644: 3D21400C          cmpibne r4,r5,0x20650			-- 00020650
+00020648: 3A016020          cmpibe  0x0,r5,0x20668			-- 00020668
+0002064C: 3A614008          cmpibe  r12,r5,0x20654			-- 00020654
 00020650: 0A000000          ret
+
 00020654: 8C803000 00AE2002 lda     g0,0xae2002
 0002065C: 09DF9EE0          call    0001a53c
 00020660: 59215E06          shlo    r4,0x5,0x6
 00020664: 08000014          b       00020678
+
 00020668: 8C803000 00AE2003 lda     g0,0xae2003
 00020670: 09DF9ECC          call    0001a53c
 00020674: 5921DE06          shlo    r4,0x7,0x6
+
 00020678: 5C181E01          mov     r3,0x1
 0002067C: 921F6044          st      r3,0x44(g13)
 00020680: 90183000 005010D0 ld      r3,0x5010d0
 00020688: 5918C084          addi    r3,r3,r4
 0002068C: 92183000 005010D0 st      r3,0x5010d0
 00020694: 0A000000          ret
+}
 
 {
 -- object handler 00020698 / 00220698
@@ -32295,8 +33064,8 @@
 
 {
 -- object handler 00222FF8
-00022FF8: 09DF9024          call    0001c01c
-00022FFC: 09DF9094          call    0001c090
+00022FF8: 09DF9024          call    0001c01c			-- reset tilemap 0
+00022FFC: 09DF9094          call    0001c090			-- reset tilemap 1
 00023000: 5C181E00          mov     r3,0x0
 00023004: CA1F6036          stis    r3,0x36(g13)
 00023008: CA1F6038          stis    r3,0x38(g13)
@@ -32510,7 +33279,7 @@
 
 {
 -- print am2 logo
-0002331C: 09DF8D00          call    0001c01c
+0002331C: 09DF8D00          call    0001c01c			-- reset tilemap 0
 00023320: 8C883000 010000DC lda     g1,0x10000dc
 00023328: 8C803000 02825CB6 lda     g0,0x2825cb6
 00023330: 09DF64C4          call    000197F4			-- copy tilemap data g0 to g1 ("AM2 Logo")
@@ -33432,7 +34201,7 @@
 0002434C: 5C181E00          mov     r3,0x0
 00024350: CA183000 00501300 stis    r3,0x501300
 00024358: 8C203000 0022444C lda     r4,0x22444c
-00024360: 09DF7CBC          call    0001c01c
+00024360: 09DF7CBC          call    0001c01c			-- reset tilemap 0
 00024364: 8C283000 0100A000 lda     r5,0x100a000
 0002436C: 90315000          ld      r6,(r5)
 00024370: 58318E0F          clrbit  r6,r6,0xf
@@ -34926,7 +35695,7 @@
 00025BE0: 8C883000 01004000 lda     g1,0x1004000
 00025BE8: 8C803000 0282A776 lda     g0,0x282a776
 00025BF0: 09DF3C04          call    000197F4			-- copy tilemap data g0 to g1
-00025BF4: 09DF6428          call    0001c01c
+00025BF4: 09DF6428          call    0001c01c			-- reset tilemap 0
 00025BF8: 90183000 00501302 ld      r3,0x501302
 00025C00: 5818CE0E          clrbit  r3,r3,0xe
 00025C04: 92183000 00501302 st      r3,0x501302
@@ -35060,7 +35829,7 @@
 00025E9C: 3400E014          cmpobl  0x0,r3,0x25eb0
 00025EA0: 5C181E0C          mov     r3,0xc
 00025EA4: 821F6062          stob    r3,0x62(g13)
-00025EA8: 09DF6174          call    0001c01c
+00025EA8: 09DF6174          call    0001c01c			-- reset tilemap 0
 00025EAC: 0A000000          ret
 00025EB0: 88183000 00501468 ldos    r3,0x501468
 00025EB8: 5923581F          addo    r4,0xd,0x1f
@@ -35078,7 +35847,7 @@
 00025EF4: 3400E014          cmpobl  0x0,r3,0x25f08
 00025EF8: 5C181E0C          mov     r3,0xc
 00025EFC: 821F6062          stob    r3,0x62(g13)
-00025F00: 09DF611C          call    0001c01c
+00025F00: 09DF611C          call    0001c01c			-- reset tilemap 0
 00025F04: 0A000000          ret
 00025F08: 88183000 00501468 ldos    r3,0x501468
 00025F10: 5923581F          addo    r4,0xd,0x1f
@@ -35092,7 +35861,7 @@
 00025F34: 09000D74          call    00026ca8
 00025F38: 5C181E00          mov     r3,0x0
 00025F3C: 8A183000 00501300 stos    r3,0x501300
-00025F44: 09DF60D8          call    0001c01c
+00025F44: 09DF60D8          call    0001c01c			-- reset tilemap 0
 00025F48: 8C803000 00AE2100 lda     g0,0xae2100
 00025F50: 09DF4604          call    0001a554		push g0 to serial buffer
 00025F54: 5918DE06          shlo    r3,0x3,0x6
@@ -45555,7 +46324,7 @@
 {
 00031050: 09DD4CAC          call    00005cfc			-- reset and load charset1
 00031054: 09DEDD8C          call    0001ede0			-- clear screen
-00031058: 09DEDEC8          call    0001ef20
+00031058: 09DEDEC8          call    0001ef20			-- clear tilemap mask1
 0003105C: 09DEDE24          call    0001ee80			-- clear tilemap3
 00031060: 5C801E00          mov     g0,0x0
 00031064: 09DD17D0          call    00002834			-- set background to g0
@@ -60722,6 +61491,8 @@
 
 0003F698: 00000000          ? 00:0 00000000 0 0
 0003F69C: 00000000          ? 00:0 00000000 0 0
+
+-- raw data
 0003F6A0: 0010000A          ? 00:0 0010000a 0 0
 0003F6A4: 00380020          ? 00:0 00380020 0 0
 0003F6A8: 00500040          ? 00:0 00500040 0 0
@@ -60798,6 +61569,7 @@
 0003F7C4: 0023F5F0          ? 00:b 0023f5f0 3 1
 0003F7C8: 00000000          ? 00:0 00000000 0 0
 0003F7CC: 00000000          ? 00:0 00000000 0 0
+
 0003F7D0: 33323130          cmpobge 0x6,r8,0x3e900
 0003F7D4: 37363534          bbs     6,g8,0x3ed08
 0003F7D8: 42413938          ? 42:2 42413938 3 2

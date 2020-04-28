@@ -15,7 +15,7 @@
 
 
 0x00500000		frame counter
-0x0050000c		-- pointer to some handler?
+0x0050000c		-- (optional) pointer to vblank handler, used on IRQ0
 
 
 -- steering related?
@@ -76,6 +76,7 @@
 0x00501200		object pointer table
 		00		?
 		04		pointer to car collision handler - ?? disabling removes collision between cars
+		08		? (some temporary handler)
 		0c		pointer to view cycle handler -- ?? disabling turns of view cycling
 		10		pointer to logo bounce handler
 		14		pointer to hiscore crawl handler 
@@ -83,9 +84,12 @@
 		1c		? 504e00 (0000579c / 00005788)
 		20		pointer to first car handler
 		24		pointer to second car handler
+		28		-- not used?
 		2c		pointer to gameover handler - ?? enabling shows gameover
 		30		pointer to goal handler - ?? enabling shows goal
 		34		pointer to dummy handler (00001974)
+		38		-- not used?
+		3c		-- not used?
 		40		pointer to car draw handler - ?? disabling removes cars
 		44		pointer to waitingentry handler
 		48		pointer to startinglight handler
@@ -101,12 +105,14 @@
 		70		? 50d980 (00006544 / 00006720)
 		74		? 50df80 (0000ad00)
 		78		? 50e080 (0000ad1c)
+		7c		-- not used?
 		80		pointer to car data handler
 		84		pointer to track handler - ?? disabling removes (static) track
 		94		? 50e180 (0000B0F4 / 0000B1F0)
 		98		? 50e280 (0000B698)
 		9c		? 504600 (00224768)
 		a0		pointer to comm handler
+		a4		? 504800 (002242f8)
 
 0x00501300		s24control (get copied to 0x100a000+)
 ...
@@ -198,6 +204,8 @@
 
 0x00501a80		timeattack-switch (0 = arcade, 1 = time attack)
 0x00501a84		?
+
+0x00501ac8		?
 
 0x00502000...		?
 

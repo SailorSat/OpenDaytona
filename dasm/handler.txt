@@ -1,23 +1,32 @@
-0000576C		? (00005788 init)
-00005788		? ()
+0000576C		(leader lamp cycle init)
+00005788		(leader lamp cycle)
 
-0000579C		?
-000057AC		?
+0000579C		(output handler init)
+000057AC		(output handler)
 
 00006348		? (track handler?)
 
-00006544		? (*)
-00006608		? (*)
-00006688		? ()
-00006720		? ()
+000064FC		? (00006720 init ?)
+00006544		? (00006720 init 0*)
+00006598		? (00006720 init ?)
+000065C0		? (00006720 init ?)
+000065E8		unused (00006720 init ?)
+00006608		? (00006720 init 1*)
+00006628		unused (00006720 init ?)		-- referenced by table 00033830
+00006648		unused (00006720 init ?)		-- referenced by table 00033830
+00006668		unused (00006720 init ?)		-- referenced by table 00033830
+00006688		? (00006720 init ?)
+000066A8		unused (00006720 init ?)
+000066C8		unused (00006720 init ?)
+00006720		(attract camera)
 
-00006C30		? (attract camera??)
+00006C30		? (another camera handler?)
 
 00006E34		? (camera handler init?)
 00006EE4		? (camera handler?)
 
 0000B0F4		? (0000B1F0 init)
-0000B1F0		?
+0000B1F0		? ()
 
 0000B8B4		?
 0000BAB4		?
@@ -170,8 +179,8 @@
 00222ED4		(attract view cycle1 init)
 00222F64		(attract view cycle1)
 
-00222FF8		? (logo bounce init)
-00223068		? (logo bounce)
+00222FF8		(logo bounce init)
+00223068		(logo bounce)
 
 00223E74		?
 00223ED4		?

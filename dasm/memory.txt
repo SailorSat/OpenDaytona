@@ -61,6 +61,7 @@
 0x005010e8		0 on frame start (copro data count?)
 0x005010ec		lap count
 
+0x005010f0		substate counter
 0x005010f4		0x1388 (copro data limit?)
 0x005010f8		game substate
 
@@ -77,11 +78,11 @@
 		00		?
 		04		pointer to car collision handler - ?? disabling removes collision between cars
 		08		? (some temporary handler)
-		0c		pointer to view cycle handler -- ?? disabling turns of view cycling
+		0c		pointer to view cycle handler -- ?? disabling turns of view cycling in attract mode
 		10		pointer to logo bounce handler
 		14		pointer to hiscore crawl handler 
 		18		? (22540c)
-		1c		? 504e00 (0000579c / 00005788)
+		1c		pointer to leader lamp cycle
 		20		pointer to first car handler
 		24		pointer to second car handler
 		28		-- not used?
@@ -102,7 +103,7 @@
 		64		pointer to lod & window handler
 		68		? 50dd00 (0000b8b4)
 		6c		? 504d80 (00226ec8)
-		70		? 50d980 (00006544 / 00006720)
+		70		attract camera handler
 		74		? 50df80 (0000ad00)
 		78		? 50e080 (0000ad1c)
 		7c		-- not used?
@@ -158,8 +159,8 @@
 
 
 0x00501460		track no (used for texture ram0 offset, crashes if > 3)
-0x00501464		? (AT/MT?)
-0x00501468		?
+0x00501464		? (AT/MT selection)
+0x00501468		? (track selection)
 
 0x00501474		beginner id
 0x00501476		advanced id
@@ -168,8 +169,13 @@
 0x00501480		?
 0x00501488		?	2 on link mode
 
+0x0050149c		?	attract camera offset
+0x005014a0		?	attract camera counter
+
 0x005014a4		?	0 on init
 0x005014a8		?	camera rotation?
+
+0x005014e4		?
 
 0x00501600		?
 
@@ -182,28 +188,45 @@
 ...
 0x005016cf
 
-0x00501720...		copy from 283b840... (camera matrix?)
-0x00501724
-0x00501728
-0x0050172C
-0x00501730
-0x00501734
-0x00501738
-0x0050173a
-0x0050173c
+0x00501710		view mode (0 to 3 "default")
+0x00501711		view config mode (0)
+0x00501712		view config axis (0)
 
+0x00501720...	cam pos z?	(camera matrix?)	copy from 283b840...
+0x00501724		cam pos y?
+0x00501728		cam pos x?
+0x0050172C		cam ?
+0x00501730		cam ?
+0x00501734		cam ?
+0x00501738		cam rot? (yaw)
+0x0050173a		cam rot? (pitch)
+0x0050173c		cam rot? (roll)
+
+0x00501744		? (cam distance?)
 0x00501747		? 0/1 (0 on init)
 0x00501748
 0x0050174c
 0x00501752		3 on single, 3 on 1 node
 0x00501753		? 0
-0x00501754		? ffffffff
+0x00501754		? ffffffff ; special status delay?
 0x0050175c		LOD (float)
+
+0x00501800		rotation limits?
+..
+0x0050182f
+
+0x00501834		? (cam rotation?)
+
+0x00501850		? (countdown?)
 
 0x00501874		?
 
+0x00501908		?
+
 0x00501a80		timeattack-switch (0 = arcade, 1 = time attack)
 0x00501a84		?
+
+0x00501ab8		? (handicap switch?)
 
 0x00501ac8		?
 
@@ -213,14 +236,16 @@
 0x00502804		window data 1		x-start ffff = -1, y-start 0080 = 128
 0x00502808		window data 2		x-end  01f0 = 496, x-end 0200 = 512
 0x0050280c		window data 3		?
-0x00502810		window data 4		?
+0x00502810		window data 4		? (3d offset)
 0x00502814		window data 5		?
 0x00502818		window data 6		?
 
 
 0x005028fe.		driveboard write offset
 0x005028ff.		driveboard read offset
-0x00502900...		driveboard buffer
+0x00502900.		driveboard buffer
+
+0x00502a00.		LAP1 timer
 
 0x00503000...		serial buffer
 		001			tx bytes to send
@@ -263,13 +288,14 @@
 
 0x00504000			object table
 		00	flags
-		04	id
+		04	idx
+		06	? counter
 		08	length
 		0c	handler
 
 		-- 3d objects
-		10	? 0x502000 (sometimes)
-		14	model data
+		10	? 0x502000 / 0x5020f0 (sometimes)
+		14	model data (body)
 		18	?
 		1c	position y				(float)
 		20	position z				(float)
@@ -279,7 +305,36 @@
 		2c	rotation z (pitch)		(int16)
 		2e	sector*
 
+		34	? (speed?)
+		36	?
+		38	?
+		3a	?
+
+		48	tire rot
+		58	tire yaw?
+
+		60	? distance done?
+		6c	? cars in front?
+		6d	? mp position?
+
+		74	model lod(1)
+		78	model lod(2)
+		7c	model lod(3)
+		80	model lod(4)
+		84	model interiour
+		88	model minimap
+
+		94	icon minimap
+
+		d2	?
+
 		12c	?
+
+		14c	gear
+
+		158	rpm
+
+		258	model data (textures)
 
 0x00540000			comm status
 0x00540001			comm size

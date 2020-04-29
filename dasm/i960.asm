@@ -30430,7 +30430,7 @@
 00020120: 921F600C          st      r3,0xc(g13)
 00020124: 8C183000 00502000 lda     0x502000,r3
 0002012C: 921F6010          st      r3,0x10(g13)
-00020130: 09DF765C          call    ffe1778c                   ; convert xy position to sector
+00020130: 09DF765C          call    0001778c                   ; convert xy position to sector
 00020134: 0A000000          ret
 
 ; object handler 00020138 / 00220138 (roulette stand?)
@@ -30459,7 +30459,7 @@
 0002019C: 9236DC1C          st      r6,(g11)[g12*1]
 000201A0: 5CF01E00          mov     0x0,g14
 000201A4: 90876014          ld      0x14(g13),g0
-000201A8: 09DF7E10          call    ffe17fb8                   ; upload geo model g0, object g13
+000201A8: 09DF7E10          call    00017fb8                   ; upload geo model g0, object g13
 000201AC: 8CF00606          lda     0x606,g14
 000201B0: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 000201B4: 5CF01E00          mov     0x0,g14
@@ -30484,7 +30484,7 @@
 00020200: 921F600C          st      r3,0xc(g13)
 00020204: 8C183000 00502000 lda     0x502000,r3
 0002020C: 921F6010          st      r3,0x10(g13)
-00020210: 09DF757C          call    ffe1778c                   ; convert xy position to sector
+00020210: 09DF757C          call    0001778c                   ; convert xy position to sector
 00020214: 0A000000          ret
 }
 
@@ -30525,7 +30525,7 @@
 000202A4: 5CF01E00          mov     0x0,g14
 000202A8: 901F6034          ld      0x34(g13),r3
 000202AC: 9080DD07          ld      (r3)[r7*4],g0
-000202B0: 09DF7D08          call    ffe17fb8                   ; upload geo model g0, object g13
+000202B0: 09DF7D08          call    00017fb8                   ; upload geo model g0, object g13
 000202B4: 8CF00606          lda     0x606,g14
 000202B8: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 000202BC: 5CF01E00          mov     0x0,g14
@@ -30567,7 +30567,7 @@
 00020344: 5918CD81          shri    0x1,r3,r3
 00020348: 90276014          ld      0x14(g13),r4
 0002034C: 90811D03          ld      (r4)[r3*4],g0
-00020350: 09DF7C68          call    ffe17fb8                   ; upload geo model g0, object g13
+00020350: 09DF7C68          call    00017fb8                   ; upload geo model g0, object g13
 00020354: 8CF00606          lda     0x606,g14
 00020358: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 0002035C: 5CF01E00          mov     0x0,g14
@@ -30581,7 +30581,7 @@
 0002036C: 921F600C          st      r3,0xc(g13)
 00020370: 8C183000 00502000 lda     0x502000,r3
 00020378: 921F6010          st      r3,0x10(g13)
-0002037C: 09DF7410          call    ffe1778c                   ; convert xy position to sector
+0002037C: 09DF7410          call    0001778c                   ; convert xy position to sector
 00020380: 5C181E00          mov     0x0,r3
 00020384: 921F6034          st      r3,0x34(g13)
 00020388: 921F6038          st      r3,0x38(g13)
@@ -30776,7 +30776,7 @@
 000205EC: 9236DC1C          st      r6,(g11)[g12*1]
 000205F0: 5CF01E00          mov     0x0,g14
 000205F4: 90803907 00236A90 ld      0x236a90[r7*4],g0
-000205FC: 09DF79BC          call    ffe17fb8                   ; upload geo model g0, object g13
+000205FC: 09DF79BC          call    00017fb8                   ; upload geo model g0, object g13
 00020600: 8CF00606          lda     0x606,g14
 00020604: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00020608: 5CF01E00          mov     0x0,g14
@@ -30802,12 +30802,12 @@
 00020650: 0A000000          ret
 
 00020654: 8C803000 00AE2002 lda     0xae2002,g0
-0002065C: 09DF9EE0          call    ffe1a53c
+0002065C: 09DF9EE0          call    0001a53c
 00020660: 59215E06          shlo    0x6,0x5,r4
 00020664: 08000014          b       00020678
 
 00020668: 8C803000 00AE2003 lda     0xae2003,g0
-00020670: 09DF9ECC          call    ffe1a53c
+00020670: 09DF9ECC          call    0001a53c
 00020674: 5921DE06          shlo    0x6,0x7,r4
 
 00020678: 5C181E01          mov     0x1,r3
@@ -30855,7 +30855,7 @@
 00020710: 5818C084          and     r4,r3,r3
 00020714: 90276014          ld      0x14(g13),r4
 00020718: 90811D03          ld      (r4)[r3*4],g0
-0002071C: 09DF789C          call    ffe17fb8                   ; upload geo model g0, object g13
+0002071C: 09DF789C          call    00017fb8                   ; upload geo model g0, object g13
 00020720: 8CF00606          lda     0x606,g14
 00020724: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00020728: 5CF01E00          mov     0x0,g14
@@ -30897,7 +30897,7 @@
 000207A8: 5818C084          and     r4,r3,r3
 000207AC: 90276014          ld      0x14(g13),r4
 000207B0: 90811D03          ld      (r4)[r3*4],g0
-000207B4: 09DF7804          call    ffe17fb8                   ; upload geo model g0, object g13
+000207B4: 09DF7804          call    00017fb8                   ; upload geo model g0, object g13
 000207B8: 8CF00606          lda     0x606,g14
 000207BC: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 000207C0: 5CF01E00          mov     0x0,g14
@@ -30909,7 +30909,7 @@
 000207D0: 921F600C          st      r3,0xc(g13)
 000207D4: 8C183000 00502000 lda     0x502000,r3
 000207DC: 921F6010          st      r3,0x10(g13)
-000207E0: 09DF6FAC          call    ffe1778c                   ; convert xy position to sector
+000207E0: 09DF6FAC          call    0001778c                   ; convert xy position to sector
 000207E4: 5C181E00          mov     0x0,r3
 000207E8: CA1F602C          stis    r3,0x2c(g13)
 000207EC: 0A000000          ret
@@ -30955,7 +30955,7 @@
 
 00020880: 90876014          ld      0x14(g13),g0
 
-00020884: 09DF7734          call    ffe17fb8                   ; upload geo model g0, object g13
+00020884: 09DF7734          call    00017fb8                   ; upload geo model g0, object g13
 
 00020888: 8CF00606          lda     0x606,g14
 0002088C: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
@@ -30968,7 +30968,7 @@
 000208A0: 921F600C          st      r3,0xc(g13)
 000208A4: 8C183000 00502000 lda     0x502000,r3
 000208AC: 921F6010          st      r3,0x10(g13)
-000208B0: 09DF6EDC          call    ffe1778c                   ; convert xy position to sector
+000208B0: 09DF6EDC          call    0001778c                   ; convert xy position to sector
 000208B4: 0A000000          ret
 
 ; object handler 000208B8 / 002208B8 (rotating dice)
@@ -31000,7 +31000,7 @@
 00020928: 9236DC1C          st      r6,(g11)[g12*1]
 0002092C: 5CF01E00          mov     0x0,g14
 00020930: 90876014          ld      0x14(g13),g0
-00020934: 09DF7684          call    ffe17fb8                   ; upload geo model g0, object g13
+00020934: 09DF7684          call    00017fb8                   ; upload geo model g0, object g13
 00020938: 8CF00606          lda     0x606,g14
 0002093C: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00020940: 5CF01E00          mov     0x0,g14
@@ -31012,7 +31012,7 @@
 00020950: 921F600C          st      r3,0xc(g13)
 00020954: 8C183000 00502000 lda     0x502000,r3
 0002095C: 921F6010          st      r3,0x10(g13)
-00020960: 09DF6E2C          call    ffe1778c                   ; convert xy position to sector
+00020960: 09DF6E2C          call    0001778c                   ; convert xy position to sector
 00020964: 0A000000          ret
 }
 
@@ -31068,7 +31068,7 @@
 00020A40: 9246DC1C          st      r8,(g11)[g12*1]
 00020A44: 5CF01E00          mov     0x0,g14
 00020A48: 90829D09          ld      (r10)[r9*4],g0
-00020A4C: 09DF756C          call    ffe17fb8                   ; upload geo model g0, object g13
+00020A4C: 09DF756C          call    00017fb8                   ; upload geo model g0, object g13
 00020A50: 8CF00606          lda     0x606,g14
 00020A54: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00020A58: 5CF01E00          mov     0x0,g14
@@ -31083,7 +31083,7 @@
 00020A74: 921F600C          st      r3,0xc(g13)
 00020A78: 8C183000 00502000 lda     0x502000,r3
 00020A80: 921F6010          st      r3,0x10(g13)
-00020A84: 09DF6D08          call    ffe1778c                   ; convert xy position to sector
+00020A84: 09DF6D08          call    0001778c                   ; convert xy position to sector
 00020A88: 0A000000          ret
 }
 
@@ -31121,7 +31121,7 @@
 00020B14: 92F6E050          st      g14,0x50(g11)              ; (copro matrix_push)
 00020B18: 5CF01E00          mov     0x0,g14
 00020B1C: 90876014          ld      0x14(g13),g0
-00020B20: 09DF7498          call    ffe17fb8                   ; upload geo model g0, object g13
+00020B20: 09DF7498          call    00017fb8                   ; upload geo model g0, object g13
 00020B24: 8CF00606          lda     0x606,g14
 00020B28: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00020B2C: 5CF01E00          mov     0x0,g14
@@ -31158,7 +31158,7 @@
 00020B8C: 8C183000 00502000 lda     0x502000,r3
 00020B94: 921F6010          st      r3,0x10(g13)
 
-00020B98: 09DF6BF4          call    ffe1778c                   ; convert xy position to sector
+00020B98: 09DF6BF4          call    0001778c                   ; convert xy position to sector
 
 00020B9C: 0A000000          ret
 }
@@ -31196,7 +31196,7 @@
 00020C34: 922EDC1C          st      r5,(g11)[g12*1]
 00020C38: 5CF01E00          mov     0x0,g14
 00020C3C: 90819000          ld      (r6),g0
-00020C40: 09DF7378          call    ffe17fb8                   ; upload geo model g0, object g13
+00020C40: 09DF7378          call    00017fb8                   ; upload geo model g0, object g13
 00020C44: 8CF00606          lda     0x606,g14
 00020C48: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00020C4C: 5CF01E00          mov     0x0,g14
@@ -31224,7 +31224,7 @@
 00020CB0: 922EDC1C          st      r5,(g11)[g12*1]
 00020CB4: 5CF01E00          mov     0x0,g14
 00020CB8: 8C803000 02843610 lda     0x2843610,g0
-00020CC0: 09DF72F8          call    ffe17fb8                   ; upload geo model g0, object g13
+00020CC0: 09DF72F8          call    00017fb8                   ; upload geo model g0, object g13
 00020CC4: 8CF00606          lda     0x606,g14
 00020CC8: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00020CCC: 5CF01E00          mov     0x0,g14
@@ -31275,7 +31275,7 @@
 00020D94: 922EDC1C          st      r5,(g11)[g12*1]
 00020D98: 5CF01E00          mov     0x0,g14
 00020D9C: 90819000          ld      (r6),g0
-00020DA0: 09DF7218          call    ffe17fb8                   ; upload geo model g0, object g13
+00020DA0: 09DF7218          call    00017fb8                   ; upload geo model g0, object g13
 00020DA4: 8CF00606          lda     0x606,g14
 00020DA8: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00020DAC: 5CF01E00          mov     0x0,g14
@@ -31296,7 +31296,7 @@
 00020DE0: 921F600C          st      r3,0xc(g13)
 00020DE4: 8C183000 00502000 lda     0x502000,r3
 00020DEC: 921F6010          st      r3,0x10(g13)
-00020DF0: 09DF699C          call    ffe1778c                   ; convert xy position to sector
+00020DF0: 09DF699C          call    0001778c                   ; convert xy position to sector
 00020DF4: 0A000000          ret
 }
 
@@ -31323,11 +31323,11 @@
 00020E48: 8C20003F          lda     0x3f,r4
 00020E4C: 58190083          and     r3,r4,r3
 00020E50: 90803903 0023738C ld      0x23738c[r3*4],g0
-00020E58: 09DF7160          call    ffe17fb8                   ; upload geo model g0, object g13
+00020E58: 09DF7160          call    00017fb8                   ; upload geo model g0, object g13
 00020E5C: 8C803000 02843E6C lda     0x2843e6c,g0
-00020E64: 09DF7154          call    ffe17fb8                   ; upload geo model g0, object g13
+00020E64: 09DF7154          call    00017fb8                   ; upload geo model g0, object g13
 00020E68: 8C803000 02843E80 lda     0x2843e80,g0
-00020E70: 09DF7148          call    ffe17fb8                   ; upload geo model g0, object g13
+00020E70: 09DF7148          call    00017fb8                   ; upload geo model g0, object g13
 00020E74: 8CF00606          lda     0x606,g14
 00020E78: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00020E7C: 5CF01E00          mov     0x0,g14
@@ -31350,11 +31350,11 @@
 00020EBC: 8C20003F          lda     0x3f,r4
 00020EC0: 58190083          and     r3,r4,r3
 00020EC4: 90803903 0023738C ld      0x23738c[r3*4],g0
-00020ECC: 09DF70EC          call    ffe17fb8                   ; upload geo model g0, object g13
+00020ECC: 09DF70EC          call    00017fb8                   ; upload geo model g0, object g13
 00020ED0: 8C803000 02843E6C lda     0x2843e6c,g0
-00020ED8: 09DF70E0          call    ffe17fb8                   ; upload geo model g0, object g13
+00020ED8: 09DF70E0          call    00017fb8                   ; upload geo model g0, object g13
 00020EDC: 8C803000 02843E80 lda     0x2843e80,g0
-00020EE4: 09DF70D4          call    ffe17fb8                   ; upload geo model g0, object g13
+00020EE4: 09DF70D4          call    00017fb8                   ; upload geo model g0, object g13
 00020EE8: 8CF00606          lda     0x606,g14
 00020EEC: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00020EF0: 5CF01E00          mov     0x0,g14
@@ -31414,7 +31414,7 @@
 00020FF8: 5CF01E00          mov     0x0,g14
 00020FFC: 09000040          call    0002103c
 00021000: 8C803000 028478A0 lda     0x28478a0,g0
-00021008: 09DF6FB0          call    ffe17fb8                   ; upload geo model g0, object g13
+00021008: 09DF6FB0          call    00017fb8                   ; upload geo model g0, object g13
 0002100C: 8CF00606          lda     0x606,g14
 00021010: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00021014: 5CF01E00          mov     0x0,g14
@@ -31487,7 +31487,7 @@
 0002114C: 921F600C          st      r3,0xc(g13)
 00021150: 8C183000 00502000 lda     0x502000,r3
 00021158: 921F6010          st      r3,0x10(g13)
-0002115C: 09DF6630          call    ffe1778c                   ; convert xy position to sector
+0002115C: 09DF6630          call    0001778c                   ; convert xy position to sector
 00021160: C01F6004          ldib    0x4(g13),r3
 00021164: 7418C886          muli    0x6,r3,r3
 00021168: 8C203903 00237F3C lda     0x237f3c[r3*4],r4
@@ -31551,14 +31551,14 @@
 00021264: 13000020          bge     00021284
 00021268: 901F6044          ld      0x44(g13),r3
 0002126C: 9080DD06          ld      (r3)[r6*4],g0
-00021270: 09DF6D48          call    ffe17fb8                   ; upload geo model g0, object g13
+00021270: 09DF6D48          call    00017fb8                   ; upload geo model g0, object g13
 00021274: 8CF00606          lda     0x606,g14
 00021278: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 0002127C: 5CF01E00          mov     0x0,g14
 00021280: 0800001C          b       0002129c
 00021284: 901F6048          ld      0x48(g13),r3
 00021288: 9080DD06          ld      (r3)[r6*4],g0
-0002128C: 09DF6D2C          call    ffe17fb8                   ; upload geo model g0, object g13
+0002128C: 09DF6D2C          call    00017fb8                   ; upload geo model g0, object g13
 00021290: 8CF00606          lda     0x606,g14
 00021294: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00021298: 5CF01E00          mov     0x0,g14
@@ -31603,7 +31603,7 @@
 00021334: 5818C084          and     r4,r3,r3
 00021338: 90276014          ld      0x14(g13),r4
 0002133C: 90811D03          ld      (r4)[r3*4],g0
-00021340: 09DF6C78          call    ffe17fb8                   ; upload geo model g0, object g13
+00021340: 09DF6C78          call    00017fb8                   ; upload geo model g0, object g13
 00021344: 0A000000          ret
 }
 
@@ -31613,7 +31613,7 @@
 00021350: 921F600C          st      r3,0xc(g13)
 00021354: 8C183000 00502000 lda     0x502000,r3
 0002135C: 921F6010          st      r3,0x10(g13)
-00021360: 09DF642C          call    ffe1778c                   ; convert xy position to sector
+00021360: 09DF642C          call    0001778c                   ; convert xy position to sector
 00021364: 0A000000          ret
 }
 
@@ -31628,7 +31628,7 @@
 00021388: 5818C084          and     r4,r3,r3
 0002138C: 90276014          ld      0x14(g13),r4
 00021390: 90811D03          ld      (r4)[r3*4],g0
-00021394: 09DF6C24          call    ffe17fb8                   ; upload geo model g0, object g13
+00021394: 09DF6C24          call    00017fb8                   ; upload geo model g0, object g13
 00021398: 5C181E00          mov     0x0,r3
 0002139C: 90203000 0050175C ld      0x50175c,r4
 000213A4: 921EA160          st      r3,0x160(g10)
@@ -31655,7 +31655,7 @@
 
 0002140C: 8C803000 00221424 lda     0x221424,g0
 00021414: 8C883000 01000A28 lda     0x1000a28,g1
-0002141C: 09DF74F4          call    ffe18910                   ; print string g0 at g1
+0002141C: 09DF74F4          call    00018910                   ; print string g0 at g1
 00021420: 0800002C          b       0002144c
 
 ; raw data (string)
@@ -31838,7 +31838,7 @@
 00021704: 90803000 00503614 ld      0x503614,g0
 0002170C: 32042014          cmpobe  0x0,g0,0x21720
 
-00021710: 09DF8E2C          call    ffe1a53c
+00021710: 09DF8E2C          call    0001a53c
 
 00021714: 5C181E03          mov     0x3,r3
 00021718: 8A183000 00503628 stos    r3,0x503628
@@ -31920,14 +31920,14 @@
 00021834: 5818CE01          clrbit  0x1,r3,r3
 00021838: 921F6000          st      r3,0x0(g13)
 
-0002183C: 09DF5F50          call    ffe1778c                   ; convert xy position to sector
+0002183C: 09DF5F50          call    0001778c                   ; convert xy position to sector
 
 00021840: 9087601C          ld      0x1c(g13),g0
 00021844: 908F6020          ld      0x20(g13),g1
 00021848: 90976024          ld      0x24(g13),g2
 0002184C: 5CA01608          mov     r8,g4
 
-00021850: 09DF0898          call    ffe120e8
+00021850: 09DF0898          call    000120e8
 
 00021854: 92876020          st      g0,0x20(g13)
 00021858: 5C401612          mov     g2,r8
@@ -32107,7 +32107,7 @@
 00021ACC: 3020C0B4          bbc     4,r3,0x21b80               ; 00021B80
 
 00021AD0: 090003B0          call    00021e80
-00021AD4: 09DF5CB8          call    ffe1778c                   ; convert xy position to sector
+00021AD4: 09DF5CB8          call    0001778c                   ; convert xy position to sector
 
 00021AD8: 5C401E00          mov     0x0,r8
 00021ADC: 9087601C          ld      0x1c(g13),g0
@@ -32115,7 +32115,7 @@
 00021AE4: 90976024          ld      0x24(g13),g2
 00021AE8: 5CA01608          mov     r8,g4
 
-00021AEC: 09DF05FC          call    ffe120e8
+00021AEC: 09DF05FC          call    000120e8
 
 00021AF0: 92876020          st      g0,0x20(g13)
 00021AF4: 5C401612          mov     g2,r8
@@ -32267,7 +32267,7 @@
 00021D38: 5CF01E00          mov     0x0,g14
 00021D3C: 90876014          ld      0x14(g13),g0
 
-00021D40: 09DF6278          call    ffe17fb8                   ; upload geo model g0, object g13
+00021D40: 09DF6278          call    00017fb8                   ; upload geo model g0, object g13
 
 00021D44: 8CF00606          lda     0x606,g14
 00021D48: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
@@ -32387,7 +32387,7 @@
 00021F14: 921F600C          st      r3,0xc(g13)
 00021F18: 8C183000 00502000 lda     0x502000,r3
 00021F20: 921F6010          st      r3,0x10(g13)
-00021F24: 09DF5868          call    ffe1778c                   ; convert xy position to sector
+00021F24: 09DF5868          call    0001778c                   ; convert xy position to sector
 00021F28: 0A000000          ret
 }
 
@@ -32423,7 +32423,7 @@
 00021FA4: 5CF01E00          mov     0x0,g14
 00021FA8: 90276014          ld      0x14(g13),r4
 00021FAC: 90811D03          ld      (r4)[r3*4],g0
-00021FB0: 09DF6008          call    ffe17fb8                   ; upload geo model g0, object g13
+00021FB0: 09DF6008          call    00017fb8                   ; upload geo model g0, object g13
 00021FB4: 8CF00606          lda     0x606,g14
 00021FB8: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00021FBC: 5CF01E00          mov     0x0,g14
@@ -32436,7 +32436,7 @@
 00021FCC: 921F600C          st      r3,0xc(g13)
 00021FD0: 8C183000 00502000 lda     0x502000,r3
 00021FD8: 921F6010          st      r3,0x10(g13)
-00021FDC: 09DF57B0          call    ffe1778c                   ; convert xy position to sector
+00021FDC: 09DF57B0          call    0001778c                   ; convert xy position to sector
 00021FE0: 0A000000          ret
 }
 
@@ -32489,7 +32489,7 @@
 000220AC: 5CF01E00          mov     0x0,g14
 000220B0: 90276014          ld      0x14(g13),r4
 000220B4: 90811D03          ld      (r4)[r3*4],g0
-000220B8: 09DF5F00          call    ffe17fb8                   ; upload geo model g0, object g13
+000220B8: 09DF5F00          call    00017fb8                   ; upload geo model g0, object g13
 000220BC: 8CF00606          lda     0x606,g14
 000220C0: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 000220C4: 5CF01E00          mov     0x0,g14
@@ -32524,7 +32524,7 @@
 00022128: 92F6E050          st      g14,0x50(g11)              ; (copro matrix_push)
 0002212C: 5CF01E00          mov     0x0,g14
 00022130: 90876014          ld      0x14(g13),g0
-00022134: 09DF5E84          call    ffe17fb8                   ; upload geo model g0, object g13
+00022134: 09DF5E84          call    00017fb8                   ; upload geo model g0, object g13
 00022138: 8CF00606          lda     0x606,g14
 0002213C: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00022140: 5CF01E00          mov     0x0,g14
@@ -32543,7 +32543,7 @@
 00022164: 921F600C          st      r3,0xc(g13)
 00022168: 8C183000 00502000 lda     0x502000,r3
 00022170: 921F6010          st      r3,0x10(g13)
-00022174: 09DF5618          call    ffe1778c                   ; convert xy position to sector
+00022174: 09DF5618          call    0001778c                   ; convert xy position to sector
 00022178: 5C181E00          mov     0x0,r3
 0002217C: 921F6034          st      r3,0x34(g13)
 00022180: 0A000000          ret
@@ -32573,7 +32573,7 @@
 000221D0: 92B6DC1C          st      g6,(g11)[g12*1]
 000221D4: 5CF01E00          mov     0x0,g14
 000221D8: 90803918 00234D58 ld      0x234d58[g8*4],g0
-000221E0: 09DF5DD8          call    ffe17fb8                   ; upload geo model g0, object g13
+000221E0: 09DF5DD8          call    00017fb8                   ; upload geo model g0, object g13
 000221E4: 8CF00606          lda     0x606,g14
 000221E8: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 000221EC: 5CF01E00          mov     0x0,g14
@@ -32694,7 +32694,7 @@
 000223E8: 921F600C          st      r3,0xc(g13)
 000223EC: 8C183000 00502000 lda     0x502000,r3
 000223F4: 921F6010          st      r3,0x10(g13)
-000223F8: 09DF5394          call    ffe1778c                   ; convert xy position to sector
+000223F8: 09DF5394          call    0001778c                   ; convert xy position to sector
 000223FC: 0A000000          ret
 }
 
@@ -32806,7 +32806,7 @@
 000225D8: 921F6010          st      r3,0x10(g13)
 000225DC: 8C183000 41D00000 lda     0x41d00000,r3
 000225E4: 921F6034          st      r3,0x34(g13)
-000225E8: 09DF51A4          call    ffe1778c                   ; convert xy position to sector
+000225E8: 09DF51A4          call    0001778c                   ; convert xy position to sector
 000225EC: 0A000000          ret
 }
 
@@ -32855,7 +32855,7 @@
 000226B0: 9236DC1C          st      r6,(g11)[g12*1]
 000226B4: 5CF01E00          mov     0x0,g14
 000226B8: 90803907 00234D58 ld      0x234d58[r7*4],g0
-000226C0: 09DF58F8          call    ffe17fb8                   ; upload geo model g0, object g13
+000226C0: 09DF58F8          call    00017fb8                   ; upload geo model g0, object g13
 000226C4: 8CF00606          lda     0x606,g14
 000226C8: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 000226CC: 5CF01E00          mov     0x0,g14
@@ -32870,7 +32870,7 @@
 000226E8: 921F6010          st      r3,0x10(g13)
 000226EC: 5C181E00          mov     0x0,r3
 000226F0: 921F6040          st      r3,0x40(g13)
-000226F4: 09DF5098          call    ffe1778c                   ; convert xy position to sector
+000226F4: 09DF5098          call    0001778c                   ; convert xy position to sector
 000226F8: 0A000000          ret
 }
 
@@ -32940,7 +32940,7 @@
 00022814: 923EDC1C          st      r7,(g11)[g12*1]
 00022818: 5CF01E00          mov     0x0,g14
 0002281C: 90803908 00234CD8 ld      0x234cd8[r8*4],g0
-00022824: 09DF5794          call    ffe17fb8                   ; upload geo model g0, object g13
+00022824: 09DF5794          call    00017fb8                   ; upload geo model g0, object g13
 00022828: 8CF00606          lda     0x606,g14
 0002282C: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00022830: 5CF01E00          mov     0x0,g14
@@ -33038,7 +33038,7 @@
 00022998: 926F601C          st      r13,0x1c(g13)
 0002299C: 92776020          st      r14,0x20(g13)
 000229A0: 927F6024          st      r15,0x24(g13)
-000229A4: 09DF4DE8          call    ffe1778c                   ; convert xy position to sector
+000229A4: 09DF4DE8          call    0001778c                   ; convert xy position to sector
 000229A8: 921F601C          st      r3,0x1c(g13)
 000229AC: 92276020          st      r4,0x20(g13)
 000229B0: 922F6024          st      r5,0x24(g13)
@@ -33053,7 +33053,7 @@
 000229D4: 90876034          ld      0x34(g13),g0
 000229D8: 908F6038          ld      0x38(g13),g1
 000229DC: 9097603C          ld      0x3c(g13),g2
-000229E0: 09DEF708          call    ffe120e8
+000229E0: 09DEF708          call    000120e8
 000229E4: 92876038          st      g0,0x38(g13)
 000229E8: 8CF00505          lda     0x505,g14
 000229EC: 92F6E050          st      g14,0x50(g11)              ; (copro matrix_push)
@@ -33089,7 +33089,7 @@
 00022A70: 9236DC1C          st      r6,(g11)[g12*1]
 00022A74: 5CF01E00          mov     0x0,g14
 00022A78: 90803908 00234CD8 ld      0x234cd8[r8*4],g0
-00022A80: 09DF5538          call    ffe17fb8                   ; upload geo model g0, object g13
+00022A80: 09DF5538          call    00017fb8                   ; upload geo model g0, object g13
 00022A84: 8CF00606          lda     0x606,g14
 00022A88: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00022A8C: 5CF01E00          mov     0x0,g14
@@ -33162,9 +33162,9 @@
 00022B70: 921EDC1C          st      r3,(g11)[g12*1]
 00022B74: 5CF01E00          mov     0x0,g14
 00022B78: 90803908 00234CD8 ld      0x234cd8[r8*4],g0
-00022B80: 09DF5438          call    ffe17fb8                   ; upload geo model g0, object g13
+00022B80: 09DF5438          call    00017fb8                   ; upload geo model g0, object g13
 00022B84: 8C503000 3F800000 lda     0x3f800000,r10
-00022B80: 09DF5438          call    ffe17fb8
+00022B80: 09DF5438          call    00017fb8
 00022B90: 5C381E00          mov     0x0,r7
 00022B94: 8CF03000 00001212 lda     0x1212,g14
 00022B9C: 92F6E120          st      g14,0x120(g11)             ; (copro matrix_trans)
@@ -33173,7 +33173,7 @@
 00022BA8: 9236DC1C          st      r6,(g11)[g12*1]
 00022BAC: 5CF01E00          mov     0x0,g14
 00022BB0: 90803908 00234CD8 ld      0x234cd8[r8*4],g0
-00022BB8: 09DF5400          call    ffe17fb8                   ; upload geo model g0, object g13
+00022BB8: 09DF5400          call    00017fb8                   ; upload geo model g0, object g13
 00022BBC: 8CF00606          lda     0x606,g14
 00022BC0: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00022BC4: 5CF01E00          mov     0x0,g14
@@ -33236,7 +33236,7 @@
 00022CD8: 921B6084          st      r3,0x84(r13)
 00022CDC: 5C801E00          mov     0x0,g0
 00022CE0: 90483000 00501220 ld      0x501220,r9
-00022CE8: 09DEC4F4          call    ffe0f1dc
+00022CE8: 09DEC4F4          call    0000f1dc
 00022CEC: 90183910 02818688 ld      0x2818688[g0*4],r3
 00022CF4: 921A6258          st      r3,0x258(r9)
 00022CF8: 5C201E01          mov     0x1,r4
@@ -33247,7 +33247,7 @@
 00022D10: 0A000000          ret
 00022D14: 8C803000 00222D2C lda     0x222d2c,g0
 00022D1C: 8C883000 01000C20 lda     0x1000c20,g1
-00022D24: 09DF5E54          call    ffe18b78                   ; print hiscore string g0 to g1
+00022D24: 09DF5E54          call    00018b78                   ; print hiscore string g0 to g1
 00022D28: 08000008          b       00022d30
 00022D2C: 00000031          ? 00:0 00000031 0 0
 00022D30: 5C201E01          mov     0x1,r4
@@ -33258,7 +33258,7 @@
 00022D48: 0A000000          ret
 00022D4C: 8C803000 00222D64 lda     0x222d64,g0
 00022D54: 8C883000 01000C20 lda     0x1000c20,g1
-00022D5C: 09DF5E1C          call    ffe18b78                   ; print hiscore string g0 to g1
+00022D5C: 09DF5E1C          call    00018b78                   ; print hiscore string g0 to g1
 00022D60: 08000008          b       00022d68
 00022D64: 00000032          ? 00:0 00000032 0 0
 00022D68: 5C201E01          mov     0x1,r4
@@ -33269,7 +33269,7 @@
 00022D80: 0A000000          ret
 00022D84: 8C803000 00222D9C lda     0x222d9c,g0
 00022D8C: 8C883000 01000C20 lda     0x1000c20,g1
-00022D94: 09DF5DE4          call    ffe18b78                   ; print hiscore string g0 to g1
+00022D94: 09DF5DE4          call    00018b78                   ; print hiscore string g0 to g1
 00022D98: 08000008          b       00022da0
 00022D9C: 00000033          ? 00:0 00000033 0 0
 00022DA0: 5C201E01          mov     0x1,r4
@@ -33280,7 +33280,7 @@
 00022DB8: 0A000000          ret
 00022DBC: 8C803000 00222DD4 lda     0x222dd4,g0
 00022DC4: 8C883000 01000C20 lda     0x1000c20,g1
-00022DCC: 09DF5DAC          call    ffe18b78                   ; print hiscore string g0 to g1
+00022DCC: 09DF5DAC          call    00018b78                   ; print hiscore string g0 to g1
 00022DD0: 08000008          b       00022dd8
 00022DD4: 00000034          ? 00:0 00000034 0 0
 00022DD8: 5C201E01          mov     0x1,r4
@@ -33291,7 +33291,7 @@
 00022DF0: 0A000000          ret
 00022DF4: 8C803000 00222E0C lda     0x222e0c,g0
 00022DFC: 8C883000 01000C20 lda     0x1000c20,g1
-00022E04: 09DF5D74          call    ffe18b78                   ; print hiscore string g0 to g1
+00022E04: 09DF5D74          call    00018b78                   ; print hiscore string g0 to g1
 00022E08: 08000008          b       00022e10
 00022E0C: 00000035          ? 00:0 00000035 0 0
 00022E10: 5C201E01          mov     0x1,r4
@@ -33302,7 +33302,7 @@
 00022E28: 0A000000          ret
 00022E2C: 8C803000 00222E44 lda     0x222e44,g0
 00022E34: 8C883000 01000C20 lda     0x1000c20,g1
-00022E3C: 09DF5D3C          call    ffe18b78                   ; print hiscore string g0 to g1
+00022E3C: 09DF5D3C          call    00018b78                   ; print hiscore string g0 to g1
 00022E40: 08000008          b       00022e48
 00022E44: 00000036          ? 00:0 00000036 0 0
 00022E48: 5C201E01          mov     0x1,r4
@@ -33313,7 +33313,7 @@
 00022E60: 0A000000          ret
 00022E64: 8C803000 00222E7C lda     0x222e7c,g0
 00022E6C: 8C883000 01000C20 lda     0x1000c20,g1
-00022E74: 09DF5D04          call    ffe18b78                   ; print hiscore string g0 to g1
+00022E74: 09DF5D04          call    00018b78                   ; print hiscore string g0 to g1
 00022E78: 08000008          b       00022e80
 00022E7C: 00000037          ? 00:0 00000037 0 0
 00022E80: 5C201E01          mov     0x1,r4
@@ -33324,7 +33324,7 @@
 00022E98: 0A000000          ret
 00022E9C: 8C803000 00222EB4 lda     0x222eb4,g0
 00022EA4: 8C883000 01000C20 lda     0x1000c20,g1
-00022EAC: 09DF5CCC          call    ffe18b78                   ; print hiscore string g0 to g1
+00022EAC: 09DF5CCC          call    00018b78                   ; print hiscore string g0 to g1
 00022EB0: 08000008          b       00022eb8
 00022EB4: 00000038          ? 00:0 00000038 0 0
 00022EB8: 5C201E01          mov     0x1,r4
@@ -33354,7 +33354,7 @@
 00022F14: 5918CE07          shlo    0x7,r3,r3
 00022F18: 598C4003          addo    r3,g1,g1
 00022F1C: 90842004          ld      0x4(g0),g0
-00022F20: 09DF68D4          call    ffe197f4                   ; copy tilemap data g0 to g1
+00022F20: 09DF68D4          call    000197f4                   ; copy tilemap data g0 to g1
 
 ; copy graphics (with the V.R. button) based on country
 00022F24: 88803000 005FE5BA ldos    0x5fe5ba,g0                ; country (0 usa, 1 jpn, 2 exp)
@@ -33368,7 +33368,7 @@
 00022F50: 5918CE07          shlo    0x7,r3,r3
 00022F54: 598C4003          addo    r3,g1,g1
 00022F58: 90842004          ld      0x4(g0),g0
-00022F5C: 09DF6898          call    ffe197f4                   ; copy tilemap data g0 to g1
+00022F5C: 09DF6898          call    000197f4                   ; copy tilemap data g0 to g1
 
 00022F60: 0A000000          ret
 }
@@ -33404,7 +33404,7 @@
 00022FCC: 598C4003          addo    r3,g1,g1
 00022FD0: 59194E07          shlo    0x7,r5,r3
 00022FD4: 598C4003          addo    r3,g1,g1
-00022FD8: 09DF681C          call    ffe197f4                   ; copy tilemap data g0 to g1
+00022FD8: 09DF681C          call    000197f4                   ; copy tilemap data g0 to g1
 
 00022FDC: 0A000000          ret
 }
@@ -33423,8 +33423,8 @@
 
 {
 ; object handler 00222FF8 (logo bounce handler init)
-00022FF8: 09DF9024          call    ffe1c01c                   ; reset tilemap 0
-00022FFC: 09DF9094          call    ffe1c090                   ; reset tilemap 1
+00022FF8: 09DF9024          call    0001c01c                   ; reset tilemap 0
+00022FFC: 09DF9094          call    0001c090                   ; reset tilemap 1
 
 00023000: 5C181E00          mov     0x0,r3
 00023004: CA1F6036          stis    r3,0x36(g13)               ; zero substate
@@ -33474,15 +33474,15 @@
 ; object handler 00223068 - 0
 0002309C: 8C883000 01004000 lda     0x1004000,g1
 000230A4: 8C803000 0282FD4C lda     0x282fd4c,g0
-000230AC: 09DF6708          call    ffe197b4                   ; clear tilemap data g0 at g1
+000230AC: 09DF6708          call    000197b4                   ; clear tilemap data g0 at g1
 
 000230B0: 8C883000 01000380 lda     0x1000380,g1
 000230B8: 8C803000 02824544 lda     0x2824544,g0
-000230C0: 09DF6734          call    ffe197f4                   ; copy tilemap data g0 to g1
+000230C0: 09DF6734          call    000197f4                   ; copy tilemap data g0 to g1
 
 000230C4: 8C883000 01004000 lda     0x1004000,g1
 000230CC: 8C803000 0281EC72 lda     0x281ec72,g0
-000230D4: 09DF6720          call    ffe197f4                   ; copy tilemap data g0 to g1
+000230D4: 09DF6720          call    000197f4                   ; copy tilemap data g0 to g1
 
 000230D8: C81F6036          ldis    0x36(g13),r3
 000230DC: 5918C881          addi    0x1,r3,r3
@@ -33533,8 +33533,8 @@
 0002315C: C81F6036          ldis    0x36(g13),r3
 00023160: 5918C881          addi    0x1,r3,r3
 00023164: CA1F6036          stis    r3,0x36(g13)               ; increase substate
-00023168: 09DE2DDC          call    ffe05f44                   ; print logo and credits
-0002316C: 09DDE2E0          call    ffe0144c                   ; init t-ram0 (based on track)
+00023168: 09DE2DDC          call    00005f44                   ; print logo and credits
+0002316C: 09DDE2E0          call    0000144c                   ; init t-ram0 (based on track)
 00023170: 0A000000          ret
 
 00023174: C81F603A          ldis    0x3a(g13),r3
@@ -33570,7 +33570,7 @@
 000231CC: C81F6036          ldis    0x36(g13),r3
 000231D0: 5918C881          addi    0x1,r3,r3
 000231D4: CA1F6036          stis    r3,0x36(g13)
-000231D8: 09DDE274          call    ffe0144c                   ; init t-ram0 (based on track)
+000231D8: 09DDE274          call    0000144c                   ; init t-ram0 (based on track)
 000231DC: 0A000000          ret
 }
 
@@ -33580,7 +33580,7 @@
 000231E4: 5A18CB81          cmpdeci 0x1,r3,r3
 000231E8: CA1F6034          stis    r3,0x34(g13)
 000231EC: 14000004          bl      000231f0
-000231F0: 09DE2C40          call    ffe05e30                   ; print advertise footer
+000231F0: 09DE2C40          call    00005e30                   ; print advertise footer
 000231F4: 0A000000          ret
 }
 
@@ -33602,7 +33602,7 @@
 00023234: 5918CE07          shlo    0x7,r3,r3                  ; r3 << 7
 00023238: 598C4003          addo    r3,g1,g1                   ; g1 += r3					y?
 0002323C: 90842004          ld      0x4(g0),g0                 ; read4 g0 from g0+0x4
-00023240: 09DF65B4          call    ffe197f4                   ; copy tilemap data g0 to g1 ("LINK SYSTEM")
+00023240: 09DF65B4          call    000197f4                   ; copy tilemap data g0 to g1 ("LINK SYSTEM")
 
 00023244: 88803000 005FE5BA ldos    0x5fe5ba,g0                ; read2 g0 from 0x5fe5ba ( country )
 0002324C: 58840881          and     0x1,g0,g0
@@ -33615,7 +33615,7 @@
 00023270: 5918CE07          shlo    0x7,r3,r3
 00023274: 598C4003          addo    r3,g1,g1
 00023278: 90842004          ld      0x4(g0),g0
-0002327C: 09DF6578          call    ffe197f4                   ; copy tilemap data g0 to g1 ("UP TO")
+0002327C: 09DF6578          call    000197f4                   ; copy tilemap data g0 to g1 ("UP TO")
 
 00023280: 88803000 005FE5BA ldos    0x5fe5ba,g0                ; read2 g0 from 0x5fe5ba ( country )
 00023288: 58840881          and     0x1,g0,g0
@@ -33628,7 +33628,7 @@
 000232AC: 5918CE07          shlo    0x7,r3,r3
 000232B0: 598C4003          addo    r3,g1,g1
 000232B4: 90842004          ld      0x4(g0),g0
-000232B8: 09DF653C          call    ffe197f4                   ; copy tilemap data g0 to g1 ("RACERS WANTED")
+000232B8: 09DF653C          call    000197f4                   ; copy tilemap data g0 to g1 ("RACERS WANTED")
 
 000232BC: 88183000 005FE5BA ldos    0x5fe5ba,r3                ; read2 g0 from 0x5fe5ba ( country )
 000232C4: 5A007083          cmpi    r3,0x1
@@ -33651,16 +33651,16 @@
 ; no link
 00023304: 8C883000 010000DC lda     0x10000dc,g1
 0002330C: 8C803000 02825CB6 lda     0x2825cb6,g0
-00023314: 09DF64E0          call    ffe197f4                   ; copy tilemap data g0 to g1 ("AM2 Logo")
+00023314: 09DF64E0          call    000197f4                   ; copy tilemap data g0 to g1 ("AM2 Logo")
 00023318: 0A000000          ret
 }
 
 {
 ; print am2 logo
-0002331C: 09DF8D00          call    ffe1c01c                   ; reset tilemap 0
+0002331C: 09DF8D00          call    0001c01c                   ; reset tilemap 0
 00023320: 8C883000 010000DC lda     0x10000dc,g1
 00023328: 8C803000 02825CB6 lda     0x2825cb6,g0
-00023330: 09DF64C4          call    ffe197f4                   ; copy tilemap data g0 to g1 ("AM2 Logo")
+00023330: 09DF64C4          call    000197f4                   ; copy tilemap data g0 to g1 ("AM2 Logo")
 00023334: 0A000000          ret
 }
 
@@ -33682,10 +33682,10 @@
 00023380: 90583905 02813520 ld      0x2813520[r5*4],r11
 00023388: 925F6034          st      r11,0x34(g13)
 0002338C: 0900028C          call    00023618
-00023390: 09DF4F00          call    ffe18290
+00023390: 09DF4F00          call    00018290
 00023394: 8C883000 01004000 lda     0x1004000,g1
 0002339C: 8C803000 02822DF8 lda     0x2822df8,g0
-000233A4: 09DF6450          call    ffe197f4                   ; copy tilemap data g0 to g1
+000233A4: 09DF6450          call    000197f4                   ; copy tilemap data g0 to g1
 000233A8: 88803000 005FE5BA ldos    0x5fe5ba,g0
 000233B0: 58840881          and     0x1,g0,g0
 000233B4: 8C803990 00234C28 lda     0x234c28[g0*8],g0
@@ -33697,7 +33697,7 @@
 000233D4: 5918CE07          shlo    0x7,r3,r3
 000233D8: 598C4003          addo    r3,g1,g1
 000233DC: 90842004          ld      0x4(g0),g0
-000233E0: 09DF6414          call    ffe197f4                   ; copy tilemap data g0 to g1
+000233E0: 09DF6414          call    000197f4                   ; copy tilemap data g0 to g1
 000233E4: 88803000 005FE5BA ldos    0x5fe5ba,g0
 000233EC: 58840881          and     0x1,g0,g0
 000233F0: 8C803990 00234C38 lda     0x234c38[g0*8],g0
@@ -33709,7 +33709,7 @@
 00023410: 5918CE07          shlo    0x7,r3,r3
 00023414: 598C4003          addo    r3,g1,g1
 00023418: 90842004          ld      0x4(g0),g0
-0002341C: 09DF63D8          call    ffe197f4                   ; copy tilemap data g0 to g1
+0002341C: 09DF63D8          call    000197f4                   ; copy tilemap data g0 to g1
 00023420: 88803000 005FE5BA ldos    0x5fe5ba,g0
 00023428: 58840881          and     0x1,g0,g0
 0002342C: 8C803990 00234C48 lda     0x234c48[g0*8],g0
@@ -33721,7 +33721,7 @@
 0002344C: 5918CE07          shlo    0x7,r3,r3
 00023450: 598C4003          addo    r3,g1,g1
 00023454: 90842004          ld      0x4(g0),g0
-00023458: 09DF639C          call    ffe197f4                   ; copy tilemap data g0 to g1
+00023458: 09DF639C          call    000197f4                   ; copy tilemap data g0 to g1
 0002345C: 0A000000          ret
 
 00023460: 90583000 00540008 ld      0x540008,r11
@@ -33741,11 +33741,11 @@
 000234A0: 90276044          ld      0x44(g13),r4
 000234A4: 5918C084          addi    r4,r3,r3
 000234A8: 921F6038          st      r3,0x38(g13)
-000234AC: 09DF4E50          call    ffe182fc
+000234AC: 09DF4E50          call    000182fc
 000234B0: 09000104          call    000235b4
 000234B4: 090001B8          call    0002366c
 000234B8: 090006E8          call    00023ba0
-000234BC: 09DE2978          call    ffe05e34
+000234BC: 09DE2978          call    00005e34
 000234C0: 090000A4          call    00023564
 000234C4: 09000008          call    000234cc
 000234C8: 0A000000          ret
@@ -33765,7 +33765,7 @@
 00023510: 5918CE07          shlo    0x7,r3,r3
 00023514: 598C4003          addo    r3,g1,g1
 00023518: 90842004          ld      0x4(g0),g0
-0002351C: 09DF62D8          call    ffe197f4                   ; copy tilemap data g0 to g1
+0002351C: 09DF62D8          call    000197f4                   ; copy tilemap data g0 to g1
 00023520: 0A000000          ret
 00023524: 88803000 005FE5BA ldos    0x5fe5ba,g0
 0002352C: 58840881          and     0x1,g0,g0
@@ -33778,7 +33778,7 @@
 00023550: 5918CE07          shlo    0x7,r3,r3
 00023554: 598C4003          addo    r3,g1,g1
 00023558: 90842004          ld      0x4(g0),g0
-0002355C: 09DF6258          call    ffe197b4                   ; clear tilemap data g0 at g1
+0002355C: 09DF6258          call    000197b4                   ; clear tilemap data g0 at g1
 00023560: 0A000000          ret
 00023564: 90183000 005FE140 ld      0x5fe140,r3
 0002356C: 8C203000 000100E0 lda     0x100e0,r4
@@ -33792,7 +33792,7 @@
 00023590: 921F6044          st      r3,0x44(g13)
 00023594: 0A000000          ret
 00023598: 8C803000 00BE1A10 lda     0xbe1a10,g0
-000235A0: 09DF6FB4          call    ffe1a554                   ; push g0 to serial buffer
+000235A0: 09DF6FB4          call    0001a554                   ; push g0 to serial buffer
 000235A4: 901F6000          ld      0x0(g13),r3
 000235A8: 5818CE1F          clrbit  0x1f,r3,r3
 000235AC: 921F6000          st      r3,0x0(g13)
@@ -33963,7 +33963,7 @@
 00023894: 9276DC1C          st      r14,(g11)[g12*1]
 00023898: 5CF01E00          mov     0x0,g14
 0002389C: 9080390C 0281350C ld      0x281350c[r12*4],g0
-000238A4: 09DF4714          call    ffe17fb8                   ; upload geo model g0, object g13
+000238A4: 09DF4714          call    00017fb8                   ; upload geo model g0, object g13
 000238A8: 8CF00606          lda     0x606,g14
 000238AC: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 000238B0: 5CF01E00          mov     0x0,g14
@@ -34049,11 +34049,11 @@
 00023A20: 14000008          bl      00023a28
 00023A24: 5918C104          subo    r4,r3,r3
 00023A28: 90803903 0281345C ld      0x281345c[r3*4],g0
-00023A30: 09DF4588          call    ffe17fb8                   ; upload geo model g0, object g13
+00023A30: 09DF4588          call    00017fb8                   ; upload geo model g0, object g13
 00023A34: 9080390B 028133FC ld      0x28133fc[r11*4],g0
-00023A3C: 09DF457C          call    ffe17fb8                   ; upload geo model g0, object g13
+00023A3C: 09DF457C          call    00017fb8                   ; upload geo model g0, object g13
 00023A40: 8C803000 02849CE0 lda     0x2849ce0,g0
-00023A48: 09DF4570          call    ffe17fb8                   ; upload geo model g0, object g13
+00023A48: 09DF4570          call    00017fb8                   ; upload geo model g0, object g13
 00023A4C: 8CF00606          lda     0x606,g14
 00023A50: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00023A54: 5CF01E00          mov     0x0,g14
@@ -34061,13 +34061,13 @@
 00023A5C: 90583000 00540058 ld      0x540058,r11
 00023A64: 585AC887          and     0x7,r11,r11
 00023A68: 8C803000 02849E98 lda     0x2849e98,g0
-00023A70: 09DF4548          call    ffe17fb8                   ; upload geo model g0, object g13
+00023A70: 09DF4548          call    00017fb8                   ; upload geo model g0, object g13
 00023A74: 9080390B 0281341C ld      0x281341c[r11*4],g0
-00023A7C: 09DF453C          call    ffe17fb8                   ; upload geo model g0, object g13
+00023A7C: 09DF453C          call    00017fb8                   ; upload geo model g0, object g13
 00023A80: 9080390B 0281343C ld      0x281343c[r11*4],g0
-00023A88: 09DF4530          call    ffe17fb8                   ; upload geo model g0, object g13
+00023A88: 09DF4530          call    00017fb8                   ; upload geo model g0, object g13
 00023A8C: 8C803000 02849E84 lda     0x2849e84,g0
-00023A94: 09DF4524          call    ffe17fb8                   ; upload geo model g0, object g13
+00023A94: 09DF4524          call    00017fb8                   ; upload geo model g0, object g13
 00023A98: 8CF00606          lda     0x606,g14
 00023A9C: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00023AA0: 5CF01E00          mov     0x0,g14
@@ -34082,11 +34082,11 @@
 00023AD0: 921EDC1C          st      r3,(g11)[g12*1]
 00023AD4: 5CF01E00          mov     0x0,g14
 00023AD8: 8C803000 02849970 lda     0x2849970,g0
-00023AE0: 09DF44D8          call    ffe17fb8                   ; upload geo model g0, object g13
+00023AE0: 09DF44D8          call    00017fb8                   ; upload geo model g0, object g13
 00023AE4: 9080390B 028133FC ld      0x28133fc[r11*4],g0
-00023AEC: 09DF44CC          call    ffe17fb8                   ; upload geo model g0, object g13
+00023AEC: 09DF44CC          call    00017fb8                   ; upload geo model g0, object g13
 00023AF0: 8C803000 02849CE0 lda     0x2849ce0,g0
-00023AF8: 09DF44C0          call    ffe17fb8                   ; upload geo model g0, object g13
+00023AF8: 09DF44C0          call    00017fb8                   ; upload geo model g0, object g13
 00023AFC: 8CF00606          lda     0x606,g14
 00023B00: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00023B04: 5CF01E00          mov     0x0,g14
@@ -34109,15 +34109,15 @@
 00023B54: 9226DC1C          st      r4,(g11)[g12*1]
 00023B58: 5CF01E00          mov     0x0,g14
 00023B5C: 5C801E03          mov     0x3,g0
-00023B60: 09DF4448          call    ffe17fa8                   ; setup copro (set mode g0)
+00023B60: 09DF4448          call    00017fa8                   ; setup copro (set mode g0)
 00023B64: 90803903 0281345C ld      0x281345c[r3*4],g0
-00023B6C: 09DF444C          call    ffe17fb8                   ; upload geo model g0, object g13
+00023B6C: 09DF444C          call    00017fb8                   ; upload geo model g0, object g13
 00023B70: 9080390B 028133FC ld      0x28133fc[r11*4],g0
-00023B78: 09DF4440          call    ffe17fb8                   ; upload geo model g0, object g13
+00023B78: 09DF4440          call    00017fb8                   ; upload geo model g0, object g13
 00023B7C: 8C803000 02849CE0 lda     0x2849ce0,g0
-00023B84: 09DF4434          call    ffe17fb8                   ; upload geo model g0, object g13
+00023B84: 09DF4434          call    00017fb8                   ; upload geo model g0, object g13
 00023B88: 5C801E01          mov     0x1,g0
-00023B8C: 09DF441C          call    ffe17fa8                   ; setup copro (set mode g0)
+00023B8C: 09DF441C          call    00017fa8                   ; setup copro (set mode g0)
 00023B90: 8CF00606          lda     0x606,g14
 00023B94: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00023B98: 5CF01E00          mov     0x0,g14
@@ -34148,11 +34148,11 @@
 00023BFC: 12000014          be      00023c10
 
 00023C00: 9080390A 028133D4 ld      0x28133d4[r10*4],g0
-00023C08: 09DF5BEC          call    ffe197f4                   ; copy tilemap data g0 to g1
+00023C08: 09DF5BEC          call    000197f4                   ; copy tilemap data g0 to g1
 00023C0C: 08000010          b       00023c1c
 
 00023C10: 90803000 028133D4 ld      0x28133d4,g0
-00023C18: 09DF5B9C          call    ffe197b4                   ; clear tilemap data g0 at g1
+00023C18: 09DF5B9C          call    000197b4                   ; clear tilemap data g0 at g1
 
 00023C1C: 5C881608          mov     r8,g1
 00023C20: 598C4908          subo    0x8,g1,g1
@@ -34168,10 +34168,10 @@
 
 00023C40: 8C883000 01000B8E lda     0x1000b8e,g1
 00023C48: 8C803000 02834F52 lda     0x2834f52,g0
-00023C50: 09DF5BA4          call    ffe197f4                   ; copy tilemap data g0 to g1
+00023C50: 09DF5BA4          call    000197f4                   ; copy tilemap data g0 to g1
 00023C54: 8C883000 01000C00 lda     0x1000c00,g1
 00023C5C: 8C803000 0283527C lda     0x283527c,g0
-00023C64: 09DF5B90          call    ffe197f4                   ; copy tilemap data g0 to g1
+00023C64: 09DF5B90          call    000197f4                   ; copy tilemap data g0 to g1
 00023C68: 90183000 00540058 ld      0x540058,r3
 00023C70: 5818C89F          and     0x1f,r3,r3
 00023C74: 3E78E074          cmpible 0xf,r3,0x23ce8
@@ -34183,25 +34183,25 @@
 00023C94: 3D00E088          cmpibne 0x0,r3,0x23d1c
 00023C98: 8C883000 010009A6 lda     0x10009a6,g1
 00023CA0: 8C803000 02825DE2 lda     0x2825de2,g0
-00023CA8: 09DF5B4C          call    ffe197f4                   ; copy tilemap data g0 to g1
+00023CA8: 09DF5B4C          call    000197f4                   ; copy tilemap data g0 to g1
 00023CAC: 08000070          b       00023d1c
 00023CB0: C8183000 00501850 ldis    0x501850,r3
 00023CB8: 3D00E064          cmpibne 0x0,r3,0x23d1c
 00023CBC: 8C883000 010009A6 lda     0x10009a6,g1
 00023CC4: 8C803000 02825DE2 lda     0x2825de2,g0
-00023CCC: 09DF5AE8          call    ffe197b4                   ; clear tilemap data g0 at g1
+00023CCC: 09DF5AE8          call    000197b4                   ; clear tilemap data g0 at g1
 00023CD0: 8C883000 010009A8 lda     0x10009a8,g1
 00023CD8: 8C803000 02825EB6 lda     0x2825eb6,g0
-00023CE0: 09DF5B14          call    ffe197f4                   ; copy tilemap data g0 to g1
+00023CE0: 09DF5B14          call    000197f4                   ; copy tilemap data g0 to g1
 00023CE4: 08000038          b       00023d1c
 00023CE8: C8183000 00501850 ldis    0x501850,r3
 00023CF0: 3D00E02C          cmpibne 0x0,r3,0x23d1c
 00023CF4: 8C883000 010009A8 lda     0x10009a8,g1
 00023CFC: 8C803000 02825EB6 lda     0x2825eb6,g0
-00023D04: 09DF5AB0          call    ffe197b4                   ; clear tilemap data g0 at g1
+00023D04: 09DF5AB0          call    000197b4                   ; clear tilemap data g0 at g1
 00023D08: 8C883000 010009A6 lda     0x10009a6,g1
 00023D10: 8C803000 02825DE2 lda     0x2825de2,g0
-00023D18: 09DF5A9C          call    ffe197b4                   ; clear tilemap data g0 at g1
+00023D18: 09DF5A9C          call    000197b4                   ; clear tilemap data g0 at g1
 00023D1C: 90203000 0100A000 ld      0x100a000,r4
 00023D24: 5821098F          setbit  0xf,r4,r4
 00023D28: 92203000 0100A000 st      r4,0x100a000
@@ -34254,7 +34254,7 @@
 00023E20: 5918CE07          shlo    0x7,r3,r3
 00023E24: 598C4003          addo    r3,g1,g1
 00023E28: 90842004          ld      0x4(g0),g0
-00023E2C: 09DF59C8          call    ffe197f4                   ; copy tilemap data g0 to g1
+00023E2C: 09DF59C8          call    000197f4                   ; copy tilemap data g0 to g1
 00023E30: 0A000000          ret
 00023E34: 88803000 005FE5BA ldos    0x5fe5ba,g0
 00023E3C: 58840881          and     0x1,g0,g0
@@ -34267,7 +34267,7 @@
 00023E60: 5918CE07          shlo    0x7,r3,r3
 00023E64: 598C4003          addo    r3,g1,g1
 00023E68: 90842004          ld      0x4(g0),g0
-00023E6C: 09DF5948          call    ffe197b4                   ; clear tilemap data g0 at g1
+00023E6C: 09DF5948          call    000197b4                   ; clear tilemap data g0 at g1
 00023E70: 0A000000          ret
 
 {
@@ -34280,9 +34280,9 @@
 00023E90: CA1F6006          stis    r3,0x6(g13)
 00023E94: 90183000 00501A98 ld      0x501a98,r3
 00023E9C: 90803903 02810F9C ld      0x2810f9c[r3*4],g0
-00023EA4: 09DF66B0          call    ffe1a554                   ; push g0 to serial buffer
-00023EA8: 09DF67B8          call    ffe1a660                   ; send be1700 to audio
-00023EAC: 09DF6860          call    ffe1a70c                   ; send be1900 to audio
+00023EA4: 09DF66B0          call    0001a554                   ; push g0 to serial buffer
+00023EA8: 09DF67B8          call    0001a660                   ; send be1700 to audio
+00023EAC: 09DF6860          call    0001a70c                   ; send be1900 to audio
 00023EB0: 8C783000 02810E54 lda     0x2810e54,r15
 00023EB8: 59701901          subo    0x1,0x0,r14
 
@@ -34346,7 +34346,7 @@
 00023F98: 5CF01E00          mov     0x0,g14
 00023F9C: 9083E00C          ld      0xc(r15),g0
 
-00023FA0: 09DF4018          call    ffe17fb8                   ; upload geo model g0, object g13
+00023FA0: 09DF4018          call    00017fb8                   ; upload geo model g0, object g13
 
 00023FA4: 597BC810          addo    0x10,r15,r15
 00023FA8: 08FFFF90          b       00023f38
@@ -34359,8 +34359,8 @@
 
 {
 ; object handler 00223FBC
-00023FBC: 09DF66A4          call    ffe1a660                   ; send be1700 to audio
-00023FC0: 09DF674C          call    ffe1a70c                   ; send be1900 to audio
+00023FBC: 09DF66A4          call    0001a660                   ; send be1700 to audio
+00023FC0: 09DF674C          call    0001a70c                   ; send be1900 to audio
 00023FC4: 8C183000 005021E0 lda     0x5021e0,r3
 00023FCC: 921F6010          st      r3,0x10(g13)
 00023FD0: 5C381E10          mov     0x10,r7
@@ -34392,7 +34392,7 @@
 0002403C: 921F6080          st      r3,0x80(g13)
 00024040: 5C181E00          mov     0x0,r3
 00024044: 8C803000 00AE1002 lda     0xae1002,g0
-0002404C: 09DF6508          call    ffe1a554                   ; push g0 to serial buffer
+0002404C: 09DF6508          call    0001a554                   ; push g0 to serial buffer
 00024050: 0A000000          ret
 
 {
@@ -34543,7 +34543,7 @@
 000242B0: 921EDC1C          st      r3,(g11)[g12*1]
 000242B4: 5CF01E00          mov     0x0,g14
 000242B8: 90803908 02810FCC ld      0x2810fcc[r8*4],g0
-000242C0: 09DF3CF8          call    ffe17fb8                   ; upload geo model g0, object g13
+000242C0: 09DF3CF8          call    00017fb8                   ; upload geo model g0, object g13
 000242C4: 8CF00606          lda     0x606,g14
 000242C8: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 000242CC: 5CF01E00          mov     0x0,g14
@@ -34579,7 +34579,7 @@
 0002434C: 5C181E00          mov     0x0,r3
 00024350: CA183000 00501300 stis    r3,0x501300
 00024358: 8C203000 0022444C lda     0x22444c,r4
-00024360: 09DF7CBC          call    ffe1c01c                   ; reset tilemap 0
+00024360: 09DF7CBC          call    0001c01c                   ; reset tilemap 0
 00024364: 8C283000 0100A000 lda     0x100a000,r5
 0002436C: 90315000          ld      (r5),r6
 00024370: 58318E0F          clrbit  0xf,r6,r6
@@ -34590,23 +34590,23 @@
 0002438C: 59385E09          shlo    0x9,0x1,r7
 00024390: CA383000 00501300 stis    r7,0x501300
 00024398: 8C803000 00B00700 lda     0xb00700,g0
-000243A0: 09DF61B4          call    ffe1a554                   ; push g0 to serial buffer
+000243A0: 09DF61B4          call    0001a554                   ; push g0 to serial buffer
 000243A4: 8C803000 00B10700 lda     0xb10700,g0
-000243AC: 09DF61A8          call    ffe1a554                   ; push g0 to serial buffer
+000243AC: 09DF61A8          call    0001a554                   ; push g0 to serial buffer
 000243B0: 8C803000 00B20700 lda     0xb20700,g0
-000243B8: 09DF619C          call    ffe1a554                   ; push g0 to serial buffer
+000243B8: 09DF619C          call    0001a554                   ; push g0 to serial buffer
 000243BC: 8C803000 00B30700 lda     0xb30700,g0
-000243C4: 09DF6190          call    ffe1a554                   ; push g0 to serial buffer
+000243C4: 09DF6190          call    0001a554                   ; push g0 to serial buffer
 000243C8: 8C803000 00B40700 lda     0xb40700,g0
-000243D0: 09DF6184          call    ffe1a554                   ; push g0 to serial buffer
+000243D0: 09DF6184          call    0001a554                   ; push g0 to serial buffer
 000243D4: 8C803000 00B50700 lda     0xb50700,g0
-000243DC: 09DF6178          call    ffe1a554                   ; push g0 to serial buffer
+000243DC: 09DF6178          call    0001a554                   ; push g0 to serial buffer
 000243E0: 8C803000 00B60700 lda     0xb60700,g0
-000243E8: 09DF616C          call    ffe1a554                   ; push g0 to serial buffer
+000243E8: 09DF616C          call    0001a554                   ; push g0 to serial buffer
 000243EC: 8C803000 00B70700 lda     0xb70700,g0
-000243F4: 09DF6160          call    ffe1a554                   ; push g0 to serial buffer
+000243F4: 09DF6160          call    0001a554                   ; push g0 to serial buffer
 000243F8: 8C803000 00B80700 lda     0xb80700,g0
-00024400: 09DF6154          call    ffe1a554                   ; push g0 to serial buffer
+00024400: 09DF6154          call    0001a554                   ; push g0 to serial buffer
 00024404: 9227600C          st      r4,0xc(g13)
 00024408: 5C181E00          mov     0x0,r3
 0002440C: 921F607C          st      r3,0x7c(g13)
@@ -34615,11 +34615,11 @@
 00024418: 90303000 00501220 ld      0x501220,r6
 00024420: 9219A018          st      r3,0x18(r6)
 00024424: 8C803000 00BE3500 lda     0xbe3500,g0
-0002442C: 09DF6128          call    ffe1a554                   ; push g0 to serial buffer
+0002442C: 09DF6128          call    0001a554                   ; push g0 to serial buffer
 00024430: 8C803000 00BE3400 lda     0xbe3400,g0
-00024438: 09DF611C          call    ffe1a554                   ; push g0 to serial buffer
+00024438: 09DF611C          call    0001a554                   ; push g0 to serial buffer
 0002443C: 8C803000 00BE3700 lda     0xbe3700,g0
-00024444: 09DF6110          call    ffe1a554                   ; push g0 to serial buffer
+00024444: 09DF6110          call    0001a554                   ; push g0 to serial buffer
 00024448: 0A000000          ret
 }
 
@@ -34661,7 +34661,7 @@
 000244E8: 5A00E089          cmpi    r9,r3
 000244EC: 15000014          bne     00024500
 000244F0: 9081E004          ld      0x4(r7),g0
-000244F4: 09DF6060          call    ffe1a554                   ; push g0 to serial buffer
+000244F4: 09DF6060          call    0001a554                   ; push g0 to serial buffer
 000244F8: 59420881          addi    0x1,r8,r8
 000244FC: 92476034          st      r8,0x34(g13)
 00024500: 0A000000          ret
@@ -34672,7 +34672,7 @@
 00024518: 8C183000 00224054 lda     0x224054,r3
 00024520: 921F600C          st      r3,0xc(g13)
 00024524: 8C803000 00AE1002 lda     0xae1002,g0
-0002452C: 09DF6028          call    ffe1a554                   ; push g0 to serial buffer
+0002452C: 09DF6028          call    0001a554                   ; push g0 to serial buffer
 00024530: 09FFFF60          call    00024490
 00024534: 0A000000          ret
 00024538: 90183000 00501A80 ld      0x501a80,r3
@@ -34680,13 +34680,13 @@
 00024544: 150000D4          bne     00024618
 00024548: 8C883000 0100029E lda     0x100029e,g1
 00024550: 8C803000 0282802C lda     0x282802c,g0
-00024558: 09DF529C          call    ffe197f4                   ; copy tilemap data g0 to g1
+00024558: 09DF529C          call    000197f4                   ; copy tilemap data g0 to g1
 0002455C: 8C883000 0100119A lda     0x100119a,g1
 00024564: 8C803000 02827F98 lda     0x2827f98,g0
-0002456C: 09DF5288          call    ffe197f4                   ; copy tilemap data g0 to g1
+0002456C: 09DF5288          call    000197f4                   ; copy tilemap data g0 to g1
 00024570: 8C883000 010011C6 lda     0x10011c6,g1
 00024578: 8C803000 02827CB0 lda     0x2827cb0,g0
-00024580: 09DF5274          call    ffe197f4                   ; copy tilemap data g0 to g1
+00024580: 09DF5274          call    000197f4                   ; copy tilemap data g0 to g1
 00024584: 90483000 00501220 ld      0x501220,r9
 0002458C: C02A606C          ldib    0x6c(r9),r5
 00024590: 88183000 005FE5A8 ldos    0x5fe5a8,r3
@@ -34700,39 +34700,39 @@
 000245BC: 5A003090          cmpi    g0,0x0
 000245C0: 12000010          be      000245d0
 000245C4: 8C883000 01000724 lda     0x1000724,g1
-000245CC: 09DF5228          call    ffe197f4                   ; copy tilemap data g0 to g1
+000245CC: 09DF5228          call    000197f4                   ; copy tilemap data g0 to g1
 000245D0: 90816004          ld      0x4(r5),g0
 000245D4: 8C883000 01000738 lda     0x1000738,g1
-000245DC: 09DF5218          call    ffe197f4                   ; copy tilemap data g0 to g1
+000245DC: 09DF5218          call    000197f4                   ; copy tilemap data g0 to g1
 000245E0: 90816008          ld      0x8(r5),g0
 000245E4: 8C883000 01000ACC lda     0x1000acc,g1
-000245EC: 09DF5208          call    ffe197f4                   ; copy tilemap data g0 to g1
+000245EC: 09DF5208          call    000197f4                   ; copy tilemap data g0 to g1
 000245F0: 90803000 005010CC ld      0x5010cc,g0
 000245F8: 8C883000 01001416 lda     0x1001416,g1
-00024600: 09DF4728          call    ffe18d28
+00024600: 09DF4728          call    00018d28
 00024604: C8826068          ldis    0x68(r9),g0
 00024608: 8C883000 01001442 lda     0x1001442,g1
-00024610: 09DF4718          call    ffe18d28
+00024610: 09DF4718          call    00018d28
 00024614: 0A000000          ret
 00024618: 8C883000 0100011C lda     0x100011c,g1
 00024620: 8C803000 0282802C lda     0x282802c,g0
-00024628: 09DF51CC          call    ffe197f4                   ; copy tilemap data g0 to g1
+00024628: 09DF51CC          call    000197f4                   ; copy tilemap data g0 to g1
 0002462C: 8C883000 010006C8 lda     0x10006c8,g1
 00024634: 8C803000 02827F98 lda     0x2827f98,g0
-0002463C: 09DF51B8          call    ffe197f4                   ; copy tilemap data g0 to g1
+0002463C: 09DF51B8          call    000197f4                   ; copy tilemap data g0 to g1
 00024640: 8C883000 01000696 lda     0x1000696,g1
 00024648: 8C803000 02827CB0 lda     0x2827cb0,g0
-00024650: 09DF51A4          call    ffe197f4                   ; copy tilemap data g0 to g1
+00024650: 09DF51A4          call    000197f4                   ; copy tilemap data g0 to g1
 00024654: 8C883000 01000B84 lda     0x1000b84,g1
 0002465C: 8C803000 0281E26E lda     0x281e26e,g0
-00024664: 09DF5190          call    ffe197f4                   ; copy tilemap data g0 to g1
+00024664: 09DF5190          call    000197f4                   ; copy tilemap data g0 to g1
 00024668: 90483000 00501220 ld      0x501220,r9
 00024670: 90803000 005010CC ld      0x5010cc,g0
 00024678: 8C883000 01000948 lda     0x1000948,g1
-00024680: 09DF46A8          call    ffe18d28
+00024680: 09DF46A8          call    00018d28
 00024684: C8826068          ldis    0x68(r9),g0
 00024688: 8C883000 01000912 lda     0x1000912,g1
-00024690: 09DF4698          call    ffe18d28
+00024690: 09DF4698          call    00018d28
 00024694: 0A000000          ret
 
 {
@@ -34768,9 +34768,9 @@
 
 00024730: 90183000 00501A98 ld      0x501a98,r3
 00024738: 90803903 02812E3C ld      0x2812e3c[r3*4],g0
-00024740: 09DF5E14          call    ffe1a554                   ; push g0 to serial buffer
+00024740: 09DF5E14          call    0001a554                   ; push g0 to serial buffer
 00024744: 8C803000 00AE211C lda     0xae211c,g0
-0002474C: 09DF5E08          call    ffe1a554                   ; push g0 to serial buffer
+0002474C: 09DF5E08          call    0001a554                   ; push g0 to serial buffer
 
 00024750: 5C201E00          mov     0x0,r4
 00024754: 90183000 005FE140 ld      0x5fe140,r3
@@ -34825,7 +34825,7 @@
 
 000247EC: 8C803000 00224804 lda     0x224804,g0
 000247F4: 8C883000 01000C2A lda     0x1000c2a,g1
-000247FC: 09DF437C          call    ffe18b78                   ; print hiscore string g0 to g1
+000247FC: 09DF437C          call    00018b78                   ; print hiscore string g0 to g1
 00024800: 08000014          b       00024814
 
 ; raw data (string)
@@ -34839,7 +34839,7 @@
 
 00024818: 8C803000 00224830 lda     0x224830,g0
 00024820: 8C883000 01000C2A lda     0x1000c2a,g1
-00024828: 09DF4350          call    ffe18b78                   ; print hiscore string g0 to g1
+00024828: 09DF4350          call    00018b78                   ; print hiscore string g0 to g1
 0002482C: 08000014          b       00024840
 
 ; raw data (string)
@@ -34865,7 +34865,7 @@
 00024864: 591A4E07          shlo    0x7,r9,r3
 00024868: 598C4003          addo    r3,g1,g1
 0002486C: 8C803000 02828206 lda     0x2828206,g0
-00024874: 09DF4F80          call    ffe197f4                   ; copy tilemap data g0 to g1
+00024874: 09DF4F80          call    000197f4                   ; copy tilemap data g0 to g1
 00024878: 594A4981          subi    0x1,r9,r9
 0002487C: 924F6048          st      r9,0x48(g13)
 00024880: 594A4889          addi    0x9,r9,r9
@@ -34875,7 +34875,7 @@
 00024894: 591A4E07          shlo    0x7,r9,r3
 00024898: 598C4003          addo    r3,g1,g1
 0002489C: 8C803000 02828206 lda     0x2828206,g0
-000248A4: 09DF4F10          call    ffe197b4                   ; clear tilemap data g0 at g1
+000248A4: 09DF4F10          call    000197b4                   ; clear tilemap data g0 at g1
 
 000248A8: 0A000000          ret
 }
@@ -34963,7 +34963,7 @@
 000249B8: 5818CE03          clrbit  0x3,r3,r3
 000249BC: 921F6040          st      r3,0x40(g13)
 000249C0: 8C803000 009E2D4F lda     0x9e2d4f,g0
-000249C8: 09DF5B8C          call    ffe1a554                   ; push g0 to serial buffer
+000249C8: 09DF5B8C          call    0001a554                   ; push g0 to serial buffer
 
 000249CC: 0A000000          ret
 }
@@ -34977,7 +34977,7 @@
 000249DC: 921F6040          st      r3,0x40(g13)
 000249E0: 8C883000 01004000 lda     0x1004000,g1
 000249E8: 8C803000 02836FF0 lda     0x2836ff0,g0
-000249F0: 09DF4E04          call    ffe197f4                   ; copy tilemap data g0 to g1
+000249F0: 09DF4E04          call    000197f4                   ; copy tilemap data g0 to g1
 
 000249F4: 0A000000          ret
 }
@@ -35069,7 +35069,7 @@
 00024B30: 591A0E07          shlo    0x7,r8,r3
 00024B34: 598C4003          addo    r3,g1,g1
 00024B38: 9081A004          ld      0x4(r6),g0
-00024B3C: 09DF4C78          call    ffe197b4                   ; clear tilemap data g0 at g1
+00024B3C: 09DF4C78          call    000197b4                   ; clear tilemap data g0 at g1
 00024B40: 08FFFF88          b       00024ac8
 
 00024B44: 9027604C          ld      0x4c(g13),r4
@@ -35089,7 +35089,7 @@
 00024B78: 591A0E07          shlo    0x7,r8,r3
 00024B7C: 598C4003          addo    r3,g1,g1
 00024B80: 9081A004          ld      0x4(r6),g0
-00024B84: 09DF4C70          call    ffe197f4                   ; copy tilemap data g0 to g1
+00024B84: 09DF4C70          call    000197f4                   ; copy tilemap data g0 to g1
 00024B88: 08FFFF40          b       00024ac8
 
 00024B8C: 594A4881          addi    0x1,r9,r9
@@ -35121,7 +35121,7 @@
 00024BE4: 591A0E07          shlo    0x7,r8,r3
 00024BE8: 598C4003          addo    r3,g1,g1
 00024BEC: 9081A004          ld      0x4(r6),g0
-00024BF0: 09DF4BC4          call    ffe197b4                   ; clear tilemap data g0 at g1
+00024BF0: 09DF4BC4          call    000197b4                   ; clear tilemap data g0 at g1
 00024BF4: 08FFFFA4          b       00024b98
 
 00024BF8: 9027604C          ld      0x4c(g13),r4
@@ -35142,7 +35142,7 @@
 00024C2C: 591A0E07          shlo    0x7,r8,r3
 00024C30: 598C4003          addo    r3,g1,g1
 00024C34: 9081A004          ld      0x4(r6),g0
-00024C38: 09DF4BBC          call    ffe197f4                   ; copy tilemap data g0 to g1
+00024C38: 09DF4BBC          call    000197f4                   ; copy tilemap data g0 to g1
 00024C3C: 08FFFF5C          b       00024b98
 
 00024C40: 594A4881          addi    0x1,r9,r9
@@ -35201,7 +35201,7 @@
 00024D10: 921EDC1C          st      r3,(g11)[g12*1]
 00024D14: 5CF01E00          mov     0x0,g14
 00024D18: 8C803000 02844E20 lda     0x2844e20,g0
-00024D20: 09DF3298          call    ffe17fb8                   ; upload geo model g0, object g13
+00024D20: 09DF3298          call    00017fb8                   ; upload geo model g0, object g13
 00024D24: 8CF00606          lda     0x606,g14
 00024D28: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00024D2C: 5CF01E00          mov     0x0,g14
@@ -35212,7 +35212,7 @@
 00024D3C: 5C481E00          mov     0x0,r9
 
 00024D40: 924F6044          st      r9,0x44(g13)
-00024D44: 09DDDA30          call    ffe02774                   ; reset gamestate?
+00024D44: 09DDDA30          call    00002774                   ; reset gamestate?
 
 00024D48: 0A000000          ret
 }
@@ -35366,7 +35366,7 @@
 00024F44: 15000010          bne     00024f54
 
 00024F48: 8C803000 00AE2040 lda     0xae2040,g0
-00024F50: 09DF5604          call    ffe1a554                   ; push g0 to serial buffer
+00024F50: 09DF5604          call    0001a554                   ; push g0 to serial buffer
 
 00024F54: 0900007C          call    00024fd0
 00024F58: 0900017C          call    000250d4
@@ -35497,14 +35497,14 @@
 0002516C: 921EDC1C          st      r3,(g11)[g12*1]
 00025170: 5CF01E00          mov     0x0,g14
 00025174: 8C803000 02844E34 lda     0x2844e34,g0
-0002517C: 09DF2E3C          call    ffe17fb8                   ; upload geo model g0, object g13
+0002517C: 09DF2E3C          call    00017fb8                   ; upload geo model g0, object g13
 00025180: C83F6038          ldis    0x38(g13),r7
 00025184: 8CF03000 00001414 lda     0x1414,g14
 0002518C: 92F6E140          st      g14,0x140(g11)             ; (copro matrix_rotx)
 00025190: 923EDC1C          st      r7,(g11)[g12*1]
 00025194: 5CF01E00          mov     0x0,g14
 00025198: 8C803000 02844E84 lda     0x2844e84,g0
-000251A0: 09DF2E18          call    ffe17fb8                   ; upload geo model g0, object g13
+000251A0: 09DF2E18          call    00017fb8                   ; upload geo model g0, object g13
 000251A4: 8CF00606          lda     0x606,g14
 000251A8: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 000251AC: 5CF01E00          mov     0x0,g14
@@ -35538,33 +35538,33 @@
 00025220: 3220C038          cmpobe  r4,r3,0x25258
 00025224: 0A000000          ret
 00025228: 8C803000 009E297F lda     0x9e297f,g0
-00025230: 09DF530C          call    ffe1a53c
+00025230: 09DF530C          call    0001a53c
 00025234: 0A000000          ret
 00025238: 8C803000 009E295F lda     0x9e295f,g0
-00025240: 09DF52FC          call    ffe1a53c
+00025240: 09DF52FC          call    0001a53c
 00025244: 0A000000          ret
 00025248: 8C803000 009E293F lda     0x9e293f,g0
-00025250: 09DF52EC          call    ffe1a53c
+00025250: 09DF52EC          call    0001a53c
 00025254: 0A000000          ret
 00025258: 8C803000 009E291F lda     0x9e291f,g0
-00025260: 09DF52DC          call    ffe1a53c
+00025260: 09DF52DC          call    0001a53c
 00025264: 0A000000          ret
 00025268: 8C803000 00AE210C lda     0xae210c,g0
-00025270: 09DF52CC          call    ffe1a53c
+00025270: 09DF52CC          call    0001a53c
 00025274: 8C803000 00AE216F lda     0xae216f,g0
-0002527C: 09DF52C0          call    ffe1a53c
+0002527C: 09DF52C0          call    0001a53c
 00025280: 5C181E1A          mov     0x1a,r3
 00025284: CA183000 00501A02 stis    r3,0x501a02
 0002528C: 0A000000          ret
 00025290: 8C803000 00AE216E lda     0xae216e,g0
-00025298: 09DF52A4          call    ffe1a53c
+00025298: 09DF52A4          call    0001a53c
 0002529C: 0A000000          ret
 000252A0: 8C803000 00AE216E lda     0xae216e,g0
-000252A8: 09DF5294          call    ffe1a53c
+000252A8: 09DF5294          call    0001a53c
 000252AC: 0A000000          ret
-000252B0: 09DE1980          call    ffe06c30
+000252B0: 09DE1980          call    00006c30
 000252B4: 8C803000 00AE216E lda     0xae216e,g0
-000252BC: 09DF5280          call    ffe1a53c
+000252BC: 09DF5280          call    0001a53c
 000252C0: 0A000000          ret
 000252C4: 8CF00505          lda     0x505,g14
 000252C8: 92F6E050          st      g14,0x50(g11)              ; (copro matrix_push)
@@ -35612,7 +35612,7 @@
 00025390: 921EDC1C          st      r3,(g11)[g12*1]
 00025394: 5CF01E00          mov     0x0,g14
 00025398: 90803909 02810FBC ld      0x2810fbc[r9*4],g0
-000253A0: 09DF2C18          call    ffe17fb8                   ; upload geo model g0, object g13
+000253A0: 09DF2C18          call    00017fb8                   ; upload geo model g0, object g13
 000253A4: 8CF00606          lda     0x606,g14
 000253A8: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 000253AC: 5CF01E00          mov     0x0,g14
@@ -35631,7 +35631,7 @@
 000253E8: 923EDC1C          st      r7,(g11)[g12*1]
 000253EC: 5CF01E00          mov     0x0,g14
 000253F0: 8C803000 02844E84 lda     0x2844e84,g0
-000253F8: 09DF2BC0          call    ffe17fb8                   ; upload geo model g0, object g13
+000253F8: 09DF2BC0          call    00017fb8                   ; upload geo model g0, object g13
 000253FC: 8CF00606          lda     0x606,g14
 00025400: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00025404: 5CF01E00          mov     0x0,g14
@@ -35649,7 +35649,7 @@
 00025430: 3520C080          cmpobne r4,r3,0x254b0              ; 000254B0
 
 00025434: 8C803000 00BE1A10 lda     0xbe1a10,g0
-0002543C: 09DF5118          call    ffe1a554                   ; push g0 to serial buffer
+0002543C: 09DF5118          call    0001a554                   ; push g0 to serial buffer
 00025440: 8C183000 00225454 lda     0x225454,r3
 00025448: 921F600C          st      r3,0xc(g13)
 0002544C: 5C181E1F          mov     0x1f,r3
@@ -35661,16 +35661,16 @@
 0002545C: 8A1F6006          stos    r3,0x6(g13)
 00025460: 11000020          bg      00025480                   ; 00025480
 
-00025464: 09DF6494          call    ffe1b8f8
+00025464: 09DF6494          call    0001b8f8
 00025468: 3A042018          cmpibe  0x0,g0,0x25480             ; 00025480
 
 0002546C: 5C181610          mov     g0,r3
 00025470: 8C803000 7F818000 lda     0x7f818000,g0
-00025478: 09DF6534          call    ffe1b9ac
+00025478: 09DF6534          call    0001b9ac
 0002547C: 3D1C0030          cmpibne r3,g0,0x254ac              ; 000254AC
 
 00025480: 8C803000 00AE102B lda     0xae102b,g0
-00025488: 09DF50CC          call    ffe1a554                   ; push g0 to serial buffer
+00025488: 09DF50CC          call    0001a554                   ; push g0 to serial buffer
 0002548C: 5919DE08          shlo    0x8,0x7,r3
 00025490: 92183000 00501758 st      r3,0x501758
 
@@ -35681,7 +35681,7 @@
 
 000254AC: 0A000000          ret
 
-000254B0: 09DF2E08          call    ffe182b8
+000254B0: 09DF2E08          call    000182b8
 000254B4: 8C180041          lda     0x41,r3
 000254B8: CA1F604A          stis    r3,0x4a(g13)
 000254BC: 8C183000 00502120 lda     0x502120,r3
@@ -35733,7 +35733,7 @@
 0002558C: 90203903 0022569C ld      0x22569c[r3*4],r4
 00025594: 86011000          callx   (r4)
 00025598: 3660E010          cmpoble 0xc,r3,0x255a8
-0002559C: 09DF2D78          call    ffe18314
+0002559C: 09DF2D78          call    00018314
 000255A0: 09000FDC          call    0002657c
 000255A4: 090012E8          call    0002688c
 000255A8: 0A000000          ret
@@ -35751,7 +35751,7 @@
 000255C4: 90203903 002256E0 ld      0x2256e0[r3*4],r4
 000255CC: 86011000          callx   (r4)
 000255D0: 3660E010          cmpoble 0xc,r3,0x255e0             ; 000255E0
-000255D4: 09DF2D40          call    ffe18314
+000255D4: 09DF2D40          call    00018314
 000255D8: 09000FA4          call    0002657c
 000255DC: 090012B0          call    0002688c
 000255E0: 0A000000          ret
@@ -35770,7 +35770,7 @@
 00025614: 0A000000          ret
 00025618: 8C803000 00225630 lda     0x225630,g0
 00025620: 8C883000 01000082 lda     0x1000082,g1
-00025628: 09DF32E8          call    ffe18910                   ; print string g0 at g1
+00025628: 09DF32E8          call    00018910                   ; print string g0 at g1
 0002562C: 08000008          b       00025634
 00025630: 0000002E          ? 00:0 0000002e 0 0
 00025634: 5C181E01          mov     0x1,r3
@@ -35831,7 +35831,7 @@
 0002571C: 00225F7C          ? 00:e 00225f7c 1 3
 00025720: 00225FEC          ? 00:f 00225fec 1 3
 00025724: 8C803000 00AE215A lda     0xae215a,g0
-0002572C: 09DF4E28          call    ffe1a554                   ; push g0 to serial buffer
+0002572C: 09DF4E28          call    0001a554                   ; push g0 to serial buffer
 00025730: 59195E07          shlo    0x7,0x5,r3
 00025734: 92183000 005010A8 st      r3,0x5010a8
 0002573C: 88183000 0284F692 ldos    0x284f692,r3
@@ -35846,7 +35846,7 @@
 00025770: C21F6062          stib    r3,0x62(g13)
 00025774: 0A000000          ret
 00025778: 8C803000 00AE215A lda     0xae215a,g0
-00025780: 09DF4DD4          call    ffe1a554                   ; push g0 to serial buffer
+00025780: 09DF4DD4          call    0001a554                   ; push g0 to serial buffer
 00025784: 90283000 005010A8 ld      0x5010a8,r5
 0002578C: 5CF01E00          mov     0x0,g14
 00025790: 3EF1400C          cmpible g14,r5,0x2579c
@@ -35879,7 +35879,7 @@
 00025818: 09000908          call    00026120
 0002581C: 0A000000          ret
 00025820: 8C803000 00AE2158 lda     0xae2158,g0
-00025828: 09DF4D2C          call    ffe1a554                   ; push g0 to serial buffer
+00025828: 09DF4D2C          call    0001a554                   ; push g0 to serial buffer
 0002582C: 88183000 00501468 ldos    0x501468,r3
 00025834: 5923581F          addo    0x1f,0xd,r4
 00025838: 70190083          mulo    r3,r4,r3
@@ -35923,13 +35923,13 @@
 000258EC: 0A000000          ret
 000258F0: 8C883000 010014B6 lda     0x10014b6,g1
 000258F8: 8C803000 0282F5A0 lda     0x282f5a0,g0
-00025900: 09DF3EB4          call    ffe197b4                   ; clear tilemap data g0 at g1
+00025900: 09DF3EB4          call    000197b4                   ; clear tilemap data g0 at g1
 00025904: 8C883000 0100128C lda     0x100128c,g1
 0002590C: 8C803000 0282F5EC lda     0x282f5ec,g0
-00025914: 09DF3EA0          call    ffe197b4                   ; clear tilemap data g0 at g1
+00025914: 09DF3EA0          call    000197b4                   ; clear tilemap data g0 at g1
 00025918: 8C883000 010012CA lda     0x10012ca,g1
 00025920: 8C803000 0282FAD4 lda     0x282fad4,g0
-00025928: 09DF3E8C          call    ffe197b4                   ; clear tilemap data g0 at g1
+00025928: 09DF3E8C          call    000197b4                   ; clear tilemap data g0 at g1
 0002592C: 90183000 00540058 ld      0x540058,r3
 00025934: 5818C89F          and     0x1f,r3,r3
 00025938: 5A023003          cmpo    r3,0x8
@@ -35945,7 +35945,7 @@
 0002596C: 5918CE07          shlo    0x7,r3,r3
 00025970: 598C4003          addo    r3,g1,g1
 00025974: 90842004          ld      0x4(g0),g0
-00025978: 09DF3E3C          call    ffe197b4                   ; clear tilemap data g0 at g1
+00025978: 09DF3E3C          call    000197b4                   ; clear tilemap data g0 at g1
 0002597C: 88803000 005FE5BA ldos    0x5fe5ba,g0
 00025984: 58840881          and     0x1,g0,g0
 00025988: 8C803990 00234C68 lda     0x234c68[g0*8],g0
@@ -35957,7 +35957,7 @@
 000259A8: 5918CE07          shlo    0x7,r3,r3
 000259AC: 598C4003          addo    r3,g1,g1
 000259B0: 90842004          ld      0x4(g0),g0
-000259B4: 09DF3E00          call    ffe197b4                   ; clear tilemap data g0 at g1
+000259B4: 09DF3E00          call    000197b4                   ; clear tilemap data g0 at g1
 000259B8: 88803000 005FE5BA ldos    0x5fe5ba,g0
 000259C0: 58840881          and     0x1,g0,g0
 000259C4: 8C803990 00234C78 lda     0x234c78[g0*8],g0
@@ -35969,7 +35969,7 @@
 000259E4: 5918CE07          shlo    0x7,r3,r3
 000259E8: 598C4003          addo    r3,g1,g1
 000259EC: 90842004          ld      0x4(g0),g0
-000259F0: 09DF3DC4          call    ffe197b4                   ; clear tilemap data g0 at g1
+000259F0: 09DF3DC4          call    000197b4                   ; clear tilemap data g0 at g1
 000259F4: 0A000000          ret
 000259F8: 88803000 005FE5BA ldos    0x5fe5ba,g0
 00025A00: 58840881          and     0x1,g0,g0
@@ -35982,7 +35982,7 @@
 00025A24: 5918CE07          shlo    0x7,r3,r3
 00025A28: 598C4003          addo    r3,g1,g1
 00025A2C: 90842004          ld      0x4(g0),g0
-00025A30: 09DF3DC4          call    ffe197f4                   ; copy tilemap data g0 to g1
+00025A30: 09DF3DC4          call    000197f4                   ; copy tilemap data g0 to g1
 00025A34: 88803000 005FE5BA ldos    0x5fe5ba,g0
 00025A3C: 58840881          and     0x1,g0,g0
 00025A40: 8C803990 00234C68 lda     0x234c68[g0*8],g0
@@ -35994,7 +35994,7 @@
 00025A60: 5918CE07          shlo    0x7,r3,r3
 00025A64: 598C4003          addo    r3,g1,g1
 00025A68: 90842004          ld      0x4(g0),g0
-00025A6C: 09DF3D88          call    ffe197f4                   ; copy tilemap data g0 to g1
+00025A6C: 09DF3D88          call    000197f4                   ; copy tilemap data g0 to g1
 00025A70: 88803000 005FE5BA ldos    0x5fe5ba,g0
 00025A78: 58840881          and     0x1,g0,g0
 00025A7C: 8C803990 00234C78 lda     0x234c78[g0*8],g0
@@ -36006,7 +36006,7 @@
 00025A9C: 5918CE07          shlo    0x7,r3,r3
 00025AA0: 598C4003          addo    r3,g1,g1
 00025AA4: 90842004          ld      0x4(g0),g0
-00025AA8: 09DF3D4C          call    ffe197f4                   ; copy tilemap data g0 to g1
+00025AA8: 09DF3D4C          call    000197f4                   ; copy tilemap data g0 to g1
 00025AAC: 0A000000          ret
 00025AB0: 59195E07          shlo    0x7,0x5,r3
 00025AB4: 92183000 005010A8 st      r3,0x5010a8
@@ -36058,10 +36058,10 @@
 00025B8C: 8A1F6054          stos    r3,0x54(g13)
 00025B90: 8C883000 01000000 lda     0x1000000,g1
 00025B98: 8C803000 0282A776 lda     0x282a776,g0
-00025BA0: 09DF3C54          call    ffe197f4                   ; copy tilemap data g0 to g1
+00025BA0: 09DF3C54          call    000197f4                   ; copy tilemap data g0 to g1
 00025BA4: 8C883000 01000000 lda     0x1000000,g1
 00025BAC: 8C803000 0282586E lda     0x282586e,g0
-00025BB4: 09DF3C40          call    ffe197f4                   ; copy tilemap data g0 to g1
+00025BB4: 09DF3C40          call    000197f4                   ; copy tilemap data g0 to g1
 00025BB8: 09001044          call    00026bfc
 00025BBC: 5C181E07          mov     0x7,r3
 00025BC0: 821F6062          stob    r3,0x62(g13)
@@ -36074,15 +36074,15 @@
 00025BDC: 821F6062          stob    r3,0x62(g13)
 00025BE0: 8C883000 01004000 lda     0x1004000,g1
 00025BE8: 8C803000 0282A776 lda     0x282a776,g0
-00025BF0: 09DF3C04          call    ffe197f4                   ; copy tilemap data g0 to g1
-00025BF4: 09DF6428          call    ffe1c01c                   ; reset tilemap 0
+00025BF0: 09DF3C04          call    000197f4                   ; copy tilemap data g0 to g1
+00025BF4: 09DF6428          call    0001c01c                   ; reset tilemap 0
 00025BF8: 90183000 00501302 ld      0x501302,r3
 00025C00: 5818CE0E          clrbit  0xe,r3,r3
 00025C04: 92183000 00501302 st      r3,0x501302
 00025C0C: 09000FF0          call    00026bfc
 00025C10: 8C883000 01000096 lda     0x1000096,g1
 00025C18: 8C803000 02822C18 lda     0x2822c18,g0
-00025C20: 09DF3BD4          call    ffe197f4                   ; copy tilemap data g0 to g1
+00025C20: 09DF3BD4          call    000197f4                   ; copy tilemap data g0 to g1
 00025C24: 0A000000          ret
 00025C28: 90183000 00501302 ld      0x501302,r3
 00025C30: 5818C98E          setbit  0xe,r3,r3
@@ -36106,11 +36106,11 @@
 00025C94: 5918CE07          shlo    0x7,r3,r3
 00025C98: 598C4003          addo    r3,g1,g1
 00025C9C: 90842004          ld      0x4(g0),g0
-00025CA0: 09DF3B54          call    ffe197f4                   ; copy tilemap data g0 to g1
+00025CA0: 09DF3B54          call    000197f4                   ; copy tilemap data g0 to g1
 00025CA4: 5C181E00          mov     0x0,r3
 00025CA8: 8A183000 00501468 stos    r3,0x501468
 00025CB0: 8C803000 00AE215B lda     0xae215b,g0
-00025CB8: 09DF489C          call    ffe1a554                   ; push g0 to serial buffer
+00025CB8: 09DF489C          call    0001a554                   ; push g0 to serial buffer
 00025CBC: 8C183000 3AD1B717 lda     0x3ad1b717,r3
 00025CC4: 8C203000 3F800000 lda     0x3f800000,r4
 00025CCC: 8C283000 3A6BEDFA lda     0x3a6bedfa,r5
@@ -36191,7 +36191,7 @@
 00025E48: 090006E8          call    00026530
 00025E4C: 0A000000          ret
 00025E50: 8C803000 00AE2158 lda     0xae2158,g0
-00025E58: 09DF46FC          call    ffe1a554                   ; push g0 to serial buffer
+00025E58: 09DF46FC          call    0001a554                   ; push g0 to serial buffer
 00025E5C: 59185E07          shlo    0x7,0x1,r3
 00025E60: 8A1F6056          stos    r3,0x56(g13)
 00025E64: 5C181E0B          mov     0xb,r3
@@ -36209,7 +36209,7 @@
 00025E9C: 3400E014          cmpobl  0x0,r3,0x25eb0
 00025EA0: 5C181E0C          mov     0xc,r3
 00025EA4: 821F6062          stob    r3,0x62(g13)
-00025EA8: 09DF6174          call    ffe1c01c                   ; reset tilemap 0
+00025EA8: 09DF6174          call    0001c01c                   ; reset tilemap 0
 00025EAC: 0A000000          ret
 00025EB0: 88183000 00501468 ldos    0x501468,r3
 00025EB8: 5923581F          addo    0x1f,0xd,r4
@@ -36227,7 +36227,7 @@
 00025EF4: 3400E014          cmpobl  0x0,r3,0x25f08
 00025EF8: 5C181E0C          mov     0xc,r3
 00025EFC: 821F6062          stob    r3,0x62(g13)
-00025F00: 09DF611C          call    ffe1c01c                   ; reset tilemap 0
+00025F00: 09DF611C          call    0001c01c                   ; reset tilemap 0
 00025F04: 0A000000          ret
 00025F08: 88183000 00501468 ldos    0x501468,r3
 00025F10: 5923581F          addo    0x1f,0xd,r4
@@ -36241,9 +36241,9 @@
 00025F34: 09000D74          call    00026ca8
 00025F38: 5C181E00          mov     0x0,r3
 00025F3C: 8A183000 00501300 stos    r3,0x501300
-00025F44: 09DF60D8          call    ffe1c01c                   ; reset tilemap 0
+00025F44: 09DF60D8          call    0001c01c                   ; reset tilemap 0
 00025F48: 8C803000 00AE2100 lda     0xae2100,g0
-00025F50: 09DF4604          call    ffe1a554                   ; push g0 to serial buffer
+00025F50: 09DF4604          call    0001a554                   ; push g0 to serial buffer
 00025F54: 5918DE06          shlo    0x6,0x3,r3
 00025F58: 92183000 005010A8 st      r3,0x5010a8
 
@@ -36260,7 +36260,7 @@
 00025F94: 5918C901          subo    0x1,r3,r3
 00025F98: 821F605F          stob    r3,0x5f(g13)
 00025F9C: 3400E04C          cmpobl  0x0,r3,0x25fe8
-00025FA0: 09DDB4AC          call    ffe0144c                   ; init t-ram0 (based on track)
+00025FA0: 09DDB4AC          call    0000144c                   ; init t-ram0 (based on track)
 00025FA4: 5C181E10          mov     0x10,r3
 00025FA8: 821F6062          stob    r3,0x62(g13)
 00025FAC: 80183000 00501460 ldob    0x501460,r3
@@ -36296,15 +36296,15 @@
 0002603C: 92183000 0050000C st      r3,0x50000c                ; disable vblank handler
 
 00026044: 8C803000 009E037F lda     0x9e037f,g0
-0002604C: 09DF4508          call    ffe1a554                   ; push g0 to serial buffer
+0002604C: 09DF4508          call    0001a554                   ; push g0 to serial buffer
 00026050: 0A000000          ret
 00026054: 8C803000 009E117F lda     0x9e117f,g0
-0002605C: 09DF44F8          call    ffe1a554                   ; push g0 to serial buffer
+0002605C: 09DF44F8          call    0001a554                   ; push g0 to serial buffer
 00026060: 8C803000 00AE2001 lda     0xae2001,g0
-00026068: 09DF44EC          call    ffe1a554                   ; push g0 to serial buffer
+00026068: 09DF44EC          call    0001a554                   ; push g0 to serial buffer
 0002606C: C0183000 00501460 ldib    0x501460,r3
 00026074: 90803903 0023A1B8 ld      0x23a1b8[r3*4],g0
-0002607C: 09DF44D8          call    ffe1a554                   ; push g0 to serial buffer
+0002607C: 09DF44D8          call    0001a554                   ; push g0 to serial buffer
 00026080: 0A000000          ret
 00026084: 90183000 00501050 ld      0x501050,r3
 0002608C: 90203000 0050105C ld      0x50105c,r4
@@ -36354,13 +36354,13 @@
 0002616C: 0A000000          ret
 00026170: 8C883000 010014B6 lda     0x10014b6,g1
 00026178: 8C803000 0282F5A0 lda     0x282f5a0,g0
-00026180: 09DF3634          call    ffe197b4                   ; clear tilemap data g0 at g1
+00026180: 09DF3634          call    000197b4                   ; clear tilemap data g0 at g1
 00026184: 8C883000 0100128C lda     0x100128c,g1
 0002618C: 8C803000 0282FC10 lda     0x282fc10,g0
-00026194: 09DF3620          call    ffe197b4                   ; clear tilemap data g0 at g1
+00026194: 09DF3620          call    000197b4                   ; clear tilemap data g0 at g1
 00026198: 8C883000 010012CA lda     0x10012ca,g1
 000261A0: 8C803000 0282F728 lda     0x282f728,g0
-000261A8: 09DF360C          call    ffe197b4                   ; clear tilemap data g0 at g1
+000261A8: 09DF360C          call    000197b4                   ; clear tilemap data g0 at g1
 000261AC: 80183000 00540027 ldob    0x540027,r3
 000261B4: 5CF01E01          mov     0x1,g14
 000261B8: 3EF0C00C          cmpible g14,r3,0x261c4
@@ -36383,7 +36383,7 @@
 00026208: 5918CE07          shlo    0x7,r3,r3
 0002620C: 598C4003          addo    r3,g1,g1
 00026210: 90842004          ld      0x4(g0),g0
-00026214: 09DF35A0          call    ffe197b4                   ; clear tilemap data g0 at g1
+00026214: 09DF35A0          call    000197b4                   ; clear tilemap data g0 at g1
 00026218: 90183000 00540058 ld      0x540058,r3
 00026220: 5818C89F          and     0x1f,r3,r3
 00026224: 5A023083          cmpi    r3,0x8
@@ -36393,7 +36393,7 @@
 00026238: 12000034          be      0002626c
 0002623C: 8C803000 00226254 lda     0x226254,g0
 00026244: 8C883000 0100141C lda     0x100141c,g1
-0002624C: 09DF292C          call    ffe18b78                   ; print hiscore string g0 to g1
+0002624C: 09DF292C          call    00018b78                   ; print hiscore string g0 to g1
 00026250: 08000018          b       00026268
 00026254: 20202020          testno r4
 00026258: 20202020          testno r4
@@ -36403,17 +36403,17 @@
 00026268: 0A000000          ret
 0002626C: 8C883000 01001492 lda     0x1001492,g1
 00026274: 8C803000 02822A52 lda     0x2822a52,g0
-0002627C: 09DF3538          call    ffe197b4                   ; clear tilemap data g0 at g1
+0002627C: 09DF3538          call    000197b4                   ; clear tilemap data g0 at g1
 00026280: 8C883000 010014B2 lda     0x10014b2,g1
 00026288: 8C803000 02822AF4 lda     0x2822af4,g0
-00026290: 09DF3524          call    ffe197b4                   ; clear tilemap data g0 at g1
+00026290: 09DF3524          call    000197b4                   ; clear tilemap data g0 at g1
 00026294: 0A000000          ret
 00026298: 80183000 005FE5BA ldob    0x5fe5ba,r3
 000262A0: 5A007003          cmpo    r3,0x1
 000262A4: 12000034          be      000262d8
 000262A8: 8C803000 002262C0 lda     0x2262c0,g0
 000262B0: 8C883000 0100141C lda     0x100141c,g1
-000262B8: 09DF28C0          call    ffe18b78                   ; print hiscore string g0 to g1
+000262B8: 09DF28C0          call    00018b78                   ; print hiscore string g0 to g1
 000262BC: 08000018          b       000262d4
 000262C0: 49434544          ? 49:a 49434544 0 1
 000262C4: 20444544          testno r8
@@ -36423,14 +36423,14 @@
 000262D4: 0A000000          ret
 000262D8: 8C883000 01001492 lda     0x1001492,g1
 000262E0: 8C803000 02822A52 lda     0x2822a52,g0
-000262E8: 09DF350C          call    ffe197f4                   ; copy tilemap data g0 to g1
+000262E8: 09DF350C          call    000197f4                   ; copy tilemap data g0 to g1
 000262EC: 8C883000 010014B2 lda     0x10014b2,g1
 000262F4: 8C803000 02822AF4 lda     0x2822af4,g0
-000262FC: 09DF34F8          call    ffe197f4                   ; copy tilemap data g0 to g1
+000262FC: 09DF34F8          call    000197f4                   ; copy tilemap data g0 to g1
 00026300: 0A000000          ret
 00026304: C8183000 00501468 ldis    0x501468,r3
 0002630C: 90803903 0023A190 ld      0x23a190[r3*4],g0
-00026314: 09DF4240          call    ffe1a554                   ; push g0 to serial buffer
+00026314: 09DF4240          call    0001a554                   ; push g0 to serial buffer
 00026318: 0A000000          ret
 0002631C: 80183000 00540027 ldob    0x540027,r3
 00026324: 5A007003          cmpo    r3,0x1
@@ -36440,16 +36440,16 @@
 00026338: 15000028          bne     00026360
 0002633C: C8183000 00501468 ldis    0x501468,r3
 00026344: 90803903 0023A1A0 ld      0x23a1a0[r3*4],g0
-0002634C: 09DF4208          call    ffe1a554                   ; push g0 to serial buffer
+0002634C: 09DF4208          call    0001a554                   ; push g0 to serial buffer
 00026350: 8C803000 00AE2158 lda     0xae2158,g0
-00026358: 09DF41FC          call    ffe1a554                   ; push g0 to serial buffer
+00026358: 09DF41FC          call    0001a554                   ; push g0 to serial buffer
 0002635C: 0A000000          ret
 00026360: 80203000 005FE5BA ldob    0x5fe5ba,r4
 00026368: 58210881          and     0x1,r4,r4
 0002636C: 90803904 0023A1C8 ld      0x23a1c8[r4*4],g0
-00026374: 09DF41E0          call    ffe1a554                   ; push g0 to serial buffer
+00026374: 09DF41E0          call    0001a554                   ; push g0 to serial buffer
 00026378: 8C803000 00AE2158 lda     0xae2158,g0
-00026380: 09DF41D4          call    ffe1a554                   ; push g0 to serial buffer
+00026380: 09DF41D4          call    0001a554                   ; push g0 to serial buffer
 00026384: 0A000000          ret
 00026388: 8C542000          lda     0x0(g0),r10
 0002638C: 8C5F6034          lda     0x34(g13),r11
@@ -36528,7 +36528,7 @@
 000264D0: 5818C881          and     0x1,r3,r3
 000264D4: 3200E010          cmpobe  0x0,r3,0x264e4
 000264D8: 8C803000 02843818 lda     0x2843818,g0
-000264E0: 09DF1AD8          call    ffe17fb8                   ; upload geo model g0, object g13
+000264E0: 09DF1AD8          call    00017fb8                   ; upload geo model g0, object g13
 000264E4: 8CF00606          lda     0x606,g14
 000264E8: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 000264EC: 5CF01E00          mov     0x0,g14
@@ -36544,7 +36544,7 @@
 00026524: 5C881E03          mov     0x3,g1
 00026528: 090005D0          call    00026af8
 0002652C: 0A000000          ret
-00026530: 09DF1DE4          call    ffe18314
+00026530: 09DF1DE4          call    00018314
 00026534: 907F6010          ld      0x10(g13),r15
 00026538: 8C183000 00502090 lda     0x502090,r3
 00026540: 921F6010          st      r3,0x10(g13)
@@ -36607,7 +36607,7 @@
 00026650: 92B6DC1C          st      g6,(g11)[g12*1]
 00026654: 5CF01E00          mov     0x0,g14
 00026658: 9086600C          ld      0xc(g9),g0
-0002665C: 09DF195C          call    ffe17fb8                   ; upload geo model g0, object g13
+0002665C: 09DF195C          call    00017fb8                   ; upload geo model g0, object g13
 00026660: 8CF00606          lda     0x606,g14
 00026664: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00026668: 5CF01E00          mov     0x0,g14
@@ -36737,7 +36737,7 @@
 000268B8: 5918CE07          shlo    0x7,r3,r3
 000268BC: 598C4003          addo    r3,g1,g1
 000268C0: 90842004          ld      0x4(g0),g0
-000268C4: 09DF2EF0          call    ffe197b4                   ; clear tilemap data g0 at g1
+000268C4: 09DF2EF0          call    000197b4                   ; clear tilemap data g0 at g1
 000268C8: 90183000 00501A80 ld      0x501a80,r3
 000268D0: 5A003003          cmpo    r3,0x0
 000268D4: 12000120          be      000269f4
@@ -36755,11 +36755,11 @@
 00026914: 5918CE07          shlo    0x7,r3,r3
 00026918: 598C4003          addo    r3,g1,g1
 0002691C: 90842004          ld      0x4(g0),g0
-00026920: 09DF2ED4          call    ffe197f4                   ; copy tilemap data g0 to g1
+00026920: 09DF2ED4          call    000197f4                   ; copy tilemap data g0 to g1
 00026924: 0A000000          ret
-00026928: 09DF19EC          call    ffe18314
+00026928: 09DF19EC          call    00018314
 0002692C: 5C801E03          mov     0x3,g0
-00026930: 09DF1678          call    ffe17fa8                   ; setup copro (set mode g0)
+00026930: 09DF1678          call    00017fa8                   ; setup copro (set mode g0)
 00026934: 5C381E0F          mov     0xf,r7
 00026938: 5C401E00          mov     0x0,r8
 0002693C: 8C203000 BF800000 lda     0xbf800000,r4
@@ -36790,7 +36790,7 @@
 000269C4: 921EDC1C          st      r3,(g11)[g12*1]
 000269C8: 5CF01E00          mov     0x0,g14
 000269CC: 9081A004          ld      0x4(r6),g0
-000269D0: 09DF15E8          call    ffe17fb8                   ; upload geo model g0, object g13
+000269D0: 09DF15E8          call    00017fb8                   ; upload geo model g0, object g13
 000269D4: 8CF00606          lda     0x606,g14
 000269D8: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 000269DC: 5CF01E00          mov     0x0,g14
@@ -36798,7 +36798,7 @@
 000269E4: 5A39CB81          cmpdeci 0x1,r7,r7
 000269E8: 14FFFF64          bl      0002694c
 000269EC: 5C801E01          mov     0x1,g0
-000269F0: 09DF15B8          call    ffe17fa8                   ; setup copro (set mode g0)
+000269F0: 09DF15B8          call    00017fa8                   ; setup copro (set mode g0)
 000269F4: 0A000000          ret
 000269F8: 5C781E02          mov     0x2,r15
 000269FC: 5C701E00          mov     0x0,r14
@@ -36838,12 +36838,12 @@
 00026AA4: 88183000 005FE5A8 ldos    0x5fe5a8,r3
 00026AAC: 3500E02C          cmpobne 0x0,r3,0x26ad8
 00026AB0: 9080390E 02818664 ld      0x2818664[r14*4],g0
-00026AB8: 09DF1500          call    ffe17fb8                   ; upload geo model g0, object g13
+00026AB8: 09DF1500          call    00017fb8                   ; upload geo model g0, object g13
 00026ABC: 8C803000 0284A2D0 lda     0x284a2d0,g0
-00026AC4: 09DF14F4          call    ffe17fb8                   ; upload geo model g0, object g13
+00026AC4: 09DF14F4          call    00017fb8                   ; upload geo model g0, object g13
 00026AC8: 9080390E 02818670 ld      0x2818670[r14*4],g0
-00026AD0: 09DF14E8          call    ffe17fb8                   ; upload geo model g0, object g13
-00026AD4: 09DE1664          call    ffe08138
+00026AD0: 09DF14E8          call    00017fb8                   ; upload geo model g0, object g13
+00026AD4: 09DE1664          call    00008138
 00026AD8: 8CF00606          lda     0x606,g14
 00026ADC: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00026AE0: 5CF01E00          mov     0x0,g14
@@ -36871,7 +36871,7 @@
 00026B50: 598C4003          addo    r3,g1,g1
 00026B54: 59198E07          shlo    0x7,r6,r3
 00026B58: 598C4003          addo    r3,g1,g1
-00026B5C: 09DF2C98          call    ffe197f4                   ; copy tilemap data g0 to g1
+00026B5C: 09DF2C98          call    000197f4                   ; copy tilemap data g0 to g1
 00026B60: 5A7BCB01          cmpdeco 0x1,r15,r15
 00026B64: 59738801          addo    0x1,r14,r14
 00026B68: 5963000D          addo    r13,r12,r12
@@ -36880,34 +36880,34 @@
 00026B74: C8183000 00501468 ldis    0x501468,r3
 00026B7C: 90841D03          ld      (g0)[r3*4],g0
 00026B80: 8C883000 010007AE lda     0x10007ae,g1
-00026B88: 09DF2C6C          call    ffe197f4                   ; copy tilemap data g0 to g1
+00026B88: 09DF2C6C          call    000197f4                   ; copy tilemap data g0 to g1
 00026B8C: 0A000000          ret
 00026B90: 8C883000 01004000 lda     0x1004000,g1
 00026B98: 8C803000 0281EC72 lda     0x281ec72,g0
-00026BA0: 09DF2C54          call    ffe197f4                   ; copy tilemap data g0 to g1
+00026BA0: 09DF2C54          call    000197f4                   ; copy tilemap data g0 to g1
 00026BA4: 0A000000          ret
 00026BA8: 8C883000 010014B6 lda     0x10014b6,g1
 00026BB0: 8C803000 0282F5A0 lda     0x282f5a0,g0
-00026BB8: 09DF2C3C          call    ffe197f4                   ; copy tilemap data g0 to g1
+00026BB8: 09DF2C3C          call    000197f4                   ; copy tilemap data g0 to g1
 00026BBC: 8C883000 01000096 lda     0x1000096,g1
 00026BC4: 8C803000 028259E6 lda     0x28259e6,g0
-00026BCC: 09DF2C28          call    ffe197f4                   ; copy tilemap data g0 to g1
+00026BCC: 09DF2C28          call    000197f4                   ; copy tilemap data g0 to g1
 00026BD0: 8C883000 0100128C lda     0x100128c,g1
 00026BD8: 8C803000 0282F5EC lda     0x282f5ec,g0
-00026BE0: 09DF2C14          call    ffe197f4                   ; copy tilemap data g0 to g1
+00026BE0: 09DF2C14          call    000197f4                   ; copy tilemap data g0 to g1
 00026BE4: 8C883000 010012CA lda     0x10012ca,g1
 00026BEC: 8C803000 0282FAD4 lda     0x282fad4,g0
-00026BF4: 09DF2C00          call    ffe197f4                   ; copy tilemap data g0 to g1
+00026BF4: 09DF2C00          call    000197f4                   ; copy tilemap data g0 to g1
 00026BF8: 0A000000          ret
 00026BFC: 8C883000 010014B6 lda     0x10014b6,g1
 00026C04: 8C803000 0282F5A0 lda     0x282f5a0,g0
-00026C0C: 09DF2BE8          call    ffe197f4                   ; copy tilemap data g0 to g1
+00026C0C: 09DF2BE8          call    000197f4                   ; copy tilemap data g0 to g1
 00026C10: 8C883000 0100128C lda     0x100128c,g1
 00026C18: 8C803000 0282FC10 lda     0x282fc10,g0
-00026C20: 09DF2BD4          call    ffe197f4                   ; copy tilemap data g0 to g1
+00026C20: 09DF2BD4          call    000197f4                   ; copy tilemap data g0 to g1
 00026C24: 8C883000 010012CA lda     0x10012ca,g1
 00026C2C: 8C803000 0282F728 lda     0x282f728,g0
-00026C34: 09DF2BC0          call    ffe197f4                   ; copy tilemap data g0 to g1
+00026C34: 09DF2BC0          call    000197f4                   ; copy tilemap data g0 to g1
 00026C38: 80183000 00540027 ldob    0x540027,r3
 00026C40: 5CF01E01          mov     0x1,g14
 00026C44: 3EF0C00C          cmpible g14,r3,0x26c50
@@ -36930,7 +36930,7 @@
 00026C94: 5918CE07          shlo    0x7,r3,r3
 00026C98: 598C4003          addo    r3,g1,g1
 00026C9C: 90842004          ld      0x4(g0),g0
-00026CA0: 09DF2B54          call    ffe197f4                   ; copy tilemap data g0 to g1
+00026CA0: 09DF2B54          call    000197f4                   ; copy tilemap data g0 to g1
 00026CA4: 0A000000          ret
 00026CA8: 8C283000 01008000 lda     0x1008000,r5
 00026CB0: 5920DE07          shlo    0x7,0x3,r4
@@ -36965,7 +36965,7 @@
 00026D34: 80183000 00501460 ldob    0x501460,r3
 00026D3C: 90803903 00239C80 ld      0x239c80[r3*4],g0
 00026D44: 8C883000 01000000 lda     0x1000000,g1
-00026D4C: 09DF2AA8          call    ffe197f4                   ; copy tilemap data g0 to g1
+00026D4C: 09DF2AA8          call    000197f4                   ; copy tilemap data g0 to g1
 
 00026D50: 8C183000 00226D64 lda     0x226d64,r3
 00026D58: 92183000 0050000C st      r3,0x50000c                ; 0x226d64
@@ -36995,13 +36995,13 @@
 00026DC8: 0A000000          ret
 00026DCC: 8C803000 00226DE4 lda     0x226de4,g0
 00026DD4: 8C883000 010001E8 lda     0x10001e8,g1
-00026DDC: 09DF1D9C          call    ffe18b78                   ; print hiscore string g0 to g1
+00026DDC: 09DF1D9C          call    00018b78                   ; print hiscore string g0 to g1
 00026DE0: 08000008          b       00026de8
 00026DE4: 00002020          ? 00:0 00002020 2 0
 00026DE8: 0A000000          ret
 00026DEC: 8C803000 00226E04 lda     0x226e04,g0
 00026DF4: 8C883000 010001E8 lda     0x10001e8,g1
-00026DFC: 09DF1D7C          call    ffe18b78                   ; print hiscore string g0 to g1
+00026DFC: 09DF1D7C          call    00018b78                   ; print hiscore string g0 to g1
 00026E00: 08000008          b       00026e08
 00026E04: 00002020          ? 00:0 00002020 2 0
 00026E08: 0A000000          ret
@@ -37012,7 +37012,7 @@
 00026E1C: 92183000 00501338 st      r3,0x501338
 00026E24: 8C803000 00226E3C lda     0x226e3c,g0
 00026E2C: 8C883000 01001018 lda     0x1001018,g1
-00026E34: 09DF1D44          call    ffe18b78                   ; print hiscore string g0 to g1
+00026E34: 09DF1D44          call    00018b78                   ; print hiscore string g0 to g1
 00026E38: 0800001C          b       00026e54
 00026E3C: 52554F43          ? 52:e 52554f43 0 3
 00026E40: 49204553          ? 49:a 49204553 0 1
@@ -37022,7 +37022,7 @@
 00026E50: 00000000          ? 00:0 00000000 0 0
 00026E54: 8C803000 00226E6C lda     0x226e6c,g0
 00026E5C: 8C883000 01001298 lda     0x1001298,g1
-00026E64: 09DF1D14          call    ffe18b78                   ; print hiscore string g0 to g1
+00026E64: 09DF1D14          call    00018b78                   ; print hiscore string g0 to g1
 00026E68: 08000018          b       00026e80
 00026E6C: 20202020          testno r4
 00026E70: 44414552          ? 44:a 44414552 0 1
@@ -37035,7 +37035,7 @@
 00026E90: 5C801605          mov     r5,g0
 00026E94: 8C883000 010001E8 lda     0x10001e8,g1
 00026E9C: 5C901E02          mov     0x2,g2
-00026EA0: 09DF266C          call    ffe1950c
+00026EA0: 09DF266C          call    0001950c
 00026EA4: 0A000000          ret
 00026EA8: 90803000 005010A8 ld      0x5010a8,g0
 00026EB0: 59195E06          shlo    0x6,0x5,r3
@@ -37366,7 +37366,7 @@
 00027394: 0900035C          call    000276f0
 00027398: 8C883000 010000A4 lda     0x10000a4,g1
 000273A0: 8C803000 028255C8 lda     0x28255c8,g0
-000273A8: 09DF244C          call    ffe197f4                   ; copy tilemap data g0 to g1
+000273A8: 09DF244C          call    000197f4                   ; copy tilemap data g0 to g1
 000273AC: 80383000 00501460 ldob    0x501460,r7
 000273B4: 8C203987 00227544 lda     0x227544[r7*8],r4
 000273BC: 90292000          ld      0x0(r4),r5
@@ -37377,7 +37377,7 @@
 000273D4: 59198E07          shlo    0x7,r6,r3
 000273D8: 598C4003          addo    r3,g1,g1
 000273DC: 90803907 00227534 ld      0x227534[r7*4],g0
-000273E4: 09DF2410          call    ffe197f4                   ; copy tilemap data g0 to g1
+000273E4: 09DF2410          call    000197f4                   ; copy tilemap data g0 to g1
 000273E8: 0A000000          ret
 }
 
@@ -37416,20 +37416,20 @@
 00027458: 70294083          mulo    r3,r5,r5
 0002745C: 598C4005          addo    r5,g1,g1
 00027460: 5C901E01          mov     0x1,g2
-00027464: 09DF17F8          call    ffe18c5c                   ; print hiscore digit g0 to g1 len g2
+00027464: 09DF17F8          call    00018c5c                   ; print hiscore digit g0 to g1 len g2
 
 00027468: 80843400 00227528 ldob    0x227528(g0),g0
 00027470: 598C4804          addo    0x4,g1,g1
-00027474: 09DF1784          call    ffe18bf8                   ; print hiscore letter g0 at g1
+00027474: 09DF1784          call    00018bf8                   ; print hiscore letter g0 at g1
 
 00027478: 8C83A014          lda     0x14(r14),g0
 0002747C: 598C4808          addo    0x8,g1,g1
-00027480: 09DF16F8          call    ffe18b78                   ; print hiscore string g0 to g1
+00027480: 09DF16F8          call    00018b78                   ; print hiscore string g0 to g1
 
 00027484: 9083A010          ld      0x10(r14),g0
 00027488: 591F5E02          shlo    0x2,0x1d,r3
 0002748C: 598C4103          subo    r3,g1,g1
-00027490: 09DF2184          call    ffe19614
+00027490: 09DF2184          call    00019614
 
 00027494: 9023A00C          ld      0xc(r14),r4
 00027498: 8C803000 0282584A lda     0x282584a,g0
@@ -37588,7 +37588,7 @@
 {
 ; object handler 00227718
 00027718: 8C803000 00AE2159 lda     0xae2159,g0
-00027720: 09DF2E34          call    ffe1a554                   ; push g0 to serial buffer
+00027720: 09DF2E34          call    0001a554                   ; push g0 to serial buffer
 00027724: C0803000 00501460 ldib    0x501460,g0
 0002772C: 09FFFFC4          call    000276f0
 00027730: 09000F74          call    000286a4
@@ -37628,12 +37628,12 @@
 {
 ; object handler 002277D8
 000277D8: 5C801E03          mov     0x3,g0
-000277DC: 09DF07CC          call    ffe17fa8                   ; setup copro (set mode g0)
+000277DC: 09DF07CC          call    00017fa8                   ; setup copro (set mode g0)
 000277E0: 801F6036          ldob    0x36(g13),r3
 000277E4: 90183903 002277FC ld      0x2277fc[r3*4],r3
 000277EC: 8600D000          callx   (r3)
 000277F0: 5C801E01          mov     0x1,g0
-000277F4: 09DF07B4          call    ffe17fa8                   ; setup copro (set mode g0)
+000277F4: 09DF07B4          call    00017fa8                   ; setup copro (set mode g0)
 000277F8: 0A000000          ret
 }
 
@@ -37745,7 +37745,7 @@
 00027994: 921EDC1C          st      r3,(g11)[g12*1]
 00027998: 5CF01E00          mov     0x0,g14
 0002799C: 9082E004          ld      0x4(r11),g0
-000279A0: 09DF0618          call    ffe17fb8                   ; upload geo model g0, object g13
+000279A0: 09DF0618          call    00017fb8                   ; upload geo model g0, object g13
 000279A4: 8CF00606          lda     0x606,g14
 000279A8: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 000279AC: 5CF01E00          mov     0x0,g14
@@ -37793,10 +37793,10 @@
 00027A30: 5A003085          cmpi    r5,0x0
 00027A34: 14000014          bl      00027a48
 00027A38: 90803905 0023AB10 ld      0x23ab10[r5*4],g0
-00027A40: 09DF2B14          call    ffe1a554                   ; push g0 to serial buffer
+00027A40: 09DF2B14          call    0001a554                   ; push g0 to serial buffer
 00027A44: 08000010          b       00027a54
 00027A48: 8C803000 00AE2162 lda     0xae2162,g0
-00027A50: 09DF2B04          call    ffe1a554                   ; push g0 to serial buffer
+00027A50: 09DF2B04          call    0001a554                   ; push g0 to serial buffer
 00027A54: 0A000000          ret
 }
 
@@ -37922,7 +37922,7 @@
 00027C84: 921EDC1C          st      r3,(g11)[g12*1]
 00027C88: 5CF01E00          mov     0x0,g14
 00027C8C: 9082E004          ld      0x4(r11),g0
-00027C90: 09DF0328          call    ffe17fb8                   ; upload geo model g0, object g13
+00027C90: 09DF0328          call    00017fb8                   ; upload geo model g0, object g13
 00027C94: 8CF00606          lda     0x606,g14
 00027C98: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00027C9C: 5CF01E00          mov     0x0,g14
@@ -38024,7 +38024,7 @@
 00027E1C: 921EDC1C          st      r3,(g11)[g12*1]
 00027E20: 5CF01E00          mov     0x0,g14
 00027E24: 9082E004          ld      0x4(r11),g0
-00027E28: 09DF0190          call    ffe17fb8                   ; upload geo model g0, object g13
+00027E28: 09DF0190          call    00017fb8                   ; upload geo model g0, object g13
 00027E2C: 8CF00606          lda     0x606,g14
 00027E30: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00027E34: 5CF01E00          mov     0x0,g14
@@ -38059,7 +38059,7 @@
 00027EC8: 5918CE05          shlo    0x5,r3,r3
 00027ECC: 8C18F400 0023A766 lda     0x23a766(r3),r3
 00027ED4: 9080E004          ld      0x4(r3),g0
-00027ED8: 09DF00E0          call    ffe17fb8                   ; upload geo model g0, object g13
+00027ED8: 09DF00E0          call    00017fb8                   ; upload geo model g0, object g13
 00027EDC: 8CF00606          lda     0x606,g14
 00027EE0: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00027EE4: 5CF01E00          mov     0x0,g14
@@ -38107,7 +38107,7 @@
 00027F94: 59210E05          shlo    0x5,r4,r4
 00027F98: 8C193400 0023A766 lda     0x23a766(r4),r3
 00027FA0: 9080E004          ld      0x4(r3),g0
-00027FA4: 09DF0014          call    ffe17fb8                   ; upload geo model g0, object g13
+00027FA4: 09DF0014          call    00017fb8                   ; upload geo model g0, object g13
 00027FA8: 8CF00606          lda     0x606,g14
 00027FAC: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00027FB0: 5CF01E00          mov     0x0,g14
@@ -38202,7 +38202,7 @@
 0002815C: 921EDC1C          st      r3,(g11)[g12*1]
 00028160: 5CF01E00          mov     0x0,g14
 00028164: 8C803000 02842F1C lda     0x2842f1c,g0
-0002816C: 09DEFE4C          call    ffe17fb8                   ; upload geo model g0, object g13
+0002816C: 09DEFE4C          call    00017fb8                   ; upload geo model g0, object g13
 00028170: 8CF00606          lda     0x606,g14
 00028174: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00028178: 5CF01E00          mov     0x0,g14
@@ -38255,7 +38255,7 @@
 00028260: 921EDC1C          st      r3,(g11)[g12*1]
 00028264: 5CF01E00          mov     0x0,g14
 00028268: 9082E004          ld      0x4(r11),g0
-0002826C: 09DEFD4C          call    ffe17fb8                   ; upload geo model g0, object g13
+0002826C: 09DEFD4C          call    00017fb8                   ; upload geo model g0, object g13
 00028270: 8CF00606          lda     0x606,g14
 00028274: 92F6E060          st      g14,0x60(g11)              ; (copro matrix_pop)
 00028278: 5CF01E00          mov     0x0,g14
@@ -38279,7 +38279,7 @@
 000282CC: 5C801603          mov     r3,g0
 000282D0: 8C883000 010002EC lda     0x10002ec,g1
 000282D8: 5C901E02          mov     0x2,g2
-000282DC: 09DF0980          call    ffe18c5c                   ; print hiscore digit g0 to g1 len g2
+000282DC: 09DF0980          call    00018c5c                   ; print hiscore digit g0 to g1 len g2
 000282E0: 0A000000          ret
 000282E4: 09000340          call    00028624
 000282E8: 5A003090          cmpi    g0,0x0
@@ -38293,7 +38293,7 @@
 00028314: 5A012883          cmpi    0x3,r4
 00028318: 1200004C          be      00028364
 0002831C: 8C803000 00AE2155 lda     0xae2155,g0
-00028324: 09DF2230          call    ffe1a554                   ; push g0 to serial buffer
+00028324: 09DF2230          call    0001a554                   ; push g0 to serial buffer
 00028328: 0800003C          b       00028364
 0002832C: 90183000 0050139C ld      0x50139c,r3
 00028334: 5C201E1C          mov     0x1c,r4
@@ -38304,7 +38304,7 @@
 00028350: 5A012883          cmpi    0x3,r4
 00028354: 12000010          be      00028364
 00028358: 8C803000 00AE2155 lda     0xae2155,g0
-00028360: 09DF21F4          call    ffe1a554                   ; push g0 to serial buffer
+00028360: 09DF21F4          call    0001a554                   ; push g0 to serial buffer
 00028364: 90203000 005013AC ld      0x5013ac,r4
 0002836C: 31192034          cmpobg  0x3,r4,0x283a0
 00028370: 90283000 0050139C ld      0x50139c,r5
@@ -38354,7 +38354,7 @@
 0002844C: 5A01E085          cmpi    r5,r7
 00028450: 12000010          be      00028460
 00028454: 8C803000 00AE2155 lda     0xae2155,g0
-0002845C: 09DF20F8          call    ffe1a554                   ; push g0 to serial buffer
+0002845C: 09DF20F8          call    0001a554                   ; push g0 to serial buffer
 00028460: 8C503000 0023A3D8 lda     0x23a3d8,r10
 00028468: C0329C05          ldib    (r10)[r5*1],r6
 0002846C: C2303000 005013B8 stib    r6,0x5013b8
@@ -38375,10 +38375,10 @@
 000284C0: 5A003085          cmpi    r5,0x0
 000284C4: 14000014          bl      000284d8
 000284C8: 90803905 0023AB10 ld      0x23ab10[r5*4],g0
-000284D0: 09DF2084          call    ffe1a554                   ; push g0 to serial buffer
+000284D0: 09DF2084          call    0001a554                   ; push g0 to serial buffer
 000284D4: 08000010          b       000284e4
 000284D8: 8C803000 00AE2162 lda     0xae2162,g0
-000284E0: 09DF2074          call    ffe1a554                   ; push g0 to serial buffer
+000284E0: 09DF2074          call    0001a554                   ; push g0 to serial buffer
 000284E4: 3518E078          cmpobne 0x3,r3,0x2855c
 000284E8: 5C181E1C          mov     0x1c,r3
 000284EC: 92183000 0050139C st      r3,0x50139c
@@ -38394,7 +38394,7 @@
 00028520: 82216003          stob    r4,0x3(r5)
 00028524: 08000038          b       0002855c
 00028528: 8C803000 00AE2161 lda     0xae2161,g0
-00028530: 09DF2024          call    ffe1a554                   ; push g0 to serial buffer
+00028530: 09DF2024          call    0001a554                   ; push g0 to serial buffer
 00028534: 90183000 005013AC ld      0x5013ac,r3
 0002853C: 5918C901          subo    0x1,r3,r3
 00028540: 92183000 005013AC st      r3,0x5013ac
@@ -38437,12 +38437,12 @@
 000285F4: 5C181E06          mov     0x6,r3
 000285F8: 821F6036          stob    r3,0x36(g13)
 000285FC: 90803917 0023ACB4 ld      0x23acb4[g7*4],g0
-00028604: 09DF1F50          call    ffe1a554                   ; push g0 to serial buffer
+00028604: 09DF1F50          call    0001a554                   ; push g0 to serial buffer
 00028608: 0A000000          ret
 0002860C: 5C181E04          mov     0x4,r3
 00028610: 821F6036          stob    r3,0x36(g13)
 00028614: 90803917 0023ACB4 ld      0x23acb4[g7*4],g0
-0002861C: 09DF1F38          call    ffe1a554                   ; push g0 to serial buffer
+0002861C: 09DF1F38          call    0001a554                   ; push g0 to serial buffer
 00028620: 0A000000          ret
 00028624: C0803000 00501050 ldib    0x501050,g0
 0002862C: 59840D84          shri    0x4,g0,g0
@@ -38470,17 +38470,17 @@
 000286A0: 0A000000          ret
 000286A4: 8C883000 01004000 lda     0x1004000,g1
 000286AC: 8C803000 02835662 lda     0x2835662,g0
-000286B4: 09DF1140          call    ffe197f4                   ; copy tilemap data g0 to g1
+000286B4: 09DF1140          call    000197f4                   ; copy tilemap data g0 to g1
 000286B8: 8C883000 0100011E lda     0x100011e,g1
 000286C0: 8C803000 02836DAE lda     0x2836dae,g0
-000286C8: 09DF112C          call    ffe197f4                   ; copy tilemap data g0 to g1
+000286C8: 09DF112C          call    000197f4                   ; copy tilemap data g0 to g1
 000286CC: 90183000 005013B4 ld      0x5013b4,r3
 000286D4: 9020D000          ld      (r3),r4
 000286D8: 90292000          ld      0x0(r4),r5
 000286DC: 5C801605          mov     r5,g0
 000286E0: 8C883000 01000206 lda     0x1000206,g1
 000286E8: 5C901E02          mov     0x2,g2
-000286EC: 09DF0B50          call    ffe1923c
+000286EC: 09DF0B50          call    0001923c
 000286F0: 70194D8A          divo    0xa,r5,r3
 000286F4: 3508E00C          cmpobne 0x1,r3,0x28700
 000286F8: 5C281E00          mov     0x0,r5
@@ -38488,22 +38488,22 @@
 00028700: 70294C0A          remo    0xa,r5,r5
 00028704: 8C883000 01000212 lda     0x1000212,g1
 0002870C: 80803805 0023AB06 ldob    0x23ab06[r5*1],g0
-00028714: 09DF0A84          call    ffe19198
+00028714: 09DF0A84          call    00019198
 00028718: 8C883000 0100150A lda     0x100150a,g1
 00028720: 8C803000 02836F6C lda     0x2836f6c,g0
-00028728: 09DF10CC          call    ffe197f4                   ; copy tilemap data g0 to g1
+00028728: 09DF10CC          call    000197f4                   ; copy tilemap data g0 to g1
 0002872C: 90812010          ld      0x10(r4),g0
 00028730: 8C883000 01001526 lda     0x1001526,g1
-00028738: 09DF0778          call    ffe18eb0
+00028738: 09DF0778          call    00018eb0
 0002873C: 8C883000 01001542 lda     0x1001542,g1
 00028744: 8C803000 02836FAC lda     0x2836fac,g0
-0002874C: 09DF10A8          call    ffe197f4                   ; copy tilemap data g0 to g1
+0002874C: 09DF10A8          call    000197f4                   ; copy tilemap data g0 to g1
 00028750: 90483000 00501220 ld      0x501220,r9
 00028758: 801A606F          ldob    0x6f(r9),r3
 0002875C: 3200E014          cmpobe  0x0,r3,0x28770
 00028760: 88826068          ldos    0x68(r9),g0
 00028764: 8C883000 0100155E lda     0x100155e,g1
-0002876C: 09DF0744          call    ffe18eb0
+0002876C: 09DF0744          call    00018eb0
 00028770: 0A000000          ret
 00028774: 5918DE06          shlo    0x6,0x3,r3
 00028778: 92183000 005010A8 st      r3,0x5010a8
@@ -38564,11 +38564,11 @@
 
 0002886C: 8C383000 0023B2D4 lda     0x23b2d4,r7
 00028874: 9081D000          ld      (r7),g0
-00028878: 09DF6078          call    ffe1e8f0                   ; load graphics from g0 to charmap
+00028878: 09DF6078          call    0001e8f0                   ; load graphics from g0 to charmap
 
 0002887C: 5939C884          addi    0x4,r7,r7
 00028880: 9081D000          ld      (r7),g0
-00028884: 09DF60DC          call    ffe1e960
+00028884: 09DF60DC          call    0001e960
 
 00028888: 5939C884          addi    0x4,r7,r7
 0002888C: 90203000 0100A000 ld      0x100a000,r4
@@ -38597,7 +38597,7 @@
 00028910: 5918CE07          shlo    0x7,r3,r3
 00028914: 598C4003          addo    r3,g1,g1
 00028918: 90842004          ld      0x4(g0),g0
-0002891C: 09DF0E98          call    ffe197b4                   ; clear tilemap data g0 at g1
+0002891C: 09DF0E98          call    000197b4                   ; clear tilemap data g0 at g1
 
 00028920: 88803000 005FE5BA ldos    0x5fe5ba,g0
 00028928: 58840881          and     0x1,g0,g0
@@ -38610,13 +38610,13 @@
 0002894C: 5918CE07          shlo    0x7,r3,r3
 00028950: 598C4003          addo    r3,g1,g1
 00028954: 90842004          ld      0x4(g0),g0
-00028958: 09DF0E5C          call    ffe197b4                   ; clear tilemap data g0 at g1
+00028958: 09DF0E5C          call    000197b4                   ; clear tilemap data g0 at g1
 
 0002895C: 8C803000 02834968 lda     0x2834968,g0
 00028964: 88183000 005FE5BA ldos    0x5fe5ba,r3
 0002896C: 5818C881          and     0x1,r3,r3
 00028970: 90883903 0023B028 ld      0x23b028[r3*4],g1
-00028978: 09DF0E3C          call    ffe197b4                   ; clear tilemap data g0 at g1
+00028978: 09DF0E3C          call    000197b4                   ; clear tilemap data g0 at g1
 
 0002897C: 8C183000 00228A74 lda     0x228a74,r3
 00028984: 92183000 0050000C st      r3,0x50000c                ; set vblank handler 0x228a74
@@ -38654,7 +38654,7 @@
 000289E8: 58190881          and     0x1,r4,r3
 000289EC: 8C803000 0023B55C lda     0x23b55c,g0
 000289F4: 90883903 0023B030 ld      0x23b030[r3*4],g1
-000289FC: 09DF0DB8          call    ffe197b4                   ; clear tilemap data g0 at g1
+000289FC: 09DF0DB8          call    000197b4                   ; clear tilemap data g0 at g1
 
 00028A00: 901F6040          ld      0x40(g13),r3
 00028A04: 8C18DE04          lda     (r3)[r4*16],r3
@@ -38681,7 +38681,7 @@
 00028A60: 35012010          cmpobne 0x0,r4,0x28a70
 00028A64: 3202200C          cmpobe  0x0,r8,0x28a70
 00028A68: 5C801608          mov     r8,g0
-00028A6C: 09DF1AE8          call    ffe1a554                   ; push g0 to serial buffer
+00028A6C: 09DF1AE8          call    0001a554                   ; push g0 to serial buffer
 00028A70: 0A000000          ret
 00028A74: 5C881E10          mov     0x10,g1
 00028A78: 8C8C7400 01008000 lda     0x1008000(g1),g1
@@ -39440,7 +39440,7 @@
 00029938: 3A052024          cmpibe  0x0,g4,0x2995c             ; 0002995C
 
 0002993C: 8C803000 009E127F lda     0x9e127f,g0
-00029944: 09DF0C10          call    ffe1a554                   ; push g0 to serial buffer
+00029944: 09DF0C10          call    0001a554                   ; push g0 to serial buffer
 00029948: 80A03000 005FE043 ldob    0x5fe043,g4
 00029950: 59A50901          subo    0x1,g4,g4
 00029954: 82A03000 005FE043 stob    g4,0x5fe043
@@ -39450,7 +39450,7 @@
 00029964: 3A052024          cmpibe  0x0,g4,0x29988             ; 00029988
 
 00029968: 8C803000 009E127F lda     0x9e127f,g0
-00029970: 09DF0BE4          call    ffe1a554                   ; push g0 to serial buffer
+00029970: 09DF0BE4          call    0001a554                   ; push g0 to serial buffer
 00029974: 80A03000 005FE044 ldob    0x5fe044,g4
 0002997C: 59A50901          subo    0x1,g4,g4
 00029980: 82A03000 005FE044 stob    g4,0x5fe044
@@ -39849,30 +39849,30 @@
 00029EF0: 82A83000 005FE5C0 stob    g5,0x5fe5c0
 00029EF8: 0B000460          bal     0002a358
 00029EFC: 5C801E00          mov     0x0,g0
-00029F00: 09DD8934          call    ffe02834                   ; set background to g0
-00029F04: 09DF4EDC          call    ffe1ede0                   ; clear screen
+00029F00: 09DD8934          call    00002834                   ; set background to g0
+00029F04: 09DF4EDC          call    0001ede0                   ; clear screen
 
 00029F08: 8C803000 00BE141F lda     0xbe141f,g0
-00029F10: 09DF0644          call    ffe1a554                   ; push g0 to serial buffer
+00029F10: 09DF0644          call    0001a554                   ; push g0 to serial buffer
 00029F14: 8C803000 00AE101F lda     0xae101f,g0
-00029F1C: 09DF0638          call    ffe1a554                   ; push g0 to serial buffer
+00029F1C: 09DF0638          call    0001a554                   ; push g0 to serial buffer
 
 00029F20: 090065F0          call    00030510                   ; set driveboard to service
 00029F24: 0900517C          call    0002f0a0                   ; set soundboard to service
 00029F28: 0B002B70          bal     0002ca98                   ; ioboard turn of lamps
 00029F2C: 08000028          b       00029f54
 
-00029F30: 09DF4640          call    ffe1e570                   ; read io (analog)
-00029F34: 0BDF45A4          bal     ffe1e4d8                   ; read io (digital)
+00029F30: 09DF4640          call    0001e570                   ; read io (analog)
+00029F34: 0BDF45A4          bal     0001e4d8                   ; read io (digital)
 00029F38: 80A03000 005FE633 ldob    0x5fe633,g4                ; read1 g4 from 0x5fe633
 00029F40: 90A03914 0023CBC0 ld      0x23cbc0[g4*4],g4          ; load g4 from table 0003cbc0[g4*4]
 00029F48: 86051000          callx   (g4)                       ; jump to handler
-00029F4C: 09DEE4A4          call    ffe183f0                   ; process geo list
-00029F50: 09DD7450          call    ffe013a0                   ; wait frame and count
+00029F4C: 09DEE4A4          call    000183f0                   ; process geo list
+00029F50: 09DD7450          call    000013a0                   ; wait frame and count
 
 00029F54: 80A03000 005FE626 ldob    0x5fe626,g4
 00029F5C: 3D053FD4          cmpibne 0x0,g4,0x29f30             ; if g4 != 0x00 goto 00029F30
-00029F60: 08DD6998          b       ffe008f8
+00029F60: 08DD6998          b       000008f8
 }
 
 00029F64: 00000000          ? 00:0 00000000 0 0
@@ -39892,27 +39892,27 @@
 
 {
 ; service handler 0-0 (main menu - 0)
-00029F90: 09DF4E50          call    ffe1ede0                   ; clear screen
-00029F94: 09DF4EEC          call    ffe1ee80                   ; clear tilemap3
+00029F90: 09DF4E50          call    0001ede0                   ; clear screen
+00029F94: 09DF4EEC          call    0001ee80                   ; clear tilemap3
 
 00029F98: 5880198F          setbit  0xf,0x0,g0
-00029F9C: 0BDF51CC          bal     ffe1f168                   ; set text color g0
+00029F9C: 0BDF51CC          bal     0001f168                   ; set text color g0
 
 00029FA0: 5C801E14          mov     0x14,g0
 00029FA4: 5C881E1E          mov     0x1e,g1
-00029FA8: 0BDF5190          bal     ffe1f138                   ; set cursor to g0, g1
+00029FA8: 0BDF5190          bal     0001f138                   ; set cursor to g0, g1
 00029FAC: 8C803000 0023CB20 lda     0x23cb20,g0
-00029FB4: 09DF51CC          call    ffe1f180                   ; print string from g0	; "GREEN  : CURSOR UP"
+00029FB4: 09DF51CC          call    0001f180                   ; print string from g0	; "GREEN  : CURSOR UP"
 
 00029FB8: 5C801E14          mov     0x14,g0
 00029FBC: 5C881E1F          mov     0x1f,g1
-00029FC0: 0BDF5178          bal     ffe1f138                   ; set cursor to g0, g1
+00029FC0: 0BDF5178          bal     0001f138                   ; set cursor to g0, g1
 00029FC4: 8C803000 0023CB40 lda     0x23cb40,g0
-00029FCC: 09DF51B4          call    ffe1f180                   ; print string from g0	; "RED    : CURSOR DOWN"
+00029FCC: 09DF51B4          call    0001f180                   ; print string from g0	; "RED    : CURSOR DOWN"
 
 00029FD0: 5C801E14          mov     0x14,g0
 00029FD4: 5988581F          addo    0x1f,0x1,g1
-00029FD8: 0BDF5160          bal     ffe1f138                   ; set cursor to g0, g1
+00029FD8: 0BDF5160          bal     0001f138                   ; set cursor to g0, g1
 
 00029FDC: 8C803000 0023CBA0 lda     0x23cba0,g0
 
@@ -39920,7 +39920,7 @@
 00029FEC: 5C381608          mov     r8,r7
 00029FF0: 59320902          subo    0x2,r8,r6
 
-00029FF4: 09DF518C          call    ffe1f180                   ; print string from g0	; "START  : TO SELECT"
+00029FF4: 09DF518C          call    0001f180                   ; print string from g0	; "START  : TO SELECT"
 
 00029FF8: 592A0904          subo    0x4,r8,r5
 00029FFC: 8C483000 0023CAC4 lda     0x23cac4,r9
@@ -39929,44 +39929,44 @@
 0002A00C: 88815000          ldos    (r5),g0
 0002A010: 88899000          ldos    (r6),g1
 0002A014: 9021D000          ld      (r7),r4
-0002A018: 0BDF5120          bal     ffe1f138                   ; set cursor to g0, g1
+0002A018: 0BDF5120          bal     0001f138                   ; set cursor to g0, g1
 0002A01C: 5C801604          mov     r4,g0
-0002A020: 09DF5160          call    ffe1f180                   ; print string from g0	; "EXIT"
+0002A020: 09DF5160          call    0001f180                   ; print string from g0	; "EXIT"
 
 0002A024: 88817400 FFFFFFF8 ldos    0xfffffff8(r5),g0          ; g0 from r5 - 8
 0002A02C: 8889B400 FFFFFFF8 ldos    0xfffffff8(r6),g1          ; g1 from r6 - 8
 0002A034: 9021F400 FFFFFFF8 ld      0xfffffff8(r7),r4          ; r4 from r8 - 8
-0002A03C: 0BDF50FC          bal     ffe1f138                   ; set cursor to g0, g1
+0002A03C: 0BDF50FC          bal     0001f138                   ; set cursor to g0, g1
 0002A040: 5C801604          mov     r4,g0
-0002A044: 09DF513C          call    ffe1f180                   ; print string from g0	; "BACKUP RAM CLEAR"
+0002A044: 09DF513C          call    0001f180                   ; print string from g0	; "BACKUP RAM CLEAR"
 
 0002A048: 88817400 FFFFFFF0 ldos    0xfffffff0(r5),g0
 0002A050: 8889B400 FFFFFFF0 ldos    0xfffffff0(r6),g1
 0002A058: 9021F400 FFFFFFF0 ld      0xfffffff0(r7),r4
-0002A060: 0BDF50D8          bal     ffe1f138                   ; set cursor to g0, g1
+0002A060: 0BDF50D8          bal     0001f138                   ; set cursor to g0, g1
 0002A064: 5C801604          mov     r4,g0
-0002A068: 09DF5118          call    ffe1f180                   ; print string from g0	; "MEMORY TEST"
+0002A068: 09DF5118          call    0001f180                   ; print string from g0	; "MEMORY TEST"
 
 0002A06C: 88817400 FFFFFFE8 ldos    0xffffffe8(r5),g0
 0002A074: 8889B400 FFFFFFE8 ldos    0xffffffe8(r6),g1
 0002A07C: 9021F400 FFFFFFE8 ld      0xffffffe8(r7),r4
-0002A084: 0BDF50B4          bal     ffe1f138                   ; set cursor to g0, g1
+0002A084: 0BDF50B4          bal     0001f138                   ; set cursor to g0, g1
 0002A088: 5C801604          mov     r4,g0
-0002A08C: 09DF50F4          call    ffe1f180                   ; print string from g0	; "TGP TEST"
+0002A08C: 09DF50F4          call    0001f180                   ; print string from g0	; "TGP TEST"
 
 0002A090: 88817400 FFFFFFE0 ldos    0xffffffe0(r5),g0
 0002A098: 8889B400 FFFFFFE0 ldos    0xffffffe0(r6),g1
 0002A0A0: 9021F400 FFFFFFE0 ld      0xffffffe0(r7),r4
-0002A0A8: 0BDF5090          bal     ffe1f138                   ; set cursor to g0, g1
+0002A0A8: 0BDF5090          bal     0001f138                   ; set cursor to g0, g1
 0002A0AC: 5C801604          mov     r4,g0
-0002A0B0: 09DF50D0          call    ffe1f180                   ; print string from g0	; "SOUND TEST"
+0002A0B0: 09DF50D0          call    0001f180                   ; print string from g0	; "SOUND TEST"
 
 0002A0B4: 88817400 FFFFFFD8 ldos    0xffffffd8(r5),g0
 0002A0BC: 8889B400 FFFFFFD8 ldos    0xffffffd8(r6),g1
 0002A0C4: 9021F400 FFFFFFD8 ld      0xffffffd8(r7),r4
-0002A0CC: 0BDF506C          bal     ffe1f138                   ; set cursor to g0, g1
+0002A0CC: 0BDF506C          bal     0001f138                   ; set cursor to g0, g1
 0002A0D0: 5C801604          mov     r4,g0
-0002A0D4: 09DF50AC          call    ffe1f180                   ; print string from g0	; "DRIVE BD TEST"
+0002A0D4: 09DF50AC          call    0001f180                   ; print string from g0	; "DRIVE BD TEST"
 
 0002A0D8: 59428008          addo    r8,r10,r8
 0002A0DC: 5A026088          cmpi    r8,r9
@@ -39976,7 +39976,7 @@
 0002A0EC: 13FFFF20          bge     0002a00c                   ; if r9 > r8 loop to 0002a00c
 
 0002A0F0: 5980DE0E          shlo    0xe,0x3,g0                 ; g0 = 0xC000 ( green )
-0002A0F4: 0BDF5074          bal     ffe1f168                   ; set text color g0
+0002A0F4: 0BDF5074          bal     0001f168                   ; set text color g0
 
 0002A0F8: 80A03000 005FE5C0 ldob    0x5fe5c0,g4
 0002A100: 98803994 0023CAC0 ldl     0x23cac0[g4*8],g0
@@ -40012,12 +40012,12 @@
 0002A184: 3A052088          cmpibe  0x0,g4,0x2a20c             ; if g4 = 0x0 goto 0002A20C (no button pressed)
 
 0002A188: 5880198F          setbit  0xf,0x0,g0                 ; g0 = 0x8000
-0002A18C: 0BDF4FDC          bal     ffe1f168                   ; set text color g0
+0002A18C: 0BDF4FDC          bal     0001f168                   ; set text color g0
 0002A190: 59898C10          shro    0x10,r6,g1
 0002A194: 5C801606          mov     r6,g0
-0002A198: 0BDF4FA0          bal     ffe1f138                   ; set cursor to g0, g1
+0002A198: 0BDF4FA0          bal     0001f138                   ; set cursor to g0, g1
 0002A19C: 5C801607          mov     r7,g0
-0002A1A0: 09DF4FE0          call    ffe1f180                   ; print string from g0
+0002A1A0: 09DF4FE0          call    0001f180                   ; print string from g0
 0002A1A4: 8CB80828          lda     0x828,g7
 
 0002A1A8: 58A5C084          and     r4,g7,g4
@@ -40043,7 +40043,7 @@
 
 0002A1E8: 82A83000 005FE5C0 stob    g5,0x5fe5c0
 0002A1F0: 5980DE0E          shlo    0xe,0x3,g0
-0002A1F4: 0BDF4F74          bal     ffe1f168                   ; set text color g0
+0002A1F4: 0BDF4F74          bal     0001f168                   ; set text color g0
 0002A1F8: 80A03000 005FE5C0 ldob    0x5fe5c0,g4
 0002A200: 98803994 0023CAC0 ldl     0x23cac0[g4*8],g0          ; load8 g0,g1 from table 0003CAC0 + g4*8
 0002A208: 08000008          b       0002a210                   ; print selection arrow g0, g1
@@ -40056,28 +40056,28 @@
 0002A210: 5D201610          movl    g0,r4                      ; r4 = g0, r5 = g1
 0002A214: 59340C10          shro    0x10,g0,r6                 ; g1 = r6 >> 16
 0002A218: 5C881606          mov     r6,g1
-0002A21C: 0BDF4F1C          bal     ffe1f138                   ; set cursor to g0, g1
+0002A21C: 0BDF4F1C          bal     0001f138                   ; set cursor to g0, g1
 0002A220: 5C801605          mov     r5,g0
-0002A224: 09DF4F5C          call    ffe1f180                   ; print string from g0
+0002A224: 09DF4F5C          call    0001f180                   ; print string from g0
 
 ; clear last selection location
 0002A228: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002A230: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002A238: 0BDF4F00          bal     ffe1f138                   ; set cursor to g0, g1
+0002A238: 0BDF4F00          bal     0001f138                   ; set cursor to g0, g1
 0002A23C: 8C803000 00229ED0 lda     0x229ed0,g0
-0002A244: 09DF4F3C          call    ffe1f180                   ; print string from g0	; "  "
+0002A244: 09DF4F3C          call    0001f180                   ; print string from g0	; "  "
 
 ; store new selection location
 0002A248: 8C213400 0000FFFD lda     0xfffd(r4),r4
 0002A250: 8A203000 005FE5A0 stos    r4,0x5fe5a0
 0002A258: 8A303000 005FE5A2 stos    r6,0x5fe5a2
 0002A260: 5880198F          setbit  0xf,0x0,g0                 ; g0 = 0x8000
-0002A264: 0BDF4F04          bal     ffe1f168                   ; set text color g0
+0002A264: 0BDF4F04          bal     0001f168                   ; set text color g0
 0002A268: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002A270: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002A278: 0BDF4EC0          bal     ffe1f138                   ; set cursor to g0, g1
+0002A278: 0BDF4EC0          bal     0001f138                   ; set cursor to g0, g1
 0002A27C: 8C803000 00229ED4 lda     0x229ed4,g0
-0002A284: 08DF4EFC          b       ffe1f180                   ; print string from g0	; ">>"
+0002A284: 08DF4EFC          b       0001f180                   ; print string from g0	; ">>"
 }
 
 0002A288: 00000000          ? 00:0 00000000 0 0
@@ -40103,14 +40103,14 @@
 
 {
 ; service handler 0-2 (main menu exit)
-0002A2C0: 09DF4B20          call    ffe1ede0                   ; clear screen
+0002A2C0: 09DF4B20          call    0001ede0                   ; clear screen
 0002A2C4: 5880198F          setbit  0xf,0x0,g0
-0002A2C8: 0BDF4EA0          bal     ffe1f168                   ; set text color g0
+0002A2C8: 0BDF4EA0          bal     0001f168                   ; set text color g0
 0002A2CC: 5C801E14          mov     0x14,g0
 0002A2D0: 5C881E0E          mov     0xe,g1
-0002A2D4: 0BDF4E64          bal     ffe1f138                   ; set cursor to g0, g1
+0002A2D4: 0BDF4E64          bal     0001f138                   ; set cursor to g0, g1
 0002A2D8: 8C803000 0022A2B0 lda     0x22a2b0,g0
-0002A2E0: 09DF4EA0          call    ffe1f180                   ; print string from g0	; "EXIT TEST MODE"
+0002A2E0: 09DF4EA0          call    0001f180                   ; print string from g0	; "EXIT TEST MODE"
 0002A2E4: 80A03000 005FE627 ldob    0x5fe627,g4
 0002A2EC: 8CA80122          lda     0x122,g5
 0002A2F0: 8AA83000 005FE62C stos    g5,0x5fe62c
@@ -40248,97 +40248,97 @@
 
 {
 ; service handler 2-0 (game system 0)
-0002A490: 09DF4950          call    ffe1ede0                   ; clear screen
+0002A490: 09DF4950          call    0001ede0                   ; clear screen
 0002A494: 09006E1C          call    000312b0                   ; switch process controls priority high
 0002A498: 0BFFED90          bal     00029228                   ; copy nvram to backup ram
 0002A49C: 09006E04          call    000312a0                   ; switch process controls priority low
 
 0002A4A0: 5880198F          setbit  0xf,0x0,g0
-0002A4A4: 0BDF4CC4          bal     ffe1f168                   ; set text color g0
+0002A4A4: 0BDF4CC4          bal     0001f168                   ; set text color g0
 
 0002A4A8: 5C801E14          mov     0x14,g0
 0002A4AC: 5C881E1E          mov     0x1e,g1
-0002A4B0: 0BDF4C88          bal     ffe1f138                   ; set cursor to g0, g1
+0002A4B0: 0BDF4C88          bal     0001f138                   ; set cursor to g0, g1
 0002A4B4: 8C803000 0023CB20 lda     0x23cb20,g0
-0002A4BC: 09DF4CC4          call    ffe1f180                   ; print string from g0	; "GREEN  : CURSOR UP           "
+0002A4BC: 09DF4CC4          call    0001f180                   ; print string from g0	; "GREEN  : CURSOR UP           "
 
 0002A4C0: 5C801E14          mov     0x14,g0
 0002A4C4: 5C881E1F          mov     0x1f,g1
-0002A4C8: 0BDF4C70          bal     ffe1f138                   ; set cursor to g0, g1
+0002A4C8: 0BDF4C70          bal     0001f138                   ; set cursor to g0, g1
 0002A4CC: 8C803000 0023CB40 lda     0x23cb40,g0
-0002A4D4: 09DF4CAC          call    ffe1f180                   ; print string from g0	; "RED    : CURSOR DOWN         "
+0002A4D4: 09DF4CAC          call    0001f180                   ; print string from g0	; "RED    : CURSOR DOWN         "
 
 0002A4D8: 5C801E14          mov     0x14,g0
 0002A4DC: 5988581F          addo    0x1f,0x1,g1
-0002A4E0: 0BDF4C58          bal     ffe1f138                   ; set cursor to g0, g1
+0002A4E0: 0BDF4C58          bal     0001f138                   ; set cursor to g0, g1
 0002A4E4: 8C803000 0023CB60 lda     0x23cb60,g0
-0002A4EC: 09DF4C94          call    ffe1f180                   ; print string from g0	; "YELLOW : MODE UP             "
+0002A4EC: 09DF4C94          call    0001f180                   ; print string from g0	; "YELLOW : MODE UP             "
 
 0002A4F0: 5C801E14          mov     0x14,g0
 0002A4F4: 5988981F          addo    0x1f,0x2,g1
-0002A4F8: 0BDF4C40          bal     ffe1f138                   ; set cursor to g0, g1
+0002A4F8: 0BDF4C40          bal     0001f138                   ; set cursor to g0, g1
 0002A4FC: 8C803000 0023CB80 lda     0x23cb80,g0
-0002A504: 09DF4C7C          call    ffe1f180                   ; print string from g0	; "BLUE   : MODE DOWN           "
+0002A504: 09DF4C7C          call    0001f180                   ; print string from g0	; "BLUE   : MODE DOWN           "
 
 0002A508: 5C801E14          mov     0x14,g0
 0002A50C: 5988D81F          addo    0x1f,0x3,g1
-0002A510: 0BDF4C28          bal     ffe1f138                   ; set cursor to g0, g1
+0002A510: 0BDF4C28          bal     0001f138                   ; set cursor to g0, g1
 0002A514: 8C803000 0023CBA0 lda     0x23cba0,g0
-0002A51C: 09DF4C64          call    ffe1f180                   ; print string from g0	; "START  : TO SELECT           "
+0002A51C: 09DF4C64          call    0001f180                   ; print string from g0	; "START  : TO SELECT           "
 
 0002A520: 5C801E19          mov     0x19,g0
 0002A524: 5C881E03          mov     0x3,g1
-0002A528: 0BDF4C10          bal     ffe1f138                   ; set cursor to g0, g1
+0002A528: 0BDF4C10          bal     0001f138                   ; set cursor to g0, g1
 0002A52C: 8C803000 0023CC00 lda     0x23cc00,g0
-0002A534: 09DF4C4C          call    ffe1f180                   ; print string from g0	; "GAME SYSTEM"
+0002A534: 09DF4C4C          call    0001f180                   ; print string from g0	; "GAME SYSTEM"
 
 0002A538: 5880198F          setbit  0xf,0x0,g0
-0002A53C: 0BDF4C2C          bal     ffe1f168                   ; set text color g0
+0002A53C: 0BDF4C2C          bal     0001f168                   ; set text color g0
 0002A540: 90203000 0023CD94 ld      0x23cd94,r4
 0002A548: 86011000          callx   (r4)                       ; show config promote saturn
 
 0002A54C: 5880198F          setbit  0xf,0x0,g0
-0002A550: 0BDF4C18          bal     ffe1f168                   ; set text color g0
+0002A550: 0BDF4C18          bal     0001f168                   ; set text color g0
 0002A554: 90203000 0023CD90 ld      0x23cd90,r4
 0002A55C: 86011000          callx   (r4)                       ; show config rival arrow
 
 0002A560: 5880198F          setbit  0xf,0x0,g0
-0002A564: 0BDF4C04          bal     ffe1f168                   ; set text color g0
+0002A564: 0BDF4C04          bal     0001f168                   ; set text color g0
 0002A568: 90203000 0023CD8C ld      0x23cd8c,r4
 0002A570: 86011000          callx   (r4)                       ; show config game mode
 
 0002A574: 5880198F          setbit  0xf,0x0,g0
-0002A578: 0BDF4BF0          bal     ffe1f168                   ; set text color g0
+0002A578: 0BDF4BF0          bal     0001f168                   ; set text color g0
 0002A57C: 90203000 0023CD88 ld      0x23cd88,r4
 0002A584: 86011000          callx   (r4)                       ; show config advertise sound
 
 0002A588: 5880198F          setbit  0xf,0x0,g0
-0002A58C: 0BDF4BDC          bal     ffe1f168                   ; set text color g0
+0002A58C: 0BDF4BDC          bal     0001f168                   ; set text color g0
 0002A590: 90203000 0023CD84 ld      0x23cd84,r4
 0002A598: 86011000          callx   (r4)                       ; show config difficulty
 
 0002A59C: 5880198F          setbit  0xf,0x0,g0
-0002A5A0: 0BDF4BC8          bal     ffe1f168                   ; set text color g0
+0002A5A0: 0BDF4BC8          bal     0001f168                   ; set text color g0
 0002A5A4: 90203000 0023CD80 ld      0x23cd80,r4
 0002A5AC: 86011000          callx   (r4)                       ; show config country
 
 0002A5B0: 5880198F          setbit  0xf,0x0,g0
-0002A5B4: 0BDF4BB4          bal     ffe1f168                   ; set text color g0
+0002A5B4: 0BDF4BB4          bal     0001f168                   ; set text color g0
 0002A5B8: 90203000 0023CD7C ld      0x23cd7c,r4
 0002A5C0: 86011000          callx   (r4)                       ; show config cabinet
 
 0002A5C4: 5880198F          setbit  0xf,0x0,g0
-0002A5C8: 0BDF4BA0          bal     ffe1f168                   ; set text color g0
+0002A5C8: 0BDF4BA0          bal     0001f168                   ; set text color g0
 0002A5CC: 90203000 0023CD78 ld      0x23cd78,r4
 0002A5D4: 86011000          callx   (r4)                       ; show config car number
 
 0002A5D8: 5880198F          setbit  0xf,0x0,g0
-0002A5DC: 0BDF4B8C          bal     ffe1f168                   ; set text color g0
+0002A5DC: 0BDF4B8C          bal     0001f168                   ; set text color g0
 0002A5E0: 90203000 0023CD74 ld      0x23cd74,r4
 0002A5E8: 86011000          callx   (r4)                       ; show config link id
 
 0002A5EC: 5980DE0E          shlo    0xe,0x3,g0
-0002A5F0: 0BDF4B78          bal     ffe1f168                   ; set text color g0
+0002A5F0: 0BDF4B78          bal     0001f168                   ; set text color g0
 0002A5F4: 90A03000 0023CD70 ld      0x23cd70,g4
 0002A5FC: 86051000          callx   (g4)                       ; show config exit
 
@@ -40358,7 +40358,7 @@
 0002A630: 58A58084          and     r4,g6,g4
 0002A634: 3A052088          cmpibe  0x0,g4,0x2a6bc             ; if g4 == 0x0 goto 0002A6BC (no button pressed)
 0002A638: 5880198F          setbit  0xf,0x0,g0
-0002A63C: 0BDF4B2C          bal     ffe1f168                   ; set text color g0
+0002A63C: 0BDF4B2C          bal     0001f168                   ; set text color g0
 
 ; (View4 SW4 View1 Service)
 0002A640: 80A03000 005FE634 ldob    0x5fe634,g4
@@ -40390,7 +40390,7 @@
 
 0002A698: 82A83000 005FE634 stob    g5,0x5fe634
 0002A6A0: 5980DE0E          shlo    0xe,0x3,g0
-0002A6A4: 0BDF4AC4          bal     ffe1f168                   ; set text color g0
+0002A6A4: 0BDF4AC4          bal     0001f168                   ; set text color g0
 
 0002A6A8: 80A03000 005FE634 ldob    0x5fe634,g4
 0002A6B0: 90A03914 0023CD70 ld      0x23cd70[g4*4],g4          ; show config x
@@ -40440,27 +40440,27 @@
 ; show config exit
 0002A730: 5C801E14          mov     0x14,g0
 0002A734: 5C881E17          mov     0x17,g1
-0002A738: 0BDF4A00          bal     ffe1f138                   ; set cursor to g0, g1
+0002A738: 0BDF4A00          bal     0001f138                   ; set cursor to g0, g1
 0002A73C: 8C803000 0023CAB0 lda     0x23cab0,g0
-0002A744: 09DF4A3C          call    ffe1f180                   ; print string from g0
+0002A744: 09DF4A3C          call    0001f180                   ; print string from g0
 
 0002A748: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002A750: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002A758: 0BDF49E0          bal     ffe1f138                   ; set cursor to g0, g1
+0002A758: 0BDF49E0          bal     0001f138                   ; set cursor to g0, g1
 0002A75C: 8C803000 0022A390 lda     0x22a390,g0
-0002A764: 09DF4A1C          call    ffe1f180                   ; print string from g0
+0002A764: 09DF4A1C          call    0001f180                   ; print string from g0
 
 0002A768: 5CA01E11          mov     0x11,g4
 0002A76C: 8AA03000 005FE5A0 stos    g4,0x5fe5a0
 0002A774: 5CA01E17          mov     0x17,g4
 0002A778: 8AA03000 005FE5A2 stos    g4,0x5fe5a2
 0002A780: 5880198F          setbit  0xf,0x0,g0
-0002A784: 0BDF49E4          bal     ffe1f168                   ; set text color g0
+0002A784: 0BDF49E4          bal     0001f168                   ; set text color g0
 0002A788: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002A790: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002A798: 0BDF49A0          bal     ffe1f138                   ; set cursor to g0, g1
+0002A798: 0BDF49A0          bal     0001f138                   ; set cursor to g0, g1
 0002A79C: 8C803000 0022A394 lda     0x22a394,g0
-0002A7A4: 08DF49DC          b       ffe1f180                   ; print string from g0
+0002A7A4: 08DF49DC          b       0001f180                   ; print string from g0
 }
 
 0002A7A8: 00000000          ? 00:0 00000000 0 0
@@ -40478,7 +40478,7 @@
 
 0002A7CC: 82A83000 01D00019 stob    g5,0x1d00019
 0002A7D4: 5980DE0E          shlo    0xe,0x3,g0
-0002A7D8: 0BDF4990          bal     ffe1f168                   ; set text color g0
+0002A7D8: 0BDF4990          bal     0001f168                   ; set text color g0
 0002A7DC: 08000004          b       0002a7e0                   ; show config advertise sound
 }
 
@@ -40486,34 +40486,34 @@
 ; show config advertise sound
 0002A7E0: 5C801E14          mov     0x14,g0
 0002A7E4: 5C881E0F          mov     0xf,g1
-0002A7E8: 0BDF4950          bal     ffe1f138                   ; set cursor to g0, g1
+0002A7E8: 0BDF4950          bal     0001f138                   ; set cursor to g0, g1
 0002A7EC: 8C803000 0023CC50 lda     0x23cc50,g0
-0002A7F4: 09DF498C          call    ffe1f180                   ; print string from g0	; "ADVERTISE SOUND"
+0002A7F4: 09DF498C          call    0001f180                   ; print string from g0	; "ADVERTISE SOUND"
 0002A7F8: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002A800: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002A808: 0BDF4930          bal     ffe1f138                   ; set cursor to g0, g1
+0002A808: 0BDF4930          bal     0001f138                   ; set cursor to g0, g1
 0002A80C: 8C803000 0022A390 lda     0x22a390,g0
-0002A814: 09DF496C          call    ffe1f180                   ; print string from g0
+0002A814: 09DF496C          call    0001f180                   ; print string from g0
 0002A818: 5CA81E11          mov     0x11,g5
 0002A81C: 8AA83000 005FE5A0 stos    g5,0x5fe5a0
 0002A824: 5CA81E0F          mov     0xf,g5
 0002A828: 8AA83000 005FE5A2 stos    g5,0x5fe5a2
 0002A830: 5880198F          setbit  0xf,0x0,g0
-0002A834: 0BDF4934          bal     ffe1f168                   ; set text color g0
+0002A834: 0BDF4934          bal     0001f168                   ; set text color g0
 0002A838: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002A840: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002A848: 0BDF48F0          bal     ffe1f138                   ; set cursor to g0, g1
+0002A848: 0BDF48F0          bal     0001f138                   ; set cursor to g0, g1
 0002A84C: 8C803000 0022A394 lda     0x22a394,g0
-0002A854: 09DF492C          call    ffe1f180                   ; print string from g0
+0002A854: 09DF492C          call    0001f180                   ; print string from g0
 0002A858: 5980DE0E          shlo    0xe,0x3,g0
-0002A85C: 0BDF490C          bal     ffe1f168                   ; set text color g0
+0002A85C: 0BDF490C          bal     0001f168                   ; set text color g0
 0002A860: 80A03000 01D00019 ldob    0x1d00019,g4
 0002A868: 5981581F          addo    0x1f,0x5,g0
 0002A86C: 5C881E0F          mov     0xf,g1
 0002A870: 90203914 0023CC90 ld      0x23cc90[g4*4],r4
-0002A878: 0BDF48C0          bal     ffe1f138                   ; set cursor to g0, g1
+0002A878: 0BDF48C0          bal     0001f138                   ; set cursor to g0, g1
 0002A87C: 5C801604          mov     r4,g0
-0002A880: 08DF4900          b       ffe1f180                   ; print string from g0
+0002A880: 08DF4900          b       0001f180                   ; print string from g0
 }
 
 0002A884: 00000000          ? 00:0 00000000 0 0
@@ -40531,7 +40531,7 @@
 
 0002A8AC: 82A83000 01D0000C stob    g5,0x1d0000c
 0002A8B4: 5980DE0E          shlo    0xe,0x3,g0
-0002A8B8: 0BDF48B0          bal     ffe1f168                   ; set text color g0
+0002A8B8: 0BDF48B0          bal     0001f168                   ; set text color g0
 0002A8BC: 08000034          b       0002a8f0                   ; show config car number
 }
 
@@ -40546,7 +40546,7 @@
 
 0002A8D8: 82A03000 01D0000C stob    g4,0x1d0000c
 0002A8E0: 5980DE0E          shlo    0xe,0x3,g0
-0002A8E4: 0BDF4884          bal     ffe1f168                   ; set text color g0
+0002A8E4: 0BDF4884          bal     0001f168                   ; set text color g0
 0002A8E8: 08000008          b       0002a8f0                   ; show config car number
 }
 
@@ -40556,40 +40556,40 @@
 ; show config car number
 0002A8F0: 5C801E14          mov     0x14,g0
 0002A8F4: 5C881E07          mov     0x7,g1
-0002A8F8: 0BDF4840          bal     ffe1f138                   ; set cursor to g0, g1
+0002A8F8: 0BDF4840          bal     0001f138                   ; set cursor to g0, g1
 0002A8FC: 8C803000 0023CC20 lda     0x23cc20,g0
-0002A904: 09DF487C          call    ffe1f180                   ; print string from g0
+0002A904: 09DF487C          call    0001f180                   ; print string from g0
 
 0002A908: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002A910: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002A918: 0BDF4820          bal     ffe1f138                   ; set cursor to g0, g1
+0002A918: 0BDF4820          bal     0001f138                   ; set cursor to g0, g1
 0002A91C: 8C803000 0022A390 lda     0x22a390,g0
-0002A924: 09DF485C          call    ffe1f180                   ; print string from g0
+0002A924: 09DF485C          call    0001f180                   ; print string from g0
 
 0002A928: 5CA01E11          mov     0x11,g4
 0002A92C: 8AA03000 005FE5A0 stos    g4,0x5fe5a0
 0002A934: 5CA01E07          mov     0x7,g4
 0002A938: 8AA03000 005FE5A2 stos    g4,0x5fe5a2
 0002A940: 5880198F          setbit  0xf,0x0,g0
-0002A944: 0BDF4824          bal     ffe1f168                   ; set text color g0
+0002A944: 0BDF4824          bal     0001f168                   ; set text color g0
 0002A948: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002A950: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002A958: 0BDF47E0          bal     ffe1f138                   ; set cursor to g0, g1
+0002A958: 0BDF47E0          bal     0001f138                   ; set cursor to g0, g1
 0002A95C: 8C803000 0022A394 lda     0x22a394,g0
-0002A964: 09DF481C          call    ffe1f180                   ; print string from g0
+0002A964: 09DF481C          call    0001f180                   ; print string from g0
 
 0002A968: 5980DE0E          shlo    0xe,0x3,g0
-0002A96C: 0BDF47FC          bal     ffe1f168                   ; set text color g0
+0002A96C: 0BDF47FC          bal     0001f168                   ; set text color g0
 0002A970: 80883000 01D0000C ldob    0x1d0000c,g1
 0002A978: 8C803000 005FE560 lda     0x5fe560,g0
 0002A980: 5C901E01          mov     0x1,g2
 0002A984: 8C8C6001          lda     0x1(g1),g1
-0002A988: 09DD674C          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002A988: 09DD674C          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002A98C: 5981581F          addo    0x1f,0x5,g0
 0002A990: 5C881E07          mov     0x7,g1
-0002A994: 0BDF47A4          bal     ffe1f138                   ; set cursor to g0, g1
+0002A994: 0BDF47A4          bal     0001f138                   ; set cursor to g0, g1
 0002A998: 8C803000 005FE560 lda     0x5fe560,g0
-0002A9A0: 08DF47E0          b       ffe1f180                   ; print string from g0
+0002A9A0: 08DF47E0          b       0001f180                   ; print string from g0
 }
 
 0002A9A4: 00000000          ? 00:0 00000000 0 0
@@ -40609,7 +40609,7 @@
 0002A9CC: 82A83000 01D0000B stob    g5,0x1d0000b
 
 0002A9D4: 5980DE0E          shlo    0xe,0x3,g0
-0002A9D8: 0BDF4790          bal     ffe1f168                   ; set text color g0
+0002A9D8: 0BDF4790          bal     0001f168                   ; set text color g0
 0002A9DC: 08000034          b       0002aa10                   ; show config link id
 {
 
@@ -40625,7 +40625,7 @@
 
 0002A9F8: 82A03000 01D0000B stob    g4,0x1d0000b
 0002AA00: 5980DE0E          shlo    0xe,0x3,g0
-0002AA04: 0BDF4764          bal     ffe1f168                   ; set text color g0
+0002AA04: 0BDF4764          bal     0001f168                   ; set text color g0
 0002AA08: 08000008          b       0002aa10                   ; show config link id
 }
 
@@ -40635,37 +40635,37 @@
 ; show config link id
 0002AA10: 5C801E14          mov     0x14,g0
 0002AA14: 5C881E05          mov     0x5,g1
-0002AA18: 0BDF4720          bal     ffe1f138                   ; set cursor to g0, g1
+0002AA18: 0BDF4720          bal     0001f138                   ; set cursor to g0, g1
 0002AA1C: 8C803000 0023CC10 lda     0x23cc10,g0
-0002AA24: 09DF475C          call    ffe1f180                   ; print string from g0	; "LINK ID"
+0002AA24: 09DF475C          call    0001f180                   ; print string from g0	; "LINK ID"
 
 0002AA28: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002AA30: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002AA38: 0BDF4700          bal     ffe1f138                   ; set cursor to g0, g1
+0002AA38: 0BDF4700          bal     0001f138                   ; set cursor to g0, g1
 0002AA3C: 8C803000 0022A390 lda     0x22a390,g0
-0002AA44: 09DF473C          call    ffe1f180                   ; print string from g0
+0002AA44: 09DF473C          call    0001f180                   ; print string from g0
 
 0002AA48: 5CA81E11          mov     0x11,g5
 0002AA4C: 8AA83000 005FE5A0 stos    g5,0x5fe5a0
 0002AA54: 5CA81E05          mov     0x5,g5
 0002AA58: 8AA83000 005FE5A2 stos    g5,0x5fe5a2
 0002AA60: 5880198F          setbit  0xf,0x0,g0
-0002AA64: 0BDF4704          bal     ffe1f168                   ; set text color g0
+0002AA64: 0BDF4704          bal     0001f168                   ; set text color g0
 0002AA68: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002AA70: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002AA78: 0BDF46C0          bal     ffe1f138                   ; set cursor to g0, g1
+0002AA78: 0BDF46C0          bal     0001f138                   ; set cursor to g0, g1
 0002AA7C: 8C803000 0022A394 lda     0x22a394,g0
-0002AA84: 09DF46FC          call    ffe1f180                   ; print string from g0
+0002AA84: 09DF46FC          call    0001f180                   ; print string from g0
 
 0002AA88: 5980DE0E          shlo    0xe,0x3,g0
-0002AA8C: 0BDF46DC          bal     ffe1f168                   ; set text color g0
+0002AA8C: 0BDF46DC          bal     0001f168                   ; set text color g0
 0002AA90: 80A03000 01D0000B ldob    0x1d0000b,g4
 0002AA98: 5981581F          addo    0x1f,0x5,g0
 0002AA9C: 5C881E05          mov     0x5,g1
 0002AAA0: 90203914 0023CCA0 ld      0x23cca0[g4*4],r4
-0002AAA8: 0BDF4690          bal     ffe1f138                   ; set cursor to g0, g1
+0002AAA8: 0BDF4690          bal     0001f138                   ; set cursor to g0, g1
 0002AAAC: 5C801604          mov     r4,g0
-0002AAB0: 08DF46D0          b       ffe1f180                   ; print string from g0
+0002AAB0: 08DF46D0          b       0001f180                   ; print string from g0
 }
 
 0002AAB4: 00000000          ? 00:0 00000000 0 0
@@ -40684,7 +40684,7 @@
 
 0002AADC: 82A83000 01D0001B stob    g5,0x1d0001b
 0002AAE4: 5980DE0E          shlo    0xe,0x3,g0
-0002AAE8: 0BDF4680          bal     ffe1f168                   ; set text color g0
+0002AAE8: 0BDF4680          bal     0001f168                   ; set text color g0
 0002AAEC: 08000034          b       0002ab20                   ; show config country
 }
 
@@ -40700,7 +40700,7 @@
 
 0002AB08: 82A03000 01D0001B stob    g4,0x1d0001b
 0002AB10: 5980DE0E          shlo    0xe,0x3,g0
-0002AB14: 0BDF4654          bal     ffe1f168                   ; set text color g0
+0002AB14: 0BDF4654          bal     0001f168                   ; set text color g0
 0002AB18: 08000008          b       0002ab20                   ; show config country
 }
 
@@ -40710,34 +40710,34 @@
 ; show config country
 0002AB20: 5C801E14          mov     0x14,g0
 0002AB24: 5C881E0B          mov     0xb,g1
-0002AB28: 0BDF4610          bal     ffe1f138                   ; set cursor to g0, g1
+0002AB28: 0BDF4610          bal     0001f138                   ; set cursor to g0, g1
 0002AB2C: 8C803000 0023CC38 lda     0x23cc38,g0
-0002AB34: 09DF464C          call    ffe1f180                   ; print string from g0	; "COUNTRY"
+0002AB34: 09DF464C          call    0001f180                   ; print string from g0	; "COUNTRY"
 0002AB38: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002AB40: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002AB48: 0BDF45F0          bal     ffe1f138                   ; set cursor to g0, g1
+0002AB48: 0BDF45F0          bal     0001f138                   ; set cursor to g0, g1
 0002AB4C: 8C803000 0022A390 lda     0x22a390,g0
-0002AB54: 09DF462C          call    ffe1f180                   ; print string from g0
+0002AB54: 09DF462C          call    0001f180                   ; print string from g0
 0002AB58: 5CA81E11          mov     0x11,g5
 0002AB5C: 8AA83000 005FE5A0 stos    g5,0x5fe5a0
 0002AB64: 5CA81E0B          mov     0xb,g5
 0002AB68: 8AA83000 005FE5A2 stos    g5,0x5fe5a2
 0002AB70: 5880198F          setbit  0xf,0x0,g0
-0002AB74: 0BDF45F4          bal     ffe1f168                   ; set text color g0
+0002AB74: 0BDF45F4          bal     0001f168                   ; set text color g0
 0002AB78: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002AB80: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002AB88: 0BDF45B0          bal     ffe1f138                   ; set cursor to g0, g1
+0002AB88: 0BDF45B0          bal     0001f138                   ; set cursor to g0, g1
 0002AB8C: 8C803000 0022A394 lda     0x22a394,g0
-0002AB94: 09DF45EC          call    ffe1f180                   ; print string from g0
+0002AB94: 09DF45EC          call    0001f180                   ; print string from g0
 0002AB98: 5980DE0E          shlo    0xe,0x3,g0
-0002AB9C: 0BDF45CC          bal     ffe1f168                   ; set text color g0
+0002AB9C: 0BDF45CC          bal     0001f168                   ; set text color g0
 0002ABA0: 80A03000 01D0001B ldob    0x1d0001b,g4
 0002ABA8: 5981581F          addo    0x1f,0x5,g0
 0002ABAC: 5C881E0B          mov     0xb,g1
 0002ABB0: 90203914 0023CCB0 ld      0x23ccb0[g4*4],r4
-0002ABB8: 0BDF4580          bal     ffe1f138                   ; set cursor to g0, g1
+0002ABB8: 0BDF4580          bal     0001f138                   ; set cursor to g0, g1
 0002ABBC: 5C801604          mov     r4,g0
-0002ABC0: 08DF45C0          b       ffe1f180                   ; print string from g0
+0002ABC0: 08DF45C0          b       0001f180                   ; print string from g0
 }
 
 0002ABC4: 00000000          ? 00:0 00000000 0 0
@@ -40756,7 +40756,7 @@
 
 0002ABEC: 82A83000 01D0001C stob    g5,0x1d0001c
 0002ABF4: 5980DE0E          shlo    0xe,0x3,g0
-0002ABF8: 0BDF4570          bal     ffe1f168                   ; set text color g0
+0002ABF8: 0BDF4570          bal     0001f168                   ; set text color g0
 0002ABFC: 08000034          b       0002ac30                   ; show config game mode
 }
 
@@ -40771,7 +40771,7 @@
 0002AC14: 59A50901          subo    0x1,g4,g4
 0002AC18: 82A03000 01D0001C stob    g4,0x1d0001c
 0002AC20: 5980DE0E          shlo    0xe,0x3,g0
-0002AC24: 0BDF4544          bal     ffe1f168                   ; set text color g0
+0002AC24: 0BDF4544          bal     0001f168                   ; set text color g0
 0002AC28: 08000008          b       0002ac30                   ; show config game mode
 }
 
@@ -40781,33 +40781,33 @@
 ; show config game mode
 0002AC30: 5C801E14          mov     0x14,g0
 0002AC34: 5C881E11          mov     0x11,g1
-0002AC38: 0BDF4500          bal     ffe1f138                   ; set cursor to g0, g1
+0002AC38: 0BDF4500          bal     0001f138                   ; set cursor to g0, g1
 0002AC3C: 8C803000 0023CC60 lda     0x23cc60,g0
-0002AC44: 09DF453C          call    ffe1f180                   ; print string from g0	; "GAME MODE"
+0002AC44: 09DF453C          call    0001f180                   ; print string from g0	; "GAME MODE"
 0002AC48: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002AC50: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002AC58: 0BDF44E0          bal     ffe1f138                   ; set cursor to g0, g1
+0002AC58: 0BDF44E0          bal     0001f138                   ; set cursor to g0, g1
 0002AC5C: 8C803000 0022A390 lda     0x22a390,g0
-0002AC64: 09DF451C          call    ffe1f180                   ; print string from g0
+0002AC64: 09DF451C          call    0001f180                   ; print string from g0
 0002AC68: 5CA81E11          mov     0x11,g5
 0002AC6C: 8AA83000 005FE5A0 stos    g5,0x5fe5a0
 0002AC74: 8AA83000 005FE5A2 stos    g5,0x5fe5a2
 0002AC7C: 5880198F          setbit  0xf,0x0,g0
-0002AC80: 0BDF44E8          bal     ffe1f168                   ; set text color g0
+0002AC80: 0BDF44E8          bal     0001f168                   ; set text color g0
 0002AC84: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002AC8C: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002AC94: 0BDF44A4          bal     ffe1f138                   ; set cursor to g0, g1
+0002AC94: 0BDF44A4          bal     0001f138                   ; set cursor to g0, g1
 0002AC98: 8C803000 0022A394 lda     0x22a394,g0
-0002ACA0: 09DF44E0          call    ffe1f180                   ; print string from g0
+0002ACA0: 09DF44E0          call    0001f180                   ; print string from g0
 0002ACA4: 5980DE0E          shlo    0xe,0x3,g0
-0002ACA8: 0BDF44C0          bal     ffe1f168                   ; set text color g0
+0002ACA8: 0BDF44C0          bal     0001f168                   ; set text color g0
 0002ACAC: 80A03000 01D0001C ldob    0x1d0001c,g4
 0002ACB4: 5981581F          addo    0x1f,0x5,g0
 0002ACB8: 5C881E11          mov     0x11,g1
 0002ACBC: 90203914 0023CCC0 ld      0x23ccc0[g4*4],r4
-0002ACC4: 0BDF4474          bal     ffe1f138                   ; set cursor to g0, g1
+0002ACC4: 0BDF4474          bal     0001f138                   ; set cursor to g0, g1
 0002ACC8: 5C801604          mov     r4,g0
-0002ACCC: 08DF44B4          b       ffe1f180                   ; print string from g0
+0002ACCC: 08DF44B4          b       0001f180                   ; print string from g0
 }
 
 {
@@ -40822,7 +40822,7 @@
 
 0002ACEC: 82A83000 01D0001A stob    g5,0x1d0001a
 0002ACF4: 5980DE0E          shlo    0xe,0x3,g0
-0002ACF8: 0BDF4470          bal     ffe1f168                   ; set text color g0
+0002ACF8: 0BDF4470          bal     0001f168                   ; set text color g0
 0002ACFC: 08000034          b       0002ad30                   ; show config cabinet
 }
 
@@ -40838,7 +40838,7 @@
 
 0002AD18: 82A03000 01D0001A stob    g4,0x1d0001a
 0002AD20: 5980DE0E          shlo    0xe,0x3,g0
-0002AD24: 0BDF4444          bal     ffe1f168                   ; set text color g0
+0002AD24: 0BDF4444          bal     0001f168                   ; set text color g0
 0002AD28: 08000008          b       0002ad30                   ; show config cabinet
 }
 
@@ -40848,37 +40848,37 @@
 ; show config cabinet
 0002AD30: 5C801E14          mov     0x14,g0
 0002AD34: 5C881E09          mov     0x9,g1
-0002AD38: 0BDF4400          bal     ffe1f138                   ; set cursor to g0, g1
+0002AD38: 0BDF4400          bal     0001f138                   ; set cursor to g0, g1
 0002AD3C: 8C803000 0023CC30 lda     0x23cc30,g0
-0002AD44: 09DF443C          call    ffe1f180                   ; print string from g0	; "CABINET"
+0002AD44: 09DF443C          call    0001f180                   ; print string from g0	; "CABINET"
 
 0002AD48: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002AD50: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002AD58: 0BDF43E0          bal     ffe1f138                   ; set cursor to g0, g1
+0002AD58: 0BDF43E0          bal     0001f138                   ; set cursor to g0, g1
 0002AD5C: 8C803000 0022A390 lda     0x22a390,g0
-0002AD64: 09DF441C          call    ffe1f180                   ; print string from g0
+0002AD64: 09DF441C          call    0001f180                   ; print string from g0
 
 0002AD68: 5CA81E11          mov     0x11,g5
 0002AD6C: 8AA83000 005FE5A0 stos    g5,0x5fe5a0
 0002AD74: 5CA81E09          mov     0x9,g5
 0002AD78: 8AA83000 005FE5A2 stos    g5,0x5fe5a2
 0002AD80: 5880198F          setbit  0xf,0x0,g0
-0002AD84: 0BDF43E4          bal     ffe1f168                   ; set text color g0
+0002AD84: 0BDF43E4          bal     0001f168                   ; set text color g0
 0002AD88: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002AD90: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002AD98: 0BDF43A0          bal     ffe1f138                   ; set cursor to g0, g1
+0002AD98: 0BDF43A0          bal     0001f138                   ; set cursor to g0, g1
 0002AD9C: 8C803000 0022A394 lda     0x22a394,g0
-0002ADA4: 09DF43DC          call    ffe1f180                   ; print string from g0
+0002ADA4: 09DF43DC          call    0001f180                   ; print string from g0
 
 0002ADA8: 5980DE0E          shlo    0xe,0x3,g0
-0002ADAC: 0BDF43BC          bal     ffe1f168                   ; set text color g0
+0002ADAC: 0BDF43BC          bal     0001f168                   ; set text color g0
 0002ADB0: 80A03000 01D0001A ldob    0x1d0001a,g4
 0002ADB8: 5981581F          addo    0x1f,0x5,g0
 0002ADBC: 5C881E09          mov     0x9,g1
 0002ADC0: 90203914 0023CCD0 ld      0x23ccd0[g4*4],r4
-0002ADC8: 0BDF4370          bal     ffe1f138                   ; set cursor to g0, g1
+0002ADC8: 0BDF4370          bal     0001f138                   ; set cursor to g0, g1
 0002ADCC: 5C801604          mov     r4,g0
-0002ADD0: 08DF43B0          b       ffe1f180                   ; print string from g0
+0002ADD0: 08DF43B0          b       0001f180                   ; print string from g0
 }
 
 0002ADD4: 00000000          ? 00:0 00000000 0 0
@@ -40897,7 +40897,7 @@
 
 0002ADFC: 82A83000 01D00020 stob    g5,0x1d00020
 0002AE04: 5980DE0E          shlo    0xe,0x3,g0
-0002AE08: 0BDF4360          bal     ffe1f168                   ; set text color g0
+0002AE08: 0BDF4360          bal     0001f168                   ; set text color g0
 0002AE0C: 08000034          b       0002ae40                   ; show config difficulty
 }
 
@@ -40913,7 +40913,7 @@
 
 0002AE28: 82A03000 01D00020 stob    g4,0x1d00020
 0002AE30: 5980DE0E          shlo    0xe,0x3,g0
-0002AE34: 0BDF4334          bal     ffe1f168                   ; set text color g0
+0002AE34: 0BDF4334          bal     0001f168                   ; set text color g0
 0002AE38: 08000008          b       0002ae40                   ; show config difficulty
 }
 
@@ -40923,37 +40923,37 @@
 ; show config difficulty
 0002AE40: 5C801E14          mov     0x14,g0
 0002AE44: 5C881E0D          mov     0xd,g1
-0002AE48: 0BDF42F0          bal     ffe1f138                   ; set cursor to g0, g1
+0002AE48: 0BDF42F0          bal     0001f138                   ; set cursor to g0, g1
 0002AE4C: 8C803000 0023CC40 lda     0x23cc40,g0
-0002AE54: 09DF432C          call    ffe1f180                   ; print string from g0	; "DIFFICULTY"
+0002AE54: 09DF432C          call    0001f180                   ; print string from g0	; "DIFFICULTY"
 
 0002AE58: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002AE60: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002AE68: 0BDF42D0          bal     ffe1f138                   ; set cursor to g0, g1
+0002AE68: 0BDF42D0          bal     0001f138                   ; set cursor to g0, g1
 0002AE6C: 8C803000 0022A390 lda     0x22a390,g0
-0002AE74: 09DF430C          call    ffe1f180                   ; print string from g0
+0002AE74: 09DF430C          call    0001f180                   ; print string from g0
 
 0002AE78: 5CA81E11          mov     0x11,g5
 0002AE7C: 8AA83000 005FE5A0 stos    g5,0x5fe5a0
 0002AE84: 5CA81E0D          mov     0xd,g5
 0002AE88: 8AA83000 005FE5A2 stos    g5,0x5fe5a2
 0002AE90: 5880198F          setbit  0xf,0x0,g0
-0002AE94: 0BDF42D4          bal     ffe1f168                   ; set text color g0
+0002AE94: 0BDF42D4          bal     0001f168                   ; set text color g0
 0002AE98: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002AEA0: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002AEA8: 0BDF4290          bal     ffe1f138                   ; set cursor to g0, g1
+0002AEA8: 0BDF4290          bal     0001f138                   ; set cursor to g0, g1
 0002AEAC: 8C803000 0022A394 lda     0x22a394,g0
-0002AEB4: 09DF42CC          call    ffe1f180                   ; print string from g0
+0002AEB4: 09DF42CC          call    0001f180                   ; print string from g0
 
 0002AEB8: 5980DE0E          shlo    0xe,0x3,g0
-0002AEBC: 0BDF42AC          bal     ffe1f168                   ; set text color g0
+0002AEBC: 0BDF42AC          bal     0001f168                   ; set text color g0
 0002AEC0: 80A03000 01D00020 ldob    0x1d00020,g4
 0002AEC8: 5981581F          addo    0x1f,0x5,g0
 0002AECC: 5C881E0D          mov     0xd,g1
 0002AED0: 90203914 0023CCE0 ld      0x23cce0[g4*4],r4
-0002AED8: 0BDF4260          bal     ffe1f138                   ; set cursor to g0, g1
+0002AED8: 0BDF4260          bal     0001f138                   ; set cursor to g0, g1
 0002AEDC: 5C801604          mov     r4,g0
-0002AEE0: 08DF42A0          b       ffe1f180                   ; print string from g0
+0002AEE0: 08DF42A0          b       0001f180                   ; print string from g0
 }
 
 0002AEE4: 00000000          ? 00:0 00000000 0 0
@@ -40972,7 +40972,7 @@
 
 0002AF0C: 82A83000 01D0001D stob    g5,0x1d0001d
 0002AF14: 5980DE0E          shlo    0xe,0x3,g0
-0002AF18: 0BDF4250          bal     ffe1f168                   ; set text color g0
+0002AF18: 0BDF4250          bal     0001f168                   ; set text color g0
 0002AF1C: 08000004          b       0002af20                   ; show config rival arrow
 }
 
@@ -40980,37 +40980,37 @@
 ; show config rival arrow
 0002AF20: 5C801E14          mov     0x14,g0
 0002AF24: 5C881E13          mov     0x13,g1
-0002AF28: 0BDF4210          bal     ffe1f138                   ; set cursor to g0, g1
+0002AF28: 0BDF4210          bal     0001f138                   ; set cursor to g0, g1
 0002AF2C: 8C803000 0023CC70 lda     0x23cc70,g0
-0002AF34: 09DF424C          call    ffe1f180                   ; print string from g0	; "RIVAL ARROW"
+0002AF34: 09DF424C          call    0001f180                   ; print string from g0	; "RIVAL ARROW"
 
 0002AF38: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002AF40: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002AF48: 0BDF41F0          bal     ffe1f138                   ; set cursor to g0, g1
+0002AF48: 0BDF41F0          bal     0001f138                   ; set cursor to g0, g1
 0002AF4C: 8C803000 0022A390 lda     0x22a390,g0
-0002AF54: 09DF422C          call    ffe1f180                   ; print string from g0	; "  "
+0002AF54: 09DF422C          call    0001f180                   ; print string from g0	; "  "
 
 0002AF58: 5CA81E11          mov     0x11,g5
 0002AF5C: 8AA83000 005FE5A0 stos    g5,0x5fe5a0
 0002AF64: 5CA81E13          mov     0x13,g5
 0002AF68: 8AA83000 005FE5A2 stos    g5,0x5fe5a2
 0002AF70: 5880198F          setbit  0xf,0x0,g0
-0002AF74: 0BDF41F4          bal     ffe1f168                   ; set text color g0
+0002AF74: 0BDF41F4          bal     0001f168                   ; set text color g0
 0002AF78: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002AF80: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002AF88: 0BDF41B0          bal     ffe1f138                   ; set cursor to g0, g1
+0002AF88: 0BDF41B0          bal     0001f138                   ; set cursor to g0, g1
 0002AF8C: 8C803000 0022A394 lda     0x22a394,g0
-0002AF94: 09DF41EC          call    ffe1f180                   ; print string from g0	; ">>"
+0002AF94: 09DF41EC          call    0001f180                   ; print string from g0	; ">>"
 
 0002AF98: 5980DE0E          shlo    0xe,0x3,g0
-0002AF9C: 0BDF41CC          bal     ffe1f168                   ; set text color g0
+0002AF9C: 0BDF41CC          bal     0001f168                   ; set text color g0
 0002AFA0: 80A03000 01D0001D ldob    0x1d0001d,g4
 0002AFA8: 5981581F          addo    0x1f,0x5,g0
 0002AFAC: 5C881E13          mov     0x13,g1
 0002AFB0: 90203914 0023CC90 ld      0x23cc90[g4*4],r4
-0002AFB8: 0BDF4180          bal     ffe1f138                   ; set cursor to g0, g1
+0002AFB8: 0BDF4180          bal     0001f138                   ; set cursor to g0, g1
 0002AFBC: 5C801604          mov     r4,g0
-0002AFC0: 08DF41C0          b       ffe1f180                   ; print string from g0
+0002AFC0: 08DF41C0          b       0001f180                   ; print string from g0
 }
 
 0002AFC4: 00000000          ? 00:0 00000000 0 0
@@ -41029,7 +41029,7 @@
 
 0002AFEC: 82A83000 01D0001E stob    g5,0x1d0001e
 0002AFF4: 5980DE0E          shlo    0xe,0x3,g0
-0002AFF8: 0BDF4170          bal     ffe1f168                   ; set text color g0
+0002AFF8: 0BDF4170          bal     0001f168                   ; set text color g0
 0002AFFC: 08000034          b       0002b030                   ; show config promote saturn
 }
 
@@ -41044,7 +41044,7 @@
 
 0002B018: 82A03000 01D0001E stob    g4,0x1d0001e
 0002B020: 5980DE0E          shlo    0xe,0x3,g0
-0002B024: 0BDF4144          bal     ffe1f168                   ; set text color g0
+0002B024: 0BDF4144          bal     0001f168                   ; set text color g0
 0002B028: 08000008          b       0002b030                   ; show config promote saturn
 }
 
@@ -41054,36 +41054,36 @@
 ; show config promote saturn
 0002B030: 5C801E14          mov     0x14,g0
 0002B034: 5C881E15          mov     0x15,g1
-0002B038: 0BDF4100          bal     ffe1f138                   ; set cursor to g0, g1
+0002B038: 0BDF4100          bal     0001f138                   ; set cursor to g0, g1
 0002B03C: 8C803000 0023CC80 lda     0x23cc80,g0
-0002B044: 09DF413C          call    ffe1f180                   ; print string from g0	; "PROMOTE SATURN"
+0002B044: 09DF413C          call    0001f180                   ; print string from g0	; "PROMOTE SATURN"
 
 0002B048: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002B050: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002B058: 0BDF40E0          bal     ffe1f138                   ; set cursor to g0, g1
+0002B058: 0BDF40E0          bal     0001f138                   ; set cursor to g0, g1
 0002B05C: 8C803000 0022A390 lda     0x22a390,g0
-0002B064: 09DF411C          call    ffe1f180                   ; print string from g0
+0002B064: 09DF411C          call    0001f180                   ; print string from g0
 
 0002B068: 5CA81E11          mov     0x11,g5
 0002B06C: 8AA83000 005FE5A0 stos    g5,0x5fe5a0
 0002B074: 5CA81E15          mov     0x15,g5
 0002B078: 8AA83000 005FE5A2 stos    g5,0x5fe5a2
 0002B080: 5880198F          setbit  0xf,0x0,g0
-0002B084: 0BDF40E4          bal     ffe1f168                   ; set text color g0
+0002B084: 0BDF40E4          bal     0001f168                   ; set text color g0
 0002B088: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002B090: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002B098: 0BDF40A0          bal     ffe1f138                   ; set cursor to g0, g1
+0002B098: 0BDF40A0          bal     0001f138                   ; set cursor to g0, g1
 0002B09C: 8C803000 0022A394 lda     0x22a394,g0
-0002B0A4: 09DF40DC          call    ffe1f180                   ; print string from g0
+0002B0A4: 09DF40DC          call    0001f180                   ; print string from g0
 0002B0A8: 5980DE0E          shlo    0xe,0x3,g0
-0002B0AC: 0BDF40BC          bal     ffe1f168                   ; set text color g0
+0002B0AC: 0BDF40BC          bal     0001f168                   ; set text color g0
 0002B0B0: 80A03000 01D0001E ldob    0x1d0001e,g4
 0002B0B8: 5981581F          addo    0x1f,0x5,g0
 0002B0BC: 5C881E15          mov     0x15,g1
 0002B0C0: 90203914 0023CCF0 ld      0x23ccf0[g4*4],r4          ; load4 r4 from table 0003CC90 + g4*4
-0002B0C8: 0BDF4070          bal     ffe1f138                   ; set cursor to g0, g1
+0002B0C8: 0BDF4070          bal     0001f138                   ; set cursor to g0, g1
 0002B0CC: 5C801604          mov     r4,g0
-0002B0D0: 08DF40B0          b       ffe1f180                   ; print string from g0
+0002B0D0: 08DF40B0          b       0001f180                   ; print string from g0
 }
 
 0002B0D4: 00000000          ? 00:0 00000000 0 0
@@ -41093,9 +41093,9 @@
 {
 ; show config
 0002B0E0: 5C801E00          mov     0x0,g0
-0002B0E4: 09DD7750          call    ffe02834                   ; set background to g0
-0002B0E8: 09DF3CF8          call    ffe1ede0                   ; clear screen
-0002B0EC: 09DF3D94          call    ffe1ee80                   ; clear tilemap3
+0002B0E4: 09DD7750          call    00002834                   ; set background to g0
+0002B0E8: 09DF3CF8          call    0001ede0                   ; clear screen
+0002B0EC: 09DF3D94          call    0001ee80                   ; clear tilemap3
 
 0002B0F0: 090061C0          call    000312b0                   ; switch process controls priority high
 0002B0F4: 0BFFE134          bal     00029228                   ; copy nvram to backup ram
@@ -41105,169 +41105,169 @@
 0002B104: 8C803000 005FE560 lda     0x5fe560,g0
 0002B10C: 5C901E01          mov     0x1,g2
 0002B110: 8C8C6001          lda     0x1(g1),g1
-0002B114: 09DD5FC0          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002B114: 09DD5FC0          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002B118: 5880198F          setbit  0xf,0x0,g0                 ; 8000 (WHITE)
-0002B11C: 0BDF404C          bal     ffe1f168                   ; set text color g0
+0002B11C: 0BDF404C          bal     0001f168                   ; set text color g0
 
 0002B120: 5C801E14          mov     0x14,g0
 0002B124: 5C881E05          mov     0x5,g1
-0002B128: 0BDF4010          bal     ffe1f138                   ; set cursor to g0, g1
+0002B128: 0BDF4010          bal     0001f138                   ; set cursor to g0, g1
 0002B12C: 8C803000 0023CC10 lda     0x23cc10,g0
-0002B134: 09DF404C          call    ffe1f180                   ; print string from g0	; "LINK ID"
+0002B134: 09DF404C          call    0001f180                   ; print string from g0	; "LINK ID"
 
 0002B138: 5C801E14          mov     0x14,g0
 0002B13C: 5C881E07          mov     0x7,g1
-0002B140: 0BDF3FF8          bal     ffe1f138                   ; set cursor to g0, g1
+0002B140: 0BDF3FF8          bal     0001f138                   ; set cursor to g0, g1
 0002B144: 8C803000 0023CC20 lda     0x23cc20,g0
-0002B14C: 09DF4034          call    ffe1f180                   ; print string from g0	; "CAR NUMBER"
+0002B14C: 09DF4034          call    0001f180                   ; print string from g0	; "CAR NUMBER"
 
 0002B150: 5C801E14          mov     0x14,g0
 0002B154: 5C881E09          mov     0x9,g1
-0002B158: 0BDF3FE0          bal     ffe1f138                   ; set cursor to g0, g1
+0002B158: 0BDF3FE0          bal     0001f138                   ; set cursor to g0, g1
 0002B15C: 8C803000 0023CC30 lda     0x23cc30,g0
-0002B164: 09DF401C          call    ffe1f180                   ; print string from g0	; "CABINET"
+0002B164: 09DF401C          call    0001f180                   ; print string from g0	; "CABINET"
 
 0002B168: 5C801E14          mov     0x14,g0
 0002B16C: 5C881E0B          mov     0xb,g1
-0002B170: 0BDF3FC8          bal     ffe1f138                   ; set cursor to g0, g1
+0002B170: 0BDF3FC8          bal     0001f138                   ; set cursor to g0, g1
 0002B174: 8C803000 0023CC38 lda     0x23cc38,g0
-0002B17C: 09DF4004          call    ffe1f180                   ; print string from g0	; "COUNTRY"
+0002B17C: 09DF4004          call    0001f180                   ; print string from g0	; "COUNTRY"
 
 0002B180: 5C801E14          mov     0x14,g0
 0002B184: 5C881E0D          mov     0xd,g1
-0002B188: 0BDF3FB0          bal     ffe1f138                   ; set cursor to g0, g1
+0002B188: 0BDF3FB0          bal     0001f138                   ; set cursor to g0, g1
 0002B18C: 8C803000 0023CC40 lda     0x23cc40,g0
-0002B194: 09DF3FEC          call    ffe1f180                   ; print string from g0	; "DIFFICULTY"
+0002B194: 09DF3FEC          call    0001f180                   ; print string from g0	; "DIFFICULTY"
 
 0002B198: 5C801E14          mov     0x14,g0
 0002B19C: 5C881E0F          mov     0xf,g1
-0002B1A0: 0BDF3F98          bal     ffe1f138                   ; set cursor to g0, g1
+0002B1A0: 0BDF3F98          bal     0001f138                   ; set cursor to g0, g1
 0002B1A4: 8C803000 0023CC50 lda     0x23cc50,g0
-0002B1AC: 09DF3FD4          call    ffe1f180                   ; print string from g0	; "ADVERTISE SOUND"
+0002B1AC: 09DF3FD4          call    0001f180                   ; print string from g0	; "ADVERTISE SOUND"
 
 0002B1B0: 5C801E14          mov     0x14,g0
 0002B1B4: 5C881E11          mov     0x11,g1
-0002B1B8: 0BDF3F80          bal     ffe1f138                   ; set cursor to g0, g1
+0002B1B8: 0BDF3F80          bal     0001f138                   ; set cursor to g0, g1
 0002B1BC: 8C803000 0023CC60 lda     0x23cc60,g0
-0002B1C4: 09DF3FBC          call    ffe1f180                   ; print string from g0	; "GAME MODE"
+0002B1C4: 09DF3FBC          call    0001f180                   ; print string from g0	; "GAME MODE"
 
 0002B1C8: 5C801E14          mov     0x14,g0
 0002B1CC: 5C881E13          mov     0x13,g1
-0002B1D0: 0BDF3F68          bal     ffe1f138                   ; set cursor to g0, g1
+0002B1D0: 0BDF3F68          bal     0001f138                   ; set cursor to g0, g1
 0002B1D4: 8C803000 0023CC70 lda     0x23cc70,g0
-0002B1DC: 09DF3FA4          call    ffe1f180                   ; print string from g0	; "RIVAL ARROW"
+0002B1DC: 09DF3FA4          call    0001f180                   ; print string from g0	; "RIVAL ARROW"
 0002B1E0: 5C801E14          mov     0x14,g0
 0002B1E4: 5C881E15          mov     0x15,g1
-0002B1E8: 0BDF3F50          bal     ffe1f138                   ; set cursor to g0, g1
+0002B1E8: 0BDF3F50          bal     0001f138                   ; set cursor to g0, g1
 0002B1EC: 8C803000 0023CC80 lda     0x23cc80,g0
-0002B1F4: 09DF3F8C          call    ffe1f180                   ; print string from g0	; "PROMOTE SATURN"
+0002B1F4: 09DF3F8C          call    0001f180                   ; print string from g0	; "PROMOTE SATURN"
 
 0002B1F8: 5C801E16          mov     0x16,g0
 0002B1FC: 5C881E19          mov     0x19,g1
-0002B200: 0BDF3F38          bal     ffe1f138                   ; set cursor to g0, g1
+0002B200: 0BDF3F38          bal     0001f138                   ; set cursor to g0, g1
 0002B204: 8C803000 0023CDD0 lda     0x23cdd0,g0
-0002B20C: 09DF3F74          call    ffe1f180                   ; print string from g0	; "CREDIT TO START ... CREDIT(S)"
+0002B20C: 09DF3F74          call    0001f180                   ; print string from g0	; "CREDIT TO START ... CREDIT(S)"
 
 0002B210: 5C801E16          mov     0x16,g0
 0002B214: 5C881E1D          mov     0x1d,g1
-0002B218: 0BDF3F20          bal     ffe1f138                   ; set cursor to g0, g1
+0002B218: 0BDF3F20          bal     0001f138                   ; set cursor to g0, g1
 0002B21C: 8C803000 0023CE10 lda     0x23ce10,g0
-0002B224: 09DF3F5C          call    ffe1f180                   ; print string from g0	; "COIN/CREDIT SETTING  #"
+0002B224: 09DF3F5C          call    0001f180                   ; print string from g0	; "COIN/CREDIT SETTING  #"
 
 0002B228: 5980DE0E          shlo    0xe,0x3,g0                 ; g0 = 0xC000 ( green )
-0002B22C: 0BDF3F3C          bal     ffe1f168                   ; set text color g0
+0002B22C: 0BDF3F3C          bal     0001f168                   ; set text color g0
 
 0002B230: 80A03000 01D0000B ldob    0x1d0000b,g4
 0002B238: 5981581F          addo    0x1f,0x5,g0
 0002B23C: 5C881E05          mov     0x5,g1
 0002B240: 90203914 0023CCA0 ld      0x23cca0[g4*4],r4          ; string pointer based on g4 (0 = SINGLE, 1 = MASTER, 2 = SLAVE)
-0002B248: 0BDF3EF0          bal     ffe1f138                   ; set cursor to g0, g1
+0002B248: 0BDF3EF0          bal     0001f138                   ; set cursor to g0, g1
 0002B24C: 5C801604          mov     r4,g0
-0002B250: 09DF3F30          call    ffe1f180                   ; print string from g0
+0002B250: 09DF3F30          call    0001f180                   ; print string from g0
 
 0002B254: 5981581F          addo    0x1f,0x5,g0
 0002B258: 5C881E07          mov     0x7,g1
-0002B25C: 0BDF3EDC          bal     ffe1f138                   ; set cursor to g0, g1
+0002B25C: 0BDF3EDC          bal     0001f138                   ; set cursor to g0, g1
 0002B260: 8C803000 005FE560 lda     0x5fe560,g0                ; (CAR NUMBER)
-0002B268: 09DF3F18          call    ffe1f180                   ; print string from g0
+0002B268: 09DF3F18          call    0001f180                   ; print string from g0
 
 0002B26C: 80A03000 01D0001A ldob    0x1d0001a,g4
 0002B274: 5981581F          addo    0x1f,0x5,g0
 0002B278: 5C881E09          mov     0x9,g1
 0002B27C: 90203914 0023CCD0 ld      0x23ccd0[g4*4],r4          ; string pointer based on g4 (0 = DELUXE, 1 = TWIN, 2 = SPECIAL, 3 = UPRIGHT)
-0002B284: 0BDF3EB4          bal     ffe1f138                   ; set cursor to g0, g1
+0002B284: 0BDF3EB4          bal     0001f138                   ; set cursor to g0, g1
 0002B288: 5C801604          mov     r4,g0
-0002B28C: 09DF3EF4          call    ffe1f180                   ; print string from g0
+0002B28C: 09DF3EF4          call    0001f180                   ; print string from g0
 
 0002B290: 80A03000 01D0001B ldob    0x1d0001b,g4
 0002B298: 5981581F          addo    0x1f,0x5,g0
 0002B29C: 5C881E0B          mov     0xb,g1
 0002B2A0: 90203914 0023CCB0 ld      0x23ccb0[g4*4],r4          ; string pointer based on g4 (0 = USA, 1 = JPN, 2 = EXPORT)
-0002B2A8: 0BDF3E90          bal     ffe1f138                   ; set cursor to g0, g1
+0002B2A8: 0BDF3E90          bal     0001f138                   ; set cursor to g0, g1
 0002B2AC: 5C801604          mov     r4,g0
-0002B2B0: 09DF3ED0          call    ffe1f180                   ; print string from g0
+0002B2B0: 09DF3ED0          call    0001f180                   ; print string from g0
 
 0002B2B4: 80A03000 01D00020 ldob    0x1d00020,g4
 0002B2BC: 5981581F          addo    0x1f,0x5,g0
 0002B2C0: 5C881E0D          mov     0xd,g1
 0002B2C4: 90203914 0023CCE0 ld      0x23cce0[g4*4],r4          ; string pointer based on g4 (0 = EASY, 1 = NORMAL, 2 = HARD, 3 = HARDEST)
-0002B2CC: 0BDF3E6C          bal     ffe1f138                   ; set cursor to g0, g1
+0002B2CC: 0BDF3E6C          bal     0001f138                   ; set cursor to g0, g1
 0002B2D0: 5C801604          mov     r4,g0
-0002B2D4: 09DF3EAC          call    ffe1f180                   ; print string from g0
+0002B2D4: 09DF3EAC          call    0001f180                   ; print string from g0
 
 0002B2D8: 80A03000 01D00019 ldob    0x1d00019,g4
 0002B2E0: 5981581F          addo    0x1f,0x5,g0
 0002B2E4: 5C881E0F          mov     0xf,g1
 0002B2E8: 90203914 0023CC90 ld      0x23cc90[g4*4],r4          ; string pointer based on g4 (0 = OFF, 1 = ON)
-0002B2F0: 0BDF3E48          bal     ffe1f138                   ; set cursor to g0, g1
+0002B2F0: 0BDF3E48          bal     0001f138                   ; set cursor to g0, g1
 0002B2F4: 5C801604          mov     r4,g0
-0002B2F8: 09DF3E88          call    ffe1f180                   ; print string from g0
+0002B2F8: 09DF3E88          call    0001f180                   ; print string from g0
 
 
 0002B2FC: 80A03000 01D0001C ldob    0x1d0001c,g4
 0002B304: 5981581F          addo    0x1f,0x5,g0
 0002B308: 5C881E11          mov     0x11,g1
 0002B30C: 90203914 0023CCC0 ld      0x23ccc0[g4*4],r4          ; string pointer based on g4 (0 = NORMAL, 1 = GRAND PRIX, 2 = ENDURANCE)
-0002B314: 0BDF3E24          bal     ffe1f138                   ; set cursor to g0, g1
+0002B314: 0BDF3E24          bal     0001f138                   ; set cursor to g0, g1
 0002B318: 5C801604          mov     r4,g0
-0002B31C: 09DF3E64          call    ffe1f180                   ; print string from g0
+0002B31C: 09DF3E64          call    0001f180                   ; print string from g0
 
 0002B320: 80A03000 01D0001D ldob    0x1d0001d,g4
 0002B328: 5981581F          addo    0x1f,0x5,g0
 0002B32C: 5C881E13          mov     0x13,g1
 0002B330: 90203914 0023CC90 ld      0x23cc90[g4*4],r4          ; string pointer based on g4 (0 = OFF, 1 = ON)
-0002B338: 0BDF3E00          bal     ffe1f138                   ; set cursor to g0, g1
+0002B338: 0BDF3E00          bal     0001f138                   ; set cursor to g0, g1
 0002B33C: 5C801604          mov     r4,g0
-0002B340: 09DF3E40          call    ffe1f180                   ; print string from g0
+0002B340: 09DF3E40          call    0001f180                   ; print string from g0
 
 0002B344: 80A03000 01D0001E ldob    0x1d0001e,g4
 0002B34C: 5981581F          addo    0x1f,0x5,g0
 0002B350: 5C881E15          mov     0x15,g1
 0002B354: 90203914 0023CCF0 ld      0x23ccf0[g4*4],r4          ; string pointer based on g4 (0 = OFF, 1 = COMING SOON, 2 = AVAILABLE NOW)
-0002B35C: 0BDF3DDC          bal     ffe1f138                   ; set cursor to g0, g1
+0002B35C: 0BDF3DDC          bal     0001f138                   ; set cursor to g0, g1
 0002B360: 5C801604          mov     r4,g0
-0002B364: 09DF3E1C          call    ffe1f180                   ; print string from g0
+0002B364: 09DF3E1C          call    0001f180                   ; print string from g0
 
 0002B368: 80883000 01D00015 ldob    0x1d00015,g1
 0002B370: 8C803000 005FE560 lda     0x5fe560,g0
 0002B378: 5C901E02          mov     0x2,g2
-0002B37C: 09DD5D58          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002B37C: 09DD5D58          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002B380: 5982D81F          addo    0x1f,0xb,g0
 0002B384: 5C881E19          mov     0x19,g1
-0002B388: 0BDF3DB0          bal     ffe1f138                   ; set cursor to g0, g1
+0002B388: 0BDF3DB0          bal     0001f138                   ; set cursor to g0, g1
 0002B38C: 8C803000 005FE560 lda     0x5fe560,g0
-0002B394: 09DF3DEC          call    ffe1f180                   ; print string from g0
+0002B394: 09DF3DEC          call    0001f180                   ; print string from g0
 
 0002B398: 80883000 01D00010 ldob    0x1d00010,g1
 0002B3A0: 8C803000 005FE560 lda     0x5fe560,g0
 0002B3A8: 5C901E02          mov     0x2,g2
 0002B3AC: 8C8C6001          lda     0x1(g1),g1
-0002B3B0: 09DD5D24          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002B3B0: 09DD5D24          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002B3B4: 5983581F          addo    0x1f,0xd,g0
 0002B3B8: 5C881E1D          mov     0x1d,g1
-0002B3BC: 0BDF3D7C          bal     ffe1f138                   ; set cursor to g0, g1
+0002B3BC: 0BDF3D7C          bal     0001f138                   ; set cursor to g0, g1
 0002B3C0: 8C803000 005FE560 lda     0x5fe560,g0
-0002B3C8: 08DF3DB8          b       ffe1f180                   ; print string from g0
+0002B3C8: 08DF3DB8          b       0001f180                   ; print string from g0
 }
 
 0002B3CC: 00000000          ? 00:0 00000000 0 0
@@ -41392,61 +41392,61 @@
 
 {
 ; service handler 3-0 (coin assignment 0)
-0002B580: 09DF3860          call    ffe1ede0                   ; clear screen
+0002B580: 09DF3860          call    0001ede0                   ; clear screen
 0002B584: 09005D2C          call    000312b0                   ; switch process controls priority high
 0002B588: 0BFFDCA0          bal     00029228                   ; copy nvram to backup ram
 0002B58C: 09005D14          call    000312a0                   ; switch process controls priority low
 0002B590: 5880198F          setbit  0xf,0x0,g0
-0002B594: 0BDF3BD4          bal     ffe1f168                   ; set text color g0
+0002B594: 0BDF3BD4          bal     0001f168                   ; set text color g0
 
 0002B598: 5C801E16          mov     0x16,g0
 0002B59C: 5C881E03          mov     0x3,g1
-0002B5A0: 0BDF3B98          bal     ffe1f138                   ; set cursor to g0, g1
+0002B5A0: 0BDF3B98          bal     0001f138                   ; set cursor to g0, g1
 0002B5A4: 8C803000 0023CDA0 lda     0x23cda0,g0
-0002B5AC: 09DF3BD4          call    ffe1f180                   ; print string from g0	; "COIN ASSIGMENT"
+0002B5AC: 09DF3BD4          call    0001f180                   ; print string from g0	; "COIN ASSIGMENT"
 
 0002B5B0: 5C801E14          mov     0x14,g0
 0002B5B4: 5C881E1E          mov     0x1e,g1
-0002B5B8: 0BDF3B80          bal     ffe1f138                   ; set cursor to g0, g1
+0002B5B8: 0BDF3B80          bal     0001f138                   ; set cursor to g0, g1
 0002B5BC: 8C803000 0023CB20 lda     0x23cb20,g0
-0002B5C4: 09DF3BBC          call    ffe1f180                   ; print string from g0	; "GREEN  : CURSOR UP           "
+0002B5C4: 09DF3BBC          call    0001f180                   ; print string from g0	; "GREEN  : CURSOR UP           "
 
 0002B5C8: 5C801E14          mov     0x14,g0
 0002B5CC: 5C881E1F          mov     0x1f,g1
-0002B5D0: 0BDF3B68          bal     ffe1f138                   ; set cursor to g0, g1
+0002B5D0: 0BDF3B68          bal     0001f138                   ; set cursor to g0, g1
 0002B5D4: 8C803000 0023CB40 lda     0x23cb40,g0
-0002B5DC: 09DF3BA4          call    ffe1f180                   ; print string from g0	; "RED    : CURSOR DOWN         "
+0002B5DC: 09DF3BA4          call    0001f180                   ; print string from g0	; "RED    : CURSOR DOWN         "
 
 0002B5E0: 5C801E14          mov     0x14,g0
 0002B5E4: 5988581F          addo    0x1f,0x1,g1
-0002B5E8: 0BDF3B50          bal     ffe1f138                   ; set cursor to g0, g1
+0002B5E8: 0BDF3B50          bal     0001f138                   ; set cursor to g0, g1
 0002B5EC: 8C803000 0023CB60 lda     0x23cb60,g0
-0002B5F4: 09DF3B8C          call    ffe1f180                   ; print string from g0	; "YELLOW : MODE UP             "
+0002B5F4: 09DF3B8C          call    0001f180                   ; print string from g0	; "YELLOW : MODE UP             "
 
 0002B5F8: 5C801E14          mov     0x14,g0
 0002B5FC: 5988981F          addo    0x1f,0x2,g1
-0002B600: 0BDF3B38          bal     ffe1f138                   ; set cursor to g0, g1
+0002B600: 0BDF3B38          bal     0001f138                   ; set cursor to g0, g1
 0002B604: 8C803000 0023CB80 lda     0x23cb80,g0
-0002B60C: 09DF3B74          call    ffe1f180                   ; print string from g0	; "BLUE   : MODE DOWN           "
+0002B60C: 09DF3B74          call    0001f180                   ; print string from g0	; "BLUE   : MODE DOWN           "
 
 0002B610: 5C801E14          mov     0x14,g0
 0002B614: 5988D81F          addo    0x1f,0x3,g1
-0002B618: 0BDF3B20          bal     ffe1f138                   ; set cursor to g0, g1
+0002B618: 0BDF3B20          bal     0001f138                   ; set cursor to g0, g1
 0002B61C: 8C803000 0023CBA0 lda     0x23cba0,g0
-0002B624: 09DF3B5C          call    ffe1f180                   ; print string from g0	; "START  : TO SELECT           "
+0002B624: 09DF3B5C          call    0001f180                   ; print string from g0	; "START  : TO SELECT           "
 
 0002B628: 5880198F          setbit  0xf,0x0,g0
-0002B62C: 0BDF3B3C          bal     ffe1f168                   ; set text color g0
+0002B62C: 0BDF3B3C          bal     0001f168                   ; set text color g0
 0002B630: 90203000 0023D318 ld      0x23d318,r4
 0002B638: 86011000          callx   (r4)                       ; show coin settings
 
 0002B63C: 5880198F          setbit  0xf,0x0,g0
-0002B640: 0BDF3B28          bal     ffe1f168                   ; set text color g0
+0002B640: 0BDF3B28          bal     0001f168                   ; set text color g0
 0002B644: 90203000 0023D314 ld      0x23d314,r4
 0002B64C: 86011000          callx   (r4)
 
 0002B650: 5980DE0E          shlo    0xe,0x3,g0
-0002B654: 0BDF3B14          bal     ffe1f168                   ; set text color g0
+0002B654: 0BDF3B14          bal     0001f168                   ; set text color g0
 0002B658: 90A03000 0023D310 ld      0x23d310,g4
 0002B660: 86051000          callx   (g4)
 
@@ -41466,7 +41466,7 @@
 0002B694: 3A052088          cmpibe  0x0,g4,0x2b71c             ; if 0x0 == g4 goto 0002B71C
 
 0002B698: 5880198F          setbit  0xf,0x0,g0
-0002B69C: 0BDF3ACC          bal     ffe1f168                   ; set text color g0
+0002B69C: 0BDF3ACC          bal     0001f168                   ; set text color g0
 
 0002B6A0: 80A03000 005FE634 ldob    0x5fe634,g4
 0002B6A8: 90A03914 0023D310 ld      0x23d310[g4*4],g4          ; read g4 from table 0003D310 + g4*4
@@ -41498,7 +41498,7 @@
 
 0002B6F8: 82A83000 005FE634 stob    g5,0x5fe634
 0002B700: 5980DE0E          shlo    0xe,0x3,g0
-0002B704: 0BDF3A64          bal     ffe1f168                   ; set text color g0
+0002B704: 0BDF3A64          bal     0001f168                   ; set text color g0
 
 0002B708: 80A03000 005FE634 ldob    0x5fe634,g4
 0002B710: 90A03914 0023D310 ld      0x23d310[g4*4],g4          ; show config x
@@ -41548,27 +41548,27 @@
 ; show coinassign exit
 0002B790: 5C801E0F          mov     0xf,g0
 0002B794: 5C881E18          mov     0x18,g1
-0002B798: 0BDF39A0          bal     ffe1f138                   ; set cursor to g0, g1
+0002B798: 0BDF39A0          bal     0001f138                   ; set cursor to g0, g1
 0002B79C: 8C803000 0023CAB0 lda     0x23cab0,g0
-0002B7A4: 09DF39DC          call    ffe1f180                   ; print string from g0	; "EXIT"
+0002B7A4: 09DF39DC          call    0001f180                   ; print string from g0	; "EXIT"
 
 0002B7A8: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002B7B0: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002B7B8: 0BDF3980          bal     ffe1f138                   ; set cursor to g0, g1
+0002B7B8: 0BDF3980          bal     0001f138                   ; set cursor to g0, g1
 0002B7BC: 8C803000 0022B3D0 lda     0x22b3d0,g0
-0002B7C4: 09DF39BC          call    ffe1f180                   ; print string from g0	; "  "
+0002B7C4: 09DF39BC          call    0001f180                   ; print string from g0	; "  "
 
 0002B7C8: 5CA01E0C          mov     0xc,g4
 0002B7CC: 8AA03000 005FE5A0 stos    g4,0x5fe5a0
 0002B7D4: 5CA01E18          mov     0x18,g4
 0002B7D8: 8AA03000 005FE5A2 stos    g4,0x5fe5a2
 0002B7E0: 5880198F          setbit  0xf,0x0,g0
-0002B7E4: 0BDF3984          bal     ffe1f168                   ; set text color g0
+0002B7E4: 0BDF3984          bal     0001f168                   ; set text color g0
 0002B7E8: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002B7F0: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002B7F8: 0BDF3940          bal     ffe1f138                   ; set cursor to g0, g1
+0002B7F8: 0BDF3940          bal     0001f138                   ; set cursor to g0, g1
 0002B7FC: 8C803000 0022B3D4 lda     0x22b3d4,g0
-0002B804: 08DF397C          b       ffe1f180                   ; print string from g0	; ">>"
+0002B804: 08DF397C          b       0001f180                   ; print string from g0	; ">>"
 }
 
 0002B808: 00000000          ? 00:0 00000000 0 0
@@ -41586,7 +41586,7 @@
 
 0002B82C: 82A83000 01D00015 stob    g5,0x1d00015
 0002B834: 5980DE0E          shlo    0xe,0x3,g0
-0002B838: 0BDF3930          bal     ffe1f168                   ; set text color g0
+0002B838: 0BDF3930          bal     0001f168                   ; set text color g0
 0002B83C: 08000004          b       0002b840                   ; show coinassign credits
 }
 
@@ -41594,39 +41594,39 @@
 ; show coinassign credits
 0002B840: 5C801E0F          mov     0xf,g0
 0002B844: 5C881E07          mov     0x7,g1
-0002B848: 0BDF38F0          bal     ffe1f138                   ; set cursor to g0, g1
+0002B848: 0BDF38F0          bal     0001f138                   ; set cursor to g0, g1
 0002B84C: 8C803000 0023CDD0 lda     0x23cdd0,g0
-0002B854: 09DF392C          call    ffe1f180                   ; print string from g0	; "CREDIT TO START       CREDIT(S)"
+0002B854: 09DF392C          call    0001f180                   ; print string from g0	; "CREDIT TO START       CREDIT(S)"
 
 0002B858: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002B860: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002B868: 0BDF38D0          bal     ffe1f138                   ; set cursor to g0, g1
+0002B868: 0BDF38D0          bal     0001f138                   ; set cursor to g0, g1
 0002B86C: 8C803000 0022B3D0 lda     0x22b3d0,g0
-0002B874: 09DF390C          call    ffe1f180                   ; print string from g0	; "  "
+0002B874: 09DF390C          call    0001f180                   ; print string from g0	; "  "
 
 0002B878: 5CA01E0C          mov     0xc,g4
 0002B87C: 8AA03000 005FE5A0 stos    g4,0x5fe5a0
 0002B884: 5CA01E07          mov     0x7,g4
 0002B888: 8AA03000 005FE5A2 stos    g4,0x5fe5a2
 0002B890: 5880198F          setbit  0xf,0x0,g0
-0002B894: 0BDF38D4          bal     ffe1f168                   ; set text color g0
+0002B894: 0BDF38D4          bal     0001f168                   ; set text color g0
 0002B898: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002B8A0: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002B8A8: 0BDF3890          bal     ffe1f138                   ; set cursor to g0, g1
+0002B8A8: 0BDF3890          bal     0001f138                   ; set cursor to g0, g1
 0002B8AC: 8C803000 0022B3D4 lda     0x22b3d4,g0
-0002B8B4: 09DF38CC          call    ffe1f180                   ; print string from g0	; ">>"
+0002B8B4: 09DF38CC          call    0001f180                   ; print string from g0	; ">>"
 
 0002B8B8: 5980DE0E          shlo    0xe,0x3,g0
-0002B8BC: 0BDF38AC          bal     ffe1f168                   ; set text color g0
+0002B8BC: 0BDF38AC          bal     0001f168                   ; set text color g0
 0002B8C0: 80883000 01D00015 ldob    0x1d00015,g1
 0002B8C8: 8C803000 005FE560 lda     0x5fe560,g0
 0002B8D0: 5C901E02          mov     0x2,g2
-0002B8D4: 09DD5800          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002B8D4: 09DD5800          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002B8D8: 5981181F          addo    0x1f,0x4,g0
 0002B8DC: 5C881E07          mov     0x7,g1
-0002B8E0: 0BDF3858          bal     ffe1f138                   ; set cursor to g0, g1
+0002B8E0: 0BDF3858          bal     0001f138                   ; set cursor to g0, g1
 0002B8E4: 8C803000 005FE560 lda     0x5fe560,g0
-0002B8EC: 08DF3894          b       ffe1f180                   ; print string from g0
+0002B8EC: 08DF3894          b       0001f180                   ; print string from g0
 }
 
 {
@@ -41641,7 +41641,7 @@
 
 0002B90C: 82A83000 01D00010 stob    g5,0x1d00010
 0002B914: 5980DE0E          shlo    0xe,0x3,g0
-0002B918: 0BDF3850          bal     ffe1f168                   ; set text color g0
+0002B918: 0BDF3850          bal     0001f168                   ; set text color g0
 0002B91C: 08000044          b       0002b960                   ; show coinassign coinmode
 }
 
@@ -41656,7 +41656,7 @@
 
 0002B938: 82A03000 01D00010 stob    g4,0x1d00010
 0002B940: 5980DE0E          shlo    0xe,0x3,g0
-0002B944: 0BDF3824          bal     ffe1f168                   ; set text color g0
+0002B944: 0BDF3824          bal     0001f168                   ; set text color g0
 0002B948: 08000018          b       0002b960                   ; show coinassign coinmode
 }
 
@@ -41675,53 +41675,53 @@
 0002B964: 0B000264          bal     0002bbc8                   ; split coin setting (to g4, g5, g6, g7)
 0002B968: 5C801E15          mov     0x15,g0
 0002B96C: 5C881E0C          mov     0xc,g1
-0002B970: 0BDF37C8          bal     ffe1f138                   ; set cursor to g0, g1
+0002B970: 0BDF37C8          bal     0001f138                   ; set cursor to g0, g1
 0002B974: 8C803000 0022B950 lda     0x22b950,g0
-0002B97C: 09DF3804          call    ffe1f180                   ; print string from g0	; "CHUTE1"
+0002B97C: 09DF3804          call    0001f180                   ; print string from g0	; "CHUTE1"
 
 0002B980: 5C801E15          mov     0x15,g0
 0002B984: 5C881E12          mov     0x12,g1
-0002B988: 0BDF37B0          bal     ffe1f138                   ; set cursor to g0, g1
+0002B988: 0BDF37B0          bal     0001f138                   ; set cursor to g0, g1
 0002B98C: 8C803000 0022B958 lda     0x22b958,g0
-0002B994: 09DF37EC          call    ffe1f180                   ; print string from g0	; "CHUTE2"
+0002B994: 09DF37EC          call    0001f180                   ; print string from g0	; "CHUTE2"
 
 0002B998: 5C801E0F          mov     0xf,g0
 0002B99C: 5C881E0A          mov     0xa,g1
-0002B9A0: 0BDF3798          bal     ffe1f138                   ; set cursor to g0, g1
+0002B9A0: 0BDF3798          bal     0001f138                   ; set cursor to g0, g1
 0002B9A4: 8C803000 0023CE10 lda     0x23ce10,g0
-0002B9AC: 09DF37D4          call    ffe1f180                   ; print string from g0	; "COIN/CREDIT SETTINGS  #"
+0002B9AC: 09DF37D4          call    0001f180                   ; print string from g0	; "COIN/CREDIT SETTINGS  #"
 
 0002B9B0: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002B9B8: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002B9C0: 0BDF3778          bal     ffe1f138                   ; set cursor to g0, g1
+0002B9C0: 0BDF3778          bal     0001f138                   ; set cursor to g0, g1
 0002B9C4: 8C803000 0022B3D0 lda     0x22b3d0,g0
-0002B9CC: 09DF37B4          call    ffe1f180                   ; print string from g0	; "  "
+0002B9CC: 09DF37B4          call    0001f180                   ; print string from g0	; "  "
 
 0002B9D0: 5CA81E0C          mov     0xc,g5
 0002B9D4: 8AA83000 005FE5A0 stos    g5,0x5fe5a0
 0002B9DC: 5CA81E0A          mov     0xa,g5
 0002B9E0: 8AA83000 005FE5A2 stos    g5,0x5fe5a2
 0002B9E8: 5880198F          setbit  0xf,0x0,g0
-0002B9EC: 0BDF377C          bal     ffe1f168                   ; set text color g0
+0002B9EC: 0BDF377C          bal     0001f168                   ; set text color g0
 0002B9F0: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002B9F8: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002BA00: 0BDF3738          bal     ffe1f138                   ; set cursor to g0, g1
+0002BA00: 0BDF3738          bal     0001f138                   ; set cursor to g0, g1
 0002BA04: 8C803000 0022B3D4 lda     0x22b3d4,g0
-0002BA0C: 09DF3774          call    ffe1f180                   ; print string from g0 ">>"
+0002BA0C: 09DF3774          call    0001f180                   ; print string from g0 ">>"
 
 0002BA10: 5980DE0E          shlo    0xe,0x3,g0
-0002BA14: 0BDF3754          bal     ffe1f168                   ; set text color g0
+0002BA14: 0BDF3754          bal     0001f168                   ; set text color g0
 0002BA18: 80883000 01D00010 ldob    0x1d00010,g1
 0002BA20: 8C803000 005FE560 lda     0x5fe560,g0
 0002BA28: 5C901E02          mov     0x2,g2
 0002BA2C: 8C8C6001          lda     0x1(g1),g1
-0002BA30: 09DD56A4          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002BA30: 09DD56A4          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 
 0002BA34: 5981981F          addo    0x1f,0x6,g0
 0002BA38: 5C881E0A          mov     0xa,g1
-0002BA3C: 0BDF36FC          bal     ffe1f138                   ; set cursor to g0, g1
+0002BA3C: 0BDF36FC          bal     0001f138                   ; set cursor to g0, g1
 0002BA40: 8C803000 005FE560 lda     0x5fe560,g0
-0002BA48: 09DF3738          call    ffe1f180                   ; print string from g0
+0002BA48: 09DF3738          call    0001f180                   ; print string from g0
 
 0002BA4C: 5C881E00          mov     0x0,g1
 0002BA50: 5C901E08          mov     0x8,g2
@@ -41748,19 +41748,19 @@
 0002BAA8: 8CA51D14          lda     (g4)[g4*4],g4
 0002BAAC: 5C881E0C          mov     0xc,g1
 0002BAB0: 90283994 0023CEB0 ld      0x23ceb0[g4*8],r5
-0002BAB8: 0BDF3680          bal     ffe1f138                   ; set cursor to g0, g1
+0002BAB8: 0BDF3680          bal     0001f138                   ; set cursor to g0, g1
 0002BABC: 5C801605          mov     r5,g0
-0002BAC0: 09DF36C0          call    ffe1f180                   ; print string from g0
+0002BAC0: 09DF36C0          call    0001f180                   ; print string from g0
 
 0002BAC4: 80A03000 01D00010 ldob    0x1d00010,g4
 0002BACC: 5C801E1E          mov     0x1e,g0
 0002BAD0: 8CA51D14          lda     (g4)[g4*4],g4
 0002BAD4: 5C881E12          mov     0x12,g1
 0002BAD8: 90203994 0023CEC4 ld      0x23cec4[g4*8],r4
-0002BAE0: 0BDF3658          bal     ffe1f138                   ; set cursor to g0, g1
+0002BAE0: 0BDF3658          bal     0001f138                   ; set cursor to g0, g1
 0002BAE4: 5C301E01          mov     0x1,r6
 0002BAE8: 5C801604          mov     r4,g0
-0002BAEC: 09DF3694          call    ffe1f180                   ; print string from g0
+0002BAEC: 09DF3694          call    0001f180                   ; print string from g0
 
 0002BAF0: 80A03000 01D00010 ldob    0x1d00010,g4
 0002BAF8: 8CA51D14          lda     (g4)[g4*4],g4
@@ -41768,9 +41768,9 @@
 0002BB00: 8CA03994 0023CEB0 lda     0x23ceb0[g4*8],g4
 0002BB08: 598B1006          addo    r6,0xc,g1
 0002BB0C: 902D1D06          ld      (g4)[r6*4],r5
-0002BB10: 0BDF3628          bal     ffe1f138                   ; set cursor to g0, g1
+0002BB10: 0BDF3628          bal     0001f138                   ; set cursor to g0, g1
 0002BB14: 5C801605          mov     r5,g0
-0002BB18: 09DF3668          call    ffe1f180                   ; print string from g0
+0002BB18: 09DF3668          call    0001f180                   ; print string from g0
 
 0002BB1C: 80A03000 01D00010 ldob    0x1d00010,g4
 0002BB24: 8CA51D14          lda     (g4)[g4*4],g4
@@ -41778,9 +41778,9 @@
 0002BB2C: 8CA03994 0023CEB0 lda     0x23ceb0[g4*8],g4
 0002BB34: 598C9006          addo    r6,0x12,g1
 0002BB38: 90253D06 00000014 ld      0x14(g4)[r6*4],r4
-0002BB40: 0BDF35F8          bal     ffe1f138                   ; set cursor to g0, g1
+0002BB40: 0BDF35F8          bal     0001f138                   ; set cursor to g0, g1
 0002BB44: 5C801604          mov     r4,g0
-0002BB48: 09DF3638          call    ffe1f180                   ; print string from g0
+0002BB48: 09DF3638          call    0001f180                   ; print string from g0
 
 0002BB4C: 80A03000 01D00010 ldob    0x1d00010,g4
 0002BB54: 59205006          addo    r6,0x1,r4
@@ -41789,9 +41789,9 @@
 0002BB60: 8CA03994 0023CEB0 lda     0x23ceb0[g4*8],g4
 0002BB68: 598B1004          addo    r4,0xc,g1
 0002BB6C: 902D1D04          ld      (g4)[r4*4],r5
-0002BB70: 0BDF35C8          bal     ffe1f138                   ; set cursor to g0, g1
+0002BB70: 0BDF35C8          bal     0001f138                   ; set cursor to g0, g1
 0002BB74: 5C801605          mov     r5,g0
-0002BB78: 09DF3608          call    ffe1f180                   ; print string from g0
+0002BB78: 09DF3608          call    0001f180                   ; print string from g0
 
 0002BB7C: 80A03000 01D00010 ldob    0x1d00010,g4
 0002BB84: 8CA51D14          lda     (g4)[g4*4],g4
@@ -41799,10 +41799,10 @@
 0002BB8C: 8CA03994 0023CEB0 lda     0x23ceb0[g4*8],g4
 0002BB94: 598C9004          addo    r4,0x12,g1
 0002BB98: 90253D04 00000014 ld      0x14(g4)[r4*4],r4
-0002BBA0: 0BDF3598          bal     ffe1f138                   ; set cursor to g0, g1
+0002BBA0: 0BDF3598          bal     0001f138                   ; set cursor to g0, g1
 0002BBA4: 59309006          addo    r6,0x2,r6
 0002BBA8: 5C801604          mov     r4,g0
-0002BBAC: 09DF35D4          call    ffe1f180                   ; print string from g0
+0002BBAC: 09DF35D4          call    0001f180                   ; print string from g0
 
 0002BBB0: 3B21BF40          cmpibge 0x4,r6,0x2baf0             ; if 0x4 >= r6 loop to 0002BAF0
 0002BBB4: 0A000000          ret
@@ -41915,21 +41915,21 @@
 
 {
 ; service handler 4-0 (input test 0)
-0002BD60: 09DF3080          call    ffe1ede0                   ; clear screen
+0002BD60: 09DF3080          call    0001ede0                   ; clear screen
 0002BD64: 5880198F          setbit  0xf,0x0,g0
-0002BD68: 0BDF3400          bal     ffe1f168                   ; set text color g0
+0002BD68: 0BDF3400          bal     0001f168                   ; set text color g0
 0002BD6C: 5C801E19          mov     0x19,g0
 0002BD70: 5C881E03          mov     0x3,g1
-0002BD74: 0BDF33C4          bal     ffe1f138                   ; set cursor to g0, g1
+0002BD74: 0BDF33C4          bal     0001f138                   ; set cursor to g0, g1
 0002BD78: 8C803000 0023D320 lda     0x23d320,g0
-0002BD80: 09DF3400          call    ffe1f180                   ; print string from g0	; "INPUT TEST"
+0002BD80: 09DF3400          call    0001f180                   ; print string from g0	; "INPUT TEST"
 
 0002BD84: 5C801E14          mov     0x14,g0
 0002BD88: 5C881E1E          mov     0x1e,g1
-0002BD8C: 0BDF33AC          bal     ffe1f138                   ; set cursor to g0, g1
+0002BD8C: 0BDF33AC          bal     0001f138                   ; set cursor to g0, g1
 0002BD90: 8C803000 0023D330 lda     0x23d330,g0
 0002BD98: 8C383000 0023D398 lda     0x23d398,r7
-0002BDA0: 09DF33E0          call    ffe1f180                   ; print string from g0	; "RED & BLUE : TO EXIT"
+0002BDA0: 09DF33E0          call    0001f180                   ; print string from g0	; "RED & BLUE : TO EXIT"
 
 0002BDA4: 5C301607          mov     r7,r6
 0002BDA8: 8C403000 0023D350 lda     0x23d350,r8
@@ -41938,37 +41938,37 @@
 0002BDB8: 98219000          ldl     (r6),r4
 0002BDBC: 59890C10          shro    0x10,r4,g1
 0002BDC0: 5C801604          mov     r4,g0
-0002BDC4: 0BDF3374          bal     ffe1f138                   ; set cursor to g0, g1
+0002BDC4: 0BDF3374          bal     0001f138                   ; set cursor to g0, g1
 0002BDC8: 5C801605          mov     r5,g0
-0002BDCC: 09DF33B4          call    ffe1f180                   ; print string from g0	; "ACCEL       H"
+0002BDCC: 09DF33B4          call    0001f180                   ; print string from g0	; "ACCEL       H"
 
 0002BDD0: 9821B400 FFFFFFF8 ldl     0xfffffff8(r6),r4
 0002BDD8: 59890C10          shro    0x10,r4,g1
 0002BDDC: 5C801604          mov     r4,g0
-0002BDE0: 0BDF3358          bal     ffe1f138                   ; set cursor to g0, g1
+0002BDE0: 0BDF3358          bal     0001f138                   ; set cursor to g0, g1
 0002BDE4: 5C801605          mov     r5,g0
-0002BDE8: 09DF3398          call    ffe1f180                   ; print string from g0	; "BRAKE       H"
+0002BDE8: 09DF3398          call    0001f180                   ; print string from g0	; "BRAKE       H"
 
 0002BDEC: 9821B400 FFFFFFF0 ldl     0xfffffff0(r6),r4
 0002BDF4: 59890C10          shro    0x10,r4,g1
 0002BDF8: 5C801604          mov     r4,g0
-0002BDFC: 0BDF333C          bal     ffe1f138                   ; set cursor to g0, g1
+0002BDFC: 0BDF333C          bal     0001f138                   ; set cursor to g0, g1
 0002BE00: 5C801605          mov     r5,g0
-0002BE04: 09DF337C          call    ffe1f180                   ; print string from g0	; "HANDLE      H"
+0002BE04: 09DF337C          call    0001f180                   ; print string from g0	; "HANDLE      H"
 
 0002BE08: 9821B400 FFFFFFE8 ldl     0xffffffe8(r6),r4
 0002BE10: 59890C10          shro    0x10,r4,g1
 0002BE14: 5C801604          mov     r4,g0
-0002BE18: 0BDF3320          bal     ffe1f138                   ; set cursor to g0, g1
+0002BE18: 0BDF3320          bal     0001f138                   ; set cursor to g0, g1
 0002BE1C: 5C801605          mov     r5,g0
-0002BE20: 09DF3360          call    ffe1f180                   ; print string from g0	; "TEST-SW       SERVICE-SW"
+0002BE20: 09DF3360          call    0001f180                   ; print string from g0	; "TEST-SW       SERVICE-SW"
 
 0002BE24: 9821B400 FFFFFFE0 ldl     0xffffffe0(r6),r4
 0002BE2C: 59890C10          shro    0x10,r4,g1
 0002BE30: 5C801604          mov     r4,g0
-0002BE34: 0BDF3304          bal     ffe1f138                   ; set cursor to g0, g1
+0002BE34: 0BDF3304          bal     0001f138                   ; set cursor to g0, g1
 0002BE38: 5C801605          mov     r5,g0
-0002BE3C: 09DF3344          call    ffe1f180                   ; print string from g0	; "START"
+0002BE3C: 09DF3344          call    0001f180                   ; print string from g0	; "START"
 
 0002BE40: 593A4007          addo    r7,r9,r7
 0002BE44: 5A022087          cmpi    r7,r8
@@ -42003,9 +42003,9 @@
 0002BE9C: 5C801E1A          mov     0x1a,g0
 0002BEA0: 90211000          ld      (r4),r4
 0002BEA4: 5C881E05          mov     0x5,g1
-0002BEA8: 0BDF3290          bal     ffe1f138                   ; set cursor to g0, g1
+0002BEA8: 0BDF3290          bal     0001f138                   ; set cursor to g0, g1
 0002BEAC: 5C801604          mov     r4,g0
-0002BEB0: 09DF32D0          call    ffe1f180                   ; print string from g0
+0002BEB0: 09DF32D0          call    0001f180                   ; print string from g0
 
 ; coin2
 0002BEB4: 5A016F01          chkbit  0x1,r5
@@ -42017,9 +42017,9 @@
 0002BEC8: 5982D81F          addo    0x1f,0xb,g0
 0002BECC: 90211000          ld      (r4),r4
 0002BED0: 5C881E05          mov     0x5,g1
-0002BED4: 0BDF3264          bal     ffe1f138                   ; set cursor to g0, g1
+0002BED4: 0BDF3264          bal     0001f138                   ; set cursor to g0, g1
 0002BED8: 5C801604          mov     r4,g0
-0002BEDC: 09DF32A4          call    ffe1f180                   ; print string from g0
+0002BEDC: 09DF32A4          call    0001f180                   ; print string from g0
 
 ; shifter logic
 0002BEE0: 59A14C10          shro    0x10,r5,g4
@@ -42035,9 +42035,9 @@
 0002BF04: 5C801E1A          mov     0x1a,g0
 0002BF08: 90211000          ld      (r4),r4
 0002BF0C: 5C881E07          mov     0x7,g1
-0002BF10: 0BDF3228          bal     ffe1f138                   ; set cursor to g0, g1
+0002BF10: 0BDF3228          bal     0001f138                   ; set cursor to g0, g1
 0002BF14: 5C801604          mov     r4,g0
-0002BF18: 09DF3268          call    ffe1f180                   ; print string from g0
+0002BF18: 09DF3268          call    0001f180                   ; print string from g0
 
 0002BF1C: 59A14C10          shro    0x10,r5,g4
 0002BF20: 59A9DE04          shlo    0x4,0x7,g5
@@ -42052,9 +42052,9 @@
 0002BF40: 5982D81F          addo    0x1f,0xb,g0
 0002BF44: 90211000          ld      (r4),r4
 0002BF48: 5C881E07          mov     0x7,g1
-0002BF4C: 0BDF31EC          bal     ffe1f138                   ; set cursor to g0, g1
+0002BF4C: 0BDF31EC          bal     0001f138                   ; set cursor to g0, g1
 0002BF50: 5C801604          mov     r4,g0
-0002BF54: 09DF322C          call    ffe1f180                   ; print string from g0
+0002BF54: 09DF322C          call    0001f180                   ; print string from g0
 
 0002BF58: 59A14C10          shro    0x10,r5,g4
 0002BF5C: 59A9DE04          shlo    0x4,0x7,g5                 ; g5 = 0x70 - gear3
@@ -42068,9 +42068,9 @@
 0002BF78: 5C801E1A          mov     0x1a,g0
 0002BF7C: 90211000          ld      (r4),r4
 0002BF80: 5C881E09          mov     0x9,g1
-0002BF84: 0BDF31B4          bal     ffe1f138                   ; set cursor to g0, g1
+0002BF84: 0BDF31B4          bal     0001f138                   ; set cursor to g0, g1
 0002BF88: 5C801604          mov     r4,g0
-0002BF8C: 09DF31F4          call    ffe1f180                   ; print string from g0
+0002BF8C: 09DF31F4          call    0001f180                   ; print string from g0
 
 0002BF90: 59A14C10          shro    0x10,r5,g4
 0002BF94: 59A9DE04          shlo    0x4,0x7,g5                 ; g5 = 0x70 - gear3
@@ -42085,9 +42085,9 @@
 0002BFB4: 5982D81F          addo    0x1f,0xb,g0
 0002BFB8: 90211000          ld      (r4),r4
 0002BFBC: 5C881E09          mov     0x9,g1
-0002BFC0: 0BDF3178          bal     ffe1f138                   ; set cursor to g0, g1
+0002BFC0: 0BDF3178          bal     0001f138                   ; set cursor to g0, g1
 0002BFC4: 5C801604          mov     r4,g0
-0002BFC8: 09DF31B8          call    ffe1f180                   ; print string from g0
+0002BFC8: 09DF31B8          call    0001f180                   ; print string from g0
 
 ; view1
 0002BFCC: 5A016F05          chkbit  0x5,r5
@@ -42099,9 +42099,9 @@
 0002BFE0: 5C801E1A          mov     0x1a,g0
 0002BFE4: 90211000          ld      (r4),r4
 0002BFE8: 5C881E0B          mov     0xb,g1
-0002BFEC: 0BDF314C          bal     ffe1f138                   ; set cursor to g0, g1
+0002BFEC: 0BDF314C          bal     0001f138                   ; set cursor to g0, g1
 0002BFF0: 5C801604          mov     r4,g0
-0002BFF4: 09DF318C          call    ffe1f180                   ; print string from g0
+0002BFF4: 09DF318C          call    0001f180                   ; print string from g0
 
 ; view 2
 0002BFF8: 5A016F06          chkbit  0x6,r5
@@ -42113,9 +42113,9 @@
 0002C00C: 5982D81F          addo    0x1f,0xb,g0
 0002C010: 90211000          ld      (r4),r4
 0002C014: 5C881E0B          mov     0xb,g1
-0002C018: 0BDF3120          bal     ffe1f138                   ; set cursor to g0, g1
+0002C018: 0BDF3120          bal     0001f138                   ; set cursor to g0, g1
 0002C01C: 5C801604          mov     r4,g0
-0002C020: 09DF3160          call    ffe1f180                   ; print string from g0
+0002C020: 09DF3160          call    0001f180                   ; print string from g0
 
 ; view 3
 0002C024: 5A016F07          chkbit  0x7,r5
@@ -42127,9 +42127,9 @@
 0002C038: 5C801E1A          mov     0x1a,g0
 0002C03C: 90211000          ld      (r4),r4
 0002C040: 5C881E0D          mov     0xd,g1
-0002C044: 0BDF30F4          bal     ffe1f138                   ; set cursor to g0, g1
+0002C044: 0BDF30F4          bal     0001f138                   ; set cursor to g0, g1
 0002C048: 5C801604          mov     r4,g0
-0002C04C: 09DF3134          call    ffe1f180                   ; print string from g0
+0002C04C: 09DF3134          call    0001f180                   ; print string from g0
 
 ; view4
 0002C050: 5A016F10          chkbit  0x10,r5
@@ -42141,9 +42141,9 @@
 0002C064: 5982D81F          addo    0x1f,0xb,g0
 0002C068: 90211000          ld      (r4),r4
 0002C06C: 5C881E0D          mov     0xd,g1
-0002C070: 0BDF30C8          bal     ffe1f138                   ; set cursor to g0, g1
+0002C070: 0BDF30C8          bal     0001f138                   ; set cursor to g0, g1
 0002C074: 5C801604          mov     r4,g0
-0002C078: 09DF3108          call    ffe1f180                   ; print string from g0
+0002C078: 09DF3108          call    0001f180                   ; print string from g0
 
 ; start
 0002C07C: 5A016F04          chkbit  0x4,r5
@@ -42155,9 +42155,9 @@
 0002C090: 5C801E1A          mov     0x1a,g0
 0002C094: 90211000          ld      (r4),r4
 0002C098: 5C881E0F          mov     0xf,g1
-0002C09C: 0BDF309C          bal     ffe1f138                   ; set cursor to g0, g1
+0002C09C: 0BDF309C          bal     0001f138                   ; set cursor to g0, g1
 0002C0A0: 5C801604          mov     r4,g0
-0002C0A4: 09DF30DC          call    ffe1f180                   ; print string from g0
+0002C0A4: 09DF30DC          call    0001f180                   ; print string from g0
 
 ; service & sw4
 0002C0A8: 8CA80404          lda     0x404,g5
@@ -42171,9 +42171,9 @@
 0002C0C4: 5C801E1A          mov     0x1a,g0
 0002C0C8: 90211000          ld      (r4),r4
 0002C0CC: 5C881E11          mov     0x11,g1
-0002C0D0: 0BDF3068          bal     ffe1f138                   ; set cursor to g0, g1
+0002C0D0: 0BDF3068          bal     0001f138                   ; set cursor to g0, g1
 0002C0D4: 5C801604          mov     r4,g0
-0002C0D8: 09DF30A8          call    ffe1f180                   ; print string from g0
+0002C0D8: 09DF30A8          call    0001f180                   ; print string from g0
 
 ; test & sw3
 0002C0DC: 8CA80808          lda     0x808,g5
@@ -42187,9 +42187,9 @@
 0002C0F8: 5982D81F          addo    0x1f,0xb,g0
 0002C0FC: 90211000          ld      (r4),r4
 0002C100: 5C881E11          mov     0x11,g1
-0002C104: 0BDF3034          bal     ffe1f138                   ; set cursor to g0, g1
+0002C104: 0BDF3034          bal     0001f138                   ; set cursor to g0, g1
 0002C108: 5C801604          mov     r4,g0
-0002C10C: 09DF3074          call    ffe1f180                   ; print string from g0
+0002C10C: 09DF3074          call    0001f180                   ; print string from g0
 
 - A0
 0002C110: 88883000 005FE5F0 ldos    0x5fe5f0,g1
@@ -42199,9 +42199,9 @@
 0002C128: 0B0000A0          bal     0002c1c8                   ; hex to string (hex g1, len g2, str g0)
 0002C12C: 5C801E1A          mov     0x1a,g0
 0002C130: 5C881E13          mov     0x13,g1
-0002C134: 0BDF3004          bal     ffe1f138                   ; set cursor to g0, g1
+0002C134: 0BDF3004          bal     0001f138                   ; set cursor to g0, g1
 0002C138: 8C803000 005FE560 lda     0x5fe560,g0
-0002C140: 09DF3040          call    ffe1f180                   ; print string from g0
+0002C140: 09DF3040          call    0001f180                   ; print string from g0
 
 - A1
 0002C144: 88883000 005FE5F2 ldos    0x5fe5f2,g1
@@ -42211,9 +42211,9 @@
 0002C15C: 0B00006C          bal     0002c1c8                   ; hex to string (hex g1, len g2, str g0)
 0002C160: 5C801E1A          mov     0x1a,g0
 0002C164: 5C881E15          mov     0x15,g1
-0002C168: 0BDF2FD0          bal     ffe1f138                   ; set cursor to g0, g1
+0002C168: 0BDF2FD0          bal     0001f138                   ; set cursor to g0, g1
 0002C16C: 8C803000 005FE560 lda     0x5fe560,g0
-0002C174: 09DF300C          call    ffe1f180                   ; print string from g0
+0002C174: 09DF300C          call    0001f180                   ; print string from g0
 
 - A2
 0002C178: 88883000 005FE5F4 ldos    0x5fe5f4,g1
@@ -42223,9 +42223,9 @@
 0002C190: 0B000038          bal     0002c1c8                   ; hex to string (hex g1, len g2, str g0)
 0002C194: 5C801E1A          mov     0x1a,g0
 0002C198: 5C881E17          mov     0x17,g1
-0002C19C: 0BDF2F9C          bal     ffe1f138                   ; set cursor to g0, g1
+0002C19C: 0BDF2F9C          bal     0001f138                   ; set cursor to g0, g1
 0002C1A0: 8C803000 005FE560 lda     0x5fe560,g0
-0002C1A8: 08DF2FD8          b       ffe1f180                   ; print string from g0
+0002C1A8: 08DF2FD8          b       0001f180                   ; print string from g0
 }
 
 0002C1AC: 00000000          ? 00:0 00000000 0 0
@@ -42297,66 +42297,66 @@
 
 {
 ; service handler 5-0 (output 0)
-0002C270: 09DF2B70          call    ffe1ede0                   ; clear screen
+0002C270: 09DF2B70          call    0001ede0                   ; clear screen
 0002C274: 5880198F          setbit  0xf,0x0,g0
-0002C278: 0BDF2EF0          bal     ffe1f168                   ; set text color g0
+0002C278: 0BDF2EF0          bal     0001f168                   ; set text color g0
 0002C27C: 5C801E14          mov     0x14,g0
 0002C280: 5C881E1E          mov     0x1e,g1
-0002C284: 0BDF2EB4          bal     ffe1f138                   ; set cursor to g0, g1
+0002C284: 0BDF2EB4          bal     0001f138                   ; set cursor to g0, g1
 0002C288: 8C803000 0023CB20 lda     0x23cb20,g0
-0002C290: 09DF2EF0          call    ffe1f180                   ; print string from g0	; "GREEN  : CURSOR UP           "
+0002C290: 09DF2EF0          call    0001f180                   ; print string from g0	; "GREEN  : CURSOR UP           "
 
 0002C294: 5C801E14          mov     0x14,g0
 0002C298: 5C881E1F          mov     0x1f,g1
-0002C29C: 0BDF2E9C          bal     ffe1f138                   ; set cursor to g0, g1
+0002C29C: 0BDF2E9C          bal     0001f138                   ; set cursor to g0, g1
 0002C2A0: 8C803000 0023CB40 lda     0x23cb40,g0
-0002C2A8: 09DF2ED8          call    ffe1f180                   ; print string from g0	; "RED    : CURSOR DOWN         "
+0002C2A8: 09DF2ED8          call    0001f180                   ; print string from g0	; "RED    : CURSOR DOWN         "
 
 0002C2AC: 5C801E14          mov     0x14,g0
 0002C2B0: 5988581F          addo    0x1f,0x1,g1
-0002C2B4: 0BDF2E84          bal     ffe1f138                   ; set cursor to g0, g1
+0002C2B4: 0BDF2E84          bal     0001f138                   ; set cursor to g0, g1
 0002C2B8: 8C803000 0023D430 lda     0x23d430,g0
 0002C2C0: 8C283000 0023D474 lda     0x23d474,r5
 0002C2C8: 59314902          subo    0x2,r5,r6
-0002C2CC: 09DF2EB4          call    ffe1f180                   ; print string from g0	; "START  : TO SELECT"
+0002C2CC: 09DF2EB4          call    0001f180                   ; print string from g0	; "START  : TO SELECT"
 
 0002C2D0: 88803000 0023D470 ldos    0x23d470,g0
 0002C2D8: 88899000          ldos    (r6),g1
 0002C2DC: 90215000          ld      (r5),r4
-0002C2E0: 0BDF2E58          bal     ffe1f138                   ; set cursor to g0, g1
+0002C2E0: 0BDF2E58          bal     0001f138                   ; set cursor to g0, g1
 0002C2E4: 5C801604          mov     r4,g0
-0002C2E8: 09DF2E98          call    ffe1f180                   ; print string from g0	; "EXIT"
+0002C2E8: 09DF2E98          call    0001f180                   ; print string from g0	; "EXIT"
 
 0002C2EC: 88803000 0023D468 ldos    0x23d468,g0
 0002C2F4: 59318908          subo    0x8,r6,r6
 0002C2F8: 88899000          ldos    (r6),g1
 0002C2FC: 59294908          subo    0x8,r5,r5
 0002C300: 90215000          ld      (r5),r4
-0002C304: 0BDF2E34          bal     ffe1f138                   ; set cursor to g0, g1
+0002C304: 0BDF2E34          bal     0001f138                   ; set cursor to g0, g1
 0002C308: 5C801604          mov     r4,g0
-0002C30C: 09DF2E74          call    ffe1f180                   ; print string from g0	; "LAMP"
+0002C30C: 09DF2E74          call    0001f180                   ; print string from g0	; "LAMP"
 0002C310: 88803000 0023D460 ldos    0x23d460,g0
 0002C318: 59318908          subo    0x8,r6,r6
 0002C31C: 88899000          ldos    (r6),g1
 0002C320: 59294908          subo    0x8,r5,r5
 0002C324: 90215000          ld      (r5),r4
 0002C328: 59318908          subo    0x8,r6,r6
-0002C32C: 0BDF2E0C          bal     ffe1f138                   ; set cursor to g0, g1
+0002C32C: 0BDF2E0C          bal     0001f138                   ; set cursor to g0, g1
 0002C330: 5C801604          mov     r4,g0
-0002C334: 09DF2E4C          call    ffe1f180                   ; print string from g0	; "CRT COLOR"
+0002C334: 09DF2E4C          call    0001f180                   ; print string from g0	; "CRT COLOR"
 0002C338: 88803000 0023D458 ldos    0x23d458,g0
 0002C340: 88899000          ldos    (r6),g1
 0002C344: 59294908          subo    0x8,r5,r5
 0002C348: 90215000          ld      (r5),r4
-0002C34C: 0BDF2DEC          bal     ffe1f138                   ; set cursor to g0, g1
+0002C34C: 0BDF2DEC          bal     0001f138                   ; set cursor to g0, g1
 0002C350: 5C801604          mov     r4,g0
-0002C354: 09DF2E2C          call    ffe1f180                   ; print string from g0	; "CRT SIZE"
+0002C354: 09DF2E2C          call    0001f180                   ; print string from g0	; "CRT SIZE"
 0002C358: 88803000 0023D450 ldos    0x23d450,g0
 0002C360: 8889B400 FFFFFFF8 ldos    0xfffffff8(r6),g1
 0002C368: 90217400 FFFFFFF8 ld      0xfffffff8(r5),r4
-0002C370: 0BDF2DC8          bal     ffe1f138                   ; set cursor to g0, g1
+0002C370: 0BDF2DC8          bal     0001f138                   ; set cursor to g0, g1
 0002C374: 5C801604          mov     r4,g0
-0002C378: 09DF2E08          call    ffe1f180                   ; print string from g0	; "OUTPUT TEST"
+0002C378: 09DF2E08          call    0001f180                   ; print string from g0	; "OUTPUT TEST"
 0002C37C: 80A03000 005FE634 ldob    0x5fe634,g4
 0002C384: 3D052010          cmpibne 0x0,g4,0x2c394             ; if 0x0 != g4 goto 0002C394
 
@@ -42364,7 +42364,7 @@
 0002C38C: 82A83000 005FE634 stob    g5,0x5fe634
 
 0002C394: 5980DE0E          shlo    0xe,0x3,g0
-0002C398: 0BDF2DD0          bal     ffe1f168                   ; set text color g0
+0002C398: 0BDF2DD0          bal     0001f168                   ; set text color g0
 
 0002C39C: 80A03000 005FE634 ldob    0x5fe634,g4
 0002C3A4: 98803994 0023D450 ldl     0x23d450[g4*8],g0
@@ -42384,26 +42384,26 @@
 0002C3D0: 5D201610          movl    g0,r4
 0002C3D4: 59340C10          shro    0x10,g0,r6
 0002C3D8: 5C881606          mov     r6,g1
-0002C3DC: 0BDF2D5C          bal     ffe1f138                   ; set cursor to g0, g1
+0002C3DC: 0BDF2D5C          bal     0001f138                   ; set cursor to g0, g1
 0002C3E0: 5C801605          mov     r5,g0
-0002C3E4: 09DF2D9C          call    ffe1f180                   ; print string from g0
+0002C3E4: 09DF2D9C          call    0001f180                   ; print string from g0
 
 0002C3E8: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002C3F0: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002C3F8: 0BDF2D40          bal     ffe1f138                   ; set cursor to g0, g1
+0002C3F8: 0BDF2D40          bal     0001f138                   ; set cursor to g0, g1
 0002C3FC: 8C803000 0022C240 lda     0x22c240,g0
-0002C404: 09DF2D7C          call    ffe1f180                   ; print string from g0
+0002C404: 09DF2D7C          call    0001f180                   ; print string from g0
 
 0002C408: 8C213400 0000FFFD lda     0xfffd(r4),r4
 0002C410: 8A203000 005FE5A0 stos    r4,0x5fe5a0
 0002C418: 8A303000 005FE5A2 stos    r6,0x5fe5a2
 0002C420: 5880198F          setbit  0xf,0x0,g0
-0002C424: 0BDF2D44          bal     ffe1f168                   ; set text color g0
+0002C424: 0BDF2D44          bal     0001f168                   ; set text color g0
 0002C428: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002C430: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002C438: 0BDF2D00          bal     ffe1f138                   ; set cursor to g0, g1
+0002C438: 0BDF2D00          bal     0001f138                   ; set cursor to g0, g1
 0002C43C: 8C803000 0022C244 lda     0x22c244,g0
-0002C444: 08DF2D3C          b       ffe1f180                   ; print string from g0
+0002C444: 08DF2D3C          b       0001f180                   ; print string from g0
 }
 
 0002C448: 00000000          ? 00:0 00000000 0 0
@@ -42417,7 +42417,7 @@
 0002C464: 3A052170          cmpibe  0x0,g4,0x2c5d4             ; if 0x0 == g4 goto 0002C5D4
 
 0002C468: 5880198F          setbit  0xf,0x0,g0
-0002C46C: 0BDF2CFC          bal     ffe1f168                   ; set text color g0
+0002C46C: 0BDF2CFC          bal     0001f168                   ; set text color g0
 
 ; (View4 SW4 View1 Service)
 0002C470: 80A03000 005FE634 ldob    0x5fe634,g4
@@ -42425,24 +42425,24 @@
 0002C480: 59310C10          shro    0x10,r4,r6
 0002C484: 5C801604          mov     r4,g0
 0002C488: 5C881606          mov     r6,g1
-0002C48C: 0BDF2CAC          bal     ffe1f138                   ; set cursor to g0, g1
+0002C48C: 0BDF2CAC          bal     0001f138                   ; set cursor to g0, g1
 0002C490: 5C801605          mov     r5,g0
-0002C494: 09DF2CEC          call    ffe1f180                   ; print string from g0
+0002C494: 09DF2CEC          call    0001f180                   ; print string from g0
 0002C498: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002C4A0: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002C4A8: 0BDF2C90          bal     ffe1f138                   ; set cursor to g0, g1
+0002C4A8: 0BDF2C90          bal     0001f138                   ; set cursor to g0, g1
 0002C4AC: 8C803000 0022C240 lda     0x22c240,g0
-0002C4B4: 09DF2CCC          call    ffe1f180                   ; print string from g0
+0002C4B4: 09DF2CCC          call    0001f180                   ; print string from g0
 0002C4B8: 8C213400 0000FFFD lda     0xfffd(r4),r4
 0002C4C0: 8A203000 005FE5A0 stos    r4,0x5fe5a0
 0002C4C8: 5880198F          setbit  0xf,0x0,g0
 0002C4CC: 8A303000 005FE5A2 stos    r6,0x5fe5a2
-0002C4D4: 0BDF2C94          bal     ffe1f168                   ; set text color g0
+0002C4D4: 0BDF2C94          bal     0001f168                   ; set text color g0
 0002C4D8: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002C4E0: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002C4E8: 0BDF2C50          bal     ffe1f138                   ; set cursor to g0, g1
+0002C4E8: 0BDF2C50          bal     0001f138                   ; set cursor to g0, g1
 0002C4EC: 8C803000 0022C244 lda     0x22c244,g0
-0002C4F4: 09DF2C8C          call    ffe1f180                   ; print string from g0
+0002C4F4: 09DF2C8C          call    0001f180                   ; print string from g0
 
 0002C4F8: 8CB00828          lda     0x828,g6                   ; (SW4 View1 Service)
 0002C4FC: 58A58087          and     r7,g6,g4
@@ -42468,33 +42468,33 @@
 
 0002C53C: 82A83000 005FE634 stob    g5,0x5fe634
 0002C544: 5980DE0E          shlo    0xe,0x3,g0
-0002C548: 0BDF2C20          bal     ffe1f168                   ; set text color g0
+0002C548: 0BDF2C20          bal     0001f168                   ; set text color g0
 
 0002C54C: 80A03000 005FE634 ldob    0x5fe634,g4
 0002C554: 98203994 0023D450 ldl     0x23d450[g4*8],r4
 0002C55C: 59310C10          shro    0x10,r4,r6
 0002C560: 5C801604          mov     r4,g0
 0002C564: 5C881606          mov     r6,g1
-0002C568: 0BDF2BD0          bal     ffe1f138                   ; set cursor to g0, g1
+0002C568: 0BDF2BD0          bal     0001f138                   ; set cursor to g0, g1
 0002C56C: 5C801605          mov     r5,g0
-0002C570: 09DF2C10          call    ffe1f180                   ; print string from g0
+0002C570: 09DF2C10          call    0001f180                   ; print string from g0
 
 0002C574: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002C57C: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002C584: 0BDF2BB4          bal     ffe1f138                   ; set cursor to g0, g1
+0002C584: 0BDF2BB4          bal     0001f138                   ; set cursor to g0, g1
 0002C588: 8C803000 0022C240 lda     0x22c240,g0
-0002C590: 09DF2BF0          call    ffe1f180                   ; print string from g0
+0002C590: 09DF2BF0          call    0001f180                   ; print string from g0
 
 0002C594: 8C213400 0000FFFD lda     0xfffd(r4),r4
 0002C59C: 8A203000 005FE5A0 stos    r4,0x5fe5a0
 0002C5A4: 5880198F          setbit  0xf,0x0,g0
 0002C5A8: 8A303000 005FE5A2 stos    r6,0x5fe5a2
-0002C5B0: 0BDF2BB8          bal     ffe1f168                   ; set text color g0
+0002C5B0: 0BDF2BB8          bal     0001f168                   ; set text color g0
 0002C5B4: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002C5BC: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002C5C4: 0BDF2B74          bal     ffe1f138                   ; set cursor to g0, g1
+0002C5C4: 0BDF2B74          bal     0001f138                   ; set cursor to g0, g1
 0002C5C8: 8C803000 0022C244 lda     0x22c244,g0
-0002C5D0: 08DF2BB0          b       ffe1f180                   ; print string from g0
+0002C5D0: 08DF2BB0          b       0001f180                   ; print string from g0
 
 0002C5D4: 8CB00414          lda     0x414,g6                   ; (SW3 Start Test)
 0002C5D8: 58A58087          and     r7,g6,g4
@@ -42504,7 +42504,7 @@
 0002C5E8: 331D2008          cmpobge 0x3,g4,0x2c5f0             ; if 0x3 >= g4 goto 0002C5F0
 0002C5EC: 08000034          b       0002c620                   ; service handler output exit
 
-0002C5F0: 09DF27F0          call    ffe1ede0                   ; clear screen
+0002C5F0: 09DF27F0          call    0001ede0                   ; clear screen
 0002C5F4: 80A03000 005FE634 ldob    0x5fe634,g4
 0002C5FC: 90A03914 0023D48C ld      0x23d48c[g4*4],g4          ; load4 g4 from table 0003D48C + g4*4
 0002C604: 86051000          callx   (g4)                       ; call handler
@@ -42594,12 +42594,12 @@
 0002C720: 16FFFF70          ble     0002c690
 
 0002C724: 5980DE0E          shlo    0xe,0x3,g0
-0002C728: 0BDF2A40          bal     ffe1f168                   ; set text color g0
+0002C728: 0BDF2A40          bal     0001f168                   ; set text color g0
 0002C72C: 5C801E14          mov     0x14,g0
 0002C730: 598B981F          addo    0x1f,0xe,g1
-0002C734: 0BDF2A04          bal     ffe1f138                   ; set cursor to g0, g1
+0002C734: 0BDF2A04          bal     0001f138                   ; set cursor to g0, g1
 0002C738: 8C803000 0023D410 lda     0x23d410,g0
-0002C740: 08DF2A40          b       ffe1f180                   ; print string from g0	; " START : TO EXIT "
+0002C740: 08DF2A40          b       0001f180                   ; print string from g0	; " START : TO EXIT "
 }
 
 0002C744: 00000000          ? 00:0 00000000 0 0
@@ -42662,12 +42662,12 @@
 0002C834: 3365FF44          cmpobge 0xc,g7,0x2c778             ; if 0cc >= g7 goto 0002C778
 
 0002C838: 5980DE0E          shlo    0xe,0x3,g0
-0002C83C: 0BDF292C          bal     ffe1f168                   ; set text color g0
+0002C83C: 0BDF292C          bal     0001f168                   ; set text color g0
 0002C840: 5C801E14          mov     0x14,g0
 0002C844: 598B981F          addo    0x1f,0xe,g1
-0002C848: 0BDF28F0          bal     ffe1f138                   ; set cursor to g0, g1
+0002C848: 0BDF28F0          bal     0001f138                   ; set cursor to g0, g1
 0002C84C: 8C803000 0023D410 lda     0x23d410,g0
-0002C854: 08DF292C          b       ffe1f180                   ; print string from g0	; " START : TO EXIT "
+0002C854: 08DF292C          b       0001f180                   ; print string from g0	; " START : TO EXIT "
 }
 
 0002C858: 00000000          ? 00:0 00000000 0 0
@@ -42718,7 +42718,7 @@
 0002C904: 92A03000 005FE0A0 st      g4,0x5fe0a0
 0002C90C: 33A52180          cmpobge 0x14,g4,0x2ca8c            ; if 0x14 >= g4 goto 0002CA8C
 
-0002C910: 09DF24D0          call    ffe1ede0                   ;clear screen
+0002C910: 09DF24D0          call    0001ede0                   ;clear screen
 0002C914: 0B000184          bal     0002ca98                   ; ioboard turn off lamps
 
 0002C918: 88A03000 005FE62C ldos    0x5fe62c,g4
@@ -42730,57 +42730,57 @@
 0002C93C: 5880198F          setbit  0xf,0x0,g0
 0002C940: 92A03000 01C0001E st      g4,0x1c0001e
 
-0002C948: 0BDF2820          bal     ffe1f168                   ; set text color g0
+0002C948: 0BDF2820          bal     0001f168                   ; set text color g0
 0002C94C: 88803000 0023D500 ldos    0x23d500,g0
 0002C954: 88883000 0023D502 ldos    0x23d502,g1
 0002C95C: 90203000 0023D504 ld      0x23d504,r4
-0002C964: 0BDF27D4          bal     ffe1f138                   ; set cursor to g0, g1
+0002C964: 0BDF27D4          bal     0001f138                   ; set cursor to g0, g1
 0002C968: 5C801604          mov     r4,g0
-0002C96C: 09DF2814          call    ffe1f180                   ; print string from g0
+0002C96C: 09DF2814          call    0001f180                   ; print string from g0
 0002C970: 88803000 0023D508 ldos    0x23d508,g0
 0002C978: 88883000 0023D50A ldos    0x23d50a,g1
 0002C980: 90203000 0023D50C ld      0x23d50c,r4
-0002C988: 0BDF27B0          bal     ffe1f138                   ; set cursor to g0, g1
+0002C988: 0BDF27B0          bal     0001f138                   ; set cursor to g0, g1
 0002C98C: 5C801604          mov     r4,g0
-0002C990: 09DF27F0          call    ffe1f180                   ; print string from g0
+0002C990: 09DF27F0          call    0001f180                   ; print string from g0
 0002C994: 88803000 0023D510 ldos    0x23d510,g0
 0002C99C: 88883000 0023D512 ldos    0x23d512,g1
 0002C9A4: 90203000 0023D514 ld      0x23d514,r4
-0002C9AC: 0BDF278C          bal     ffe1f138                   ; set cursor to g0, g1
+0002C9AC: 0BDF278C          bal     0001f138                   ; set cursor to g0, g1
 0002C9B0: 5C801604          mov     r4,g0
-0002C9B4: 09DF27CC          call    ffe1f180                   ; print string from g0
+0002C9B4: 09DF27CC          call    0001f180                   ; print string from g0
 0002C9B8: 88803000 0023D518 ldos    0x23d518,g0
 0002C9C0: 88883000 0023D51A ldos    0x23d51a,g1
 0002C9C8: 90203000 0023D51C ld      0x23d51c,r4
-0002C9D0: 0BDF2768          bal     ffe1f138                   ; set cursor to g0, g1
+0002C9D0: 0BDF2768          bal     0001f138                   ; set cursor to g0, g1
 0002C9D4: 5C801604          mov     r4,g0
-0002C9D8: 09DF27A8          call    ffe1f180                   ; print string from g0
+0002C9D8: 09DF27A8          call    0001f180                   ; print string from g0
 0002C9DC: 88803000 0023D520 ldos    0x23d520,g0
 0002C9E4: 88883000 0023D522 ldos    0x23d522,g1
 0002C9EC: 90203000 0023D524 ld      0x23d524,r4
-0002C9F4: 0BDF2744          bal     ffe1f138                   ; set cursor to g0, g1
+0002C9F4: 0BDF2744          bal     0001f138                   ; set cursor to g0, g1
 0002C9F8: 5C801604          mov     r4,g0
-0002C9FC: 09DF2784          call    ffe1f180                   ; print string from g0
+0002C9FC: 09DF2784          call    0001f180                   ; print string from g0
 0002CA00: 88803000 0023D528 ldos    0x23d528,g0
 0002CA08: 88883000 0023D52A ldos    0x23d52a,g1
 0002CA10: 90203000 0023D52C ld      0x23d52c,r4
-0002CA18: 0BDF2720          bal     ffe1f138                   ; set cursor to g0, g1
+0002CA18: 0BDF2720          bal     0001f138                   ; set cursor to g0, g1
 0002CA1C: 5C801604          mov     r4,g0
-0002CA20: 09DF2760          call    ffe1f180                   ; print string from g0
+0002CA20: 09DF2760          call    0001f180                   ; print string from g0
 0002CA24: 5980DE0E          shlo    0xe,0x3,g0
-0002CA28: 0BDF2740          bal     ffe1f168                   ; set text color g0
+0002CA28: 0BDF2740          bal     0001f168                   ; set text color g0
 0002CA2C: 5C801E14          mov     0x14,g0
 0002CA30: 598B981F          addo    0x1f,0xe,g1
-0002CA34: 0BDF2704          bal     ffe1f138                   ; set cursor to g0, g1
+0002CA34: 0BDF2704          bal     0001f138                   ; set cursor to g0, g1
 0002CA38: 8C803000 0023D410 lda     0x23d410,g0
-0002CA40: 09DF2740          call    ffe1f180                   ; print string from g0
+0002CA40: 09DF2740          call    0001f180                   ; print string from g0
 0002CA44: 88A03000 005FE62C ldos    0x5fe62c,g4
 0002CA4C: 88803994 0023D500 ldos    0x23d500[g4*8],g0
 0002CA54: 88883994 0023D502 ldos    0x23d502[g4*8],g1
 0002CA5C: 90203994 0023D504 ld      0x23d504[g4*8],r4
-0002CA64: 0BDF26D4          bal     ffe1f138                   ; set cursor to g0, g1
+0002CA64: 0BDF26D4          bal     0001f138                   ; set cursor to g0, g1
 0002CA68: 5C801604          mov     r4,g0
-0002CA6C: 09DF2714          call    ffe1f180                   ; print string from g0
+0002CA6C: 09DF2714          call    0001f180                   ; print string from g0
 0002CA70: 88A03000 005FE62C ldos    0x5fe62c,g4
 0002CA78: 92F03000 005FE0A0 st      g14,0x5fe0a0
 0002CA80: 59A05014          addo    g4,0x1,g4
@@ -42857,24 +42857,24 @@
 
 {
 ; service handler 1-0-0 (bookkeeping 0-0 page 1)
-0002CB90: 09DF2250          call    ffe1ede0                   ; clear screen
+0002CB90: 09DF2250          call    0001ede0                   ; clear screen
 0002CB94: 5880198F          setbit  0xf,0x0,g0                 ; g0 = 0x8000
-0002CB98: 0BDF25D0          bal     ffe1f168                   ; set text color g0
+0002CB98: 0BDF25D0          bal     0001f168                   ; set text color g0
 0002CB9C: 5C801E19          mov     0x19,g0
 0002CBA0: 5C881E03          mov     0x3,g1
-0002CBA4: 0BDF2594          bal     ffe1f138                   ; set cursor to g0, g1
+0002CBA4: 0BDF2594          bal     0001f138                   ; set cursor to g0, g1
 0002CBA8: 8C803000 0023D530 lda     0x23d530,g0
-0002CBB0: 09DF25D0          call    ffe1f180                   ; print string from g0	; "BOOKKEEPING"
+0002CBB0: 09DF25D0          call    0001f180                   ; print string from g0	; "BOOKKEEPING"
 0002CBB4: 5C801E15          mov     0x15,g0
 0002CBB8: 5C881E1E          mov     0x1e,g1
-0002CBBC: 0BDF257C          bal     ffe1f138                   ; set cursor to g0, g1
+0002CBBC: 0BDF257C          bal     0001f138                   ; set cursor to g0, g1
 0002CBC0: 8C803000 0023D720 lda     0x23d720,g0
-0002CBC8: 09DF25B8          call    ffe1f180                   ; print string from g0	; "START : TO EXIT"
+0002CBC8: 09DF25B8          call    0001f180                   ; print string from g0	; "START : TO EXIT"
 0002CBCC: 5C801E15          mov     0x15,g0
 0002CBD0: 5C881E1F          mov     0x1f,g1
-0002CBD4: 0BDF2564          bal     ffe1f138                   ; set cursor to g0, g1
+0002CBD4: 0BDF2564          bal     0001f138                   ; set cursor to g0, g1
 0002CBD8: 8C803000 0023D730 lda     0x23d730,g0
-0002CBE0: 09DF25A0          call    ffe1f180                   ; print string from g0	; "RED   : TO OTHER PAGE"
+0002CBE0: 09DF25A0          call    0001f180                   ; print string from g0	; "RED   : TO OTHER PAGE"
 0002CBE4: 0900006C          call    0002cc50                   ; print coin stats
 0002CBE8: 080002B8          b       0002cea0
 }
@@ -42883,24 +42883,24 @@
 
 {
 ; service handler 1-0-1 (bookkeeping 0-1 page 2)
-0002CBF0: 09DF21F0          call    ffe1ede0                   ; clear screen
+0002CBF0: 09DF21F0          call    0001ede0                   ; clear screen
 0002CBF4: 5880198F          setbit  0xf,0x0,g0                 ; g0 = 0x8000
-0002CBF8: 0BDF2570          bal     ffe1f168                   ; set text color g0
+0002CBF8: 0BDF2570          bal     0001f168                   ; set text color g0
 0002CBFC: 5C801E19          mov     0x19,g0
 0002CC00: 5C881E03          mov     0x3,g1
-0002CC04: 0BDF2534          bal     ffe1f138                   ; set cursor to g0, g1
+0002CC04: 0BDF2534          bal     0001f138                   ; set cursor to g0, g1
 0002CC08: 8C803000 0023D530 lda     0x23d530,g0
-0002CC10: 09DF2570          call    ffe1f180                   ; print string from g0	; "BOOKKEEPING"
+0002CC10: 09DF2570          call    0001f180                   ; print string from g0	; "BOOKKEEPING"
 0002CC14: 5C801E15          mov     0x15,g0
 0002CC18: 5C881E1E          mov     0x1e,g1
-0002CC1C: 0BDF251C          bal     ffe1f138                   ; set cursor to g0, g1
+0002CC1C: 0BDF251C          bal     0001f138                   ; set cursor to g0, g1
 0002CC20: 8C803000 0023D720 lda     0x23d720,g0
-0002CC28: 09DF2558          call    ffe1f180                   ; print string from g0	; "START : TO EXIT"
+0002CC28: 09DF2558          call    0001f180                   ; print string from g0	; "START : TO EXIT"
 0002CC2C: 5C801E15          mov     0x15,g0
 0002CC30: 5C881E1F          mov     0x1f,g1
-0002CC34: 0BDF2504          bal     ffe1f138                   ; set cursor to g0, g1
+0002CC34: 0BDF2504          bal     0001f138                   ; set cursor to g0, g1
 0002CC38: 8C803000 0023D730 lda     0x23d730,g0
-0002CC40: 09DF2540          call    ffe1f180                   ; print string from g0	; "RED   : TO OTHER PAGE"
+0002CC40: 09DF2540          call    0001f180                   ; print string from g0	; "RED   : TO OTHER PAGE"
 0002CC44: 0800069C          b       0002d2e0
 }
 
@@ -42914,130 +42914,130 @@
 
 0002CC58: 8C303000 01D0011C lda     0x1d0011c,r6
 0002CC60: 5880198F          setbit  0xf,0x0,g0                 ; g0 = 0x8000
-0002CC64: 0BDF2504          bal     ffe1f168                   ; set text color g0
+0002CC64: 0BDF2504          bal     0001f168                   ; set text color g0
 0002CC68: 59215007          addo    r7,0x5,r4
 0002CC6C: 5C801E13          mov     0x13,g0
 0002CC70: 5C881604          mov     r4,g1
-0002CC74: 0BDF24C4          bal     ffe1f138                   ; set cursor to g0, g1
+0002CC74: 0BDF24C4          bal     0001f138                   ; set cursor to g0, g1
 0002CC78: 8C803000 0023D540 lda     0x23d540,g0
-0002CC80: 09DF2500          call    ffe1f180                   ; print string from g0	; "  COIN CHUTE #"
+0002CC80: 09DF2500          call    0001f180                   ; print string from g0	; "  COIN CHUTE #"
 0002CC84: 8C81E031          lda     0x31(r7),g0                ; g0 = 32
-0002CC88: 09DF2518          call    ffe1f1a0                   ; print letter from g0	; "2"
+0002CC88: 09DF2518          call    0001f1a0                   ; print letter from g0	; "2"
 0002CC8C: 5980DE0E          shlo    0xe,0x3,g0                 ; g0 = 0xC000
-0002CC90: 0BDF24D8          bal     ffe1f168                   ; set text color g0
+0002CC90: 0BDF24D8          bal     0001f168                   ; set text color g0
 0002CC94: 90899000          ld      (r6),g1
 0002CC98: 8C803000 005FE560 lda     0x5fe560,g0
 0002CCA0: 5C901E08          mov     0x8,g2
-0002CCA4: 09DD4430          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002CCA4: 09DD4430          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002CCA8: 5981181F          addo    0x1f,0x4,g0
 0002CCAC: 5C881604          mov     r4,g1
-0002CCB0: 0BDF2488          bal     ffe1f138                   ; set cursor to g0, g1
+0002CCB0: 0BDF2488          bal     0001f138                   ; set cursor to g0, g1
 0002CCB4: 8C803000 005FE560 lda     0x5fe560,g0
-0002CCBC: 09DF24C4          call    ffe1f180                   ; print string from g0
+0002CCBC: 09DF24C4          call    0001f180                   ; print string from g0
 
 0002CCC0: 90A19000          ld      (r6),g4
 0002CCC4: 5880198F          setbit  0xf,0x0,g0
 0002CCC8: 592D0005          addo    r5,g4,r5
-0002CCCC: 0BDF249C          bal     ffe1f168                   ; set text color g0
+0002CCCC: 0BDF249C          bal     0001f168                   ; set text color g0
 0002CCD0: 5C801E13          mov     0x13,g0
 0002CCD4: 5C881E05          mov     0x5,g1
-0002CCD8: 0BDF2460          bal     ffe1f138                   ; set cursor to g0, g1
+0002CCD8: 0BDF2460          bal     0001f138                   ; set cursor to g0, g1
 0002CCDC: 8C803000 0023D540 lda     0x23d540,g0
-0002CCE4: 09DF249C          call    ffe1f180                   ; print string from g0	; "  COIN CHUTE #"
+0002CCE4: 09DF249C          call    0001f180                   ; print string from g0	; "  COIN CHUTE #"
 0002CCE8: 5984981F          addo    0x1f,0x12,g0               ; g0 = 0x31
-0002CCEC: 09DF24B4          call    ffe1f1a0                   ; print letter from g0	; "1"
+0002CCEC: 09DF24B4          call    0001f1a0                   ; print letter from g0	; "1"
 0002CCF0: 5980DE0E          shlo    0xe,0x3,g0
-0002CCF4: 0BDF2474          bal     ffe1f168                   ; set text color g0
+0002CCF4: 0BDF2474          bal     0001f168                   ; set text color g0
 0002CCF8: 59318904          subo    0x4,r6,r6
 0002CCFC: 90899000          ld      (r6),g1
 0002CD00: 8C803000 005FE560 lda     0x5fe560,g0
 0002CD08: 5C901E08          mov     0x8,g2
-0002CD0C: 09DD43C8          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002CD0C: 09DD43C8          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002CD10: 5981181F          addo    0x1f,0x4,g0
 0002CD14: 5C881E05          mov     0x5,g1
-0002CD18: 0BDF2420          bal     ffe1f138                   ; set cursor to g0, g1
+0002CD18: 0BDF2420          bal     0001f138                   ; set cursor to g0, g1
 0002CD1C: 8C803000 005FE560 lda     0x5fe560,g0
-0002CD24: 09DF245C          call    ffe1f180                   ; print string from g0
+0002CD24: 09DF245C          call    0001f180                   ; print string from g0
 
 0002CD28: 90A19000          ld      (r6),g4
 0002CD2C: 5880198F          setbit  0xf,0x0,g0
 0002CD30: 592D0005          addo    r5,g4,r5
-0002CD34: 0BDF2434          bal     ffe1f168                   ; set text color g0
+0002CD34: 0BDF2434          bal     0001f168                   ; set text color g0
 0002CD38: 5C801E13          mov     0x13,g0
 0002CD3C: 5C881E07          mov     0x7,g1
-0002CD40: 0BDF23F8          bal     ffe1f138                   ; set cursor to g0, g1
+0002CD40: 0BDF23F8          bal     0001f138                   ; set cursor to g0, g1
 0002CD44: 8C803000 0023D550 lda     0x23d550,g0
-0002CD4C: 09DF2434          call    ffe1f180                   ; print string from g0	; "    TOTAL COINS"
+0002CD4C: 09DF2434          call    0001f180                   ; print string from g0	; "    TOTAL COINS"
 0002CD50: 5980DE0E          shlo    0xe,0x3,g0
-0002CD54: 0BDF2414          bal     ffe1f168                   ; set text color g0
+0002CD54: 0BDF2414          bal     0001f168                   ; set text color g0
 0002CD58: 8C803000 005FE560 lda     0x5fe560,g0
 0002CD60: 5C901E08          mov     0x8,g2
 0002CD64: 5C881605          mov     r5,g1
-0002CD68: 09DD436C          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002CD68: 09DD436C          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002CD6C: 5981181F          addo    0x1f,0x4,g0
 0002CD70: 5C881E07          mov     0x7,g1
-0002CD74: 0BDF23C4          bal     ffe1f138                   ; set cursor to g0, g1
+0002CD74: 0BDF23C4          bal     0001f138                   ; set cursor to g0, g1
 0002CD78: 8C803000 005FE560 lda     0x5fe560,g0
-0002CD80: 09DF2400          call    ffe1f180                   ; print string from g0
+0002CD80: 09DF2400          call    0001f180                   ; print string from g0
 
 0002CD84: 5880198F          setbit  0xf,0x0,g0
-0002CD88: 0BDF23E0          bal     ffe1f168                   ; set text color g0
+0002CD88: 0BDF23E0          bal     0001f168                   ; set text color g0
 0002CD8C: 5C801E13          mov     0x13,g0
 0002CD90: 5C881E0A          mov     0xa,g1
-0002CD94: 0BDF23A4          bal     ffe1f138                   ; set cursor to g0, g1
+0002CD94: 0BDF23A4          bal     0001f138                   ; set cursor to g0, g1
 0002CD98: 8C803000 0023D560 lda     0x23d560,g0
-0002CDA0: 09DF23E0          call    ffe1f180                   ; print string from g0	; "   COIN CREDITS"
+0002CDA0: 09DF23E0          call    0001f180                   ; print string from g0	; "   COIN CREDITS"
 0002CDA4: 5980DE0E          shlo    0xe,0x3,g0
-0002CDA8: 0BDF23C0          bal     ffe1f168                   ; set text color g0
+0002CDA8: 0BDF23C0          bal     0001f168                   ; set text color g0
 0002CDAC: 90883000 01D00110 ld      0x1d00110,g1
 0002CDB4: 8C803000 005FE560 lda     0x5fe560,g0
 0002CDBC: 5C901E08          mov     0x8,g2
-0002CDC0: 09DD4314          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002CDC0: 09DD4314          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002CDC4: 5981181F          addo    0x1f,0x4,g0
 0002CDC8: 5C881E0A          mov     0xa,g1
-0002CDCC: 0BDF236C          bal     ffe1f138                   ; set cursor to g0, g1
+0002CDCC: 0BDF236C          bal     0001f138                   ; set cursor to g0, g1
 0002CDD0: 8C803000 005FE560 lda     0x5fe560,g0
-0002CDD8: 09DF23A8          call    ffe1f180                   ; print string from g0
+0002CDD8: 09DF23A8          call    0001f180                   ; print string from g0
 
 0002CDDC: 5880198F          setbit  0xf,0x0,g0
-0002CDE0: 0BDF2388          bal     ffe1f168                   ; set text color g0
+0002CDE0: 0BDF2388          bal     0001f168                   ; set text color g0
 0002CDE4: 5C801E13          mov     0x13,g0
 0002CDE8: 5C881E0B          mov     0xb,g1
-0002CDEC: 0BDF234C          bal     ffe1f138                   ; set cursor to g0, g1
+0002CDEC: 0BDF234C          bal     0001f138                   ; set cursor to g0, g1
 0002CDF0: 8C803000 0023D570 lda     0x23d570,g0
-0002CDF8: 09DF2388          call    ffe1f180                   ; print string from g0	; "SERVICE CREDITS"
+0002CDF8: 09DF2388          call    0001f180                   ; print string from g0	; "SERVICE CREDITS"
 0002CDFC: 5980DE0E          shlo    0xe,0x3,g0
-0002CE00: 0BDF2368          bal     ffe1f168                   ; set text color g0
+0002CE00: 0BDF2368          bal     0001f168                   ; set text color g0
 0002CE04: 90883000 01D00114 ld      0x1d00114,g1
 0002CE0C: 8C803000 005FE560 lda     0x5fe560,g0
 0002CE14: 5C901E08          mov     0x8,g2
-0002CE18: 09DD42BC          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002CE18: 09DD42BC          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002CE1C: 5981181F          addo    0x1f,0x4,g0
 0002CE20: 5C881E0B          mov     0xb,g1
-0002CE24: 0BDF2314          bal     ffe1f138                   ; set cursor to g0, g1
+0002CE24: 0BDF2314          bal     0001f138                   ; set cursor to g0, g1
 0002CE28: 8C803000 005FE560 lda     0x5fe560,g0
-0002CE30: 09DF2350          call    ffe1f180                   ; print string from g0
+0002CE30: 09DF2350          call    0001f180                   ; print string from g0
 
 0002CE34: 5880198F          setbit  0xf,0x0,g0
-0002CE38: 0BDF2330          bal     ffe1f168                   ; set text color g0
+0002CE38: 0BDF2330          bal     0001f168                   ; set text color g0
 0002CE3C: 5C801E13          mov     0x13,g0
 0002CE40: 5C881E0C          mov     0xc,g1
-0002CE44: 0BDF22F4          bal     ffe1f138                   ; set cursor to g0, g1
+0002CE44: 0BDF22F4          bal     0001f138                   ; set cursor to g0, g1
 0002CE48: 8C803000 0023D580 lda     0x23d580,g0
-0002CE50: 09DF2330          call    ffe1f180                   ; print string from g0	; "  TOTAL CREDITS"
+0002CE50: 09DF2330          call    0001f180                   ; print string from g0	; "  TOTAL CREDITS"
 0002CE54: 98A03000 01D00110 ldl     0x1d00110,g4
 0002CE5C: 5980DE0E          shlo    0xe,0x3,g0
 0002CE60: 592D4014          addo    g4,g5,r5
-0002CE64: 0BDF2304          bal     ffe1f168                   ; set text color g0
+0002CE64: 0BDF2304          bal     0001f168                   ; set text color g0
 0002CE68: 8C803000 005FE560 lda     0x5fe560,g0
 0002CE70: 5C901E08          mov     0x8,g2
 0002CE74: 5C881605          mov     r5,g1
-0002CE78: 09DD425C          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002CE78: 09DD425C          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002CE7C: 5981181F          addo    0x1f,0x4,g0
 0002CE80: 5C881E0C          mov     0xc,g1
-0002CE84: 0BDF22B4          bal     ffe1f138                   ; set cursor to g0, g1
+0002CE84: 0BDF22B4          bal     0001f138                   ; set cursor to g0, g1
 0002CE88: 8C803000 005FE560 lda     0x5fe560,g0
-0002CE90: 08DF22F0          b       ffe1f180                   ; print string from g0
+0002CE90: 08DF22F0          b       0001f180                   ; print string from g0
 }
 
 0002CE94: 00000000          ? 00:0 00000000 0 0
@@ -43049,238 +43049,238 @@
 0002CEA0: 98A03000 01D00138 ldl     0x1d00138,g4               ; read8 g4,g5 from 0x1d00138
 0002CEA8: 5880198F          setbit  0xf,0x0,g0                 ; g0 = 0x8000
 0002CEAC: 59250115          subo    g5,g4,r4                   ; r4 = g4 - g5
-0002CEB0: 0BDF22B8          bal     ffe1f168                   ; set text color g0
+0002CEB0: 0BDF22B8          bal     0001f168                   ; set text color g0
 0002CEB4: 5C801E13          mov     0x13,g0
 0002CEB8: 5C881E0F          mov     0xf,g1
-0002CEBC: 0BDF227C          bal     ffe1f138                   ; set cursor to g0, g1
+0002CEBC: 0BDF227C          bal     0001f138                   ; set cursor to g0, g1
 0002CEC0: 8C803000 0023D590 lda     0x23d590,g0
-0002CEC8: 09DF22B8          call    ffe1f180                   ; print string from g0	; "NUMBER OF GAMES"
+0002CEC8: 09DF22B8          call    0001f180                   ; print string from g0	; "NUMBER OF GAMES"
 0002CECC: 5980DE0E          shlo    0xe,0x3,g0
-0002CED0: 0BDF2298          bal     ffe1f168                   ; set text color g0
+0002CED0: 0BDF2298          bal     0001f168                   ; set text color g0
 0002CED4: 8C803000 005FE560 lda     0x5fe560,g0
 0002CEDC: 5C901E08          mov     0x8,g2
 0002CEE0: 5C881604          mov     r4,g1
-0002CEE4: 09DD41F0          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002CEE4: 09DD41F0          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002CEE8: 5981181F          addo    0x1f,0x4,g0
 0002CEEC: 5C881E0F          mov     0xf,g1
-0002CEF0: 0BDF2248          bal     ffe1f138                   ; set cursor to g0, g1
+0002CEF0: 0BDF2248          bal     0001f138                   ; set cursor to g0, g1
 0002CEF4: 8C803000 005FE560 lda     0x5fe560,g0
-0002CEFC: 09DF2284          call    ffe1f180                   ; print string from g0
+0002CEFC: 09DF2284          call    0001f180                   ; print string from g0
 
 0002CF00: 5880198F          setbit  0xf,0x0,g0
-0002CF04: 0BDF2264          bal     ffe1f168                   ; set text color g0
+0002CF04: 0BDF2264          bal     0001f168                   ; set text color g0
 0002CF08: 5C801E10          mov     0x10,g0
 0002CF0C: 5C881E11          mov     0x11,g1
-0002CF10: 0BDF2228          bal     ffe1f138                   ; set cursor to g0, g1
+0002CF10: 0BDF2228          bal     0001f138                   ; set cursor to g0, g1
 0002CF14: 8C803000 0023D5A0 lda     0x23d5a0,g0
-0002CF1C: 09DF2264          call    ffe1f180                   ; print string from g0	; "      TOTAL TIME    D  H  M  S"
+0002CF1C: 09DF2264          call    0001f180                   ; print string from g0	; "      TOTAL TIME    D  H  M  S"
 
 0002CF20: 90883000 01D00108 ld      0x1d00108,g1
 0002CF28: 8C803000 005FE5B0 lda     0x5fe5b0,g0
-0002CF30: 0BDF1898          bal     ffe1e7c8                   ; split DHMS (g0 target, g1 value)
+0002CF30: 0BDF1898          bal     0001e7c8                   ; split DHMS (g0 target, g1 value)
 
 0002CF34: 5980DE0E          shlo    0xe,0x3,g0
-0002CF38: 0BDF2230          bal     ffe1f168                   ; set text color g0
+0002CF38: 0BDF2230          bal     0001f168                   ; set text color g0
 
 0002CF3C: C8883000 005FE5B4 ldis    0x5fe5b4,g1
 0002CF44: 8C803000 005FE560 lda     0x5fe560,g0
 0002CF4C: 5C901E02          mov     0x2,g2
-0002CF50: 09DD4184          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002CF50: 09DD4184          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002CF54: 5980D81F          addo    0x1f,0x3,g0
 0002CF58: 5C881E11          mov     0x11,g1
-0002CF5C: 0BDF21DC          bal     ffe1f138                   ; set cursor to g0, g1
+0002CF5C: 0BDF21DC          bal     0001f138                   ; set cursor to g0, g1
 0002CF60: 8C803000 005FE560 lda     0x5fe560,g0
-0002CF68: 09DF2218          call    ffe1f180                   ; print string from g0
+0002CF68: 09DF2218          call    0001f180                   ; print string from g0
 
 0002CF6C: C8883000 005FE5B2 ldis    0x5fe5b2,g1
 0002CF74: 8C803000 005FE560 lda     0x5fe560,g0
 0002CF7C: 5C901E02          mov     0x2,g2
-0002CF80: 09DD4154          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002CF80: 09DD4154          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002CF84: 5981981F          addo    0x1f,0x6,g0
 0002CF88: 5C881E11          mov     0x11,g1
-0002CF8C: 0BDF21AC          bal     ffe1f138                   ; set cursor to g0, g1
+0002CF8C: 0BDF21AC          bal     0001f138                   ; set cursor to g0, g1
 0002CF90: 8C803000 005FE560 lda     0x5fe560,g0
-0002CF98: 09DF21E8          call    ffe1f180                   ; print string from g0
+0002CF98: 09DF21E8          call    0001f180                   ; print string from g0
 
 0002CF9C: 80883000 005FE5B1 ldob    0x5fe5b1,g1
 0002CFA4: 8C803000 005FE560 lda     0x5fe560,g0
 0002CFAC: 5C901E02          mov     0x2,g2
-0002CFB0: 09DD4124          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002CFB0: 09DD4124          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002CFB4: 5982581F          addo    0x1f,0x9,g0
 0002CFB8: 5C881E11          mov     0x11,g1
-0002CFBC: 0BDF217C          bal     ffe1f138                   ; set cursor to g0, g1
+0002CFBC: 0BDF217C          bal     0001f138                   ; set cursor to g0, g1
 0002CFC0: 8C803000 005FE560 lda     0x5fe560,g0
-0002CFC8: 09DF21B8          call    ffe1f180                   ; print string from g0
+0002CFC8: 09DF21B8          call    0001f180                   ; print string from g0
 
 0002CFCC: 80883000 005FE5B0 ldob    0x5fe5b0,g1
 0002CFD4: 8C803000 005FE560 lda     0x5fe560,g0
 0002CFDC: 5C901E02          mov     0x2,g2
-0002CFE0: 09DD40F4          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002CFE0: 09DD40F4          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002CFE4: 5983181F          addo    0x1f,0xc,g0
 0002CFE8: 5C881E11          mov     0x11,g1
-0002CFEC: 0BDF214C          bal     ffe1f138                   ; set cursor to g0, g1
+0002CFEC: 0BDF214C          bal     0001f138                   ; set cursor to g0, g1
 0002CFF0: 8C803000 005FE560 lda     0x5fe560,g0
-0002CFF8: 09DF2188          call    ffe1f180                   ; print string from g0
+0002CFF8: 09DF2188          call    0001f180                   ; print string from g0
 
 0002CFFC: 5880198F          setbit  0xf,0x0,g0
-0002D000: 0BDF2168          bal     ffe1f168                   ; set text color g0
+0002D000: 0BDF2168          bal     0001f168                   ; set text color g0
 0002D004: 5C801E10          mov     0x10,g0
 0002D008: 5C881E12          mov     0x12,g1
-0002D00C: 0BDF212C          bal     ffe1f138                   ; set cursor to g0, g1
+0002D00C: 0BDF212C          bal     0001f138                   ; set cursor to g0, g1
 0002D010: 8C803000 0023D5C0 lda     0x23d5c0,g0
-0002D018: 09DF2168          call    ffe1f180                   ; print string from g0	; "  GAME PLAY TIME    D  H  M  S"
+0002D018: 09DF2168          call    0001f180                   ; print string from g0	; "  GAME PLAY TIME    D  H  M  S"
 
 0002D01C: 90883000 01D0010C ld      0x1d0010c,g1
 0002D024: 8C803000 005FE5B0 lda     0x5fe5b0,g0
-0002D02C: 0BDF179C          bal     ffe1e7c8                   ; split DHMS (g0 target, g1 value)
+0002D02C: 0BDF179C          bal     0001e7c8                   ; split DHMS (g0 target, g1 value)
 
 0002D030: 5980DE0E          shlo    0xe,0x3,g0
-0002D034: 0BDF2134          bal     ffe1f168                   ; set text color g0
+0002D034: 0BDF2134          bal     0001f168                   ; set text color g0
 
 0002D038: C8883000 005FE5B4 ldis    0x5fe5b4,g1
 0002D040: 8C803000 005FE560 lda     0x5fe560,g0
 0002D048: 5C901E02          mov     0x2,g2
-0002D04C: 09DD4088          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D04C: 09DD4088          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D050: 5980D81F          addo    0x1f,0x3,g0
 0002D054: 5C881E12          mov     0x12,g1
-0002D058: 0BDF20E0          bal     ffe1f138                   ; set cursor to g0, g1
+0002D058: 0BDF20E0          bal     0001f138                   ; set cursor to g0, g1
 0002D05C: 8C803000 005FE560 lda     0x5fe560,g0
-0002D064: 09DF211C          call    ffe1f180                   ; print string from g0
+0002D064: 09DF211C          call    0001f180                   ; print string from g0
 
 0002D068: C8883000 005FE5B2 ldis    0x5fe5b2,g1
 0002D070: 8C803000 005FE560 lda     0x5fe560,g0
 0002D078: 5C901E02          mov     0x2,g2
-0002D07C: 09DD4058          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D07C: 09DD4058          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D080: 5981981F          addo    0x1f,0x6,g0
 0002D084: 5C881E12          mov     0x12,g1
-0002D088: 0BDF20B0          bal     ffe1f138                   ; set cursor to g0, g1
+0002D088: 0BDF20B0          bal     0001f138                   ; set cursor to g0, g1
 0002D08C: 8C803000 005FE560 lda     0x5fe560,g0
-0002D094: 09DF20EC          call    ffe1f180                   ; print string from g0
+0002D094: 09DF20EC          call    0001f180                   ; print string from g0
 
 0002D098: 80883000 005FE5B1 ldob    0x5fe5b1,g1
 0002D0A0: 8C803000 005FE560 lda     0x5fe560,g0
 0002D0A8: 5C901E02          mov     0x2,g2
-0002D0AC: 09DD4028          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D0AC: 09DD4028          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D0B0: 5982581F          addo    0x1f,0x9,g0
 0002D0B4: 5C881E12          mov     0x12,g1
-0002D0B8: 0BDF2080          bal     ffe1f138                   ; set cursor to g0, g1
+0002D0B8: 0BDF2080          bal     0001f138                   ; set cursor to g0, g1
 0002D0BC: 8C803000 005FE560 lda     0x5fe560,g0
-0002D0C4: 09DF20BC          call    ffe1f180                   ; print string from g0
+0002D0C4: 09DF20BC          call    0001f180                   ; print string from g0
 
 0002D0C8: 80883000 005FE5B0 ldob    0x5fe5b0,g1
 0002D0D0: 8C803000 005FE560 lda     0x5fe560,g0
 0002D0D8: 5C901E02          mov     0x2,g2
-0002D0DC: 09DD3FF8          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D0DC: 09DD3FF8          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D0E0: 5983181F          addo    0x1f,0xc,g0
 0002D0E4: 5C881E12          mov     0x12,g1
-0002D0E8: 0BDF2050          bal     ffe1f138                   ; set cursor to g0, g1
+0002D0E8: 0BDF2050          bal     0001f138                   ; set cursor to g0, g1
 0002D0EC: 8C803000 005FE560 lda     0x5fe560,g0
-0002D0F4: 09DF208C          call    ffe1f180                   ; print string from g0
+0002D0F4: 09DF208C          call    0001f180                   ; print string from g0
 
 0002D0F8: 5880198F          setbit  0xf,0x0,g0
-0002D0FC: 0BDF206C          bal     ffe1f168                   ; set text color g0
+0002D0FC: 0BDF206C          bal     0001f168                   ; set text color g0
 0002D100: 5C801E10          mov     0x10,g0
 0002D104: 5C881E13          mov     0x13,g1
-0002D108: 0BDF2030          bal     ffe1f138                   ; set cursor to g0, g1
+0002D108: 0BDF2030          bal     0001f138                   ; set cursor to g0, g1
 0002D10C: 8C803000 0023D5E0 lda     0x23d5e0,g0
-0002D114: 09DF206C          call    ffe1f180                   ; print string from g0	; " AVERAGE GAME TIME        M  S"
+0002D114: 09DF206C          call    0001f180                   ; print string from g0	; " AVERAGE GAME TIME        M  S"
 
 0002D118: 3A012084          cmpibe  0x0,r4,0x2d19c             ; if r4 = 0x0 goto 0002D19C
 
 0002D11C: 90883000 01D0010C ld      0x1d0010c,g1
 0002D124: 708C4584          divo    r4,g1,g1
 0002D128: 8C803000 005FE5B0 lda     0x5fe5b0,g0
-0002D130: 0BDF1698          bal     ffe1e7c8                   ; split DHMS (g0 target, g1 value)
+0002D130: 0BDF1698          bal     0001e7c8                   ; split DHMS (g0 target, g1 value)
 
 0002D134: 5980DE0E          shlo    0xe,0x3,g0
-0002D138: 0BDF2030          bal     ffe1f168                   ; set text color g0
+0002D138: 0BDF2030          bal     0001f168                   ; set text color g0
 
 0002D13C: 80883000 005FE5B1 ldob    0x5fe5b1,g1
 0002D144: 8C803000 005FE560 lda     0x5fe560,g0
 0002D14C: 5C901E02          mov     0x2,g2
-0002D150: 09DD3F84          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D150: 09DD3F84          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D154: 5982581F          addo    0x1f,0x9,g0
 0002D158: 5C881E13          mov     0x13,g1
-0002D15C: 0BDF1FDC          bal     ffe1f138                   ; set cursor to g0, g1
+0002D15C: 0BDF1FDC          bal     0001f138                   ; set cursor to g0, g1
 0002D160: 8C803000 005FE560 lda     0x5fe560,g0
-0002D168: 09DF2018          call    ffe1f180                   ; print string from g0
+0002D168: 09DF2018          call    0001f180                   ; print string from g0
 
 0002D16C: 80883000 005FE5B0 ldob    0x5fe5b0,g1
 0002D174: 8C803000 005FE560 lda     0x5fe560,g0
 0002D17C: 5C901E02          mov     0x2,g2
-0002D180: 09DD3F54          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D180: 09DD3F54          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D184: 5983181F          addo    0x1f,0xc,g0
 0002D188: 5C881E13          mov     0x13,g1
-0002D18C: 0BDF1FAC          bal     ffe1f138                   ; set cursor to g0, g1
+0002D18C: 0BDF1FAC          bal     0001f138                   ; set cursor to g0, g1
 0002D190: 8C803000 005FE560 lda     0x5fe560,g0
-0002D198: 09DF1FE8          call    ffe1f180                   ; print string from g0
+0002D198: 09DF1FE8          call    0001f180                   ; print string from g0
 
 0002D19C: 5880198F          setbit  0xf,0x0,g0
-0002D1A0: 0BDF1FC8          bal     ffe1f168                   ; set text color g0
+0002D1A0: 0BDF1FC8          bal     0001f168                   ; set text color g0
 0002D1A4: 5C801E10          mov     0x10,g0
 0002D1A8: 5C881E14          mov     0x14,g1
-0002D1AC: 0BDF1F8C          bal     ffe1f138                   ; set cursor to g0, g1
+0002D1AC: 0BDF1F8C          bal     0001f138                   ; set cursor to g0, g1
 0002D1B0: 8C803000 0023D600 lda     0x23d600,g0
-0002D1B8: 09DF1FC8          call    ffe1f180                   ; print string from g0	; " LONGEST GAME TIME        M  S"
+0002D1B8: 09DF1FC8          call    0001f180                   ; print string from g0	; " LONGEST GAME TIME        M  S"
 
 0002D1BC: 90883000 01D00130 ld      0x1d00130,g1
 0002D1C4: 8C803000 005FE5B0 lda     0x5fe5b0,g0
-0002D1CC: 0BDF15FC          bal     ffe1e7c8                   ; split DHMS (g0 target, g1 value)
+0002D1CC: 0BDF15FC          bal     0001e7c8                   ; split DHMS (g0 target, g1 value)
 
 0002D1D0: 5980DE0E          shlo    0xe,0x3,g0
-0002D1D4: 0BDF1F94          bal     ffe1f168                   ; set text color g0
+0002D1D4: 0BDF1F94          bal     0001f168                   ; set text color g0
 
 0002D1D8: 80883000 005FE5B1 ldob    0x5fe5b1,g1
 0002D1E0: 8C803000 005FE560 lda     0x5fe560,g0
 0002D1E8: 5C901E02          mov     0x2,g2
-0002D1EC: 09DD3EE8          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D1EC: 09DD3EE8          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D1F0: 5982581F          addo    0x1f,0x9,g0
 0002D1F4: 5C881E14          mov     0x14,g1
-0002D1F8: 0BDF1F40          bal     ffe1f138                   ; set cursor to g0, g1
+0002D1F8: 0BDF1F40          bal     0001f138                   ; set cursor to g0, g1
 0002D1FC: 8C803000 005FE560 lda     0x5fe560,g0
-0002D204: 09DF1F7C          call    ffe1f180                   ; print string from g0
+0002D204: 09DF1F7C          call    0001f180                   ; print string from g0
 0002D208: 80883000 005FE5B0 ldob    0x5fe5b0,g1
 0002D210: 8C803000 005FE560 lda     0x5fe560,g0
 0002D218: 5C901E02          mov     0x2,g2
-0002D21C: 09DD3EB8          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D21C: 09DD3EB8          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D220: 5983181F          addo    0x1f,0xc,g0
 0002D224: 5C881E14          mov     0x14,g1
-0002D228: 0BDF1F10          bal     ffe1f138                   ; set cursor to g0, g1
+0002D228: 0BDF1F10          bal     0001f138                   ; set cursor to g0, g1
 0002D22C: 8C803000 005FE560 lda     0x5fe560,g0
-0002D234: 09DF1F4C          call    ffe1f180                   ; print string from g0
+0002D234: 09DF1F4C          call    0001f180                   ; print string from g0
 
 0002D238: 5880198F          setbit  0xf,0x0,g0
-0002D23C: 0BDF1F2C          bal     ffe1f168                   ; set text color g0
+0002D23C: 0BDF1F2C          bal     0001f168                   ; set text color g0
 0002D240: 5C801E10          mov     0x10,g0
 0002D244: 5C881E15          mov     0x15,g1
-0002D248: 0BDF1EF0          bal     ffe1f138                   ; set cursor to g0, g1
+0002D248: 0BDF1EF0          bal     0001f138                   ; set cursor to g0, g1
 0002D24C: 8C803000 0023D620 lda     0x23d620,g0
-0002D254: 09DF1F2C          call    ffe1f180                   ; print string from g0	; "SHORTEST GAME TIME        M  S"
+0002D254: 09DF1F2C          call    0001f180                   ; print string from g0	; "SHORTEST GAME TIME        M  S"
 
 0002D258: 90883000 01D00134 ld      0x1d00134,g1
 0002D260: 8C803000 005FE5B0 lda     0x5fe5b0,g0
-0002D268: 0BDF1560          bal     ffe1e7c8                   ; split DHMS (g0 target, g1 value)
+0002D268: 0BDF1560          bal     0001e7c8                   ; split DHMS (g0 target, g1 value)
 0002D26C: 5980DE0E          shlo    0xe,0x3,g0
-0002D270: 0BDF1EF8          bal     ffe1f168                   ; set text color g0
+0002D270: 0BDF1EF8          bal     0001f168                   ; set text color g0
 0002D274: 80883000 005FE5B1 ldob    0x5fe5b1,g1
 0002D27C: 8C803000 005FE560 lda     0x5fe560,g0
 0002D284: 5C901E02          mov     0x2,g2
-0002D288: 09DD3E4C          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D288: 09DD3E4C          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D28C: 5982581F          addo    0x1f,0x9,g0
 0002D290: 5C881E15          mov     0x15,g1
-0002D294: 0BDF1EA4          bal     ffe1f138                   ; set cursor to g0, g1
+0002D294: 0BDF1EA4          bal     0001f138                   ; set cursor to g0, g1
 0002D298: 8C803000 005FE560 lda     0x5fe560,g0
-0002D2A0: 09DF1EE0          call    ffe1f180                   ; print string from g0
+0002D2A0: 09DF1EE0          call    0001f180                   ; print string from g0
 
 0002D2A4: 80883000 005FE5B0 ldob    0x5fe5b0,g1
 0002D2AC: 8C803000 005FE560 lda     0x5fe560,g0
 0002D2B4: 5C901E02          mov     0x2,g2
-0002D2B8: 09DD3E1C          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D2B8: 09DD3E1C          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D2BC: 5983181F          addo    0x1f,0xc,g0
 0002D2C0: 5C881E15          mov     0x15,g1
-0002D2C4: 0BDF1E74          bal     ffe1f138                   ; set cursor to g0, g1
+0002D2C4: 0BDF1E74          bal     0001f138                   ; set cursor to g0, g1
 0002D2C8: 8C803000 005FE560 lda     0x5fe560,g0
-0002D2D0: 08DF1EB0          b       ffe1f180                   ; print string from g0
+0002D2D0: 08DF1EB0          b       0001f180                   ; print string from g0
 }
 
 0002D2D4: 00000000          ? 00:0 00000000 0 0
@@ -43292,367 +43292,367 @@
 0002D2E0: 98203000 01D00138 ldl     0x1d00138,r4
 0002D2E8: 5880198F          setbit  0xf,0x0,g0
 0002D2EC: 59210105          subo    r5,r4,r4
-0002D2F0: 0BDF1E78          bal     ffe1f168                   ; set text color g0
+0002D2F0: 0BDF1E78          bal     0001f168                   ; set text color g0
 0002D2F4: 5C801E13          mov     0x13,g0
 0002D2F8: 5C881E05          mov     0x5,g1
-0002D2FC: 0BDF1E3C          bal     ffe1f138                   ; set cursor to g0, g1
+0002D2FC: 0BDF1E3C          bal     0001f138                   ; set cursor to g0, g1
 0002D300: 8C803000 0023D640 lda     0x23d640,g0
-0002D308: 09DF1E78          call    ffe1f180                   ; print string from g0	; "TOTAL PLAY GAMES         GAMES"
+0002D308: 09DF1E78          call    0001f180                   ; print string from g0	; "TOTAL PLAY GAMES         GAMES"
 0002D30C: 5980DE0E          shlo    0xe,0x3,g0
-0002D310: 0BDF1E58          bal     ffe1f168                   ; set text color g0
+0002D310: 0BDF1E58          bal     0001f168                   ; set text color g0
 0002D314: 8C803000 005FE560 lda     0x5fe560,g0
 0002D31C: 5C901E08          mov     0x8,g2
 0002D320: 5C881604          mov     r4,g1
-0002D324: 09DD3DB0          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D324: 09DD3DB0          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D328: 5981581F          addo    0x1f,0x5,g0
 0002D32C: 5C881E05          mov     0x5,g1
-0002D330: 0BDF1E08          bal     ffe1f138                   ; set cursor to g0, g1
+0002D330: 0BDF1E08          bal     0001f138                   ; set cursor to g0, g1
 0002D334: 8C803000 005FE560 lda     0x5fe560,g0
-0002D33C: 09DF1E44          call    ffe1f180                   ; print string from g0
+0002D33C: 09DF1E44          call    0001f180                   ; print string from g0
 
 0002D340: 5880198F          setbit  0xf,0x0,g0
-0002D344: 0BDF1E24          bal     ffe1f168                   ; set text color g0
+0002D344: 0BDF1E24          bal     0001f168                   ; set text color g0
 0002D348: 5C801E13          mov     0x13,g0
 0002D34C: 5C881E07          mov     0x7,g1
-0002D350: 0BDF1DE8          bal     ffe1f138                   ; set cursor to g0, g1
+0002D350: 0BDF1DE8          bal     0001f138                   ; set cursor to g0, g1
 0002D354: 8C803000 0023D660 lda     0x23d660,g0
-0002D35C: 09DF1E24          call    ffe1f180                   ; print string from g0	; "BEGINNER COURSE          GAMES"
+0002D35C: 09DF1E24          call    0001f180                   ; print string from g0	; "BEGINNER COURSE          GAMES"
 
 0002D360: 5980DE0E          shlo    0xe,0x3,g0
-0002D364: 0BDF1E04          bal     ffe1f168                   ; set text color g0
+0002D364: 0BDF1E04          bal     0001f168                   ; set text color g0
 0002D368: 90883000 01D00140 ld      0x1d00140,g1
 0002D370: 8C803000 005FE560 lda     0x5fe560,g0
 0002D378: 5C901E08          mov     0x8,g2
-0002D37C: 09DD3D58          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D37C: 09DD3D58          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D380: 5981581F          addo    0x1f,0x5,g0
 0002D384: 5C881E07          mov     0x7,g1
-0002D388: 0BDF1DB0          bal     ffe1f138                   ; set cursor to g0, g1
+0002D388: 0BDF1DB0          bal     0001f138                   ; set cursor to g0, g1
 0002D38C: 8C803000 005FE560 lda     0x5fe560,g0
-0002D394: 09DF1DEC          call    ffe1f180                   ; print string from g0
+0002D394: 09DF1DEC          call    0001f180                   ; print string from g0
 
 0002D398: 5880198F          setbit  0xf,0x0,g0
-0002D39C: 0BDF1DCC          bal     ffe1f168                   ; set text color g0
+0002D39C: 0BDF1DCC          bal     0001f168                   ; set text color g0
 0002D3A0: 5C801E13          mov     0x13,g0
 0002D3A4: 5C881E08          mov     0x8,g1
-0002D3A8: 0BDF1D90          bal     ffe1f138                   ; set cursor to g0, g1
+0002D3A8: 0BDF1D90          bal     0001f138                   ; set cursor to g0, g1
 0002D3AC: 8C803000 0023D6C0 lda     0x23d6c0,g0
-0002D3B4: 09DF1DCC          call    ffe1f180                   ; print string from g0	; "          GOALS"
+0002D3B4: 09DF1DCC          call    0001f180                   ; print string from g0	; "          GOALS"
 0002D3B8: 5980DE0E          shlo    0xe,0x3,g0
-0002D3BC: 0BDF1DAC          bal     ffe1f168                   ; set text color g0
+0002D3BC: 0BDF1DAC          bal     0001f168                   ; set text color g0
 
 0002D3C0: 90883000 01D00164 ld      0x1d00164,g1
 0002D3C8: 8C803000 005FE560 lda     0x5fe560,g0
 0002D3D0: 5C901E08          mov     0x8,g2
-0002D3D4: 09DD3D00          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D3D4: 09DD3D00          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D3D8: 5981581F          addo    0x1f,0x5,g0
 0002D3DC: 5C881E08          mov     0x8,g1
-0002D3E0: 0BDF1D58          bal     ffe1f138                   ; set cursor to g0, g1
+0002D3E0: 0BDF1D58          bal     0001f138                   ; set cursor to g0, g1
 0002D3E4: 8C803000 005FE560 lda     0x5fe560,g0
-0002D3EC: 09DF1D94          call    ffe1f180                   ; print string from g0
+0002D3EC: 09DF1D94          call    0001f180                   ; print string from g0
 
 0002D3F0: 5880198F          setbit  0xf,0x0,g0
-0002D3F4: 0BDF1D74          bal     ffe1f168                   ; set text color g0
+0002D3F4: 0BDF1D74          bal     0001f168                   ; set text color g0
 0002D3F8: 5C801E13          mov     0x13,g0
 0002D3FC: 5C881E0A          mov     0xa,g1
-0002D400: 0BDF1D38          bal     ffe1f138                   ; set cursor to g0, g1
+0002D400: 0BDF1D38          bal     0001f138                   ; set cursor to g0, g1
 0002D404: 8C803000 0023D6E0 lda     0x23d6e0,g0
-0002D40C: 09DF1D74          call    ffe1f180                   ; print string from g0	; "AVERAGE PLAY TIME     M  S"
+0002D40C: 09DF1D74          call    0001f180                   ; print string from g0	; "AVERAGE PLAY TIME     M  S"
 
 0002D410: B0A03000 01D00140 ldq     0x1d00140,g4
 0002D418: 3A05207C          cmpibe  0x0,g4,0x2d494
 0002D41C: 708DC594          divo    g4,g7,g1
 0002D420: 8C803000 005FE5B0 lda     0x5fe5b0,g0
-0002D428: 0BDF13A0          bal     ffe1e7c8                   ; split DHMS (g0 target, g1 value)
+0002D428: 0BDF13A0          bal     0001e7c8                   ; split DHMS (g0 target, g1 value)
 
 0002D42C: 5980DE0E          shlo    0xe,0x3,g0
-0002D430: 0BDF1D38          bal     ffe1f168                   ; set text color g0
+0002D430: 0BDF1D38          bal     0001f168                   ; set text color g0
 
 0002D434: 80883000 005FE5B1 ldob    0x5fe5b1,g1
 0002D43C: 8C803000 005FE560 lda     0x5fe560,g0
 0002D444: 5C901E02          mov     0x2,g2
-0002D448: 09DD3C8C          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D448: 09DD3C8C          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D44C: 5982181F          addo    0x1f,0x8,g0
 0002D450: 5C881E0A          mov     0xa,g1
-0002D454: 0BDF1CE4          bal     ffe1f138                   ; set cursor to g0, g1
+0002D454: 0BDF1CE4          bal     0001f138                   ; set cursor to g0, g1
 0002D458: 8C803000 005FE560 lda     0x5fe560,g0
-0002D460: 09DF1D20          call    ffe1f180                   ; print string from g0
+0002D460: 09DF1D20          call    0001f180                   ; print string from g0
 
 0002D464: 80883000 005FE5B0 ldob    0x5fe5b0,g1
 0002D46C: 8C803000 005FE560 lda     0x5fe560,g0
 0002D474: 5C901E02          mov     0x2,g2
-0002D478: 09DD3C5C          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D478: 09DD3C5C          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D47C: 5982D81F          addo    0x1f,0xb,g0
 0002D480: 5C881E0A          mov     0xa,g1
-0002D484: 0BDF1CB4          bal     ffe1f138                   ; set cursor to g0, g1
+0002D484: 0BDF1CB4          bal     0001f138                   ; set cursor to g0, g1
 0002D488: 8C803000 005FE560 lda     0x5fe560,g0
-0002D490: 09DF1CF0          call    ffe1f180                   ; print string from g0
+0002D490: 09DF1CF0          call    0001f180                   ; print string from g0
 
 0002D494: 5880198F          setbit  0xf,0x0,g0
-0002D498: 0BDF1CD0          bal     ffe1f168                   ; set text color g0
+0002D498: 0BDF1CD0          bal     0001f168                   ; set text color g0
 
 0002D49C: 5C801E13          mov     0x13,g0
 0002D4A0: 5C881E0B          mov     0xb,g1
-0002D4A4: 0BDF1C94          bal     ffe1f138                   ; set cursor to g0, g1
+0002D4A4: 0BDF1C94          bal     0001f138                   ; set cursor to g0, g1
 0002D4A8: 8C803000 0023D700 lda     0x23d700,g0
-0002D4B0: 09DF1CD0          call    ffe1f180                   ; print string from g0	; "FASTEST GOAL TIME     M  S"
+0002D4B0: 09DF1CD0          call    0001f180                   ; print string from g0	; "FASTEST GOAL TIME     M  S"
 
 0002D4B4: 90883000 01D00158 ld      0x1d00158,g1
 0002D4BC: 8C803000 005FE5B0 lda     0x5fe5b0,g0
-0002D4C4: 0BDF1304          bal     ffe1e7c8                   ; split DHMS (g0 target, g1 value)
+0002D4C4: 0BDF1304          bal     0001e7c8                   ; split DHMS (g0 target, g1 value)
 0002D4C8: 5980DE0E          shlo    0xe,0x3,g0
-0002D4CC: 0BDF1C9C          bal     ffe1f168                   ; set text color g0
+0002D4CC: 0BDF1C9C          bal     0001f168                   ; set text color g0
 0002D4D0: 80883000 005FE5B1 ldob    0x5fe5b1,g1
 0002D4D8: 8C803000 005FE560 lda     0x5fe560,g0
 0002D4E0: 5C901E02          mov     0x2,g2
-0002D4E4: 09DD3BF0          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D4E4: 09DD3BF0          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D4E8: 5982181F          addo    0x1f,0x8,g0
 0002D4EC: 5C881E0B          mov     0xb,g1
-0002D4F0: 0BDF1C48          bal     ffe1f138                   ; set cursor to g0, g1
+0002D4F0: 0BDF1C48          bal     0001f138                   ; set cursor to g0, g1
 0002D4F4: 8C803000 005FE560 lda     0x5fe560,g0
-0002D4FC: 09DF1C84          call    ffe1f180                   ; print string from g0
+0002D4FC: 09DF1C84          call    0001f180                   ; print string from g0
 
 0002D500: 80883000 005FE5B0 ldob    0x5fe5b0,g1
 0002D508: 8C803000 005FE560 lda     0x5fe560,g0
 0002D510: 5C901E02          mov     0x2,g2
-0002D514: 09DD3BC0          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D514: 09DD3BC0          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D518: 5982D81F          addo    0x1f,0xb,g0
 0002D51C: 5C881E0B          mov     0xb,g1
-0002D520: 0BDF1C18          bal     ffe1f138                   ; set cursor to g0, g1
+0002D520: 0BDF1C18          bal     0001f138                   ; set cursor to g0, g1
 0002D524: 8C803000 005FE560 lda     0x5fe560,g0
-0002D52C: 09DF1C54          call    ffe1f180                   ; print string from g0
+0002D52C: 09DF1C54          call    0001f180                   ; print string from g0
 
 0002D530: 5880198F          setbit  0xf,0x0,g0
-0002D534: 0BDF1C34          bal     ffe1f168                   ; set text color g0
+0002D534: 0BDF1C34          bal     0001f168                   ; set text color g0
 
 0002D538: 5C801E13          mov     0x13,g0
 0002D53C: 5C881E0D          mov     0xd,g1
-0002D540: 0BDF1BF8          bal     ffe1f138                   ; set cursor to g0, g1
+0002D540: 0BDF1BF8          bal     0001f138                   ; set cursor to g0, g1
 0002D544: 8C803000 0023D680 lda     0x23d680,g0
-0002D54C: 09DF1C34          call    ffe1f180                   ; print string from g0	; "ADVANCED COURSE          GAMES"
+0002D54C: 09DF1C34          call    0001f180                   ; print string from g0	; "ADVANCED COURSE          GAMES"
 
 0002D550: 5980DE0E          shlo    0xe,0x3,g0
-0002D554: 0BDF1C14          bal     ffe1f168                   ; set text color g0
+0002D554: 0BDF1C14          bal     0001f168                   ; set text color g0
 
 0002D558: 90883000 01D00148 ld      0x1d00148,g1
 0002D560: 8C803000 005FE560 lda     0x5fe560,g0
 0002D568: 5C901E08          mov     0x8,g2
-0002D56C: 09DD3B68          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D56C: 09DD3B68          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D570: 5981581F          addo    0x1f,0x5,g0
 0002D574: 5C881E0D          mov     0xd,g1
-0002D578: 0BDF1BC0          bal     ffe1f138                   ; set cursor to g0, g1
+0002D578: 0BDF1BC0          bal     0001f138                   ; set cursor to g0, g1
 0002D57C: 8C803000 005FE560 lda     0x5fe560,g0
-0002D584: 09DF1BFC          call    ffe1f180                   ; print string from g0
+0002D584: 09DF1BFC          call    0001f180                   ; print string from g0
 
 0002D588: 5880198F          setbit  0xf,0x0,g0
-0002D58C: 0BDF1BDC          bal     ffe1f168                   ; set text color g0
+0002D58C: 0BDF1BDC          bal     0001f168                   ; set text color g0
 0002D590: 5C801E13          mov     0x13,g0
 0002D594: 5C881E0E          mov     0xe,g1
-0002D598: 0BDF1BA0          bal     ffe1f138                   ; set cursor to g0, g1
+0002D598: 0BDF1BA0          bal     0001f138                   ; set cursor to g0, g1
 0002D59C: 8C803000 0023D6C0 lda     0x23d6c0,g0
-0002D5A4: 09DF1BDC          call    ffe1f180                   ; print string from g0	; "          GOALS"
+0002D5A4: 09DF1BDC          call    0001f180                   ; print string from g0	; "          GOALS"
 
 0002D5A8: 5980DE0E          shlo    0xe,0x3,g0
-0002D5AC: 0BDF1BBC          bal     ffe1f168                   ; set text color g0
+0002D5AC: 0BDF1BBC          bal     0001f168                   ; set text color g0
 0002D5B0: 90883000 01D0016C ld      0x1d0016c,g1
 0002D5B8: 8C803000 005FE560 lda     0x5fe560,g0
 0002D5C0: 5C901E08          mov     0x8,g2
-0002D5C4: 09DD3B10          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D5C4: 09DD3B10          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D5C8: 5981581F          addo    0x1f,0x5,g0
 0002D5CC: 5C881E0E          mov     0xe,g1
-0002D5D0: 0BDF1B68          bal     ffe1f138                   ; set cursor to g0, g1
+0002D5D0: 0BDF1B68          bal     0001f138                   ; set cursor to g0, g1
 0002D5D4: 8C803000 005FE560 lda     0x5fe560,g0
-0002D5DC: 09DF1BA4          call    ffe1f180                   ; print string from g0
+0002D5DC: 09DF1BA4          call    0001f180                   ; print string from g0
 
 0002D5E0: 5880198F          setbit  0xf,0x0,g0
-0002D5E4: 0BDF1B84          bal     ffe1f168                   ; set text color g0
+0002D5E4: 0BDF1B84          bal     0001f168                   ; set text color g0
 
 0002D5E8: 5C801E13          mov     0x13,g0
 0002D5EC: 5C881E10          mov     0x10,g1
-0002D5F0: 0BDF1B48          bal     ffe1f138                   ; set cursor to g0, g1
+0002D5F0: 0BDF1B48          bal     0001f138                   ; set cursor to g0, g1
 0002D5F4: 8C803000 0023D6E0 lda     0x23d6e0,g0
-0002D5FC: 09DF1B84          call    ffe1f180                   ; print string from g0	; "AVERAGE PLAY TIME     M  S"
+0002D5FC: 09DF1B84          call    0001f180                   ; print string from g0	; "AVERAGE PLAY TIME     M  S"
 
 0002D600: 90A03000 01D00148 ld      0x1d00148,g4
 0002D608: 3A052084          cmpibe  0x0,g4,0x2d68c
 0002D60C: 90883000 01D00154 ld      0x1d00154,g1
 0002D614: 708C4594          divo    g4,g1,g1
 0002D618: 8C803000 005FE5B0 lda     0x5fe5b0,g0
-0002D620: 0BDF11A8          bal     ffe1e7c8                   ; split DHMS (g0 target, g1 value)
+0002D620: 0BDF11A8          bal     0001e7c8                   ; split DHMS (g0 target, g1 value)
 
 0002D624: 5980DE0E          shlo    0xe,0x3,g0
-0002D628: 0BDF1B40          bal     ffe1f168                   ; set text color g0
+0002D628: 0BDF1B40          bal     0001f168                   ; set text color g0
 
 0002D62C: 80883000 005FE5B1 ldob    0x5fe5b1,g1
 0002D634: 8C803000 005FE560 lda     0x5fe560,g0
 0002D63C: 5C901E02          mov     0x2,g2
-0002D640: 09DD3A94          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D640: 09DD3A94          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D644: 5982181F          addo    0x1f,0x8,g0
 0002D648: 5C881E10          mov     0x10,g1
-0002D64C: 0BDF1AEC          bal     ffe1f138                   ; set cursor to g0, g1
+0002D64C: 0BDF1AEC          bal     0001f138                   ; set cursor to g0, g1
 0002D650: 8C803000 005FE560 lda     0x5fe560,g0
-0002D658: 09DF1B28          call    ffe1f180                   ; print string from g0
+0002D658: 09DF1B28          call    0001f180                   ; print string from g0
 
 0002D65C: 80883000 005FE5B0 ldob    0x5fe5b0,g1
 0002D664: 8C803000 005FE560 lda     0x5fe560,g0
 0002D66C: 5C901E02          mov     0x2,g2
-0002D670: 09DD3A64          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D670: 09DD3A64          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D674: 5982D81F          addo    0x1f,0xb,g0
 0002D678: 5C881E10          mov     0x10,g1
-0002D67C: 0BDF1ABC          bal     ffe1f138                   ; set cursor to g0, g1
+0002D67C: 0BDF1ABC          bal     0001f138                   ; set cursor to g0, g1
 0002D680: 8C803000 005FE560 lda     0x5fe560,g0
-0002D688: 09DF1AF8          call    ffe1f180                   ; print string from g0
+0002D688: 09DF1AF8          call    0001f180                   ; print string from g0
 
 0002D68C: 5880198F          setbit  0xf,0x0,g0
-0002D690: 0BDF1AD8          bal     ffe1f168                   ; set text color g0
+0002D690: 0BDF1AD8          bal     0001f168                   ; set text color g0
 0002D694: 5C801E13          mov     0x13,g0
 0002D698: 5C881E11          mov     0x11,g1
-0002D69C: 0BDF1A9C          bal     ffe1f138                   ; set cursor to g0, g1
+0002D69C: 0BDF1A9C          bal     0001f138                   ; set cursor to g0, g1
 0002D6A0: 8C803000 0023D700 lda     0x23d700,g0
-0002D6A8: 09DF1AD8          call    ffe1f180                   ; print string from g0	; "FASTEST GOAL TIME     M  S"
+0002D6A8: 09DF1AD8          call    0001f180                   ; print string from g0	; "FASTEST GOAL TIME     M  S"
 
 0002D6AC: 90883000 01D00160 ld      0x1d00160,g1
 0002D6B4: 8C803000 005FE5B0 lda     0x5fe5b0,g0
-0002D6BC: 0BDF110C          bal     ffe1e7c8                   ; split DHMS (g0 target, g1 value)
+0002D6BC: 0BDF110C          bal     0001e7c8                   ; split DHMS (g0 target, g1 value)
 
 0002D6C0: 5980DE0E          shlo    0xe,0x3,g0
-0002D6C4: 0BDF1AA4          bal     ffe1f168                   ; set text color g0
+0002D6C4: 0BDF1AA4          bal     0001f168                   ; set text color g0
 0002D6C8: 80883000 005FE5B1 ldob    0x5fe5b1,g1
 0002D6D0: 8C803000 005FE560 lda     0x5fe560,g0
 0002D6D8: 5C901E02          mov     0x2,g2
-0002D6DC: 09DD39F8          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D6DC: 09DD39F8          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D6E0: 5982181F          addo    0x1f,0x8,g0
 0002D6E4: 5C881E11          mov     0x11,g1
-0002D6E8: 0BDF1A50          bal     ffe1f138                   ; set cursor to g0, g1
+0002D6E8: 0BDF1A50          bal     0001f138                   ; set cursor to g0, g1
 0002D6EC: 8C803000 005FE560 lda     0x5fe560,g0
-0002D6F4: 09DF1A8C          call    ffe1f180                   ; print string from g0
+0002D6F4: 09DF1A8C          call    0001f180                   ; print string from g0
 
 0002D6F8: 80883000 005FE5B0 ldob    0x5fe5b0,g1
 0002D700: 8C803000 005FE560 lda     0x5fe560,g0
 0002D708: 5C901E02          mov     0x2,g2
-0002D70C: 09DD39C8          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D70C: 09DD39C8          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D710: 5982D81F          addo    0x1f,0xb,g0
 0002D714: 5C881E11          mov     0x11,g1
-0002D718: 0BDF1A20          bal     ffe1f138                   ; set cursor to g0, g1
+0002D718: 0BDF1A20          bal     0001f138                   ; set cursor to g0, g1
 0002D71C: 8C803000 005FE560 lda     0x5fe560,g0
-0002D724: 09DF1A5C          call    ffe1f180                   ; print string from g0
+0002D724: 09DF1A5C          call    0001f180                   ; print string from g0
 
 0002D728: 5880198F          setbit  0xf,0x0,g0
-0002D72C: 0BDF1A3C          bal     ffe1f168                   ; set text color g0
+0002D72C: 0BDF1A3C          bal     0001f168                   ; set text color g0
 
 0002D730: 5C801E13          mov     0x13,g0
 0002D734: 5C881E13          mov     0x13,g1
-0002D738: 0BDF1A00          bal     ffe1f138                   ; set cursor to g0, g1
+0002D738: 0BDF1A00          bal     0001f138                   ; set cursor to g0, g1
 0002D73C: 8C803000 0023D6A0 lda     0x23d6a0,g0
-0002D744: 09DF1A3C          call    ffe1f180                   ; print string from g0	; "EXPERT   COURSE          GAMES"
+0002D744: 09DF1A3C          call    0001f180                   ; print string from g0	; "EXPERT   COURSE          GAMES"
 
 0002D748: 5980DE0E          shlo    0xe,0x3,g0
-0002D74C: 0BDF1A1C          bal     ffe1f168                   ; set text color g0
+0002D74C: 0BDF1A1C          bal     0001f168                   ; set text color g0
 
 0002D750: 90883000 01D00144 ld      0x1d00144,g1
 0002D758: 8C803000 005FE560 lda     0x5fe560,g0
 0002D760: 5C901E08          mov     0x8,g2
-0002D764: 09DD3970          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D764: 09DD3970          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D768: 5981581F          addo    0x1f,0x5,g0
 0002D76C: 5C881E13          mov     0x13,g1
-0002D770: 0BDF19C8          bal     ffe1f138                   ; set cursor to g0, g1
+0002D770: 0BDF19C8          bal     0001f138                   ; set cursor to g0, g1
 0002D774: 8C803000 005FE560 lda     0x5fe560,g0
-0002D77C: 09DF1A04          call    ffe1f180                   ; print string from g0
+0002D77C: 09DF1A04          call    0001f180                   ; print string from g0
 
 0002D780: 5880198F          setbit  0xf,0x0,g0
-0002D784: 0BDF19E4          bal     ffe1f168                   ; set text color g0
+0002D784: 0BDF19E4          bal     0001f168                   ; set text color g0
 0002D788: 5C801E13          mov     0x13,g0
 0002D78C: 5C881E14          mov     0x14,g1
-0002D790: 0BDF19A8          bal     ffe1f138                   ; set cursor to g0, g1
+0002D790: 0BDF19A8          bal     0001f138                   ; set cursor to g0, g1
 0002D794: 8C803000 0023D6C0 lda     0x23d6c0,g0
-0002D79C: 09DF19E4          call    ffe1f180                   ; print string from g0	; "          GOALS"
+0002D79C: 09DF19E4          call    0001f180                   ; print string from g0	; "          GOALS"
 
 0002D7A0: 5980DE0E          shlo    0xe,0x3,g0
-0002D7A4: 0BDF19C4          bal     ffe1f168                   ; set text color g0
+0002D7A4: 0BDF19C4          bal     0001f168                   ; set text color g0
 
 0002D7A8: 90883000 01D00168 ld      0x1d00168,g1
 0002D7B0: 8C803000 005FE560 lda     0x5fe560,g0
 0002D7B8: 5C901E08          mov     0x8,g2
-0002D7BC: 09DD3918          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D7BC: 09DD3918          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D7C0: 5981581F          addo    0x1f,0x5,g0
 0002D7C4: 5C881E14          mov     0x14,g1
-0002D7C8: 0BDF1970          bal     ffe1f138                   ; set cursor to g0, g1
+0002D7C8: 0BDF1970          bal     0001f138                   ; set cursor to g0, g1
 0002D7CC: 8C803000 005FE560 lda     0x5fe560,g0
-0002D7D4: 09DF19AC          call    ffe1f180                   ; print string from g0
+0002D7D4: 09DF19AC          call    0001f180                   ; print string from g0
 
 0002D7D8: 5880198F          setbit  0xf,0x0,g0
-0002D7DC: 0BDF198C          bal     ffe1f168                   ; set text color g0
+0002D7DC: 0BDF198C          bal     0001f168                   ; set text color g0
 
 0002D7E0: 5C801E13          mov     0x13,g0
 0002D7E4: 5C881E16          mov     0x16,g1
-0002D7E8: 0BDF1950          bal     ffe1f138                   ; set cursor to g0, g1
+0002D7E8: 0BDF1950          bal     0001f138                   ; set cursor to g0, g1
 0002D7EC: 8C803000 0023D6E0 lda     0x23d6e0,g0
-0002D7F4: 09DF198C          call    ffe1f180                   ; print string from g0	; "AVERAGE PLAY TIME     M  S"
+0002D7F4: 09DF198C          call    0001f180                   ; print string from g0	; "AVERAGE PLAY TIME     M  S"
 
 0002D7F8: 90A03000 01D00144 ld      0x1d00144,g4
 0002D800: 3A052084          cmpibe  0x0,g4,0x2d884
 0002D804: 90883000 01D00150 ld      0x1d00150,g1
 0002D80C: 708C4594          divo    g4,g1,g1
 0002D810: 8C803000 005FE5B0 lda     0x5fe5b0,g0
-0002D818: 0BDF0FB0          bal     ffe1e7c8                   ; split DHMS (g0 target, g1 value)
+0002D818: 0BDF0FB0          bal     0001e7c8                   ; split DHMS (g0 target, g1 value)
 
 0002D81C: 5980DE0E          shlo    0xe,0x3,g0
-0002D820: 0BDF1948          bal     ffe1f168                   ; set text color g0
+0002D820: 0BDF1948          bal     0001f168                   ; set text color g0
 
 0002D824: 80883000 005FE5B1 ldob    0x5fe5b1,g1
 0002D82C: 8C803000 005FE560 lda     0x5fe560,g0
 0002D834: 5C901E02          mov     0x2,g2
-0002D838: 09DD389C          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D838: 09DD389C          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D83C: 5982181F          addo    0x1f,0x8,g0
 0002D840: 5C881E16          mov     0x16,g1
-0002D844: 0BDF18F4          bal     ffe1f138                   ; set cursor to g0, g1
+0002D844: 0BDF18F4          bal     0001f138                   ; set cursor to g0, g1
 0002D848: 8C803000 005FE560 lda     0x5fe560,g0
-0002D850: 09DF1930          call    ffe1f180                   ; print string from g0
+0002D850: 09DF1930          call    0001f180                   ; print string from g0
 
 0002D854: 80883000 005FE5B0 ldob    0x5fe5b0,g1
 0002D85C: 8C803000 005FE560 lda     0x5fe560,g0
 0002D864: 5C901E02          mov     0x2,g2
-0002D868: 09DD386C          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D868: 09DD386C          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D86C: 5982D81F          addo    0x1f,0xb,g0
 0002D870: 5C881E16          mov     0x16,g1
-0002D874: 0BDF18C4          bal     ffe1f138                   ; set cursor to g0, g1
+0002D874: 0BDF18C4          bal     0001f138                   ; set cursor to g0, g1
 0002D878: 8C803000 005FE560 lda     0x5fe560,g0
-0002D880: 09DF1900          call    ffe1f180                   ; print string from g0
+0002D880: 09DF1900          call    0001f180                   ; print string from g0
 
 0002D884: 5880198F          setbit  0xf,0x0,g0
-0002D888: 0BDF18E0          bal     ffe1f168                   ; set text color g0
+0002D888: 0BDF18E0          bal     0001f168                   ; set text color g0
 
 0002D88C: 5C801E13          mov     0x13,g0
 0002D890: 5C881E17          mov     0x17,g1
-0002D894: 0BDF18A4          bal     ffe1f138                   ; set cursor to g0, g1
+0002D894: 0BDF18A4          bal     0001f138                   ; set cursor to g0, g1
 0002D898: 8C803000 0023D700 lda     0x23d700,g0
-0002D8A0: 09DF18E0          call    ffe1f180                   ; print string from g0	; "FASTEST GOAL TIME     M  S"
+0002D8A0: 09DF18E0          call    0001f180                   ; print string from g0	; "FASTEST GOAL TIME     M  S"
 
 0002D8A4: 90883000 01D0015C ld      0x1d0015c,g1
 0002D8AC: 8C803000 005FE5B0 lda     0x5fe5b0,g0
-0002D8B4: 0BDF0F14          bal     ffe1e7c8                   ; split DHMS (g0 target, g1 value)
+0002D8B4: 0BDF0F14          bal     0001e7c8                   ; split DHMS (g0 target, g1 value)
 
 0002D8B8: 5980DE0E          shlo    0xe,0x3,g0
-0002D8BC: 0BDF18AC          bal     ffe1f168                   ; set text color g0
+0002D8BC: 0BDF18AC          bal     0001f168                   ; set text color g0
 
 0002D8C0: 80883000 005FE5B1 ldob    0x5fe5b1,g1
 0002D8C8: 8C803000 005FE560 lda     0x5fe560,g0
 0002D8D0: 5C901E02          mov     0x2,g2
-0002D8D4: 09DD3800          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D8D4: 09DD3800          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D8D8: 5982181F          addo    0x1f,0x8,g0
 0002D8DC: 5C881E17          mov     0x17,g1
-0002D8E0: 0BDF1858          bal     ffe1f138                   ; set cursor to g0, g1
+0002D8E0: 0BDF1858          bal     0001f138                   ; set cursor to g0, g1
 0002D8E4: 8C803000 005FE560 lda     0x5fe560,g0
-0002D8EC: 09DF1894          call    ffe1f180                   ; print string from g0
+0002D8EC: 09DF1894          call    0001f180                   ; print string from g0
 
 0002D8F0: 80883000 005FE5B0 ldob    0x5fe5b0,g1
 0002D8F8: 8C803000 005FE560 lda     0x5fe560,g0
 0002D900: 5C901E02          mov     0x2,g2
-0002D904: 09DD37D0          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+0002D904: 09DD37D0          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0002D908: 5982D81F          addo    0x1f,0xb,g0
 0002D90C: 5C881E17          mov     0x17,g1
-0002D910: 0BDF1828          bal     ffe1f138                   ; set cursor to g0, g1
+0002D910: 0BDF1828          bal     0001f138                   ; set cursor to g0, g1
 0002D914: 8C803000 005FE560 lda     0x5fe560,g0
-0002D91C: 08DF1864          b       ffe1f180                   ; print string from g0
+0002D91C: 08DF1864          b       0001f180                   ; print string from g0
 }
 
 0002D920: 00002020          ? 00:0 00002020 2 0                ; "  "
@@ -43673,27 +43673,27 @@
 
 {
 ; service handler 7-0 (sound test 0)
-0002D950: 09DF1490          call    ffe1ede0                   ; clear screen
+0002D950: 09DF1490          call    0001ede0                   ; clear screen
 0002D954: 5880198F          setbit  0xf,0x0,g0
-0002D958: 0BDF1810          bal     ffe1f168                   ; set text color g0
+0002D958: 0BDF1810          bal     0001f168                   ; set text color g0
 
 0002D95C: 5C801E14          mov     0x14,g0
 0002D960: 5C881E1E          mov     0x1e,g1
-0002D964: 0BDF17D4          bal     ffe1f138                   ; set cursor to g0, g1
+0002D964: 0BDF17D4          bal     0001f138                   ; set cursor to g0, g1
 0002D968: 8C803000 0023CB20 lda     0x23cb20,g0
-0002D970: 09DF1810          call    ffe1f180                   ; print string from g0	; "GREEN  : CURSOR UP           "
+0002D970: 09DF1810          call    0001f180                   ; print string from g0	; "GREEN  : CURSOR UP           "
 
 0002D974: 5C801E14          mov     0x14,g0
 0002D978: 5C881E1F          mov     0x1f,g1
-0002D97C: 0BDF17BC          bal     ffe1f138                   ; set cursor to g0, g1
+0002D97C: 0BDF17BC          bal     0001f138                   ; set cursor to g0, g1
 0002D980: 8C803000 0023CB40 lda     0x23cb40,g0
-0002D988: 09DF17F8          call    ffe1f180                   ; print string from g0"RED    : CURSOR DOWN         "
+0002D988: 09DF17F8          call    0001f180                   ; print string from g0"RED    : CURSOR DOWN         "
 
 0002D98C: 5C801E14          mov     0x14,g0
 0002D990: 5988581F          addo    0x1f,0x1,g1
-0002D994: 0BDF17A4          bal     ffe1f138                   ; set cursor to g0, g1
+0002D994: 0BDF17A4          bal     0001f138                   ; set cursor to g0, g1
 0002D998: 8C803000 0023CBA0 lda     0x23cba0,g0
-0002D9A0: 09DF17E0          call    ffe1f180                   ; print string from g0	; "START  : TO SELECT           "
+0002D9A0: 09DF17E0          call    0001f180                   ; print string from g0	; "START  : TO SELECT           "
 
 0002D9A4: 88803000 0023F300 ldos    0x23f300,g0
 0002D9AC: 8C403000 0023F304 lda     0x23f304,r8
@@ -43703,9 +43703,9 @@
 0002D9C4: 8C503000 0023F2A4 lda     0x23f2a4,r10
 0002D9CC: 90203000 0023F304 ld      0x23f304,r4
 0002D9D4: 59420908          subo    0x8,r8,r8
-0002D9D8: 0BDF1760          bal     ffe1f138                   ; set cursor to g0, g1
+0002D9D8: 0BDF1760          bal     0001f138                   ; set cursor to g0, g1
 0002D9DC: 5C801604          mov     r4,g0
-0002D9E0: 09DF17A0          call    ffe1f180                   ; print string from g0
+0002D9E0: 09DF17A0          call    0001f180                   ; print string from g0
 
 0002D9E4: 5A02A088          cmpi    r8,r10
 0002D9E8: 59294908          subo    0x8,r5,r5
@@ -43718,17 +43718,17 @@
 0002DA00: 88815000          ldos    (r5),g0
 0002DA04: 88899000          ldos    (r6),g1
 0002DA08: 9021D000          ld      (r7),r4
-0002DA0C: 0BDF172C          bal     ffe1f138                   ; set cursor to g0, g1
+0002DA0C: 0BDF172C          bal     0001f138                   ; set cursor to g0, g1
 0002DA10: 5C801604          mov     r4,g0
-0002DA14: 09DF176C          call    ffe1f180                   ; print string from g0
+0002DA14: 09DF176C          call    0001f180                   ; print string from g0
 
 0002DA18: 88817400 FFFFFFF8 ldos    0xfffffff8(r5),g0
 0002DA20: 8889B400 FFFFFFF8 ldos    0xfffffff8(r6),g1
 0002DA28: 9021F400 FFFFFFF8 ld      0xfffffff8(r7),r4
 0002DA30: 59420910          subo    0x10,r8,r8
-0002DA34: 0BDF1704          bal     ffe1f138                   ; set cursor to g0, g1
+0002DA34: 0BDF1704          bal     0001f138                   ; set cursor to g0, g1
 0002DA38: 5C801604          mov     r4,g0
-0002DA3C: 09DF1744          call    ffe1f180                   ; print string from g0
+0002DA3C: 09DF1744          call    0001f180                   ; print string from g0
 
 0002DA40: 5A02A088          cmpi    r8,r10
 0002DA44: 5939C910          subo    0x10,r7,r7
@@ -43743,7 +43743,7 @@
 0002DA64: 82A83000 005FE634 stob    g5,0x5fe634
 
 0002DA6C: 5980DE0E          shlo    0xe,0x3,g0
-0002DA70: 0BDF16F8          bal     ffe1f168                   ; set text color g0
+0002DA70: 0BDF16F8          bal     0001f168                   ; set text color g0
 0002DA74: 80A03000 005FE634 ldob    0x5fe634,g4
 0002DA7C: 98803994 0023F2A0 ldl     0x23f2a0[g4*8],g0
 0002DA84: 0900001C          call    0002daa0                   ; print sound menu cursor
@@ -43759,26 +43759,26 @@
 0002DAA0: 5D201610          movl    g0,r4
 0002DAA4: 59340C10          shro    0x10,g0,r6
 0002DAA8: 5C881606          mov     r6,g1
-0002DAAC: 0BDF168C          bal     ffe1f138                   ; set cursor to g0, g1
+0002DAAC: 0BDF168C          bal     0001f138                   ; set cursor to g0, g1
 0002DAB0: 5C801605          mov     r5,g0
-0002DAB4: 09DF16CC          call    ffe1f180                   ; print string from g0
+0002DAB4: 09DF16CC          call    0001f180                   ; print string from g0
 
 0002DAB8: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002DAC0: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002DAC8: 0BDF1670          bal     ffe1f138                   ; set cursor to g0, g1
+0002DAC8: 0BDF1670          bal     0001f138                   ; set cursor to g0, g1
 0002DACC: 8C803000 0022D920 lda     0x22d920,g0
-0002DAD4: 09DF16AC          call    ffe1f180                   ; print string from g0	; "  "
+0002DAD4: 09DF16AC          call    0001f180                   ; print string from g0	; "  "
 
 0002DAD8: 8C213400 0000FFFD lda     0xfffd(r4),r4
 0002DAE0: 8A203000 005FE5A0 stos    r4,0x5fe5a0
 0002DAE8: 8A303000 005FE5A2 stos    r6,0x5fe5a2
 0002DAF0: 5880198F          setbit  0xf,0x0,g0
-0002DAF4: 0BDF1674          bal     ffe1f168                   ; set text color g0
+0002DAF4: 0BDF1674          bal     0001f168                   ; set text color g0
 0002DAF8: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002DB00: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002DB08: 0BDF1630          bal     ffe1f138                   ; set cursor to g0, g1
+0002DB08: 0BDF1630          bal     0001f138                   ; set cursor to g0, g1
 0002DB0C: 8C803000 0022D924 lda     0x22d924,g0
-0002DB14: 08DF166C          b       ffe1f180                   ; print string from g0	; ">>"
+0002DB14: 08DF166C          b       0001f180                   ; print string from g0	; ">>"
 }
 
 0002DB18: 00000000          ? 00:0 00000000 0 0
@@ -43792,33 +43792,33 @@
 0002DB34: 3A052170          cmpibe  0x0,g4,0x2dca4             ; if 0x0 == g4 goto 0002DCA4
 
 0002DB38: 5880198F          setbit  0xf,0x0,g0
-0002DB3C: 0BDF162C          bal     ffe1f168                   ; set text color g0
+0002DB3C: 0BDF162C          bal     0001f168                   ; set text color g0
 
 0002DB40: 80A03000 005FE634 ldob    0x5fe634,g4
 0002DB48: 98203994 0023F2A0 ldl     0x23f2a0[g4*8],r4
 0002DB50: 59310C10          shro    0x10,r4,r6
 0002DB54: 5C801604          mov     r4,g0
 0002DB58: 5C881606          mov     r6,g1
-0002DB5C: 0BDF15DC          bal     ffe1f138                   ; set cursor to g0, g1
+0002DB5C: 0BDF15DC          bal     0001f138                   ; set cursor to g0, g1
 0002DB60: 5C801605          mov     r5,g0
-0002DB64: 09DF161C          call    ffe1f180                   ; print string from g0
+0002DB64: 09DF161C          call    0001f180                   ; print string from g0
 
 0002DB68: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002DB70: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002DB78: 0BDF15C0          bal     ffe1f138                   ; set cursor to g0, g1
+0002DB78: 0BDF15C0          bal     0001f138                   ; set cursor to g0, g1
 0002DB7C: 8C803000 0022D920 lda     0x22d920,g0
-0002DB84: 09DF15FC          call    ffe1f180                   ; print string from g0
+0002DB84: 09DF15FC          call    0001f180                   ; print string from g0
 
 0002DB88: 8C213400 0000FFFD lda     0xfffd(r4),r4
 0002DB90: 8A203000 005FE5A0 stos    r4,0x5fe5a0
 0002DB98: 5880198F          setbit  0xf,0x0,g0
 0002DB9C: 8A303000 005FE5A2 stos    r6,0x5fe5a2
-0002DBA4: 0BDF15C4          bal     ffe1f168                   ; set text color g0
+0002DBA4: 0BDF15C4          bal     0001f168                   ; set text color g0
 0002DBA8: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002DBB0: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002DBB8: 0BDF1580          bal     ffe1f138                   ; set cursor to g0, g1
+0002DBB8: 0BDF1580          bal     0001f138                   ; set cursor to g0, g1
 0002DBBC: 8C803000 0022D924 lda     0x22d924,g0
-0002DBC4: 09DF15BC          call    ffe1f180                   ; print string from g0
+0002DBC4: 09DF15BC          call    0001f180                   ; print string from g0
 
 ; (View4 SW4 View1 Service)
 0002DBC8: 8CB00828          lda     0x828,g6                   ; (SW4 View1 Service)
@@ -43847,39 +43847,39 @@
 
 0002DC0C: 82A83000 005FE634 stob    g5,0x5fe634
 0002DC14: 5980DE0E          shlo    0xe,0x3,g0
-0002DC18: 0BDF1550          bal     ffe1f168                   ; set text color g0
+0002DC18: 0BDF1550          bal     0001f168                   ; set text color g0
 
 0002DC1C: 80A03000 005FE634 ldob    0x5fe634,g4
 0002DC24: 98203994 0023F2A0 ldl     0x23f2a0[g4*8],r4
 0002DC2C: 59310C10          shro    0x10,r4,r6
 0002DC30: 5C801604          mov     r4,g0
 0002DC34: 5C881606          mov     r6,g1
-0002DC38: 0BDF1500          bal     ffe1f138                   ; set cursor to g0, g1
+0002DC38: 0BDF1500          bal     0001f138                   ; set cursor to g0, g1
 0002DC3C: 5C801605          mov     r5,g0
-0002DC40: 09DF1540          call    ffe1f180                   ; print string from g0
+0002DC40: 09DF1540          call    0001f180                   ; print string from g0
 
 0002DC44: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002DC4C: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002DC54: 0BDF14E4          bal     ffe1f138                   ; set cursor to g0, g1
+0002DC54: 0BDF14E4          bal     0001f138                   ; set cursor to g0, g1
 0002DC58: 8C803000 0022D920 lda     0x22d920,g0
-0002DC60: 09DF1520          call    ffe1f180                   ; print string from g0	; "  "
+0002DC60: 09DF1520          call    0001f180                   ; print string from g0	; "  "
 
 0002DC64: 8C213400 0000FFFD lda     0xfffd(r4),r4
 0002DC6C: 8A203000 005FE5A0 stos    r4,0x5fe5a0
 0002DC74: 5880198F          setbit  0xf,0x0,g0
 0002DC78: 8A303000 005FE5A2 stos    r6,0x5fe5a2
-0002DC80: 0BDF14E8          bal     ffe1f168                   ; set text color g0
+0002DC80: 0BDF14E8          bal     0001f168                   ; set text color g0
 0002DC84: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002DC8C: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002DC94: 0BDF14A4          bal     ffe1f138                   ; set cursor to g0, g1
+0002DC94: 0BDF14A4          bal     0001f138                   ; set cursor to g0, g1
 0002DC98: 8C803000 0022D924 lda     0x22d924,g0
-0002DCA0: 08DF14E0          b       ffe1f180                   ; print string from g0	; ">>"
+0002DCA0: 08DF14E0          b       0001f180                   ; print string from g0	; ">>"
 
 0002DCA4: 8CB00414          lda     0x414,g6                   ; (SW3 Start Test)
 0002DCA8: 58A58087          and     r7,g6,g4
 0002DCAC: 3A052078          cmpibe  0x0,g4,0x2dd24             ; if 0x0 == g4 goto 0002DD24
 
-0002DCB0: 09DF1130          call    ffe1ede0                   ; clear screen
+0002DCB0: 09DF1130          call    0001ede0                   ; clear screen
 0002DCB4: 80A03000 005FE634 ldob    0x5fe634,g4
 0002DCBC: 8AF03000 005FE5A0 stos    g14,0x5fe5a0
 0002DCC4: 335D2008          cmpobge 0xb,g4,0x2dccc             ; if 0xb >= g4 goto 0002DCCC
@@ -43915,9 +43915,9 @@
 {
 ; exit handler?
 0002DD30: 8C803000 00AE101F lda     0xae101f,g0
-0002DD38: 09DEC81C          call    ffe1a554                   ; push g0 to serial buffer
+0002DD38: 09DEC81C          call    0001a554                   ; push g0 to serial buffer
 0002DD3C: 8C803000 00AE207C lda     0xae207c,g0
-0002DD44: 09DEC810          call    ffe1a554                   ; push g0 to serial buffer
+0002DD44: 09DEC810          call    0001a554                   ; push g0 to serial buffer
 0002DD48: 09001358          call    0002f0a0
 0002DD4C: 08FFC604          b       0002a350                   ; service mode exit
 }
@@ -43925,12 +43925,12 @@
 {
 ;
 0002DD50: 5880198F          setbit  0xf,0x0,g0
-0002DD54: 0BDF1414          bal     ffe1f168                   ; set text color g0
+0002DD54: 0BDF1414          bal     0001f168                   ; set text color g0
 0002DD58: 5C801E19          mov     0x19,g0
 0002DD5C: 5C881E03          mov     0x3,g1
-0002DD60: 0BDF13D8          bal     ffe1f138                   ; set cursor to g0, g1
+0002DD60: 0BDF13D8          bal     0001f138                   ; set cursor to g0, g1
 0002DD64: 8C803000 0023F1A0 lda     0x23f1a0,g0
-0002DD6C: 09DF1414          call    ffe1f180                   ; print string from g0	; "SOUND TEST"
+0002DD6C: 09DF1414          call    0001f180                   ; print string from g0	; "SOUND TEST"
 
 0002DD70: 80A83000 005FE634 ldob    0x5fe634,g5
 0002DD78: 8C9000FF          lda     0xff,g2
@@ -43943,19 +43943,19 @@
 0002DD98: 82A83000 005FE634 stob    g5,0x5fe634
 0002DDA0: 92B03000 005FE628 st      g6,0x5fe628
 0002DDA8: 92B83000 005FE0A8 st      g7,0x5fe0a8
-0002DDB0: 09DF13D0          call    ffe1f180                   ; print string from g0
+0002DDB0: 09DF13D0          call    0001f180                   ; print string from g0
 
 0002DDB4: 5C801E14          mov     0x14,g0
 0002DDB8: 598A581F          addo    0x1f,0x9,g1
-0002DDBC: 0BDF137C          bal     ffe1f138                   ; set cursor to g0, g1
+0002DDBC: 0BDF137C          bal     0001f138                   ; set cursor to g0, g1
 0002DDC0: 8C803000 0023F240 lda     0x23f240,g0
-0002DDC8: 09DF13B8          call    ffe1f180                   ; print string from g0
+0002DDC8: 09DF13B8          call    0001f180                   ; print string from g0
 
 0002DDCC: 5C801E14          mov     0x14,g0
 0002DDD0: 598A981F          addo    0x1f,0xa,g1
-0002DDD4: 0BDF1364          bal     ffe1f138                   ; set cursor to g0, g1
+0002DDD4: 0BDF1364          bal     0001f138                   ; set cursor to g0, g1
 0002DDD8: 8C803000 0023F260 lda     0x23f260,g0
-0002DDE0: 09DF13A0          call    ffe1f180                   ; print string from g0
+0002DDE0: 09DF13A0          call    0001f180                   ; print string from g0
 
 0002DDE4: 90A03000 005FE0A8 ld      0x5fe0a8,g4
 0002DDEC: 5C381E00          mov     0x0,r7
@@ -43967,9 +43967,9 @@
 0002DE04: 5C801E16          mov     0x16,g0
 0002DE08: 5C881606          mov     r6,g1
 0002DE0C: 8C217C14 00000004 lda     0x4(r5)[g4*1],r4
-0002DE14: 0BDF1324          bal     ffe1f138                   ; set cursor to g0, g1
+0002DE14: 0BDF1324          bal     0001f138                   ; set cursor to g0, g1
 0002DE18: 5C801604          mov     r4,g0
-0002DE1C: 09DF1364          call    ffe1f180                   ; print string from g0
+0002DE1C: 09DF1364          call    0001f180                   ; print string from g0
 
 0002DE20: 90A03000 005FE0A8 ld      0x5fe0a8,g4
 0002DE28: 592F1005          addo    r5,0x1c,r5
@@ -43998,9 +43998,9 @@
 0002DE7C: 5C801E1F          mov     0x1f,g0
 0002DE80: 82B83000 005FE627 stob    g7,0x5fe627
 0002DE88: 5C881E04          mov     0x4,g1
-0002DE8C: 0BDF12AC          bal     ffe1f138                   ; set cursor to g0, g1
+0002DE8C: 0BDF12AC          bal     0001f138                   ; set cursor to g0, g1
 0002DE90: 8C803000 0022DE50 lda     0x22de50,g0
-0002DE98: 09DF12E8          call    ffe1f180                   ; print string from g0
+0002DE98: 09DF12E8          call    0001f180                   ; print string from g0
 0002DE9C: 90A03000 005FE0A4 ld      0x5fe0a4,g4
 0002DEA4: 3D052010          cmpibne 0x0,g4,0x2deb4
 0002DEA8: 82F03000 005FE0C9 stob    g14,0x5fe0c9
@@ -44011,7 +44011,7 @@
 0002DEC8: 80A03000 005FE0A4 ldob    0x5fe0a4,g4
 0002DED0: 82A03000 005FE0C9 stob    g4,0x5fe0c9
 0002DED8: 5980DE0E          shlo    0xe,0x3,g0
-0002DEDC: 0BDF128C          bal     ffe1f168                   ; set text color g0
+0002DEDC: 0BDF128C          bal     0001f168                   ; set text color g0
 0002DEE0: 90A03000 005FE0A4 ld      0x5fe0a4,g4
 0002DEE8: 90A83000 005FE628 ld      0x5fe628,g5
 0002DEF0: 5C801E16          mov     0x16,g0
@@ -44020,44 +44020,44 @@
 0002DEFC: 8C2D2005          lda     0x5(g4),r5
 0002DF00: 5C881605          mov     r5,g1
 0002DF04: 8C257D04 00000004 lda     0x4(g5)[r4*4],r4
-0002DF0C: 0BDF122C          bal     ffe1f138                   ; set cursor to g0, g1
+0002DF0C: 0BDF122C          bal     0001f138                   ; set cursor to g0, g1
 0002DF10: 5C801604          mov     r4,g0
-0002DF14: 09DF126C          call    ffe1f180                   ; print string from g0
+0002DF14: 09DF126C          call    0001f180                   ; print string from g0
 0002DF18: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002DF20: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002DF28: 0BDF1210          bal     ffe1f138                   ; set cursor to g0, g1
+0002DF28: 0BDF1210          bal     0001f138                   ; set cursor to g0, g1
 0002DF2C: 8C803000 0022D920 lda     0x22d920,g0
-0002DF34: 09DF124C          call    ffe1f180                   ; print string from g0
+0002DF34: 09DF124C          call    0001f180                   ; print string from g0
 0002DF38: 5CB81E13          mov     0x13,g7
 0002DF3C: 8AB83000 005FE5A0 stos    g7,0x5fe5a0
 0002DF44: 5880198F          setbit  0xf,0x0,g0
 0002DF48: 8A283000 005FE5A2 stos    r5,0x5fe5a2
-0002DF50: 0BDF1218          bal     ffe1f168                   ; set text color g0
+0002DF50: 0BDF1218          bal     0001f168                   ; set text color g0
 0002DF54: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002DF5C: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002DF64: 0BDF11D4          bal     ffe1f138                   ; set cursor to g0, g1
+0002DF64: 0BDF11D4          bal     0001f138                   ; set cursor to g0, g1
 0002DF68: 8C803000 0022D924 lda     0x22d924,g0
-0002DF70: 09DF1210          call    ffe1f180                   ; print string from g0
+0002DF70: 09DF1210          call    0001f180                   ; print string from g0
 0002DF74: 5C801E16          mov     0x16,g0
 0002DF78: 5989D81F          addo    0x1f,0x7,g1
-0002DF7C: 0BDF11BC          bal     ffe1f138                   ; set cursor to g0, g1
+0002DF7C: 0BDF11BC          bal     0001f138                   ; set cursor to g0, g1
 0002DF80: 8C803000 0023CAB0 lda     0x23cab0,g0
-0002DF88: 09DF11F8          call    ffe1f180                   ; print string from g0
+0002DF88: 09DF11F8          call    0001f180                   ; print string from g0
 0002DF8C: 5C801E14          mov     0x14,g0
 0002DF90: 598A581F          addo    0x1f,0x9,g1
-0002DF94: 0BDF11A4          bal     ffe1f138                   ; set cursor to g0, g1
+0002DF94: 0BDF11A4          bal     0001f138                   ; set cursor to g0, g1
 0002DF98: 8C803000 0023CB20 lda     0x23cb20,g0
-0002DFA0: 09DF11E0          call    ffe1f180                   ; print string from g0
+0002DFA0: 09DF11E0          call    0001f180                   ; print string from g0
 0002DFA4: 5C801E14          mov     0x14,g0
 0002DFA8: 598A981F          addo    0x1f,0xa,g1
-0002DFAC: 0BDF118C          bal     ffe1f138                   ; set cursor to g0, g1
+0002DFAC: 0BDF118C          bal     0001f138                   ; set cursor to g0, g1
 0002DFB0: 8C803000 0023CB40 lda     0x23cb40,g0
-0002DFB8: 09DF11C8          call    ffe1f180                   ; print string from g0
+0002DFB8: 09DF11C8          call    0001f180                   ; print string from g0
 0002DFBC: 5C801E14          mov     0x14,g0
 0002DFC0: 598AD81F          addo    0x1f,0xb,g1
-0002DFC4: 0BDF1174          bal     ffe1f138                   ; set cursor to g0, g1
+0002DFC4: 0BDF1174          bal     0001f138                   ; set cursor to g0, g1
 0002DFC8: 8C803000 0023F280 lda     0x23f280,g0
-0002DFD0: 08DF11B0          b       ffe1f180                   ; print string from g0
+0002DFD0: 08DF11B0          b       0001f180                   ; print string from g0
 0002DFD4: 8CB80414          lda     0x414,g7
 0002DFD8: 58A5C095          and     g5,g7,g4
 0002DFDC: 3A052030          cmpibe  0x0,g4,0x2e00c
@@ -44065,9 +44065,9 @@
 0002DFE4: 82B83000 005FE634 stob    g7,0x5fe634
 0002DFEC: 82F03000 005FE627 stob    g14,0x5fe627
 0002DFF4: 8C803000 00AE101F lda     0xae101f,g0
-0002DFFC: 09DEC558          call    ffe1a554                   ; push g0 to serial buffer
+0002DFFC: 09DEC558          call    0001a554                   ; push g0 to serial buffer
 0002E000: 8C803000 00AE207C lda     0xae207c,g0
-0002E008: 08DEC54C          b       ffe1a554
+0002E008: 08DEC54C          b       0001a554
 0002E00C: 90A03000 005FE0AC ld      0x5fe0ac,g4
 0002E014: 59A50901          subo    0x1,g4,g4
 0002E018: 92A03000 005FE0AC st      g4,0x5fe0ac
@@ -44081,14 +44081,14 @@
 0002E048: 82F03000 005FE627 stob    g14,0x5fe627
 0002E050: 82B83000 005FE634 stob    g7,0x5fe634
 0002E058: 0A000000          ret
-0002E05C: 09DF0D84          call    ffe1ede0                   ; clear screen
+0002E05C: 09DF0D84          call    0001ede0                   ; clear screen
 0002E060: 08FFFCF0          b       0002dd50
 0002E064: 90A03000 005FE0A4 ld      0x5fe0a4,g4
 0002E06C: 5A003094          cmpi    g4,0x0
 0002E070: 8C2D2005          lda     0x5(g4),r5
 0002E074: 12000040          be      0002e0b4
 0002E078: 5880198F          setbit  0xf,0x0,g0
-0002E07C: 0BDF10EC          bal     ffe1f168                   ; set text color g0
+0002E07C: 0BDF10EC          bal     0001f168                   ; set text color g0
 0002E080: 90A03000 005FE0A4 ld      0x5fe0a4,g4
 0002E088: 90A83000 005FE628 ld      0x5fe628,g5
 0002E090: 5C801E16          mov     0x16,g0
@@ -44096,11 +44096,11 @@
 0002E098: 59210114          subo    g4,r4,r4
 0002E09C: 59894901          subo    0x1,r5,g1
 0002E0A0: 8C257D04 FFFFFFE8 lda     0xffffffe8(g5)[r4*4],r4
-0002E0A8: 0BDF1090          bal     ffe1f138                   ; set cursor to g0, g1
+0002E0A8: 0BDF1090          bal     0001f138                   ; set cursor to g0, g1
 0002E0AC: 5C801604          mov     r4,g0
-0002E0B0: 09DF10D0          call    ffe1f180                   ; print string from g0
+0002E0B0: 09DF10D0          call    0001f180                   ; print string from g0
 0002E0B4: 5980DE0E          shlo    0xe,0x3,g0
-0002E0B8: 0BDF10B0          bal     ffe1f168                   ; set text color g0
+0002E0B8: 0BDF10B0          bal     0001f168                   ; set text color g0
 0002E0BC: 90A03000 005FE0A4 ld      0x5fe0a4,g4
 0002E0C4: 90A83000 005FE628 ld      0x5fe628,g5
 0002E0CC: 5C801E16          mov     0x16,g0
@@ -44108,30 +44108,30 @@
 0002E0D4: 59210114          subo    g4,r4,r4
 0002E0D8: 5C881605          mov     r5,g1
 0002E0DC: 8C257D04 00000004 lda     0x4(g5)[r4*4],r4
-0002E0E4: 0BDF1054          bal     ffe1f138                   ; set cursor to g0, g1
+0002E0E4: 0BDF1054          bal     0001f138                   ; set cursor to g0, g1
 0002E0E8: 5C801604          mov     r4,g0
-0002E0EC: 09DF1094          call    ffe1f180                   ; print string from g0
+0002E0EC: 09DF1094          call    0001f180                   ; print string from g0
 0002E0F0: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002E0F8: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002E100: 0BDF1038          bal     ffe1f138                   ; set cursor to g0, g1
+0002E100: 0BDF1038          bal     0001f138                   ; set cursor to g0, g1
 0002E104: 8C803000 0022D920 lda     0x22d920,g0
-0002E10C: 09DF1074          call    ffe1f180                   ; print string from g0
+0002E10C: 09DF1074          call    0001f180                   ; print string from g0
 0002E110: 5CB81E13          mov     0x13,g7
 0002E114: 8AB83000 005FE5A0 stos    g7,0x5fe5a0
 0002E11C: 8A283000 005FE5A2 stos    r5,0x5fe5a2
 0002E124: 5880198F          setbit  0xf,0x0,g0
-0002E128: 0BDF1040          bal     ffe1f168                   ; set text color g0
+0002E128: 0BDF1040          bal     0001f168                   ; set text color g0
 0002E12C: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002E134: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002E13C: 0BDF0FFC          bal     ffe1f138                   ; set cursor to g0, g1
+0002E13C: 0BDF0FFC          bal     0001f138                   ; set cursor to g0, g1
 0002E140: 8C803000 0022D924 lda     0x22d924,g0
-0002E148: 09DF1038          call    ffe1f180                   ; print string from g0
+0002E148: 09DF1038          call    0001f180                   ; print string from g0
 0002E14C: 90A83000 005FE0A4 ld      0x5fe0a4,g5
 0002E154: 90B03000 005FE628 ld      0x5fe628,g6
 0002E15C: 59A54E03          shlo    0x3,g5,g4
 0002E160: 59A50115          subo    g5,g4,g4
 0002E164: 90859D14          ld      (g6)[g4*4],g0
-0002E168: 09DEC3EC          call    ffe1a554                   ; push g0 to serial buffer
+0002E168: 09DEC3EC          call    0001a554                   ; push g0 to serial buffer
 0002E16C: 90A03000 005FE0A4 ld      0x5fe0a4,g4
 0002E174: 8CB8005A          lda     0x5a,g7
 0002E178: 92B83000 005FE0AC st      g7,0x5fe0ac
@@ -44143,18 +44143,18 @@
 0002E19C: 31A5C01C          cmpobg  g4,g7,0x2e1b8
 0002E1A0: 5C801E1F          mov     0x1f,g0
 0002E1A4: 5C881E04          mov     0x4,g1
-0002E1A8: 0BDF0F90          bal     ffe1f138                   ; set cursor to g0, g1
+0002E1A8: 0BDF0F90          bal     0001f138                   ; set cursor to g0, g1
 0002E1AC: 8C803000 0022DE50 lda     0x22de50,g0
-0002E1B4: 08DF0FCC          b       ffe1f180                   ; print string from g0
+0002E1B4: 08DF0FCC          b       0001f180                   ; print string from g0
 0002E1B8: 90A03000 005FE0AC ld      0x5fe0ac,g4
 0002E1C0: 36A5C024          cmpoble g4,g7,0x2e1e4
 0002E1C4: 5980DE0E          shlo    0xe,0x3,g0
-0002E1C8: 0BDF0FA0          bal     ffe1f168                   ; set text color g0
+0002E1C8: 0BDF0FA0          bal     0001f168                   ; set text color g0
 0002E1CC: 5C801E1F          mov     0x1f,g0
 0002E1D0: 5C881E04          mov     0x4,g1
-0002E1D4: 0BDF0F64          bal     ffe1f138                   ; set cursor to g0, g1
+0002E1D4: 0BDF0F64          bal     0001f138                   ; set cursor to g0, g1
 0002E1D8: 8C803000 0023F1B0 lda     0x23f1b0,g0
-0002E1E0: 08DF0FA0          b       ffe1f180                   ; print string from g0
+0002E1E0: 08DF0FA0          b       0001f180                   ; print string from g0
 0002E1E4: 0A000000          ret
 }
 
@@ -44164,12 +44164,12 @@
 {
 ;
 0002E1F0: 5880198F          setbit  0xf,0x0,g0
-0002E1F4: 0BDF0F74          bal     ffe1f168                   ; set text color g0
+0002E1F4: 0BDF0F74          bal     0001f168                   ; set text color g0
 0002E1F8: 5C801E19          mov     0x19,g0
 0002E1FC: 5C881E03          mov     0x3,g1
-0002E200: 0BDF0F38          bal     ffe1f138                   ; set cursor to g0, g1
+0002E200: 0BDF0F38          bal     0001f138                   ; set cursor to g0, g1
 0002E204: 8C803000 0023F1A0 lda     0x23f1a0,g0
-0002E20C: 09DF0F74          call    ffe1f180                   ; print string from g0
+0002E20C: 09DF0F74          call    0001f180                   ; print string from g0
 0002E210: 80A03000 005FE634 ldob    0x5fe634,g4
 0002E218: 8CA51C94          lda     (g4)[g4*2],g4
 0002E21C: 8CA03914 0023F318 lda     0x23f318[g4*4],g4
@@ -44178,22 +44178,22 @@
 0002E22C: 90852008          ld      0x8(g4),g0
 0002E230: 92A83000 005FE628 st      g5,0x5fe628
 0002E238: 92B03000 005FE0A8 st      g6,0x5fe0a8
-0002E240: 09DF0F40          call    ffe1f180                   ; print string from g0
+0002E240: 09DF0F40          call    0001f180                   ; print string from g0
 0002E244: 5C801E14          mov     0x14,g0
 0002E248: 598A581F          addo    0x1f,0x9,g1
-0002E24C: 0BDF0EEC          bal     ffe1f138                   ; set cursor to g0, g1
+0002E24C: 0BDF0EEC          bal     0001f138                   ; set cursor to g0, g1
 0002E250: 8C803000 0023CB20 lda     0x23cb20,g0
-0002E258: 09DF0F28          call    ffe1f180                   ; print string from g0
+0002E258: 09DF0F28          call    0001f180                   ; print string from g0
 0002E25C: 5C801E14          mov     0x14,g0
 0002E260: 598A981F          addo    0x1f,0xa,g1
-0002E264: 0BDF0ED4          bal     ffe1f138                   ; set cursor to g0, g1
+0002E264: 0BDF0ED4          bal     0001f138                   ; set cursor to g0, g1
 0002E268: 8C803000 0023CB40 lda     0x23cb40,g0
-0002E270: 09DF0F10          call    ffe1f180                   ; print string from g0
+0002E270: 09DF0F10          call    0001f180                   ; print string from g0
 0002E274: 5C801E14          mov     0x14,g0
 0002E278: 598AD81F          addo    0x1f,0xb,g1
-0002E27C: 0BDF0EBC          bal     ffe1f138                   ; set cursor to g0, g1
+0002E27C: 0BDF0EBC          bal     0001f138                   ; set cursor to g0, g1
 0002E280: 8C803000 0023F280 lda     0x23f280,g0
-0002E288: 09DF0EF8          call    ffe1f180                   ; print string from g0
+0002E288: 09DF0EF8          call    0001f180                   ; print string from g0
 0002E28C: 90A03000 005FE0A8 ld      0x5fe0a8,g4
 0002E294: 5C381E00          mov     0x0,r7
 0002E298: 5C301E05          mov     0x5,r6
@@ -44203,41 +44203,41 @@
 0002E2AC: 5C801E16          mov     0x16,g0
 0002E2B0: 5C881606          mov     r6,g1
 0002E2B4: 8C217C14 00000004 lda     0x4(r5)[g4*1],r4
-0002E2BC: 0BDF0E7C          bal     ffe1f138                   ; set cursor to g0, g1
+0002E2BC: 0BDF0E7C          bal     0001f138                   ; set cursor to g0, g1
 0002E2C0: 5C801604          mov     r4,g0
-0002E2C4: 09DF0EBC          call    ffe1f180                   ; print string from g0
+0002E2C4: 09DF0EBC          call    0001f180                   ; print string from g0
 0002E2C8: 90A03000 005FE0A8 ld      0x5fe0a8,g4
 0002E2D0: 592F1005          addo    r5,0x1c,r5
 0002E2D4: 8C39E001          lda     0x1(r7),r7
 0002E2D8: 59305006          addo    r6,0x1,r6
 0002E2DC: 343D1FC8          cmpobl  r7,g4,0x2e2a4
 0002E2E0: 5980DE0E          shlo    0xe,0x3,g0
-0002E2E4: 0BDF0E84          bal     ffe1f168                   ; set text color g0
+0002E2E4: 0BDF0E84          bal     0001f168                   ; set text color g0
 0002E2E8: 09000018          call    0002e300
 0002E2EC: 80A03000 005FE0A8 ldob    0x5fe0a8,g4
 0002E2F4: 82A03000 005FE0C9 stob    g4,0x5fe0c9
 0002E2FC: 0A000000          ret
 0002E300: 5C801E16          mov     0x16,g0
 0002E304: 5989D81F          addo    0x1f,0x7,g1
-0002E308: 0BDF0E30          bal     ffe1f138                   ; set cursor to g0, g1
+0002E308: 0BDF0E30          bal     0001f138                   ; set cursor to g0, g1
 0002E30C: 8C803000 0023CAB0 lda     0x23cab0,g0
-0002E314: 09DF0E6C          call    ffe1f180                   ; print string from g0
+0002E314: 09DF0E6C          call    0001f180                   ; print string from g0
 0002E318: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002E320: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002E328: 0BDF0E10          bal     ffe1f138                   ; set cursor to g0, g1
+0002E328: 0BDF0E10          bal     0001f138                   ; set cursor to g0, g1
 0002E32C: 8C803000 0022D920 lda     0x22d920,g0
-0002E334: 09DF0E4C          call    ffe1f180                   ; print string from g0
+0002E334: 09DF0E4C          call    0001f180                   ; print string from g0
 0002E338: 5CA01E13          mov     0x13,g4
 0002E33C: 8AA03000 005FE5A0 stos    g4,0x5fe5a0
 0002E344: 59A1D81F          addo    0x1f,0x7,g4
 0002E348: 8AA03000 005FE5A2 stos    g4,0x5fe5a2
 0002E350: 5880198F          setbit  0xf,0x0,g0
-0002E354: 0BDF0E14          bal     ffe1f168                   ; set text color g0
+0002E354: 0BDF0E14          bal     0001f168                   ; set text color g0
 0002E358: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002E360: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002E368: 0BDF0DD0          bal     ffe1f138                   ; set cursor to g0, g1
+0002E368: 0BDF0DD0          bal     0001f138                   ; set cursor to g0, g1
 0002E36C: 8C803000 0022D924 lda     0x22d924,g0
-0002E374: 08DF0E0C          b       ffe1f180                   ; print string from g0
+0002E374: 08DF0E0C          b       0001f180                   ; print string from g0
 }
 
 0002E378: 00000000          ? 00:0 00000000 0 0
@@ -44250,7 +44250,7 @@
 0002E390: 58A5C085          and     r5,g7,g4
 0002E394: 3A052238          cmpibe  0x0,g4,0x2e5cc
 0002E398: 5880198F          setbit  0xf,0x0,g0
-0002E39C: 0BDF0DCC          bal     ffe1f168                   ; set text color g0
+0002E39C: 0BDF0DCC          bal     0001f168                   ; set text color g0
 0002E3A0: 80883000 005FE0C9 ldob    0x5fe0c9,g1
 0002E3A8: 90A83000 005FE0A8 ld      0x5fe0a8,g5
 0002E3B0: 8CB800FF          lda     0xff,g7
@@ -44258,25 +44258,25 @@
 0002E3B8: 34A54080          cmpobl  g4,g5,0x2e438
 0002E3BC: 5C801E16          mov     0x16,g0
 0002E3C0: 5989D81F          addo    0x1f,0x7,g1
-0002E3C4: 0BDF0D74          bal     ffe1f138                   ; set cursor to g0, g1
+0002E3C4: 0BDF0D74          bal     0001f138                   ; set cursor to g0, g1
 0002E3C8: 8C803000 0023CAB0 lda     0x23cab0,g0
-0002E3D0: 09DF0DB0          call    ffe1f180                   ; print string from g0
+0002E3D0: 09DF0DB0          call    0001f180                   ; print string from g0
 0002E3D4: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002E3DC: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002E3E4: 0BDF0D54          bal     ffe1f138                   ; set cursor to g0, g1
+0002E3E4: 0BDF0D54          bal     0001f138                   ; set cursor to g0, g1
 0002E3E8: 8C803000 0022D920 lda     0x22d920,g0
-0002E3F0: 09DF0D90          call    ffe1f180                   ; print string from g0
+0002E3F0: 09DF0D90          call    0001f180                   ; print string from g0
 0002E3F4: 5CB81E13          mov     0x13,g7
 0002E3F8: 8AB83000 005FE5A0 stos    g7,0x5fe5a0
 0002E400: 59B9D81F          addo    0x1f,0x7,g7
 0002E404: 8AB83000 005FE5A2 stos    g7,0x5fe5a2
 0002E40C: 5880198F          setbit  0xf,0x0,g0
-0002E410: 0BDF0D58          bal     ffe1f168                   ; set text color g0
+0002E410: 0BDF0D58          bal     0001f168                   ; set text color g0
 0002E414: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002E41C: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002E424: 0BDF0D14          bal     ffe1f138                   ; set cursor to g0, g1
+0002E424: 0BDF0D14          bal     0001f138                   ; set cursor to g0, g1
 0002E428: 8C803000 0022D924 lda     0x22d924,g0
-0002E430: 09DF0D50          call    ffe1f180                   ; print string from g0
+0002E430: 09DF0D50          call    0001f180                   ; print string from g0
 0002E434: 08000034          b       0002e468
 0002E438: 90A03000 005FE628 ld      0x5fe628,g4
 0002E440: 588DC091          and     g1,g7,g1
@@ -44285,9 +44285,9 @@
 0002E44C: 5C801E16          mov     0x16,g0
 0002E450: 8C8C6005          lda     0x5(g1),g1
 0002E454: 8C253D04 00000004 lda     0x4(g4)[r4*4],r4
-0002E45C: 0BDF0CDC          bal     ffe1f138                   ; set cursor to g0, g1
+0002E45C: 0BDF0CDC          bal     0001f138                   ; set cursor to g0, g1
 0002E460: 5C801604          mov     r4,g0
-0002E464: 09DF0D1C          call    ffe1f180                   ; print string from g0
+0002E464: 09DF0D1C          call    0001f180                   ; print string from g0
 0002E468: 8CB80828          lda     0x828,g7
 0002E46C: 58A5C085          and     r5,g7,g4
 0002E470: 80B03000 005FE0C9 ldob    0x5fe0c9,g6
@@ -44307,26 +44307,26 @@
 0002E4B4: 59B58901          subo    0x1,g6,g6
 0002E4B8: 82B03000 005FE0C9 stob    g6,0x5fe0c9
 0002E4C0: 5980DE0E          shlo    0xe,0x3,g0
-0002E4C4: 0BDF0CA4          bal     ffe1f168                   ; set text color g0
+0002E4C4: 0BDF0CA4          bal     0001f168                   ; set text color g0
 0002E4C8: 80A83000 005FE0C9 ldob    0x5fe0c9,g5
 0002E4D0: 90A03000 005FE0A8 ld      0x5fe0a8,g4
 0002E4D8: 34AD0060          cmpobl  g5,g4,0x2e538
 0002E4DC: 5C801E16          mov     0x16,g0
 0002E4E0: 5989D81F          addo    0x1f,0x7,g1
-0002E4E4: 0BDF0C54          bal     ffe1f138                   ; set cursor to g0, g1
+0002E4E4: 0BDF0C54          bal     0001f138                   ; set cursor to g0, g1
 0002E4E8: 8C803000 0023CAB0 lda     0x23cab0,g0
-0002E4F0: 09DF0C90          call    ffe1f180                   ; print string from g0
+0002E4F0: 09DF0C90          call    0001f180                   ; print string from g0
 0002E4F4: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002E4FC: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002E504: 0BDF0C34          bal     ffe1f138                   ; set cursor to g0, g1
+0002E504: 0BDF0C34          bal     0001f138                   ; set cursor to g0, g1
 0002E508: 8C803000 0022D920 lda     0x22d920,g0
-0002E510: 09DF0C70          call    ffe1f180                   ; print string from g0
+0002E510: 09DF0C70          call    0001f180                   ; print string from g0
 0002E514: 5CB81E13          mov     0x13,g7
 0002E518: 8AB83000 005FE5A0 stos    g7,0x5fe5a0
 0002E520: 59B9D81F          addo    0x1f,0x7,g7
 0002E524: 8AB83000 005FE5A2 stos    g7,0x5fe5a2
 0002E52C: 5880198F          setbit  0xf,0x0,g0
-0002E530: 0BDF0C38          bal     ffe1f168                   ; set text color g0
+0002E530: 0BDF0C38          bal     0001f168                   ; set text color g0
 0002E534: 08000078          b       0002e5ac
 0002E538: 80203000 005FE0C9 ldob    0x5fe0c9,r4
 0002E540: 90A03000 005FE628 ld      0x5fe628,g4
@@ -44336,24 +44336,24 @@
 0002E554: 8C212005          lda     0x5(r4),r4
 0002E558: 5C881604          mov     r4,g1
 0002E55C: 8C2D3D05 00000004 lda     0x4(g4)[r5*4],r5
-0002E564: 0BDF0BD4          bal     ffe1f138                   ; set cursor to g0, g1
+0002E564: 0BDF0BD4          bal     0001f138                   ; set cursor to g0, g1
 0002E568: 5C801605          mov     r5,g0
-0002E56C: 09DF0C14          call    ffe1f180                   ; print string from g0
+0002E56C: 09DF0C14          call    0001f180                   ; print string from g0
 0002E570: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002E578: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002E580: 0BDF0BB8          bal     ffe1f138                   ; set cursor to g0, g1
+0002E580: 0BDF0BB8          bal     0001f138                   ; set cursor to g0, g1
 0002E584: 8C803000 0022D920 lda     0x22d920,g0
-0002E58C: 09DF0BF4          call    ffe1f180                   ; print string from g0
+0002E58C: 09DF0BF4          call    0001f180                   ; print string from g0
 0002E590: 5CB81E13          mov     0x13,g7
 0002E594: 8AB83000 005FE5A0 stos    g7,0x5fe5a0
 0002E59C: 5880198F          setbit  0xf,0x0,g0
 0002E5A0: 8A203000 005FE5A2 stos    r4,0x5fe5a2
-0002E5A8: 0BDF0BC0          bal     ffe1f168                   ; set text color g0
+0002E5A8: 0BDF0BC0          bal     0001f168                   ; set text color g0
 0002E5AC: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002E5B4: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002E5BC: 0BDF0B7C          bal     ffe1f138                   ; set cursor to g0, g1
+0002E5BC: 0BDF0B7C          bal     0001f138                   ; set cursor to g0, g1
 0002E5C0: 8C803000 0022D924 lda     0x22d924,g0
-0002E5C8: 08DF0BB8          b       ffe1f180                   ; print string from g0
+0002E5C8: 08DF0BB8          b       0001f180                   ; print string from g0
 0002E5CC: 8CB80414          lda     0x414,g7
 0002E5D0: 58A5C085          and     r5,g7,g4
 0002E5D4: 3A052058          cmpibe  0x0,g4,0x2e62c
@@ -44362,41 +44362,41 @@
 0002E5E8: 34AD0024          cmpobl  g5,g4,0x2e60c
 0002E5EC: 82F03000 005FE627 stob    g14,0x5fe627
 0002E5F4: 8C803000 00AE101F lda     0xae101f,g0
-0002E5FC: 09DEBF58          call    ffe1a554                   ; push g0 to serial buffer
+0002E5FC: 09DEBF58          call    0001a554                   ; push g0 to serial buffer
 0002E600: 8C803000 00AE207C lda     0xae207c,g0
-0002E608: 08DEBF4C          b       ffe1a554
+0002E608: 08DEBF4C          b       0001a554
 0002E60C: 80A03000 005FE0C9 ldob    0x5fe0c9,g4
 0002E614: 90B03000 005FE628 ld      0x5fe628,g6
 0002E61C: 59AD0E03          shlo    0x3,g4,g5
 0002E620: 59AD4114          subo    g4,g5,g5
 0002E624: 90859D15          ld      (g6)[g5*4],g0
-0002E628: 08DEBF2C          b       ffe1a554
+0002E628: 08DEBF2C          b       0001a554
 0002E62C: 0A000000          ret
 0002E630: 82F03000 005FE0C8 stob    g14,0x5fe0c8
 0002E638: 5880198F          setbit  0xf,0x0,g0
-0002E63C: 0BDF0B2C          bal     ffe1f168                   ; set text color g0
+0002E63C: 0BDF0B2C          bal     0001f168                   ; set text color g0
 0002E640: 5C801E16          mov     0x16,g0
 0002E644: 5C881E03          mov     0x3,g1
-0002E648: 0BDF0AF0          bal     ffe1f138                   ; set cursor to g0, g1
+0002E648: 0BDF0AF0          bal     0001f138                   ; set cursor to g0, g1
 0002E64C: 8C803000 0023F1A0 lda     0x23f1a0,g0
-0002E654: 09DF0B2C          call    ffe1f180                   ; print string from g0
+0002E654: 09DF0B2C          call    0001f180                   ; print string from g0
 0002E658: 8C803000 0023F1F8 lda     0x23f1f8,g0
-0002E660: 09DF0B20          call    ffe1f180                   ; print string from g0
+0002E660: 09DF0B20          call    0001f180                   ; print string from g0
 0002E664: 5C801E14          mov     0x14,g0
 0002E668: 598A581F          addo    0x1f,0x9,g1
-0002E66C: 0BDF0ACC          bal     ffe1f138                   ; set cursor to g0, g1
+0002E66C: 0BDF0ACC          bal     0001f138                   ; set cursor to g0, g1
 0002E670: 8C803000 0023CB20 lda     0x23cb20,g0
-0002E678: 09DF0B08          call    ffe1f180                   ; print string from g0
+0002E678: 09DF0B08          call    0001f180                   ; print string from g0
 0002E67C: 5C801E14          mov     0x14,g0
 0002E680: 598A981F          addo    0x1f,0xa,g1
-0002E684: 0BDF0AB4          bal     ffe1f138                   ; set cursor to g0, g1
+0002E684: 0BDF0AB4          bal     0001f138                   ; set cursor to g0, g1
 0002E688: 8C803000 0023CB40 lda     0x23cb40,g0
-0002E690: 09DF0AF0          call    ffe1f180                   ; print string from g0
+0002E690: 09DF0AF0          call    0001f180                   ; print string from g0
 0002E694: 5C801E14          mov     0x14,g0
 0002E698: 598AD81F          addo    0x1f,0xb,g1
-0002E69C: 0BDF0A9C          bal     ffe1f138                   ; set cursor to g0, g1
+0002E69C: 0BDF0A9C          bal     0001f138                   ; set cursor to g0, g1
 0002E6A0: 8C803000 0023CBA0 lda     0x23cba0,g0
-0002E6A8: 09DF0AD8          call    ffe1f180                   ; print string from g0
+0002E6A8: 09DF0AD8          call    0001f180                   ; print string from g0
 0002E6AC: 90203000 0023F3D4 ld      0x23f3d4,r4
 0002E6B4: 86011000          callx   (r4)
 0002E6B8: 90203000 0023F3D0 ld      0x23f3d0,r4
@@ -44408,7 +44408,7 @@
 0002E6DC: 90203000 0023F3C4 ld      0x23f3c4,r4
 0002E6E4: 86011000          callx   (r4)
 0002E6E8: 5980DE0E          shlo    0xe,0x3,g0
-0002E6EC: 0BDF0A7C          bal     ffe1f168                   ; set text color g0
+0002E6EC: 0BDF0A7C          bal     0001f168                   ; set text color g0
 0002E6F0: 80A03000 005FE0C8 ldob    0x5fe0c8,g4
 0002E6F8: 90A03914 0023F3C0 ld      0x23f3c0[g4*4],g4
 0002E700: 86051000          callx   (g4)
@@ -44435,7 +44435,7 @@
 0002E748: 09000958          call    0002f0a0
 0002E74C: 0B0004AC          bal     0002ebf8
 0002E750: 5880198F          setbit  0xf,0x0,g0
-0002E754: 0BDF0A14          bal     ffe1f168                   ; set text color g0
+0002E754: 0BDF0A14          bal     0001f168                   ; set text color g0
 0002E758: 80A03000 005FE0C8 ldob    0x5fe0c8,g4
 0002E760: 90A03914 0023F3C0 ld      0x23f3c0[g4*4],g4
 0002E768: 86051000          callx   (g4)
@@ -44444,9 +44444,9 @@
 0002E778: 598C4E02          shlo    0x2,g1,g1
 0002E77C: 5C801E17          mov     0x17,g0
 0002E780: 8C8C6003          lda     0x3(g1),g1
-0002E784: 0BDF09B4          bal     ffe1f138                   ; set cursor to g0, g1
+0002E784: 0BDF09B4          bal     0001f138                   ; set cursor to g0, g1
 0002E788: 8C803000 0022E710 lda     0x22e710,g0
-0002E790: 09DF09F0          call    ffe1f180                   ; print string from g0
+0002E790: 09DF09F0          call    0001f180                   ; print string from g0
 0002E794: 8CB00828          lda     0x828,g6
 0002E798: 58A58084          and     r4,g6,g4
 0002E79C: 80A83000 005FE0C8 ldob    0x5fe0c8,g5
@@ -44465,7 +44465,7 @@
 0002E7D4: 59AD4901          subo    0x1,g5,g5
 0002E7D8: 82A83000 005FE0C8 stob    g5,0x5fe0c8
 0002E7E0: 5980DE0E          shlo    0xe,0x3,g0
-0002E7E4: 0BDF0984          bal     ffe1f168                   ; set text color g0
+0002E7E4: 0BDF0984          bal     0001f168                   ; set text color g0
 0002E7E8: 80A03000 005FE0C8 ldob    0x5fe0c8,g4
 0002E7F0: 90A03914 0023F3C0 ld      0x23f3c0[g4*4],g4
 0002E7F8: 86051000          callx   (g4)
@@ -44493,7 +44493,7 @@
 0002E858: 15000008          bne     0002e860
 0002E85C: 0A000000          ret
 0002E860: 8C843400 00BE1700 lda     0xbe1700(g0),g0
-0002E868: 09DEBCEC          call    ffe1a554                   ; push g0 to serial buffer
+0002E868: 09DEBCEC          call    0001a554                   ; push g0 to serial buffer
 0002E86C: 90803000 005FE0B4 ld      0x5fe0b4,g0
 0002E874: 5C881604          mov     r4,g1
 0002E878: 5C901E07          mov     0x7,g2
@@ -44509,7 +44509,7 @@
 0002E8A8: 15000008          bne     0002e8b0
 0002E8AC: 0A000000          ret
 0002E8B0: 8C843400 00BE1700 lda     0xbe1700(g0),g0
-0002E8B8: 09DEBC9C          call    ffe1a554                   ; push g0 to serial buffer
+0002E8B8: 09DEBC9C          call    0001a554                   ; push g0 to serial buffer
 0002E8BC: 90803000 005FE0C0 ld      0x5fe0c0,g0
 0002E8C4: 5C881604          mov     r4,g1
 0002E8C8: 5C901E0B          mov     0xb,g2
@@ -44526,7 +44526,7 @@
 0002E8FC: 15000008          bne     0002e904
 0002E900: 0A000000          ret
 0002E904: 8C843400 00BE1700 lda     0xbe1700(g0),g0
-0002E90C: 09DEBC48          call    ffe1a554                   ; push g0 to serial buffer
+0002E90C: 09DEBC48          call    0001a554                   ; push g0 to serial buffer
 0002E910: 90803000 005FE0C4 ld      0x5fe0c4,g0
 0002E918: 5C881604          mov     r4,g1
 0002E91C: 5C901E0F          mov     0xf,g2
@@ -44548,34 +44548,34 @@
 0002E960: 12000094          be      0002e9f4
 0002E964: 5C801E17          mov     0x17,g0
 0002E968: 5C881612          mov     g2,g1
-0002E96C: 0BDF07CC          bal     ffe1f138                   ; set cursor to g0, g1
+0002E96C: 0BDF07CC          bal     0001f138                   ; set cursor to g0, g1
 0002E970: 8C803000 0022E930 lda     0x22e930,g0
-0002E978: 09DF0808          call    ffe1f180                   ; print string from g0
+0002E978: 09DF0808          call    0001f180                   ; print string from g0
 0002E97C: 5980DE0E          shlo    0xe,0x3,g0
-0002E980: 0BDF07E8          bal     ffe1f168                   ; set text color g0
+0002E980: 0BDF07E8          bal     0001f168                   ; set text color g0
 0002E984: 5A003005          cmpo    r5,0x0
 0002E988: 5C201E00          mov     0x0,r4
 0002E98C: 16000068          ble     0002e9f4
 0002E990: 30016028          bbc     0,r5,0x2e9b8
 0002E994: 5C801E17          mov     0x17,g0
 0002E998: 5C881606          mov     r6,g1
-0002E99C: 0BDF079C          bal     ffe1f138                   ; set cursor to g0, g1
+0002E99C: 0BDF079C          bal     0001f138                   ; set cursor to g0, g1
 0002E9A0: 8C803000 0022E940 lda     0x22e940,g0
-0002E9A8: 09DF07D8          call    ffe1f180                   ; print string from g0
+0002E9A8: 09DF07D8          call    0001f180                   ; print string from g0
 0002E9AC: 5A007005          cmpo    r5,0x1
 0002E9B0: 5C201E01          mov     0x1,r4
 0002E9B4: 16000040          ble     0002e9f4
 0002E9B8: 5985D004          addo    r4,0x17,g0
 0002E9BC: 5C881606          mov     r6,g1
-0002E9C0: 0BDF0778          bal     ffe1f138                   ; set cursor to g0, g1
+0002E9C0: 0BDF0778          bal     0001f138                   ; set cursor to g0, g1
 0002E9C4: 8C803000 0022E940 lda     0x22e940,g0
-0002E9CC: 09DF07B4          call    ffe1f180                   ; print string from g0
+0002E9CC: 09DF07B4          call    0001f180                   ; print string from g0
 0002E9D0: 59805004          addo    r4,0x1,g0
 0002E9D4: 8C842017          lda     0x17(g0),g0
 0002E9D8: 5C881606          mov     r6,g1
-0002E9DC: 0BDF075C          bal     ffe1f138                   ; set cursor to g0, g1
+0002E9DC: 0BDF075C          bal     0001f138                   ; set cursor to g0, g1
 0002E9E0: 8C803000 0022E940 lda     0x22e940,g0
-0002E9E8: 09DF0798          call    ffe1f180                   ; print string from g0
+0002E9E8: 09DF0798          call    0001f180                   ; print string from g0
 0002E9EC: 59209004          addo    r4,0x2,r4
 0002E9F0: 31291FC8          cmpobg  r5,r4,0x2e9b8
 0002E9F4: 0A000000          ret
@@ -44597,22 +44597,22 @@
 0002EA38: 15000008          bne     0002ea40
 0002EA3C: 0A000000          ret
 0002EA40: 8C843400 00BE1900 lda     0xbe1900(g0),g0
-0002EA48: 09DEBB0C          call    ffe1a554                   ; push g0 to serial buffer
+0002EA48: 09DEBB0C          call    0001a554                   ; push g0 to serial buffer
 0002EA4C: 5980DE0E          shlo    0xe,0x3,g0
-0002EA50: 0BDF0718          bal     ffe1f168                   ; set text color g0
+0002EA50: 0BDF0718          bal     0001f168                   ; set text color g0
 0002EA54: 5C801E17          mov     0x17,g0
 0002EA58: 5C881E13          mov     0x13,g1
-0002EA5C: 0BDF06DC          bal     ffe1f138                   ; set cursor to g0, g1
+0002EA5C: 0BDF06DC          bal     0001f138                   ; set cursor to g0, g1
 0002EA60: 8C803000 0022EA00 lda     0x22ea00,g0
-0002EA68: 09DF0718          call    ffe1f180                   ; print string from g0
+0002EA68: 09DF0718          call    0001f180                   ; print string from g0
 0002EA6C: 34396030          cmpobl  0x7,r5,0x2ea9c
 0002EA70: 59214901          subo    0x1,r5,r4
 0002EA74: 34312098          cmpobl  0x6,r4,0x2eb0c
 0002EA78: 5985D004          addo    r4,0x17,g0
 0002EA7C: 5C881E13          mov     0x13,g1
-0002EA80: 0BDF06B8          bal     ffe1f138                   ; set cursor to g0, g1
+0002EA80: 0BDF06B8          bal     0001f138                   ; set cursor to g0, g1
 0002EA84: 8C803000 0022EA10 lda     0x22ea10,g0
-0002EA8C: 09DF06F4          call    ffe1f180                   ; print string from g0
+0002EA8C: 09DF06F4          call    0001f180                   ; print string from g0
 0002EA90: 59205004          addo    r4,0x1,r4
 0002EA94: 33313FE4          cmpobge 0x6,r4,0x2ea78
 0002EA98: 08000074          b       0002eb0c
@@ -44623,22 +44623,22 @@
 0002EAAC: 30016024          bbc     0,r5,0x2ead0
 0002EAB0: 5C801E1F          mov     0x1f,g0
 0002EAB4: 5C881E13          mov     0x13,g1
-0002EAB8: 0BDF0680          bal     ffe1f138                   ; set cursor to g0, g1
+0002EAB8: 0BDF0680          bal     0001f138                   ; set cursor to g0, g1
 0002EABC: 8C803000 0022EA12 lda     0x22ea12,g0
-0002EAC4: 09DF06BC          call    ffe1f180                   ; print string from g0
+0002EAC4: 09DF06BC          call    0001f180                   ; print string from g0
 0002EAC8: 5C201E09          mov     0x9,r4
 0002EACC: 33214040          cmpobge r4,r5,0x2eb0c
 0002EAD0: 5985D004          addo    r4,0x17,g0
 0002EAD4: 5C881E13          mov     0x13,g1
-0002EAD8: 0BDF0660          bal     ffe1f138                   ; set cursor to g0, g1
+0002EAD8: 0BDF0660          bal     0001f138                   ; set cursor to g0, g1
 0002EADC: 8C803000 0022EA12 lda     0x22ea12,g0
-0002EAE4: 09DF069C          call    ffe1f180                   ; print string from g0
+0002EAE4: 09DF069C          call    0001f180                   ; print string from g0
 0002EAE8: 59805004          addo    r4,0x1,g0
 0002EAEC: 8C842017          lda     0x17(g0),g0
 0002EAF0: 5C881E13          mov     0x13,g1
-0002EAF4: 0BDF0644          bal     ffe1f138                   ; set cursor to g0, g1
+0002EAF4: 0BDF0644          bal     0001f138                   ; set cursor to g0, g1
 0002EAF8: 8C803000 0022EA12 lda     0x22ea12,g0
-0002EB00: 09DF0680          call    ffe1f180                   ; print string from g0
+0002EB00: 09DF0680          call    0001f180                   ; print string from g0
 0002EB04: 59209004          addo    r4,0x2,r4
 0002EB08: 34215FC8          cmpobl  r4,r5,0x2ead0
 0002EB0C: 92283000 005FE0B0 st      r5,0x5fe0b0
@@ -44655,36 +44655,36 @@
 0002EB40: 0A000000          ret
 0002EB44: 8CA83000 00BE3710 lda     0xbe3710,g5
 0002EB4C: 59854110          subo    g0,g5,g0
-0002EB50: 09DEBA04          call    ffe1a554                   ; push g0 to serial buffer
+0002EB50: 09DEBA04          call    0001a554                   ; push g0 to serial buffer
 0002EB54: 5980DE0E          shlo    0xe,0x3,g0
-0002EB58: 0BDF0610          bal     ffe1f168                   ; set text color g0
+0002EB58: 0BDF0610          bal     0001f168                   ; set text color g0
 0002EB5C: 5C801E17          mov     0x17,g0
 0002EB60: 5C881E17          mov     0x17,g1
-0002EB64: 0BDF05D4          bal     ffe1f138                   ; set cursor to g0, g1
+0002EB64: 0BDF05D4          bal     0001f138                   ; set cursor to g0, g1
 0002EB68: 8C803000 0022E930 lda     0x22e930,g0
-0002EB70: 09DF0610          call    ffe1f180                   ; print string from g0
+0002EB70: 09DF0610          call    0001f180                   ; print string from g0
 0002EB74: 5A003085          cmpi    r5,0x0
 0002EB78: 5C201E00          mov     0x0,r4
 0002EB7C: 12000064          be      0002ebe0
 0002EB80: 30016024          bbc     0,r5,0x2eba4
 0002EB84: 5C801E17          mov     0x17,g0
 0002EB88: 5C881E17          mov     0x17,g1
-0002EB8C: 0BDF05AC          bal     ffe1f138                   ; set cursor to g0, g1
+0002EB8C: 0BDF05AC          bal     0001f138                   ; set cursor to g0, g1
 0002EB90: 8C803000 0022E940 lda     0x22e940,g0
-0002EB98: 09DF05E8          call    ffe1f180                   ; print string from g0
+0002EB98: 09DF05E8          call    0001f180                   ; print string from g0
 0002EB9C: 5C201E01          mov     0x1,r4
 0002EBA0: 33214040          cmpobge r4,r5,0x2ebe0
 0002EBA4: 5985D004          addo    r4,0x17,g0
 0002EBA8: 5C881E17          mov     0x17,g1
-0002EBAC: 0BDF058C          bal     ffe1f138                   ; set cursor to g0, g1
+0002EBAC: 0BDF058C          bal     0001f138                   ; set cursor to g0, g1
 0002EBB0: 8C803000 0022E940 lda     0x22e940,g0
-0002EBB8: 09DF05C8          call    ffe1f180                   ; print string from g0
+0002EBB8: 09DF05C8          call    0001f180                   ; print string from g0
 0002EBBC: 59805004          addo    r4,0x1,g0
 0002EBC0: 8C842017          lda     0x17(g0),g0
 0002EBC4: 5C881E17          mov     0x17,g1
-0002EBC8: 0BDF0570          bal     ffe1f138                   ; set cursor to g0, g1
+0002EBC8: 0BDF0570          bal     0001f138                   ; set cursor to g0, g1
 0002EBCC: 8C803000 0022E940 lda     0x22e940,g0
-0002EBD4: 09DF05AC          call    ffe1f180                   ; print string from g0
+0002EBD4: 09DF05AC          call    0001f180                   ; print string from g0
 0002EBD8: 59209004          addo    r4,0x2,r4
 0002EBDC: 34215FC8          cmpobl  r4,r5,0x2eba4
 0002EBE0: 92283000 005FE0B8 st      r5,0x5fe0b8
@@ -44705,146 +44705,146 @@
 0002EC3C: 0A000000          ret
 0002EC40: 5C801E18          mov     0x18,g0
 0002EC44: 5C881E19          mov     0x19,g1
-0002EC48: 0BDF04F0          bal     ffe1f138                   ; set cursor to g0, g1
+0002EC48: 0BDF04F0          bal     0001f138                   ; set cursor to g0, g1
 0002EC4C: 8C803000 0023CAB0 lda     0x23cab0,g0
-0002EC54: 09DF052C          call    ffe1f180                   ; print string from g0
+0002EC54: 09DF052C          call    0001f180                   ; print string from g0
 0002EC58: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002EC60: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002EC68: 0BDF04D0          bal     ffe1f138                   ; set cursor to g0, g1
+0002EC68: 0BDF04D0          bal     0001f138                   ; set cursor to g0, g1
 0002EC6C: 8C803000 0022D920 lda     0x22d920,g0
-0002EC74: 09DF050C          call    ffe1f180                   ; print string from g0
+0002EC74: 09DF050C          call    0001f180                   ; print string from g0
 0002EC78: 5CA01E15          mov     0x15,g4
 0002EC7C: 8AA03000 005FE5A0 stos    g4,0x5fe5a0
 0002EC84: 5CA01E19          mov     0x19,g4
 0002EC88: 8AA03000 005FE5A2 stos    g4,0x5fe5a2
 0002EC90: 5880198F          setbit  0xf,0x0,g0
-0002EC94: 0BDF04D4          bal     ffe1f168                   ; set text color g0
+0002EC94: 0BDF04D4          bal     0001f168                   ; set text color g0
 0002EC98: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002ECA0: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002ECA8: 0BDF0490          bal     ffe1f138                   ; set cursor to g0, g1
+0002ECA8: 0BDF0490          bal     0001f138                   ; set cursor to g0, g1
 0002ECAC: 8C803000 0022D924 lda     0x22d924,g0
-0002ECB4: 08DF04CC          b       ffe1f180                   ; print string from g0
+0002ECB4: 08DF04CC          b       0001f180                   ; print string from g0
 0002ECB8: 00000000          ? 00:0 00000000 0 0
 0002ECBC: 00000000          ? 00:0 00000000 0 0
 0002ECC0: 5C801E18          mov     0x18,g0
 0002ECC4: 5C881E05          mov     0x5,g1
-0002ECC8: 0BDF0470          bal     ffe1f138                   ; set cursor to g0, g1
+0002ECC8: 0BDF0470          bal     0001f138                   ; set cursor to g0, g1
 0002ECCC: 8C803000 0023F1F8 lda     0x23f1f8,g0
-0002ECD4: 09DF04AC          call    ffe1f180                   ; print string from g0
+0002ECD4: 09DF04AC          call    0001f180                   ; print string from g0
 0002ECD8: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002ECE0: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002ECE8: 0BDF0450          bal     ffe1f138                   ; set cursor to g0, g1
+0002ECE8: 0BDF0450          bal     0001f138                   ; set cursor to g0, g1
 0002ECEC: 8C803000 0022D920 lda     0x22d920,g0
-0002ECF4: 09DF048C          call    ffe1f180                   ; print string from g0
+0002ECF4: 09DF048C          call    0001f180                   ; print string from g0
 0002ECF8: 5CA01E15          mov     0x15,g4
 0002ECFC: 8AA03000 005FE5A0 stos    g4,0x5fe5a0
 0002ED04: 5CA01E05          mov     0x5,g4
 0002ED08: 8AA03000 005FE5A2 stos    g4,0x5fe5a2
 0002ED10: 5880198F          setbit  0xf,0x0,g0
-0002ED14: 0BDF0454          bal     ffe1f168                   ; set text color g0
+0002ED14: 0BDF0454          bal     0001f168                   ; set text color g0
 0002ED18: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002ED20: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002ED28: 0BDF0410          bal     ffe1f138                   ; set cursor to g0, g1
+0002ED28: 0BDF0410          bal     0001f138                   ; set cursor to g0, g1
 0002ED2C: 8C803000 0022D924 lda     0x22d924,g0
-0002ED34: 08DF044C          b       ffe1f180                   ; print string from g0
+0002ED34: 08DF044C          b       0001f180                   ; print string from g0
 0002ED38: 00000000          ? 00:0 00000000 0 0
 0002ED3C: 00000000          ? 00:0 00000000 0 0
 0002ED40: 5C801E18          mov     0x18,g0
 0002ED44: 5C881E09          mov     0x9,g1
-0002ED48: 0BDF03F0          bal     ffe1f138                   ; set cursor to g0, g1
+0002ED48: 0BDF03F0          bal     0001f138                   ; set cursor to g0, g1
 0002ED4C: 8C803000 0023F210 lda     0x23f210,g0
-0002ED54: 09DF042C          call    ffe1f180                   ; print string from g0
+0002ED54: 09DF042C          call    0001f180                   ; print string from g0
 0002ED58: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002ED60: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002ED68: 0BDF03D0          bal     ffe1f138                   ; set cursor to g0, g1
+0002ED68: 0BDF03D0          bal     0001f138                   ; set cursor to g0, g1
 0002ED6C: 8C803000 0022D920 lda     0x22d920,g0
-0002ED74: 09DF040C          call    ffe1f180                   ; print string from g0
+0002ED74: 09DF040C          call    0001f180                   ; print string from g0
 0002ED78: 5CA01E15          mov     0x15,g4
 0002ED7C: 8AA03000 005FE5A0 stos    g4,0x5fe5a0
 0002ED84: 5CA01E09          mov     0x9,g4
 0002ED88: 8AA03000 005FE5A2 stos    g4,0x5fe5a2
 0002ED90: 5880198F          setbit  0xf,0x0,g0
-0002ED94: 0BDF03D4          bal     ffe1f168                   ; set text color g0
+0002ED94: 0BDF03D4          bal     0001f168                   ; set text color g0
 0002ED98: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002EDA0: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002EDA8: 0BDF0390          bal     ffe1f138                   ; set cursor to g0, g1
+0002EDA8: 0BDF0390          bal     0001f138                   ; set cursor to g0, g1
 0002EDAC: 8C803000 0022D924 lda     0x22d924,g0
-0002EDB4: 09DF03CC          call    ffe1f180                   ; print string from g0
+0002EDB4: 09DF03CC          call    0001f180                   ; print string from g0
 0002EDB8: 8C803000 00BE3501 lda     0xbe3501,g0
-0002EDC0: 08DEB794          b       ffe1a554
+0002EDC0: 08DEB794          b       0001a554
 0002EDC4: 00000000          ? 00:0 00000000 0 0
 0002EDC8: 00000000          ? 00:0 00000000 0 0
 0002EDCC: 00000000          ? 00:0 00000000 0 0
 0002EDD0: 5C801E18          mov     0x18,g0
 0002EDD4: 5C881E0D          mov     0xd,g1
-0002EDD8: 0BDF0360          bal     ffe1f138                   ; set cursor to g0, g1
+0002EDD8: 0BDF0360          bal     0001f138                   ; set cursor to g0, g1
 0002EDDC: 8C803000 0023F220 lda     0x23f220,g0
-0002EDE4: 09DF039C          call    ffe1f180                   ; print string from g0
+0002EDE4: 09DF039C          call    0001f180                   ; print string from g0
 0002EDE8: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002EDF0: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002EDF8: 0BDF0340          bal     ffe1f138                   ; set cursor to g0, g1
+0002EDF8: 0BDF0340          bal     0001f138                   ; set cursor to g0, g1
 0002EDFC: 8C803000 0022D920 lda     0x22d920,g0
-0002EE04: 09DF037C          call    ffe1f180                   ; print string from g0
+0002EE04: 09DF037C          call    0001f180                   ; print string from g0
 0002EE08: 5CA01E15          mov     0x15,g4
 0002EE0C: 8AA03000 005FE5A0 stos    g4,0x5fe5a0
 0002EE14: 5CA01E0D          mov     0xd,g4
 0002EE18: 8AA03000 005FE5A2 stos    g4,0x5fe5a2
 0002EE20: 5880198F          setbit  0xf,0x0,g0
-0002EE24: 0BDF0344          bal     ffe1f168                   ; set text color g0
+0002EE24: 0BDF0344          bal     0001f168                   ; set text color g0
 0002EE28: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002EE30: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002EE38: 0BDF0300          bal     ffe1f138                   ; set cursor to g0, g1
+0002EE38: 0BDF0300          bal     0001f138                   ; set cursor to g0, g1
 0002EE3C: 8C803000 0022D924 lda     0x22d924,g0
-0002EE44: 09DF033C          call    ffe1f180                   ; print string from g0
+0002EE44: 09DF033C          call    0001f180                   ; print string from g0
 0002EE48: 8C803000 00BE3401 lda     0xbe3401,g0
-0002EE50: 08DEB704          b       ffe1a554
+0002EE50: 08DEB704          b       0001a554
 0002EE54: 00000000          ? 00:0 00000000 0 0
 0002EE58: 00000000          ? 00:0 00000000 0 0
 0002EE5C: 00000000          ? 00:0 00000000 0 0
 0002EE60: 5C801E18          mov     0x18,g0
 0002EE64: 5C881E15          mov     0x15,g1
-0002EE68: 0BDF02D0          bal     ffe1f138                   ; set cursor to g0, g1
+0002EE68: 0BDF02D0          bal     0001f138                   ; set cursor to g0, g1
 0002EE6C: 8C803000 0023F230 lda     0x23f230,g0
-0002EE74: 09DF030C          call    ffe1f180                   ; print string from g0
+0002EE74: 09DF030C          call    0001f180                   ; print string from g0
 0002EE78: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002EE80: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002EE88: 0BDF02B0          bal     ffe1f138                   ; set cursor to g0, g1
+0002EE88: 0BDF02B0          bal     0001f138                   ; set cursor to g0, g1
 0002EE8C: 8C803000 0022D920 lda     0x22d920,g0
-0002EE94: 09DF02EC          call    ffe1f180                   ; print string from g0
+0002EE94: 09DF02EC          call    0001f180                   ; print string from g0
 0002EE98: 5CA01E15          mov     0x15,g4
 0002EE9C: 8AA03000 005FE5A0 stos    g4,0x5fe5a0
 0002EEA4: 8AA03000 005FE5A2 stos    g4,0x5fe5a2
 0002EEAC: 5880198F          setbit  0xf,0x0,g0
-0002EEB0: 0BDF02B8          bal     ffe1f168                   ; set text color g0
+0002EEB0: 0BDF02B8          bal     0001f168                   ; set text color g0
 0002EEB4: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002EEBC: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002EEC4: 0BDF0274          bal     ffe1f138                   ; set cursor to g0, g1
+0002EEC4: 0BDF0274          bal     0001f138                   ; set cursor to g0, g1
 0002EEC8: 8C803000 0022D924 lda     0x22d924,g0
-0002EED0: 08DF02B0          b       ffe1f180                   ; print string from g0
+0002EED0: 08DF02B0          b       0001f180                   ; print string from g0
 0002EED4: 00000000          ? 00:0 00000000 0 0
 0002EED8: 00000000          ? 00:0 00000000 0 0
 0002EEDC: 00000000          ? 00:0 00000000 0 0
 0002EEE0: 5C801E18          mov     0x18,g0
 0002EEE4: 5C881E11          mov     0x11,g1
-0002EEE8: 0BDF0250          bal     ffe1f138                   ; set cursor to g0, g1
+0002EEE8: 0BDF0250          bal     0001f138                   ; set cursor to g0, g1
 0002EEEC: 8C803000 0023F200 lda     0x23f200,g0
-0002EEF4: 09DF028C          call    ffe1f180                   ; print string from g0
+0002EEF4: 09DF028C          call    0001f180                   ; print string from g0
 0002EEF8: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002EF00: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002EF08: 0BDF0230          bal     ffe1f138                   ; set cursor to g0, g1
+0002EF08: 0BDF0230          bal     0001f138                   ; set cursor to g0, g1
 0002EF0C: 8C803000 0022D920 lda     0x22d920,g0
-0002EF14: 09DF026C          call    ffe1f180                   ; print string from g0
+0002EF14: 09DF026C          call    0001f180                   ; print string from g0
 0002EF18: 5CA01E15          mov     0x15,g4
 0002EF1C: 8AA03000 005FE5A0 stos    g4,0x5fe5a0
 0002EF24: 5CA01E11          mov     0x11,g4
 0002EF28: 8AA03000 005FE5A2 stos    g4,0x5fe5a2
 0002EF30: 5880198F          setbit  0xf,0x0,g0
-0002EF34: 0BDF0234          bal     ffe1f168                   ; set text color g0
+0002EF34: 0BDF0234          bal     0001f168                   ; set text color g0
 0002EF38: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002EF40: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002EF48: 0BDF01F0          bal     ffe1f138                   ; set cursor to g0, g1
+0002EF48: 0BDF01F0          bal     0001f138                   ; set cursor to g0, g1
 0002EF4C: 8C803000 0022D924 lda     0x22d924,g0
-0002EF54: 08DF022C          b       ffe1f180                   ; print string from g0
+0002EF54: 08DF022C          b       0001f180                   ; print string from g0
 0002EF58: 00000000          ? 00:0 00000000 0 0
 0002EF5C: 00000000          ? 00:0 00000000 0 0
 0002EF60: 8CF03000 0022F020 lda     0x22f020,g14
@@ -44893,44 +44893,44 @@
 0002F028: 00000000          ? 00:0 00000000 0 0
 0002F02C: 00000000          ? 00:0 00000000 0 0
 0002F030: 90803000 0023F3E0 ld      0x23f3e0,g0
-0002F038: 09DEB51C          call    ffe1a554                   ; push g0 to serial buffer
+0002F038: 09DEB51C          call    0001a554                   ; push g0 to serial buffer
 0002F03C: 90803000 0023F3E4 ld      0x23f3e4,g0
-0002F044: 09DEB510          call    ffe1a554                   ; push g0 to serial buffer
+0002F044: 09DEB510          call    0001a554                   ; push g0 to serial buffer
 0002F048: 90803000 0023F3E8 ld      0x23f3e8,g0
-0002F050: 09DEB504          call    ffe1a554                   ; push g0 to serial buffer
+0002F050: 09DEB504          call    0001a554                   ; push g0 to serial buffer
 0002F054: 90803000 0023F3EC ld      0x23f3ec,g0
-0002F05C: 09DEB4F8          call    ffe1a554                   ; push g0 to serial buffer
+0002F05C: 09DEB4F8          call    0001a554                   ; push g0 to serial buffer
 0002F060: 90803000 0023F3F0 ld      0x23f3f0,g0
-0002F068: 09DEB4EC          call    ffe1a554                   ; push g0 to serial buffer
+0002F068: 09DEB4EC          call    0001a554                   ; push g0 to serial buffer
 0002F06C: 90803000 0023F3F4 ld      0x23f3f4,g0
-0002F074: 09DEB4E0          call    ffe1a554                   ; push g0 to serial buffer
+0002F074: 09DEB4E0          call    0001a554                   ; push g0 to serial buffer
 0002F078: 90803000 0023F3F8 ld      0x23f3f8,g0
-0002F080: 09DEB4D4          call    ffe1a554                   ; push g0 to serial buffer
+0002F080: 09DEB4D4          call    0001a554                   ; push g0 to serial buffer
 0002F084: 90803000 0023F3FC ld      0x23f3fc,g0
-0002F08C: 09DEB4C8          call    ffe1a554                   ; push g0 to serial buffer
+0002F08C: 09DEB4C8          call    0001a554                   ; push g0 to serial buffer
 0002F090: 90803000 0023F400 ld      0x23f400,g0
-0002F098: 08DEB4BC          b       ffe1a554
+0002F098: 08DEB4BC          b       0001a554
 0002F09C: 00000000          ? 00:0 00000000 0 0
 
 {
 ; set soundboard to service
 0002F0A0: 90803000 0023F410 ld      0x23f410,g0
-0002F0A8: 09DEB4AC          call    ffe1a554                   ; push g0 to serial buffer
+0002F0A8: 09DEB4AC          call    0001a554                   ; push g0 to serial buffer
 
 0002F0AC: 90803000 0023F414 ld      0x23f414,g0
-0002F0B4: 09DEB4A0          call    ffe1a554                   ; push g0 to serial buffer
+0002F0B4: 09DEB4A0          call    0001a554                   ; push g0 to serial buffer
 
 0002F0B8: 90803000 0023F418 ld      0x23f418,g0
-0002F0C0: 09DEB494          call    ffe1a554                   ; push g0 to serial buffer
+0002F0C0: 09DEB494          call    0001a554                   ; push g0 to serial buffer
 
 0002F0C4: 90803000 0023F41C ld      0x23f41c,g0
-0002F0CC: 09DEB488          call    ffe1a554                   ; push g0 to serial buffer
+0002F0CC: 09DEB488          call    0001a554                   ; push g0 to serial buffer
 
 0002F0D0: 90803000 0023F420 ld      0x23f420,g0
-0002F0D8: 09DEB47C          call    ffe1a554                   ; push g0 to serial buffer
+0002F0D8: 09DEB47C          call    0001a554                   ; push g0 to serial buffer
 
 0002F0DC: 90803000 0023F424 ld      0x23f424,g0
-0002F0E4: 08DEB470          b       ffe1a554                   ; push g0 to serial buffer
+0002F0E4: 08DEB470          b       0001a554                   ; push g0 to serial buffer
 }
 
 0002F0E8: 00000000          ? 00:0 00000000 0 0
@@ -44957,82 +44957,82 @@
 
 {
 ; service handler A-0 (backup ram 0)
-0002F130: 09DEFCB0          call    ffe1ede0                   ; clear screen
+0002F130: 09DEFCB0          call    0001ede0                   ; clear screen
 0002F134: 5880198F          setbit  0xf,0x0,g0
-0002F138: 0BDF0030          bal     ffe1f168                   ; set text color g0
+0002F138: 0BDF0030          bal     0001f168                   ; set text color g0
 0002F13C: 5C801E16          mov     0x16,g0
 0002F140: 5C881E03          mov     0x3,g1
-0002F144: 0BDEFFF4          bal     ffe1f138                   ; set cursor to g0, g1
+0002F144: 0BDEFFF4          bal     0001f138                   ; set cursor to g0, g1
 0002F148: 8C803000 0023F430 lda     0x23f430,g0
-0002F150: 09DF0030          call    ffe1f180                   ; print string from g0
+0002F150: 09DF0030          call    0001f180                   ; print string from g0
 0002F154: 5C801E14          mov     0x14,g0
 0002F158: 5C881E1E          mov     0x1e,g1
-0002F15C: 0BDEFFDC          bal     ffe1f138                   ; set cursor to g0, g1
+0002F15C: 0BDEFFDC          bal     0001f138                   ; set cursor to g0, g1
 0002F160: 8C803000 0023CB20 lda     0x23cb20,g0
-0002F168: 09DF0018          call    ffe1f180                   ; print string from g0
+0002F168: 09DF0018          call    0001f180                   ; print string from g0
 0002F16C: 5C801E14          mov     0x14,g0
 0002F170: 5C881E1F          mov     0x1f,g1
-0002F174: 0BDEFFC4          bal     ffe1f138                   ; set cursor to g0, g1
+0002F174: 0BDEFFC4          bal     0001f138                   ; set cursor to g0, g1
 0002F178: 8C803000 0023CB40 lda     0x23cb40,g0
-0002F180: 09DF0000          call    ffe1f180                   ; print string from g0
+0002F180: 09DF0000          call    0001f180                   ; print string from g0
 0002F184: 5C801E14          mov     0x14,g0
 0002F188: 5988581F          addo    0x1f,0x1,g1
-0002F18C: 0BDEFFAC          bal     ffe1f138                   ; set cursor to g0, g1
+0002F18C: 0BDEFFAC          bal     0001f138                   ; set cursor to g0, g1
 0002F190: 8C803000 0023CBA0 lda     0x23cba0,g0
 0002F198: 8C283000 0023F45A lda     0x23f45a,r5
 0002F1A0: 59389005          addo    r5,0x2,r7
-0002F1A4: 09DEFFDC          call    ffe1f180                   ; print string from g0
+0002F1A4: 09DEFFDC          call    0001f180                   ; print string from g0
 0002F1A8: 88803000 0023F458 ldos    0x23f458,g0
 0002F1B0: 88895000          ldos    (r5),g1
 0002F1B4: 9021D000          ld      (r7),r4
-0002F1B8: 0BDEFF80          bal     ffe1f138                   ; set cursor to g0, g1
+0002F1B8: 0BDEFF80          bal     0001f138                   ; set cursor to g0, g1
 0002F1BC: 5C801604          mov     r4,g0
-0002F1C0: 09DEFFC0          call    ffe1f180                   ; print string from g0
+0002F1C0: 09DEFFC0          call    0001f180                   ; print string from g0
 0002F1C4: 88203000 0023F458 ldos    0x23f458,r4
 0002F1CC: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002F1D4: 88883000 005FE5A2 ldos    0x5fe5a2,g1
 0002F1DC: 88315000          ldos    (r5),r6
-0002F1E0: 0BDEFF58          bal     ffe1f138                   ; set cursor to g0, g1
+0002F1E0: 0BDEFF58          bal     0001f138                   ; set cursor to g0, g1
 0002F1E4: 8C803000 0022F0F0 lda     0x22f0f0,g0
-0002F1EC: 09DEFF94          call    ffe1f180                   ; print string from g0
+0002F1EC: 09DEFF94          call    0001f180                   ; print string from g0
 0002F1F0: 8CA13400 0000FFFD lda     0xfffd(r4),g4
 0002F1F8: 8AA03000 005FE5A0 stos    g4,0x5fe5a0
 0002F200: 5880198F          setbit  0xf,0x0,g0
 0002F204: 8A303000 005FE5A2 stos    r6,0x5fe5a2
-0002F20C: 0BDEFF5C          bal     ffe1f168                   ; set text color g0
+0002F20C: 0BDEFF5C          bal     0001f168                   ; set text color g0
 0002F210: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002F218: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002F220: 0BDEFF18          bal     ffe1f138                   ; set cursor to g0, g1
+0002F220: 0BDEFF18          bal     0001f138                   ; set cursor to g0, g1
 0002F224: 8C803000 0022F0F4 lda     0x22f0f4,g0
-0002F22C: 09DEFF54          call    ffe1f180                   ; print string from g0
+0002F22C: 09DEFF54          call    0001f180                   ; print string from g0
 0002F230: 5980DE0E          shlo    0xe,0x3,g0
-0002F234: 0BDEFF34          bal     ffe1f168                   ; set text color g0
+0002F234: 0BDEFF34          bal     0001f168                   ; set text color g0
 0002F238: 88803000 0023F450 ldos    0x23f450,g0
 0002F240: 59294908          subo    0x8,r5,r5
 0002F244: 88895000          ldos    (r5),g1
 0002F248: 9021F400 FFFFFFF8 ld      0xfffffff8(r7),r4
-0002F250: 0BDEFEE8          bal     ffe1f138                   ; set cursor to g0, g1
+0002F250: 0BDEFEE8          bal     0001f138                   ; set cursor to g0, g1
 0002F254: 5C801604          mov     r4,g0
-0002F258: 09DEFF28          call    ffe1f180                   ; print string from g0
+0002F258: 09DEFF28          call    0001f180                   ; print string from g0
 0002F25C: 88203000 0023F450 ldos    0x23f450,r4
 0002F264: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002F26C: 88883000 005FE5A2 ldos    0x5fe5a2,g1
 0002F274: 88315000          ldos    (r5),r6
-0002F278: 0BDEFEC0          bal     ffe1f138                   ; set cursor to g0, g1
+0002F278: 0BDEFEC0          bal     0001f138                   ; set cursor to g0, g1
 0002F27C: 8C803000 0022F0F0 lda     0x22f0f0,g0
-0002F284: 09DEFEFC          call    ffe1f180                   ; print string from g0
+0002F284: 09DEFEFC          call    0001f180                   ; print string from g0
 0002F288: 8CA13400 0000FFFD lda     0xfffd(r4),g4
 0002F290: 8AA03000 005FE5A0 stos    g4,0x5fe5a0
 0002F298: 5880198F          setbit  0xf,0x0,g0
 0002F29C: 8A303000 005FE5A2 stos    r6,0x5fe5a2
-0002F2A4: 0BDEFEC4          bal     ffe1f168                   ; set text color g0
+0002F2A4: 0BDEFEC4          bal     0001f168                   ; set text color g0
 0002F2A8: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002F2B0: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002F2B8: 0BDEFE80          bal     ffe1f138                   ; set cursor to g0, g1
+0002F2B8: 0BDEFE80          bal     0001f138                   ; set cursor to g0, g1
 0002F2BC: 8C803000 0022F0F4 lda     0x22f0f4,g0
-0002F2C4: 09DEFEBC          call    ffe1f180                   ; print string from g0
+0002F2C4: 09DEFEBC          call    0001f180                   ; print string from g0
 0002F2C8: 5980DE0E          shlo    0xe,0x3,g0
-0002F2CC: 0BDEFE9C          bal     ffe1f168                   ; set text color g0
+0002F2CC: 0BDEFE9C          bal     0001f168                   ; set text color g0
 0002F2D0: 80A03000 005FE627 ldob    0x5fe627,g4
 0002F2D8: 59A05014          addo    g4,0x1,g4
 0002F2DC: 82A03000 005FE627 stob    g4,0x5fe627
@@ -45049,14 +45049,14 @@
 0002F300: 58A58095          and     g5,g6,g4
 0002F304: 3A0520FC          cmpibe  0x0,g4,0x2f400             ; if 0x0 == g4 goto 0002F400
 0002F308: 5880198F          setbit  0xf,0x0,g0
-0002F30C: 0BDEFE5C          bal     ffe1f168                   ; set text color g0
+0002F30C: 0BDEFE5C          bal     0001f168                   ; set text color g0
 0002F310: 80A03000 005FE634 ldob    0x5fe634,g4
 0002F318: 88803994 0023F450 ldos    0x23f450[g4*8],g0
 0002F320: 88883994 0023F452 ldos    0x23f452[g4*8],g1
 0002F328: 90203994 0023F454 ld      0x23f454[g4*8],r4
-0002F330: 0BDEFE08          bal     ffe1f138                   ; set cursor to g0, g1
+0002F330: 0BDEFE08          bal     0001f138                   ; set cursor to g0, g1
 0002F334: 5C801604          mov     r4,g0
-0002F338: 09DEFE48          call    ffe1f180                   ; print string from g0
+0002F338: 09DEFE48          call    0001f180                   ; print string from g0
 0002F33C: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002F344: 80A03000 005FE634 ldob    0x5fe634,g4
 0002F34C: 88883000 005FE5A2 ldos    0x5fe5a2,g1
@@ -45067,28 +45067,28 @@
 0002F368: 58A58094          and     g4,g6,g4
 0002F36C: 88203994 0023F450 ldos    0x23f450[g4*8],r4
 0002F374: 88283994 0023F452 ldos    0x23f452[g4*8],r5
-0002F37C: 0BDEFDBC          bal     ffe1f138                   ; set cursor to g0, g1
+0002F37C: 0BDEFDBC          bal     0001f138                   ; set cursor to g0, g1
 0002F380: 8C803000 0022F0F0 lda     0x22f0f0,g0
-0002F388: 09DEFDF8          call    ffe1f180                   ; print string from g0
+0002F388: 09DEFDF8          call    0001f180                   ; print string from g0
 0002F38C: 8C213400 0000FFFD lda     0xfffd(r4),r4
 0002F394: 8A203000 005FE5A0 stos    r4,0x5fe5a0
 0002F39C: 5880198F          setbit  0xf,0x0,g0
 0002F3A0: 8A283000 005FE5A2 stos    r5,0x5fe5a2
-0002F3A8: 0BDEFDC0          bal     ffe1f168                   ; set text color g0
+0002F3A8: 0BDEFDC0          bal     0001f168                   ; set text color g0
 0002F3AC: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002F3B4: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002F3BC: 0BDEFD7C          bal     ffe1f138                   ; set cursor to g0, g1
+0002F3BC: 0BDEFD7C          bal     0001f138                   ; set cursor to g0, g1
 0002F3C0: 8C803000 0022F0F4 lda     0x22f0f4,g0
-0002F3C8: 09DEFDB8          call    ffe1f180                   ; print string from g0
+0002F3C8: 09DEFDB8          call    0001f180                   ; print string from g0
 0002F3CC: 5980DE0E          shlo    0xe,0x3,g0
-0002F3D0: 0BDEFD98          bal     ffe1f168                   ; set text color g0
+0002F3D0: 0BDEFD98          bal     0001f168                   ; set text color g0
 0002F3D4: 80A03000 005FE634 ldob    0x5fe634,g4
 0002F3DC: 88803994 0023F450 ldos    0x23f450[g4*8],g0
 0002F3E4: 88883994 0023F452 ldos    0x23f452[g4*8],g1
 0002F3EC: 90203994 0023F454 ld      0x23f454[g4*8],r4
-0002F3F4: 0BDEFD44          bal     ffe1f138                   ; set cursor to g0, g1
+0002F3F4: 0BDEFD44          bal     0001f138                   ; set cursor to g0, g1
 0002F3F8: 5C801604          mov     r4,g0
-0002F3FC: 08DEFD84          b       ffe1f180                   ; print string from g0
+0002F3FC: 08DEFD84          b       0001f180                   ; print string from g0
 
 0002F400: 8CB00414          lda     0x414,g6
 0002F404: 58A58095          and     g5,g6,g4
@@ -45099,7 +45099,7 @@
 
 0002F418: 09FFA2B8          call    000296d0                   ; zero backup times
 0002F41C: 09FF7E10          call    0002722c                   ; rebuild hiscore tables
-0002F420: 09DEF9C0          call    ffe1ede0                   ; clear screen
+0002F420: 09DEF9C0          call    0001ede0                   ; clear screen
 
 0002F424: 80A03000 005FE634 ldob    0x5fe634,g4
 0002F42C: 8CB000FF          lda     0xff,g6
@@ -45109,9 +45109,9 @@
 0002F440: 88883995 0023F452 ldos    0x23f452[g5*8],g1
 0002F448: 82A03000 005FE634 stob    g4,0x5fe634
 0002F450: 90203995 0023F454 ld      0x23f454[g5*8],r4
-0002F458: 0BDEFCE0          bal     ffe1f138                   ; set cursor to g0, g1
+0002F458: 0BDEFCE0          bal     0001f138                   ; set cursor to g0, g1
 0002F45C: 5C801604          mov     r4,g0
-0002F460: 09DEFD20          call    ffe1f180                   ; print string from g0
+0002F460: 09DEFD20          call    0001f180                   ; print string from g0
 0002F464: 80A03000 005FE627 ldob    0x5fe627,g4
 0002F46C: 8CB00122          lda     0x122,g6
 0002F470: 8AB03000 005FE62C stos    g6,0x5fe62c
@@ -45169,60 +45169,60 @@
 
 {
 ; service handelr 6-1 (drivebd 1)
-0002F510: 09DEF8D0          call    ffe1ede0                   ; clear screen
+0002F510: 09DEF8D0          call    0001ede0                   ; clear screen
 0002F514: 5880198F          setbit  0xf,0x0,g0
-0002F518: 0BDEFC50          bal     ffe1f168                   ; set text color g0
+0002F518: 0BDEFC50          bal     0001f168                   ; set text color g0
 0002F51C: 5C801E14          mov     0x14,g0
 0002F520: 5C881E1E          mov     0x1e,g1
-0002F524: 0BDEFC14          bal     ffe1f138                   ; set cursor to g0, g1
+0002F524: 0BDEFC14          bal     0001f138                   ; set cursor to g0, g1
 0002F528: 8C803000 0023CB20 lda     0x23cb20,g0
-0002F530: 09DEFC50          call    ffe1f180                   ; print string from g0	; "GREEN  : CURSOR UP"
+0002F530: 09DEFC50          call    0001f180                   ; print string from g0	; "GREEN  : CURSOR UP"
 
 0002F534: 5C801E14          mov     0x14,g0
 0002F538: 5C881E1F          mov     0x1f,g1
-0002F53C: 0BDEFBFC          bal     ffe1f138                   ; set cursor to g0, g1
+0002F53C: 0BDEFBFC          bal     0001f138                   ; set cursor to g0, g1
 0002F540: 8C803000 0023CB40 lda     0x23cb40,g0
-0002F548: 09DEFC38          call    ffe1f180                   ; print string from g0	; "RED    : CURSOR DOWN"
+0002F548: 09DEFC38          call    0001f180                   ; print string from g0	; "RED    : CURSOR DOWN"
 
 0002F54C: 5C801E14          mov     0x14,g0
 0002F550: 5988581F          addo    0x1f,0x1,g1
-0002F554: 0BDEFBE4          bal     ffe1f138                   ; set cursor to g0, g1
+0002F554: 0BDEFBE4          bal     0001f138                   ; set cursor to g0, g1
 0002F558: 8C803000 0023CBA0 lda     0x23cba0,g0
-0002F560: 09DEFC20          call    ffe1f180                   ; print string from g0	; "START  : TO SELECT"
+0002F560: 09DEFC20          call    0001f180                   ; print string from g0	; "START  : TO SELECT"
 
 0002F564: 5C801E19          mov     0x19,g0
 0002F568: 5C881E03          mov     0x3,g1
-0002F56C: 0BDEFBCC          bal     ffe1f138                   ; set cursor to g0, g1
+0002F56C: 0BDEFBCC          bal     0001f138                   ; set cursor to g0, g1
 0002F570: 8C803000 0023F480 lda     0x23f480,g0
 0002F578: 8C283000 0023F674 lda     0x23f674,r5
 0002F580: 59314902          subo    0x2,r5,r6
-0002F584: 09DEFBFC          call    ffe1f180                   ; print string from g0	; "DRIVE BD TEST"
+0002F584: 09DEFBFC          call    0001f180                   ; print string from g0	; "DRIVE BD TEST"
 
 0002F588: 88803000 0023F670 ldos    0x23f670,g0
 0002F590: 88899000          ldos    (r6),g1
 0002F594: 90215000          ld      (r5),r4
 0002F598: 59318908          subo    0x8,r6,r6
-0002F59C: 0BDEFB9C          bal     ffe1f138                   ; set cursor to g0, g1
+0002F59C: 0BDEFB9C          bal     0001f138                   ; set cursor to g0, g1
 0002F5A0: 5C801604          mov     r4,g0
-0002F5A4: 09DEFBDC          call    ffe1f180                   ; print string from g0	; "CYLINDER"
+0002F5A4: 09DEFBDC          call    0001f180                   ; print string from g0	; "CYLINDER"
 
 0002F5A8: 88803000 0023F668 ldos    0x23f668,g0
 0002F5B0: 88899000          ldos    (r6),g1
 0002F5B4: 59294908          subo    0x8,r5,r5
 0002F5B8: 90215000          ld      (r5),r4
-0002F5BC: 0BDEFB7C          bal     ffe1f138                   ; set cursor to g0, g1
+0002F5BC: 0BDEFB7C          bal     0001f138                   ; set cursor to g0, g1
 0002F5C0: 5C801604          mov     r4,g0
-0002F5C4: 09DEFBBC          call    ffe1f180                   ; print string from g0	; "STEERING"
+0002F5C4: 09DEFBBC          call    0001f180                   ; print string from g0	; "STEERING"
 
 0002F5C8: 88803000 0023F660 ldos    0x23f660,g0
 0002F5D0: 8889B400 FFFFFFF8 ldos    0xfffffff8(r6),g1
 0002F5D8: 90217400 FFFFFFF8 ld      0xfffffff8(r5),r4
-0002F5E0: 0BDEFB58          bal     ffe1f138                   ; set cursor to g0, g1
+0002F5E0: 0BDEFB58          bal     0001f138                   ; set cursor to g0, g1
 0002F5E4: 5C801604          mov     r4,g0
-0002F5E8: 09DEFB98          call    ffe1f180                   ; print string from g0 "EXIT"
+0002F5E8: 09DEFB98          call    0001f180                   ; print string from g0 "EXIT"
 
 0002F5EC: 5980DE0E          shlo    0xe,0x3,g0
-0002F5F0: 0BDEFB78          bal     ffe1f168                   ; set text color g0
+0002F5F0: 0BDEFB78          bal     0001f168                   ; set text color g0
 0002F5F4: 80A03000 005FE634 ldob    0x5fe634,g4
 0002F5FC: 98803994 0023F660 ldl     0x23f660[g4*8],g0
 0002F604: 0900004C          call    0002f650
@@ -45250,24 +45250,24 @@
 0002F650: 5D201610          movl    g0,r4
 0002F654: 59340C10          shro    0x10,g0,r6
 0002F658: 5C881606          mov     r6,g1
-0002F65C: 0BDEFADC          bal     ffe1f138                   ; set cursor to g0, g1
+0002F65C: 0BDEFADC          bal     0001f138                   ; set cursor to g0, g1
 0002F660: 5C801605          mov     r5,g0
-0002F664: 09DEFB1C          call    ffe1f180                   ; print string from g0
+0002F664: 09DEFB1C          call    0001f180                   ; print string from g0
 0002F668: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002F670: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002F678: 0BDEFAC0          bal     ffe1f138                   ; set cursor to g0, g1
+0002F678: 0BDEFAC0          bal     0001f138                   ; set cursor to g0, g1
 0002F67C: 8C803000 0022F4D0 lda     0x22f4d0,g0
-0002F684: 09DEFAFC          call    ffe1f180                   ; print string from g0
+0002F684: 09DEFAFC          call    0001f180                   ; print string from g0
 0002F688: 8C213400 0000FFFD lda     0xfffd(r4),r4
 0002F690: 8A203000 005FE5A0 stos    r4,0x5fe5a0
 0002F698: 8A303000 005FE5A2 stos    r6,0x5fe5a2
 0002F6A0: 5880198F          setbit  0xf,0x0,g0
-0002F6A4: 0BDEFAC4          bal     ffe1f168                   ; set text color g0
+0002F6A4: 0BDEFAC4          bal     0001f168                   ; set text color g0
 0002F6A8: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002F6B0: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002F6B8: 0BDEFA80          bal     ffe1f138                   ; set cursor to g0, g1
+0002F6B8: 0BDEFA80          bal     0001f138                   ; set cursor to g0, g1
 0002F6BC: 8C803000 0022F4D4 lda     0x22f4d4,g0
-0002F6C4: 08DEFABC          b       ffe1f180                   ; print string from g0
+0002F6C4: 08DEFABC          b       0001f180                   ; print string from g0
 0002F6C8: 00000000          ? 00:0 00000000 0 0
 0002F6CC: 00000000          ? 00:0 00000000 0 0
 
@@ -45279,30 +45279,30 @@
 0002F6E4: 3A052170          cmpibe  0x0,g4,0x2f854             ; if 0x0 == g4 goto 0002F854
 
 0002F6E8: 5880198F          setbit  0xf,0x0,g0
-0002F6EC: 0BDEFA7C          bal     ffe1f168                   ; set text color g0
+0002F6EC: 0BDEFA7C          bal     0001f168                   ; set text color g0
 0002F6F0: 80A03000 005FE634 ldob    0x5fe634,g4
 0002F6F8: 98203994 0023F660 ldl     0x23f660[g4*8],r4
 0002F700: 59310C10          shro    0x10,r4,r6
 0002F704: 5C801604          mov     r4,g0
 0002F708: 5C881606          mov     r6,g1
-0002F70C: 0BDEFA2C          bal     ffe1f138                   ; set cursor to g0, g1
+0002F70C: 0BDEFA2C          bal     0001f138                   ; set cursor to g0, g1
 0002F710: 5C801605          mov     r5,g0
-0002F714: 09DEFA6C          call    ffe1f180                   ; print string from g0
+0002F714: 09DEFA6C          call    0001f180                   ; print string from g0
 0002F718: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002F720: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002F728: 0BDEFA10          bal     ffe1f138                   ; set cursor to g0, g1
+0002F728: 0BDEFA10          bal     0001f138                   ; set cursor to g0, g1
 0002F72C: 8C803000 0022F4D0 lda     0x22f4d0,g0
-0002F734: 09DEFA4C          call    ffe1f180                   ; print string from g0
+0002F734: 09DEFA4C          call    0001f180                   ; print string from g0
 0002F738: 8C213400 0000FFFD lda     0xfffd(r4),r4
 0002F740: 8A203000 005FE5A0 stos    r4,0x5fe5a0
 0002F748: 5880198F          setbit  0xf,0x0,g0
 0002F74C: 8A303000 005FE5A2 stos    r6,0x5fe5a2
-0002F754: 0BDEFA14          bal     ffe1f168                   ; set text color g0
+0002F754: 0BDEFA14          bal     0001f168                   ; set text color g0
 0002F758: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002F760: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002F768: 0BDEF9D0          bal     ffe1f138                   ; set cursor to g0, g1
+0002F768: 0BDEF9D0          bal     0001f138                   ; set cursor to g0, g1
 0002F76C: 8C803000 0022F4D4 lda     0x22f4d4,g0
-0002F774: 09DEFA0C          call    ffe1f180                   ; print string from g0
+0002F774: 09DEFA0C          call    0001f180                   ; print string from g0
 
 ; (View4 SW4 View1 Service)
 0002F778: 8CB00828          lda     0x828,g6                   ; (SW4 View1 Service)
@@ -45331,32 +45331,32 @@
 
 0002F7BC: 82A83000 005FE634 stob    g5,0x5fe634
 0002F7C4: 5980DE0E          shlo    0xe,0x3,g0
-0002F7C8: 0BDEF9A0          bal     ffe1f168                   ; set text color g0
+0002F7C8: 0BDEF9A0          bal     0001f168                   ; set text color g0
 0002F7CC: 80A03000 005FE634 ldob    0x5fe634,g4
 0002F7D4: 98203994 0023F660 ldl     0x23f660[g4*8],r4
 0002F7DC: 59310C10          shro    0x10,r4,r6
 0002F7E0: 5C801604          mov     r4,g0
 0002F7E4: 5C881606          mov     r6,g1
-0002F7E8: 0BDEF950          bal     ffe1f138                   ; set cursor to g0, g1
+0002F7E8: 0BDEF950          bal     0001f138                   ; set cursor to g0, g1
 0002F7EC: 5C801605          mov     r5,g0
-0002F7F0: 09DEF990          call    ffe1f180                   ; print string from g0
+0002F7F0: 09DEF990          call    0001f180                   ; print string from g0
 
 0002F7F4: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002F7FC: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002F804: 0BDEF934          bal     ffe1f138                   ; set cursor to g0, g1
+0002F804: 0BDEF934          bal     0001f138                   ; set cursor to g0, g1
 0002F808: 8C803000 0022F4D0 lda     0x22f4d0,g0
-0002F810: 09DEF970          call    ffe1f180                   ; print string from g0	; "  "
+0002F810: 09DEF970          call    0001f180                   ; print string from g0	; "  "
 
 0002F814: 8C213400 0000FFFD lda     0xfffd(r4),r4
 0002F81C: 8A203000 005FE5A0 stos    r4,0x5fe5a0
 0002F824: 5880198F          setbit  0xf,0x0,g0
 0002F828: 8A303000 005FE5A2 stos    r6,0x5fe5a2
-0002F830: 0BDEF938          bal     ffe1f168                   ; set text color g0
+0002F830: 0BDEF938          bal     0001f168                   ; set text color g0
 0002F834: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002F83C: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002F844: 0BDEF8F4          bal     ffe1f138                   ; set cursor to g0, g1
+0002F844: 0BDEF8F4          bal     0001f138                   ; set cursor to g0, g1
 0002F848: 8C803000 0022F4D4 lda     0x22f4d4,g0
-0002F850: 08DEF930          b       ffe1f180                   ; print string from g0	; ">>"
+0002F850: 08DEF930          b       0001f180                   ; print string from g0	; ">>"
 
 0002F854: 8CB00414          lda     0x414,g6                   ; (SW3 Start Test)
 0002F858: 58A58087          and     r7,g6,g4
@@ -45380,113 +45380,113 @@
 ; service handler 6-2 (drivebd 2)
 0002F890: C8A03000 005FE602 ldis    0x5fe602,g4
 0002F898: 90283914 0023F770 ld      0x23f770[g4*4],r5
-0002F8A0: 09DEF540          call    ffe1ede0                   ; clear screen
+0002F8A0: 09DEF540          call    0001ede0                   ; clear screen
 0002F8A4: 09000A9C          call    00030340
 0002F8A8: 5880198F          setbit  0xf,0x0,g0
-0002F8AC: 0BDEF8BC          bal     ffe1f168                   ; set text color g0
+0002F8AC: 0BDEF8BC          bal     0001f168                   ; set text color g0
 0002F8B0: 5C801E14          mov     0x14,g0
 0002F8B4: 5C881E1E          mov     0x1e,g1
-0002F8B8: 0BDEF880          bal     ffe1f138                   ; set cursor to g0, g1
+0002F8B8: 0BDEF880          bal     0001f138                   ; set cursor to g0, g1
 0002F8BC: 8C803000 0023CB20 lda     0x23cb20,g0
-0002F8C4: 09DEF8BC          call    ffe1f180                   ; print string from g0
+0002F8C4: 09DEF8BC          call    0001f180                   ; print string from g0
 0002F8C8: 5C801E14          mov     0x14,g0
 0002F8CC: 5C881E1F          mov     0x1f,g1
-0002F8D0: 0BDEF868          bal     ffe1f138                   ; set cursor to g0, g1
+0002F8D0: 0BDEF868          bal     0001f138                   ; set cursor to g0, g1
 0002F8D4: 8C803000 0023CB40 lda     0x23cb40,g0
-0002F8DC: 09DEF8A4          call    ffe1f180                   ; print string from g0
+0002F8DC: 09DEF8A4          call    0001f180                   ; print string from g0
 0002F8E0: 5C801E14          mov     0x14,g0
 0002F8E4: 5988581F          addo    0x1f,0x1,g1
-0002F8E8: 0BDEF850          bal     ffe1f138                   ; set cursor to g0, g1
+0002F8E8: 0BDEF850          bal     0001f138                   ; set cursor to g0, g1
 0002F8EC: 8C803000 0023CB60 lda     0x23cb60,g0
-0002F8F4: 09DEF88C          call    ffe1f180                   ; print string from g0
+0002F8F4: 09DEF88C          call    0001f180                   ; print string from g0
 0002F8F8: 5C801E14          mov     0x14,g0
 0002F8FC: 5988981F          addo    0x1f,0x2,g1
-0002F900: 0BDEF838          bal     ffe1f138                   ; set cursor to g0, g1
+0002F900: 0BDEF838          bal     0001f138                   ; set cursor to g0, g1
 0002F904: 8C803000 0023CB80 lda     0x23cb80,g0
-0002F90C: 09DEF874          call    ffe1f180                   ; print string from g0
+0002F90C: 09DEF874          call    0001f180                   ; print string from g0
 0002F910: 5C801E14          mov     0x14,g0
 0002F914: 5988D81F          addo    0x1f,0x3,g1
-0002F918: 0BDEF820          bal     ffe1f138                   ; set cursor to g0, g1
+0002F918: 0BDEF820          bal     0001f138                   ; set cursor to g0, g1
 0002F91C: 8C803000 0023CBA0 lda     0x23cba0,g0
-0002F924: 09DEF85C          call    ffe1f180                   ; print string from g0
+0002F924: 09DEF85C          call    0001f180                   ; print string from g0
 0002F928: 5C801E19          mov     0x19,g0
 0002F92C: 5C881E03          mov     0x3,g1
-0002F930: 0BDEF808          bal     ffe1f138                   ; set cursor to g0, g1
+0002F930: 0BDEF808          bal     0001f138                   ; set cursor to g0, g1
 0002F934: 8C803000 0023F480 lda     0x23f480,g0
-0002F93C: 09DEF844          call    ffe1f180                   ; print string from g0
+0002F93C: 09DEF844          call    0001f180                   ; print string from g0
 0002F940: 88A03000 005FE602 ldos    0x5fe602,g4
 0002F948: 3D15201C          cmpibne 0x2,g4,0x2f964
 0002F94C: 5982181F          addo    0x1f,0x8,g0
 0002F950: 5C881E03          mov     0x3,g1
-0002F954: 0BDEF7E4          bal     ffe1f138                   ; set cursor to g0, g1
+0002F954: 0BDEF7E4          bal     0001f138                   ; set cursor to g0, g1
 0002F958: 8C803000 0023F490 lda     0x23f490,g0
-0002F960: 09DEF820          call    ffe1f180                   ; print string from g0
+0002F960: 09DEF820          call    0001f180                   ; print string from g0
 0002F964: 5C301E06          mov     0x6,r6
 0002F968: 88816030          ldos    0x30(r5),g0
 0002F96C: 88897D86 00000002 ldos    0x2(r5)[r6*8],g1
 0002F974: 90217D86 00000004 ld      0x4(r5)[r6*8],r4
-0002F97C: 0BDEF7BC          bal     ffe1f138                   ; set cursor to g0, g1
+0002F97C: 0BDEF7BC          bal     0001f138                   ; set cursor to g0, g1
 0002F980: 5C801604          mov     r4,g0
-0002F984: 09DEF7FC          call    ffe1f180                   ; print string from g0
+0002F984: 09DEF7FC          call    0001f180                   ; print string from g0
 0002F988: 88816028          ldos    0x28(r5),g0
 0002F98C: 5C301E05          mov     0x5,r6
 0002F990: 88897D86 00000002 ldos    0x2(r5)[r6*8],g1
 0002F998: 90217D86 00000004 ld      0x4(r5)[r6*8],r4
-0002F9A0: 0BDEF798          bal     ffe1f138                   ; set cursor to g0, g1
+0002F9A0: 0BDEF798          bal     0001f138                   ; set cursor to g0, g1
 0002F9A4: 5C801604          mov     r4,g0
-0002F9A8: 09DEF7D8          call    ffe1f180                   ; print string from g0
+0002F9A8: 09DEF7D8          call    0001f180                   ; print string from g0
 0002F9AC: 88816020          ldos    0x20(r5),g0
 0002F9B0: 5C301E04          mov     0x4,r6
 0002F9B4: 88897D86 00000002 ldos    0x2(r5)[r6*8],g1
 0002F9BC: 90217D86 00000004 ld      0x4(r5)[r6*8],r4
-0002F9C4: 0BDEF774          bal     ffe1f138                   ; set cursor to g0, g1
+0002F9C4: 0BDEF774          bal     0001f138                   ; set cursor to g0, g1
 0002F9C8: 5C801604          mov     r4,g0
-0002F9CC: 09DEF7B4          call    ffe1f180                   ; print string from g0
+0002F9CC: 09DEF7B4          call    0001f180                   ; print string from g0
 0002F9D0: 88816018          ldos    0x18(r5),g0
 0002F9D4: 5C301E03          mov     0x3,r6
 0002F9D8: 88897D86 00000002 ldos    0x2(r5)[r6*8],g1
 0002F9E0: 90217D86 00000004 ld      0x4(r5)[r6*8],r4
-0002F9E8: 0BDEF750          bal     ffe1f138                   ; set cursor to g0, g1
+0002F9E8: 0BDEF750          bal     0001f138                   ; set cursor to g0, g1
 0002F9EC: 5C801604          mov     r4,g0
-0002F9F0: 09DEF790          call    ffe1f180                   ; print string from g0
+0002F9F0: 09DEF790          call    0001f180                   ; print string from g0
 0002F9F4: 88816010          ldos    0x10(r5),g0
 0002F9F8: 5C301E02          mov     0x2,r6
 0002F9FC: 90217D86 00000004 ld      0x4(r5)[r6*8],r4
 0002FA04: 88897D86 00000002 ldos    0x2(r5)[r6*8],g1
 0002FA0C: 5C301E01          mov     0x1,r6
-0002FA10: 0BDEF728          bal     ffe1f138                   ; set cursor to g0, g1
+0002FA10: 0BDEF728          bal     0001f138                   ; set cursor to g0, g1
 0002FA14: 5C801604          mov     r4,g0
-0002FA18: 09DEF768          call    ffe1f180                   ; print string from g0
+0002FA18: 09DEF768          call    0001f180                   ; print string from g0
 0002FA1C: 88816008          ldos    0x8(r5),g0
 0002FA20: 88897D86 00000002 ldos    0x2(r5)[r6*8],g1
 0002FA28: 90217D86 00000004 ld      0x4(r5)[r6*8],r4
-0002FA30: 0BDEF708          bal     ffe1f138                   ; set cursor to g0, g1
+0002FA30: 0BDEF708          bal     0001f138                   ; set cursor to g0, g1
 0002FA34: 5C801604          mov     r4,g0
-0002FA38: 09DEF748          call    ffe1f180                   ; print string from g0
+0002FA38: 09DEF748          call    0001f180                   ; print string from g0
 0002FA3C: 5980DE0E          shlo    0xe,0x3,g0
-0002FA40: 0BDEF728          bal     ffe1f168                   ; set text color g0
+0002FA40: 0BDEF728          bal     0001f168                   ; set text color g0
 0002FA44: 98215000          ldl     (r5),r4
 0002FA48: 59310C10          shro    0x10,r4,r6
 0002FA4C: 5C801604          mov     r4,g0
 0002FA50: 5C881606          mov     r6,g1
-0002FA54: 0BDEF6E4          bal     ffe1f138                   ; set cursor to g0, g1
+0002FA54: 0BDEF6E4          bal     0001f138                   ; set cursor to g0, g1
 0002FA58: 5C801605          mov     r5,g0
-0002FA5C: 09DEF724          call    ffe1f180                   ; print string from g0
+0002FA5C: 09DEF724          call    0001f180                   ; print string from g0
 0002FA60: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002FA68: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002FA70: 0BDEF6C8          bal     ffe1f138                   ; set cursor to g0, g1
+0002FA70: 0BDEF6C8          bal     0001f138                   ; set cursor to g0, g1
 0002FA74: 8C803000 0022F4D0 lda     0x22f4d0,g0
-0002FA7C: 09DEF704          call    ffe1f180                   ; print string from g0
+0002FA7C: 09DEF704          call    0001f180                   ; print string from g0
 0002FA80: 8C213400 0000FFFD lda     0xfffd(r4),r4
 0002FA88: 8A203000 005FE5A0 stos    r4,0x5fe5a0
 0002FA90: 5880198F          setbit  0xf,0x0,g0
 0002FA94: 8A303000 005FE5A2 stos    r6,0x5fe5a2
-0002FA9C: 0BDEF6CC          bal     ffe1f168                   ; set text color g0
+0002FA9C: 0BDEF6CC          bal     0001f168                   ; set text color g0
 0002FAA0: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002FAA8: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002FAB0: 0BDEF688          bal     ffe1f138                   ; set cursor to g0, g1
+0002FAB0: 0BDEF688          bal     0001f138                   ; set cursor to g0, g1
 0002FAB4: 8C803000 0022F4D4 lda     0x22f4d4,g0
-0002FABC: 09DEF6C4          call    ffe1f180                   ; print string from g0
+0002FABC: 09DEF6C4          call    0001f180                   ; print string from g0
 0002FAC0: 80A03000 005FE627 ldob    0x5fe627,g4
 0002FAC8: 59A05014          addo    g4,0x1,g4
 0002FACC: 5C301E00          mov     0x0,r6
@@ -45530,7 +45530,7 @@
 0002FB84: 3A052188          cmpibe  0x0,g4,0x2fd0c
 0002FB88: 09000988          call    00030510
 0002FB8C: 5880198F          setbit  0xf,0x0,g0
-0002FB90: 0BDEF5D8          bal     ffe1f168                   ; set text color g0
+0002FB90: 0BDEF5D8          bal     0001f168                   ; set text color g0
 0002FB94: 80803000 005FE634 ldob    0x5fe634,g0
 0002FB9C: 090008E4          call    00030480
 0002FBA0: 80A03000 005FE634 ldob    0x5fe634,g4
@@ -45538,24 +45538,24 @@
 0002FBAC: 59310C10          shro    0x10,r4,r6
 0002FBB0: 5C801604          mov     r4,g0
 0002FBB4: 5C881606          mov     r6,g1
-0002FBB8: 0BDEF580          bal     ffe1f138                   ; set cursor to g0, g1
+0002FBB8: 0BDEF580          bal     0001f138                   ; set cursor to g0, g1
 0002FBBC: 5C801605          mov     r5,g0
-0002FBC0: 09DEF5C0          call    ffe1f180                   ; print string from g0
+0002FBC0: 09DEF5C0          call    0001f180                   ; print string from g0
 0002FBC4: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002FBCC: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002FBD4: 0BDEF564          bal     ffe1f138                   ; set cursor to g0, g1
+0002FBD4: 0BDEF564          bal     0001f138                   ; set cursor to g0, g1
 0002FBD8: 8C803000 0022F4D0 lda     0x22f4d0,g0
-0002FBE0: 09DEF5A0          call    ffe1f180                   ; print string from g0
+0002FBE0: 09DEF5A0          call    0001f180                   ; print string from g0
 0002FBE4: 8C213400 0000FFFD lda     0xfffd(r4),r4
 0002FBEC: 8A203000 005FE5A0 stos    r4,0x5fe5a0
 0002FBF4: 5880198F          setbit  0xf,0x0,g0
 0002FBF8: 8A303000 005FE5A2 stos    r6,0x5fe5a2
-0002FC00: 0BDEF568          bal     ffe1f168                   ; set text color g0
+0002FC00: 0BDEF568          bal     0001f168                   ; set text color g0
 0002FC04: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002FC0C: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002FC14: 0BDEF524          bal     ffe1f138                   ; set cursor to g0, g1
+0002FC14: 0BDEF524          bal     0001f138                   ; set cursor to g0, g1
 0002FC18: 8C803000 0022F4D4 lda     0x22f4d4,g0
-0002FC20: 09DEF560          call    ffe1f180                   ; print string from g0
+0002FC20: 09DEF560          call    0001f180                   ; print string from g0
 0002FC24: 8CB80828          lda     0x828,g7
 0002FC28: 58A5C087          and     r7,g7,g4
 0002FC2C: 80A83000 005FE634 ldob    0x5fe634,g5
@@ -45574,7 +45574,7 @@
 0002FC64: 59AD4901          subo    0x1,g5,g5
 0002FC68: 82A83000 005FE634 stob    g5,0x5fe634
 0002FC70: 5980DE0E          shlo    0xe,0x3,g0
-0002FC74: 0BDEF4F4          bal     ffe1f168                   ; set text color g0
+0002FC74: 0BDEF4F4          bal     0001f168                   ; set text color g0
 0002FC78: 80803000 005FE634 ldob    0x5fe634,g0
 0002FC80: 09000800          call    00030480
 0002FC84: 80A03000 005FE634 ldob    0x5fe634,g4
@@ -45582,24 +45582,24 @@
 0002FC90: 59310C10          shro    0x10,r4,r6
 0002FC94: 5C801604          mov     r4,g0
 0002FC98: 5C881606          mov     r6,g1
-0002FC9C: 0BDEF49C          bal     ffe1f138                   ; set cursor to g0, g1
+0002FC9C: 0BDEF49C          bal     0001f138                   ; set cursor to g0, g1
 0002FCA0: 5C801605          mov     r5,g0
-0002FCA4: 09DEF4DC          call    ffe1f180                   ; print string from g0
+0002FCA4: 09DEF4DC          call    0001f180                   ; print string from g0
 0002FCA8: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002FCB0: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002FCB8: 0BDEF480          bal     ffe1f138                   ; set cursor to g0, g1
+0002FCB8: 0BDEF480          bal     0001f138                   ; set cursor to g0, g1
 0002FCBC: 8C803000 0022F4D0 lda     0x22f4d0,g0
-0002FCC4: 09DEF4BC          call    ffe1f180                   ; print string from g0
+0002FCC4: 09DEF4BC          call    0001f180                   ; print string from g0
 0002FCC8: 8C213400 0000FFFD lda     0xfffd(r4),r4
 0002FCD0: 8A203000 005FE5A0 stos    r4,0x5fe5a0
 0002FCD8: 5880198F          setbit  0xf,0x0,g0
 0002FCDC: 8A303000 005FE5A2 stos    r6,0x5fe5a2
-0002FCE4: 0BDEF484          bal     ffe1f168                   ; set text color g0
+0002FCE4: 0BDEF484          bal     0001f168                   ; set text color g0
 0002FCE8: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002FCF0: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002FCF8: 0BDEF440          bal     ffe1f138                   ; set cursor to g0, g1
+0002FCF8: 0BDEF440          bal     0001f138                   ; set cursor to g0, g1
 0002FCFC: 8C803000 0022F4D4 lda     0x22f4d4,g0
-0002FD04: 09DEF47C          call    ffe1f180                   ; print string from g0
+0002FD04: 09DEF47C          call    0001f180                   ; print string from g0
 0002FD08: 080000D0          b       0002fdd8
 0002FD0C: 8CB80494          lda     0x494,g7
 0002FD10: 58A5C087          and     r7,g7,g4
@@ -45638,7 +45638,7 @@
 0002FDBC: 59A50901          subo    0x1,g4,g4
 0002FDC0: 8AA55000          stos    g4,(g5)
 0002FDC4: 5980DE0E          shlo    0xe,0x3,g0
-0002FDC8: 0BDEF3A0          bal     ffe1f168                   ; set text color g0
+0002FDC8: 0BDEF3A0          bal     0001f168                   ; set text color g0
 0002FDCC: 80803000 005FE634 ldob    0x5fe634,g0
 0002FDD4: 090006AC          call    00030480
 0002FDD8: 80A03000 005FE634 ldob    0x5fe634,g4
@@ -45653,80 +45653,80 @@
 
 {
 ; service handler 6-4 (drivebd 4)
-0002FE00: 09DEEFE0          call    ffe1ede0                   ; clear screen
+0002FE00: 09DEEFE0          call    0001ede0                   ; clear screen
 0002FE04: 5880198F          setbit  0xf,0x0,g0
-0002FE08: 0BDEF360          bal     ffe1f168                   ; set text color g0
+0002FE08: 0BDEF360          bal     0001f168                   ; set text color g0
 0002FE0C: 5C801E14          mov     0x14,g0
 0002FE10: 5C881E1E          mov     0x1e,g1
-0002FE14: 0BDEF324          bal     ffe1f138                   ; set cursor to g0, g1
+0002FE14: 0BDEF324          bal     0001f138                   ; set cursor to g0, g1
 0002FE18: 8C803000 0023CB20 lda     0x23cb20,g0
-0002FE20: 09DEF360          call    ffe1f180                   ; print string from g0
+0002FE20: 09DEF360          call    0001f180                   ; print string from g0
 0002FE24: 5C801E14          mov     0x14,g0
 0002FE28: 5C881E1F          mov     0x1f,g1
-0002FE2C: 0BDEF30C          bal     ffe1f138                   ; set cursor to g0, g1
+0002FE2C: 0BDEF30C          bal     0001f138                   ; set cursor to g0, g1
 0002FE30: 8C803000 0023CB40 lda     0x23cb40,g0
-0002FE38: 09DEF348          call    ffe1f180                   ; print string from g0
+0002FE38: 09DEF348          call    0001f180                   ; print string from g0
 0002FE3C: 5C801E14          mov     0x14,g0
 0002FE40: 5988581F          addo    0x1f,0x1,g1
-0002FE44: 0BDEF2F4          bal     ffe1f138                   ; set cursor to g0, g1
+0002FE44: 0BDEF2F4          bal     0001f138                   ; set cursor to g0, g1
 0002FE48: 8C803000 0023CBA0 lda     0x23cba0,g0
-0002FE50: 09DEF330          call    ffe1f180                   ; print string from g0
+0002FE50: 09DEF330          call    0001f180                   ; print string from g0
 0002FE54: 5C801E19          mov     0x19,g0
 0002FE58: 5C881E03          mov     0x3,g1
-0002FE5C: 0BDEF2DC          bal     ffe1f138                   ; set cursor to g0, g1
+0002FE5C: 0BDEF2DC          bal     0001f138                   ; set cursor to g0, g1
 0002FE60: 8C803000 0023F480 lda     0x23f480,g0
-0002FE68: 09DEF318          call    ffe1f180                   ; print string from g0
+0002FE68: 09DEF318          call    0001f180                   ; print string from g0
 0002FE6C: 5982181F          addo    0x1f,0x8,g0
 0002FE70: 5C881E03          mov     0x3,g1
-0002FE74: 0BDEF2C4          bal     ffe1f138                   ; set cursor to g0, g1
+0002FE74: 0BDEF2C4          bal     0001f138                   ; set cursor to g0, g1
 0002FE78: 8C803000 0023F4A0 lda     0x23f4a0,g0
-0002FE80: 09DEF300          call    ffe1f180                   ; print string from g0
+0002FE80: 09DEF300          call    0001f180                   ; print string from g0
 0002FE84: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002FE8C: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002FE94: 0BDEF2A4          bal     ffe1f138                   ; set cursor to g0, g1
+0002FE94: 0BDEF2A4          bal     0001f138                   ; set cursor to g0, g1
 0002FE98: 8C803000 0022F4D0 lda     0x22f4d0,g0
-0002FEA0: 09DEF2E0          call    ffe1f180                   ; print string from g0
+0002FEA0: 09DEF2E0          call    0001f180                   ; print string from g0
 0002FEA4: 5CA81E19          mov     0x19,g5
 0002FEA8: 8AA83000 005FE5A0 stos    g5,0x5fe5a0
 0002FEB0: 5CA81E04          mov     0x4,g5
 0002FEB4: 8AA83000 005FE5A2 stos    g5,0x5fe5a2
 0002FEBC: 5880198F          setbit  0xf,0x0,g0
-0002FEC0: 0BDEF2A8          bal     ffe1f168                   ; set text color g0
+0002FEC0: 0BDEF2A8          bal     0001f168                   ; set text color g0
 0002FEC4: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002FECC: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002FED4: 0BDEF264          bal     ffe1f138                   ; set cursor to g0, g1
+0002FED4: 0BDEF264          bal     0001f138                   ; set cursor to g0, g1
 0002FED8: 8C803000 0022F4D4 lda     0x22f4d4,g0
 0002FEE0: 8C403000 0023F7C4 lda     0x23f7c4,r8
 0002FEE8: 5C381608          mov     r8,r7
 0002FEEC: 592A0902          subo    0x2,r8,r5
-0002FEF0: 09DEF290          call    ffe1f180                   ; print string from g0
+0002FEF0: 09DEF290          call    0001f180                   ; print string from g0
 0002FEF4: 59320904          subo    0x4,r8,r6
 0002FEF8: 8C483000 0023F784 lda     0x23f784,r9
 0002FF00: 58501D1F          not     0x1f,0x0,r10
 0002FF04: 88819000          ldos    (r6),g0
 0002FF08: 88895000          ldos    (r5),g1
 0002FF0C: 9021D000          ld      (r7),r4
-0002FF10: 0BDEF228          bal     ffe1f138                   ; set cursor to g0, g1
+0002FF10: 0BDEF228          bal     0001f138                   ; set cursor to g0, g1
 0002FF14: 5C801604          mov     r4,g0
-0002FF18: 09DEF268          call    ffe1f180                   ; print string from g0
+0002FF18: 09DEF268          call    0001f180                   ; print string from g0
 0002FF1C: 8881B400 FFFFFFF8 ldos    0xfffffff8(r6),g0
 0002FF24: 88897400 FFFFFFF8 ldos    0xfffffff8(r5),g1
 0002FF2C: 9021F400 FFFFFFF8 ld      0xfffffff8(r7),r4
-0002FF34: 0BDEF204          bal     ffe1f138                   ; set cursor to g0, g1
+0002FF34: 0BDEF204          bal     0001f138                   ; set cursor to g0, g1
 0002FF38: 5C801604          mov     r4,g0
-0002FF3C: 09DEF244          call    ffe1f180                   ; print string from g0
+0002FF3C: 09DEF244          call    0001f180                   ; print string from g0
 0002FF40: 8881B400 FFFFFFF0 ldos    0xfffffff0(r6),g0
 0002FF48: 88897400 FFFFFFF0 ldos    0xfffffff0(r5),g1
 0002FF50: 9021F400 FFFFFFF0 ld      0xfffffff0(r7),r4
-0002FF58: 0BDEF1E0          bal     ffe1f138                   ; set cursor to g0, g1
+0002FF58: 0BDEF1E0          bal     0001f138                   ; set cursor to g0, g1
 0002FF5C: 5C801604          mov     r4,g0
-0002FF60: 09DEF220          call    ffe1f180                   ; print string from g0
+0002FF60: 09DEF220          call    0001f180                   ; print string from g0
 0002FF64: 8881B400 FFFFFFE8 ldos    0xffffffe8(r6),g0
 0002FF6C: 88897400 FFFFFFE8 ldos    0xffffffe8(r5),g1
 0002FF74: 9021F400 FFFFFFE8 ld      0xffffffe8(r7),r4
-0002FF7C: 0BDEF1BC          bal     ffe1f138                   ; set cursor to g0, g1
+0002FF7C: 0BDEF1BC          bal     0001f138                   ; set cursor to g0, g1
 0002FF80: 5C801604          mov     r4,g0
-0002FF84: 09DEF1FC          call    ffe1f180                   ; print string from g0
+0002FF84: 09DEF1FC          call    0001f180                   ; print string from g0
 0002FF88: 59428008          addo    r8,r10,r8
 0002FF8C: 5A026088          cmpi    r8,r9
 0002FF90: 593A8007          addo    r7,r10,r7
@@ -45734,29 +45734,29 @@
 0002FF98: 59328006          addo    r6,r10,r6
 0002FF9C: 11FFFF68          bg      0002ff04
 0002FFA0: 5980DE0E          shlo    0xe,0x3,g0
-0002FFA4: 0BDEF1C4          bal     ffe1f168                   ; set text color g0
+0002FFA4: 0BDEF1C4          bal     0001f168                   ; set text color g0
 0002FFA8: 98203000 0023F780 ldl     0x23f780,r4
 0002FFB0: 59310C10          shro    0x10,r4,r6
 0002FFB4: 5C801604          mov     r4,g0
 0002FFB8: 5C881606          mov     r6,g1
-0002FFBC: 0BDEF17C          bal     ffe1f138                   ; set cursor to g0, g1
+0002FFBC: 0BDEF17C          bal     0001f138                   ; set cursor to g0, g1
 0002FFC0: 5C801605          mov     r5,g0
-0002FFC4: 09DEF1BC          call    ffe1f180                   ; print string from g0
+0002FFC4: 09DEF1BC          call    0001f180                   ; print string from g0
 0002FFC8: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0002FFD0: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0002FFD8: 0BDEF160          bal     ffe1f138                   ; set cursor to g0, g1
+0002FFD8: 0BDEF160          bal     0001f138                   ; set cursor to g0, g1
 0002FFDC: 8C803000 0022F4D0 lda     0x22f4d0,g0
-0002FFE4: 09DEF19C          call    ffe1f180                   ; print string from g0
+0002FFE4: 09DEF19C          call    0001f180                   ; print string from g0
 0002FFE8: 8C213400 0000FFFD lda     0xfffd(r4),r4
 0002FFF0: 8A203000 005FE5A0 stos    r4,0x5fe5a0
 0002FFF8: 5880198F          setbit  0xf,0x0,g0
 0002FFFC: 8A303000 005FE5A2 stos    r6,0x5fe5a2
-00030004: 0BDEF164          bal     ffe1f168                   ; set text color g0
+00030004: 0BDEF164          bal     0001f168                   ; set text color g0
 00030008: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 00030010: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-00030018: 0BDEF120          bal     ffe1f138                   ; set cursor to g0, g1
+00030018: 0BDEF120          bal     0001f138                   ; set cursor to g0, g1
 0003001C: 8C803000 0022F4D4 lda     0x22f4d4,g0
-00030024: 09DEF15C          call    ffe1f180                   ; print string from g0
+00030024: 09DEF15C          call    0001f180                   ; print string from g0
 00030028: 80A03000 005FE627 ldob    0x5fe627,g4
 00030030: 59A05014          addo    g4,0x1,g4
 00030034: 82A03000 005FE627 stob    g4,0x5fe627
@@ -45808,7 +45808,7 @@
 00030110: 58A58087          and     r7,g6,g4
 00030114: 3A05218C          cmpibe  0x0,g4,0x302a0
 00030118: 5880198F          setbit  0xf,0x0,g0
-0003011C: 0BDEF04C          bal     ffe1f168                   ; set text color g0
+0003011C: 0BDEF04C          bal     0001f168                   ; set text color g0
 00030120: 80803000 005FE634 ldob    0x5fe634,g0
 00030128: 090004E8          call    00030610
 0003012C: 80A03000 005FE634 ldob    0x5fe634,g4
@@ -45816,24 +45816,24 @@
 0003013C: 59310C10          shro    0x10,r4,r6
 00030140: 5C801604          mov     r4,g0
 00030144: 5C881606          mov     r6,g1
-00030148: 0BDEEFF0          bal     ffe1f138                   ; set cursor to g0, g1
+00030148: 0BDEEFF0          bal     0001f138                   ; set cursor to g0, g1
 0003014C: 5C801605          mov     r5,g0
-00030150: 09DEF030          call    ffe1f180                   ; print string from g0
+00030150: 09DEF030          call    0001f180                   ; print string from g0
 00030154: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0003015C: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-00030164: 0BDEEFD4          bal     ffe1f138                   ; set cursor to g0, g1
+00030164: 0BDEEFD4          bal     0001f138                   ; set cursor to g0, g1
 00030168: 8C803000 0022F4D0 lda     0x22f4d0,g0
-00030170: 09DEF010          call    ffe1f180                   ; print string from g0
+00030170: 09DEF010          call    0001f180                   ; print string from g0
 00030174: 8C213400 0000FFFD lda     0xfffd(r4),r4
 0003017C: 8A203000 005FE5A0 stos    r4,0x5fe5a0
 00030184: 5880198F          setbit  0xf,0x0,g0
 00030188: 8A303000 005FE5A2 stos    r6,0x5fe5a2
-00030190: 0BDEEFD8          bal     ffe1f168                   ; set text color g0
+00030190: 0BDEEFD8          bal     0001f168                   ; set text color g0
 00030194: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 0003019C: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-000301A4: 0BDEEF94          bal     ffe1f138                   ; set cursor to g0, g1
+000301A4: 0BDEEF94          bal     0001f138                   ; set cursor to g0, g1
 000301A8: 8C803000 0022F4D4 lda     0x22f4d4,g0
-000301B0: 09DEEFD0          call    ffe1f180                   ; print string from g0
+000301B0: 09DEEFD0          call    0001f180                   ; print string from g0
 000301B4: 8CB00828          lda     0x828,g6
 000301B8: 58A58087          and     r7,g6,g4
 000301BC: 80A83000 005FE634 ldob    0x5fe634,g5
@@ -45852,7 +45852,7 @@
 000301F4: 59AD4901          subo    0x1,g5,g5
 000301F8: 82A83000 005FE634 stob    g5,0x5fe634
 00030200: 5980DE0E          shlo    0xe,0x3,g0
-00030204: 0BDEEF64          bal     ffe1f168                   ; set text color g0
+00030204: 0BDEEF64          bal     0001f168                   ; set text color g0
 00030208: 80803000 005FE634 ldob    0x5fe634,g0
 00030210: 09000400          call    00030610
 00030214: 80A03000 005FE634 ldob    0x5fe634,g4
@@ -45860,24 +45860,24 @@
 00030224: 59310C10          shro    0x10,r4,r6
 00030228: 5C801604          mov     r4,g0
 0003022C: 5C881606          mov     r6,g1
-00030230: 0BDEEF08          bal     ffe1f138                   ; set cursor to g0, g1
+00030230: 0BDEEF08          bal     0001f138                   ; set cursor to g0, g1
 00030234: 5C801605          mov     r5,g0
-00030238: 09DEEF48          call    ffe1f180                   ; print string from g0
+00030238: 09DEEF48          call    0001f180                   ; print string from g0
 0003023C: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 00030244: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0003024C: 0BDEEEEC          bal     ffe1f138                   ; set cursor to g0, g1
+0003024C: 0BDEEEEC          bal     0001f138                   ; set cursor to g0, g1
 00030250: 8C803000 0022F4D0 lda     0x22f4d0,g0
-00030258: 09DEEF28          call    ffe1f180                   ; print string from g0
+00030258: 09DEEF28          call    0001f180                   ; print string from g0
 0003025C: 8C213400 0000FFFD lda     0xfffd(r4),r4
 00030264: 8A203000 005FE5A0 stos    r4,0x5fe5a0
 0003026C: 5880198F          setbit  0xf,0x0,g0
 00030270: 8A303000 005FE5A2 stos    r6,0x5fe5a2
-00030278: 0BDEEEF0          bal     ffe1f168                   ; set text color g0
+00030278: 0BDEEEF0          bal     0001f168                   ; set text color g0
 0003027C: 88803000 005FE5A0 ldos    0x5fe5a0,g0
 00030284: 88883000 005FE5A2 ldos    0x5fe5a2,g1
-0003028C: 0BDEEEAC          bal     ffe1f138                   ; set cursor to g0, g1
+0003028C: 0BDEEEAC          bal     0001f138                   ; set cursor to g0, g1
 00030290: 8C803000 0022F4D4 lda     0x22f4d4,g0
-00030298: 09DEEEE8          call    ffe1f180                   ; print string from g0
+00030298: 09DEEEE8          call    0001f180                   ; print string from g0
 0003029C: 08000068          b       00030304
 000302A0: 8CB00414          lda     0x414,g6
 000302A4: 58A58087          and     r7,g6,g4
@@ -45895,7 +45895,7 @@
 000302E8: 58A50881          and     0x1,g4,g4
 000302EC: 5980DE0E          shlo    0xe,0x3,g0
 000302F0: 8AA55000          stos    g4,(g5)
-000302F4: 0BDEEE74          bal     ffe1f168                   ; set text color g0
+000302F4: 0BDEEE74          bal     0001f168                   ; set text color g0
 000302F8: 80803000 005FE634 ldob    0x5fe634,g0
 00030300: 09000310          call    00030610
 00030304: 80803000 005FE634 ldob    0x5fe634,g0
@@ -45919,34 +45919,34 @@
 {
 ; service drivebd write g0
 00030330: 8A803000 01C00022 stos    g0,0x1c00022
-00030338: 09DD10B0          call    ffe013e8                   ; wait even frame
-0003033C: 08DD10AC          b       ffe013e8                   ; wait even frame
+00030338: 09DD10B0          call    000013e8                   ; wait even frame
+0003033C: 08DD10AC          b       000013e8                   ; wait even frame
 }
 
 {
 ; service print io dips
 00030340: 5880198F          setbit  0xf,0x0,g0
-00030344: 0BDEEE24          bal     ffe1f168                   ; set text color g0
+00030344: 0BDEEE24          bal     0001f168                   ; set text color g0
 00030348: 5C801E1C          mov     0x1c,g0
 0003034C: 5C881E18          mov     0x18,g1
-00030350: 0BDEEDE8          bal     ffe1f138                   ; set cursor to g0, g1
+00030350: 0BDEEDE8          bal     0001f138                   ; set cursor to g0, g1
 00030354: 8C803000 0023F600 lda     0x23f600,g0
-0003035C: 09DEEE24          call    ffe1f180                   ; print string from g0	; "DIP SWITCH"
+0003035C: 09DEEE24          call    0001f180                   ; print string from g0	; "DIP SWITCH"
 00030360: 5C801E12          mov     0x12,g0
 00030364: 5C881E1A          mov     0x1a,g1
-00030368: 0BDEEDD0          bal     ffe1f138                   ; set cursor to g0, g1
+00030368: 0BDEEDD0          bal     0001f138                   ; set cursor to g0, g1
 0003036C: 8C803000 0023F610 lda     0x23f610,g0
-00030374: 09DEEE0C          call    ffe1f180                   ; print string from g0	; "1    2    3    4    5    6    7    8"
+00030374: 09DEEE0C          call    0001f180                   ; print string from g0	; "1    2    3    4    5    6    7    8"
 00030378: 5C801E06          mov     0x6,g0
 0003037C: 5C881E1C          mov     0x1c,g1
-00030380: 0BDEEDB8          bal     ffe1f138                   ; set cursor to g0, g1
+00030380: 0BDEEDB8          bal     0001f138                   ; set cursor to g0, g1
 00030384: 8C803000 0023F640 lda     0x23f640,g0
-0003038C: 09DEEDF4          call    ffe1f180                   ; print string from g0	; "DIP SW   :"
+0003038C: 09DEEDF4          call    0001f180                   ; print string from g0	; "DIP SW   :"
 00030390: 8CB80082          lda     0x82,g7
 00030394: 8AB83000 01C00022 stos    g7,0x1c00022
-0003039C: 09DD104C          call    ffe013e8                   ; wait even frame
-000303A0: 09DD1048          call    ffe013e8                   ; wait even frame
-000303A4: 09DD1044          call    ffe013e8                   ; wait even frame
+0003039C: 09DD104C          call    000013e8                   ; wait even frame
+000303A0: 09DD1048          call    000013e8                   ; wait even frame
+000303A4: 09DD1044          call    000013e8                   ; wait even frame
 000303A8: 5C201E00          mov     0x0,r4
 000303AC: 8C283000 0000FFFF lda     0xffff,r5
 
@@ -45957,7 +45957,7 @@
 000303C8: 59B54584          shri    r4,g5,g6
 000303CC: 58A58085          and     r5,g6,g4
 000303D0: 90803914 0023F650 ld      0x23f650[g4*4],g0
-000303D8: 09DEEDA8          call    ffe1f180                   ; print string from g0
+000303D8: 09DEEDA8          call    0001f180                   ; print string from g0
 
 000303DC: 88B03000 01C00014 ldos    0x1c00014,g6
 000303E4: 59A05004          addo    r4,0x1,g4
@@ -45967,7 +45967,7 @@
 000303F4: 59B54594          shri    g4,g5,g6
 000303F8: 58A58085          and     r5,g6,g4
 000303FC: 90803914 0023F650 ld      0x23f650[g4*4],g0
-00030404: 09DEED7C          call    ffe1f180                   ; print string from g0
+00030404: 09DEED7C          call    0001f180                   ; print string from g0
 
 00030408: 88B03000 01C00014 ldos    0x1c00014,g6
 00030410: 59A09004          addo    r4,0x2,g4
@@ -45977,7 +45977,7 @@
 00030420: 59B54594          shri    g4,g5,g6
 00030424: 58A58085          and     r5,g6,g4
 00030428: 90803914 0023F650 ld      0x23f650[g4*4],g0
-00030430: 09DEED50          call    ffe1f180                   ; print string from g0
+00030430: 09DEED50          call    0001f180                   ; print string from g0
 
 00030434: 88B03000 01C00014 ldos    0x1c00014,g6
 0003043C: 59A0D004          addo    r4,0x3,g4
@@ -45988,7 +45988,7 @@
 00030450: 58A58085          and     r5,g6,g4
 00030454: 90803914 0023F650 ld      0x23f650[g4*4],g0
 0003045C: 59211004          addo    r4,0x4,r4
-00030460: 09DEED20          call    ffe1f180                   ; print string from g0
+00030460: 09DEED20          call    0001f180                   ; print string from g0
 
 00030464: 3B393F50          cmpibge 0x7,r4,0x303b4             ; if 0x7 >= r4 goto 000303B4
 00030468: 0A000000          ret
@@ -46008,18 +46008,18 @@
 000304A0: 88893D90 00000002 ldos    0x2(r4)[g0*8],g1
 000304A8: 5C801E1C          mov     0x1c,g0
 000304AC: 8C8C6001          lda     0x1(g1),g1
-000304B0: 0BDEEC88          bal     ffe1f138                   ; set cursor to g0, g1
+000304B0: 0BDEEC88          bal     0001f138                   ; set cursor to g0, g1
 000304B4: 8C803000 00230470 lda     0x230470,g0
-000304BC: 09DEECC4          call    ffe1f180                   ; print string from g0
+000304BC: 09DEECC4          call    0001f180                   ; print string from g0
 000304C0: 88893D85 00000002 ldos    0x2(r4)[r5*8],g1
 000304C8: 5C801E1C          mov     0x1c,g0
 000304CC: 8C8C6001          lda     0x1(g1),g1
-000304D0: 0BDEEC68          bal     ffe1f138                   ; set cursor to g0, g1
+000304D0: 0BDEEC68          bal     0001f138                   ; set cursor to g0, g1
 000304D4: 88A03885 005FE0D0 ldos    0x5fe0d0[r5*2],g4
 000304DC: 5C201E00          mov     0x0,r4
 000304E0: 39052020          cmpibg  0x0,g4,0x30500
 000304E4: 8C803000 0023047A lda     0x23047a,g0
-000304EC: 09DEEC94          call    ffe1f180                   ; print string from g0
+000304EC: 09DEEC94          call    0001f180                   ; print string from g0
 000304F0: 88A03885 005FE0D0 ldos    0x5fe0d0[r5*2],g4
 000304F8: 59205004          addo    r4,0x1,r4
 000304FC: 3E251FE8          cmpible r4,g4,0x304e4
@@ -46032,40 +46032,40 @@
 ; set driveboard to service
 00030510: 5CA81E0A          mov     0xa,g5
 00030514: 8AA83000 01C00022 stos    g5,0x1c00022
-0003051C: 09DD0ECC          call    ffe013e8                   ; wait even frame
-00030520: 09DD0EC8          call    ffe013e8                   ; wait even frame
+0003051C: 09DD0ECC          call    000013e8                   ; wait even frame
+00030520: 09DD0EC8          call    000013e8                   ; wait even frame
 
 00030524: 88A03000 0023F6A2 ldos    0x23f6a2,g4                ; g4 = 0x10
 0003052C: 8AA03000 01C00022 stos    g4,0x1c00022
-00030534: 09DD0EB4          call    ffe013e8                   ; wait even frame
-00030538: 08DD0EB0          b       ffe013e8                   ; wait even frame
+00030534: 09DD0EB4          call    000013e8                   ; wait even frame
+00030538: 08DD0EB0          b       000013e8                   ; wait even frame
 }
 
 0003053C: 00000000          ? 00:0 00000000 0 0
 00030540: 59084810          addo    0x10,sp,sp
 00030544: 5880198F          setbit  0xf,0x0,g0
-00030548: 0BDEEC20          bal     ffe1f168                   ; set text color g0
+00030548: 0BDEEC20          bal     0001f168                   ; set text color g0
 0003054C: 5C801E1C          mov     0x1c,g0
 00030550: 5C881E15          mov     0x15,g1
-00030554: 0BDEEBE4          bal     ffe1f138                   ; set cursor to g0, g1
+00030554: 0BDEEBE4          bal     0001f138                   ; set cursor to g0, g1
 00030558: 8C803000 0023F500 lda     0x23f500,g0
-00030560: 09DEEC20          call    ffe1f180                   ; print string from g0
+00030560: 09DEEC20          call    0001f180                   ; print string from g0
 00030564: 8CA00083          lda     0x83,g4
 00030568: 8AA03000 01C00022 stos    g4,0x1c00022
-00030570: 09DD0E78          call    ffe013e8                   ; wait even frame
-00030574: 09DD0E74          call    ffe013e8                   ; wait even frame
+00030570: 09DD0E78          call    000013e8                   ; wait even frame
+00030574: 09DD0E74          call    000013e8                   ; wait even frame
 00030578: 88203000 01C00014 ldos    0x1c00014,r4
-00030580: 09DD0E68          call    ffe013e8                   ; wait even frame
+00030580: 09DD0E68          call    000013e8                   ; wait even frame
 00030584: 5C801604          mov     r4,g0
 00030588: 8C8FE040          lda     0x40(fp),g1
 0003058C: 0B00002C          bal     000305b8
 00030590: 5980DE0E          shlo    0xe,0x3,g0
-00030594: 0BDEEBD4          bal     ffe1f168                   ; set text color g0
+00030594: 0BDEEBD4          bal     0001f168                   ; set text color g0
 00030598: 5982981F          addo    0x1f,0xa,g0
 0003059C: 5C881E15          mov     0x15,g1
-000305A0: 0BDEEB98          bal     ffe1f138                   ; set cursor to g0, g1
+000305A0: 0BDEEB98          bal     0001f138                   ; set cursor to g0, g1
 000305A4: 8C87E040          lda     0x40(fp),g0
-000305A8: 09DEEBD8          call    ffe1f180                   ; print string from g0
+000305A8: 09DEEBD8          call    0001f180                   ; print string from g0
 000305AC: 0A000000          ret
 000305B0: 8CF03000 00230604 lda     0x230604,g14
 000305B8: 5C90161E          mov     g14,g2
@@ -46092,10 +46092,10 @@
 00030618: 12000028          be      00030640
 0003061C: 88883984 0023F782 ldos    0x23f782[r4*8],g1
 00030624: 5983581F          addo    0x1f,0xd,g0
-00030628: 0BDEEB10          bal     ffe1f138                   ; set cursor to g0, g1
+00030628: 0BDEEB10          bal     0001f138                   ; set cursor to g0, g1
 0003062C: 88A03884 005FE0E0 ldos    0x5fe0e0[r4*2],g4
 00030634: 90803914 0023F650 ld      0x23f650[g4*4],g0
-0003063C: 08DEEB44          b       ffe1f180                   ; print string from g0
+0003063C: 08DEEB44          b       0001f180                   ; print string from g0
 00030640: 0A000000          ret
 00030644: 00000000          ? 00:0 00000000 0 0
 00030648: 00000000          ? 00:0 00000000 0 0
@@ -46135,8 +46135,8 @@
 000306F8: 59AD4596          shri    g6,g5,g5
 000306FC: 59A54014          addo    g4,g5,g4
 00030700: 8AA03000 01C00022 stos    g4,0x1c00022
-00030708: 09DD0CE0          call    ffe013e8                   ; wait even frame
-0003070C: 08DD0CDC          b       ffe013e8                   ; wait even frame
+00030708: 09DD0CE0          call    000013e8                   ; wait even frame
+0003070C: 08DD0CDC          b       000013e8                   ; wait even frame
 00030710: 0A000000          ret
 00030714: 00000000          ? 00:0 00000000 0 0
 00030718: 00000000          ? 00:0 00000000 0 0
@@ -46171,44 +46171,44 @@
 
 {
 ; service handler 8-0 (tgp 0)
-00030770: 09DEE670          call    ffe1ede0                   ; clear screen
+00030770: 09DEE670          call    0001ede0                   ; clear screen
 00030774: 5880198F          setbit  0xf,0x0,g0
-00030778: 0BDEE9F0          bal     ffe1f168                   ; set text color g0
+00030778: 0BDEE9F0          bal     0001f168                   ; set text color g0
 0003077C: 5C801E19          mov     0x19,g0
 00030780: 5C881E03          mov     0x3,g1
-00030784: 0BDEE9B4          bal     ffe1f138                   ; set cursor to g0, g1
+00030784: 0BDEE9B4          bal     0001f138                   ; set cursor to g0, g1
 00030788: 8C803000 0023F7F0 lda     0x23f7f0,g0
-00030790: 09DEE9F0          call    ffe1f180                   ; print string from g0	; "TGP TEST"
+00030790: 09DEE9F0          call    0001f180                   ; print string from g0	; "TGP TEST"
 
 00030794: 5C801E14          mov     0x14,g0
 00030798: 5C881E1E          mov     0x1e,g1
-0003079C: 0BDEE99C          bal     ffe1f138                   ; set cursor to g0, g1
+0003079C: 0BDEE99C          bal     0001f138                   ; set cursor to g0, g1
 000307A0: 8C803000 0023F800 lda     0x23f800,g0
-000307A8: 09DEE9D8          call    ffe1f180                   ; print string from g0	; "START : TO EXIT"
+000307A8: 09DEE9D8          call    0001f180                   ; print string from g0	; "START : TO EXIT"
 
 000307AC: 5C801E11          mov     0x11,g0
 000307B0: 5C881E05          mov     0x5,g1
-000307B4: 0BDEE984          bal     ffe1f138                   ; set cursor to g0, g1
+000307B4: 0BDEE984          bal     0001f138                   ; set cursor to g0, g1
 000307B8: 8C803000 00230748 lda     0x230748,g0
-000307C0: 09DEE9C0          call    ffe1f180                   ; print string from g0	; "IC. 47"
+000307C0: 09DEE9C0          call    0001f180                   ; print string from g0	; "IC. 47"
 
 000307C4: 5C801E11          mov     0x11,g0
 000307C8: 5C881E07          mov     0x7,g1
-000307CC: 0BDEE96C          bal     ffe1f138                   ; set cursor to g0, g1
+000307CC: 0BDEE96C          bal     0001f138                   ; set cursor to g0, g1
 000307D0: 8C803000 00230750 lda     0x230750,g0
-000307D8: 09DEE9A8          call    ffe1f180                   ; print string from g0	; "IC. 56"
+000307D8: 09DEE9A8          call    0001f180                   ; print string from g0	; "IC. 56"
 
 000307DC: 5C801E11          mov     0x11,g0
 000307E0: 5C881E09          mov     0x9,g1
-000307E4: 0BDEE954          bal     ffe1f138                   ; set cursor to g0, g1
+000307E4: 0BDEE954          bal     0001f138                   ; set cursor to g0, g1
 000307E8: 8C803000 00230758 lda     0x230758,g0
-000307F0: 09DEE990          call    ffe1f180                   ; print string from g0	; "IC. 60"
+000307F0: 09DEE990          call    0001f180                   ; print string from g0	; "IC. 60"
 
 000307F4: 5C801E11          mov     0x11,g0
 000307F8: 5C881E0B          mov     0xb,g1
-000307FC: 0BDEE93C          bal     ffe1f138                   ; set cursor to g0, g1
+000307FC: 0BDEE93C          bal     0001f138                   ; set cursor to g0, g1
 00030800: 8C803000 00230760 lda     0x230760,g0
-00030808: 09DEE978          call    ffe1f180                   ; print string from g0	; "IC. 64"
+00030808: 09DEE978          call    0001f180                   ; print string from g0	; "IC. 64"
 
 0003080C: 80A03000 005FE627 ldob    0x5fe627,g4
 00030814: 59A05014          addo    g4,0x1,g4
@@ -46284,7 +46284,7 @@
 0003095C: 92A83000 00804000 st      g5,0x804000
 00030964: 3BF93F00          cmpibge 0x1f,r4,0x30864
 00030968: 92F03000 00804000 st      g14,0x804000
-00030970: 09DE7A80          call    ffe183f0                   ; process geo list
+00030970: 09DE7A80          call    000183f0                   ; process geo list
 00030974: 8CA03000 0023F820 lda     0x23f820,g4
 0003097C: 5C401614          mov     g4,r8
 00030980: 5C381614          mov     g4,r7
@@ -46299,9 +46299,9 @@
 000309AC: 5C801E1A          mov     0x1a,g0
 000309B0: 902D1000          ld      (g4),r5
 000309B4: 5C881606          mov     r6,g1
-000309B8: 0BDEE780          bal     ffe1f138                   ; set cursor to g0, g1
+000309B8: 0BDEE780          bal     0001f138                   ; set cursor to g0, g1
 000309BC: 5C801605          mov     r5,g0
-000309C0: 09DEE7C0          call    ffe1f180                   ; print string from g0
+000309C0: 09DEE7C0          call    0001f180                   ; print string from g0
 000309C4: 90B21000          ld      (r8),g6
 000309C8: 90A83000 00980014 ld      0x980014,g5
 000309D0: 8CA03000 0023F818 lda     0x23f818,g4
@@ -46310,9 +46310,9 @@
 000309E0: 5980981F          addo    0x1f,0x2,g0
 000309E4: 902D1000          ld      (g4),r5
 000309E8: 5C881606          mov     r6,g1
-000309EC: 0BDEE74C          bal     ffe1f138                   ; set cursor to g0, g1
+000309EC: 0BDEE74C          bal     0001f138                   ; set cursor to g0, g1
 000309F0: 5C801605          mov     r5,g0
-000309F4: 09DEE78C          call    ffe1f180                   ; print string from g0
+000309F4: 09DEE78C          call    0001f180                   ; print string from g0
 000309F8: 90B1E004          ld      0x4(r7),g6
 000309FC: 90A83000 00980010 ld      0x980010,g5
 00030A04: 8CA03000 0023F818 lda     0x23f818,g4
@@ -46323,9 +46323,9 @@
 00030A20: 5C801E1A          mov     0x1a,g0
 00030A24: 902D1000          ld      (g4),r5
 00030A28: 5C881606          mov     r6,g1
-00030A2C: 0BDEE70C          bal     ffe1f138                   ; set cursor to g0, g1
+00030A2C: 0BDEE70C          bal     0001f138                   ; set cursor to g0, g1
 00030A30: 5C801605          mov     r5,g0
-00030A34: 09DEE74C          call    ffe1f180                   ; print string from g0
+00030A34: 09DEE74C          call    0001f180                   ; print string from g0
 00030A38: 90B22004          ld      0x4(r8),g6
 00030A3C: 90A83000 00980014 ld      0x980014,g5
 00030A44: 8CA03000 0023F818 lda     0x23f818,g4
@@ -46334,10 +46334,10 @@
 00030A54: 5980981F          addo    0x1f,0x2,g0
 00030A58: 902D1000          ld      (g4),r5
 00030A5C: 5C881606          mov     r6,g1
-00030A60: 0BDEE6D8          bal     ffe1f138                   ; set cursor to g0, g1
+00030A60: 0BDEE6D8          bal     0001f138                   ; set cursor to g0, g1
 00030A64: 59209004          addo    r4,0x2,r4
 00030A68: 5C801605          mov     r5,g0
-00030A6C: 09DEE714          call    ffe1f180                   ; print string from g0
+00030A6C: 09DEE714          call    0001f180                   ; print string from g0
 00030A70: 5A00F004          cmpo    r4,0x3
 00030A74: 8C422008          lda     0x8(r8),r8
 00030A78: 593A1007          addo    r7,0x8,r7
@@ -46458,9 +46458,9 @@
 00030C18: 09000438          call    00031050
 00030C1C: 5C801E14          mov     0x14,g0
 00030C20: 5C881E1E          mov     0x1e,g1
-00030C24: 0BDEE514          bal     ffe1f138                   ; set cursor to g0, g1
+00030C24: 0BDEE514          bal     0001f138                   ; set cursor to g0, g1
 00030C28: 8C803000 0023F840 lda     0x23f840,g0
-00030C30: 09DEE550          call    ffe1f180                   ; print string from g0
+00030C30: 09DEE550          call    0001f180                   ; print string from g0
 00030C34: 0900045C          call    00031090
 00030C38: 09000548          call    00031180
 00030C3C: 80A03000 005FE627 ldob    0x5fe627,g4
@@ -46492,12 +46492,12 @@
 ; service handler 9-2 (memory test 2)
 00030C90: 090003C0          call    00031050
 00030C94: 5880198F          setbit  0xf,0x0,g0
-00030C98: 0BDEE4D0          bal     ffe1f168                   ; set text color g0
+00030C98: 0BDEE4D0          bal     0001f168                   ; set text color g0
 00030C9C: 5C801E14          mov     0x14,g0
 00030CA0: 5C881E1E          mov     0x1e,g1
-00030CA4: 0BDEE494          bal     ffe1f138                   ; set cursor to g0, g1
+00030CA4: 0BDEE494          bal     0001f138                   ; set cursor to g0, g1
 00030CA8: 8C803000 0023F860 lda     0x23f860,g0
-00030CB0: 09DEE4D0          call    ffe1f180                   ; print string from g0
+00030CB0: 09DEE4D0          call    0001f180                   ; print string from g0
 00030CB4: 090003DC          call    00031090
 00030CB8: 090004C8          call    00031180
 00030CBC: 80A03000 005FE627 ldob    0x5fe627,g4
@@ -46724,19 +46724,19 @@
 0003104C: 00000000          ? 00:0 00000000 0 0
 
 {
-00031050: 09DD4CAC          call    ffe05cfc                   ; reset and load charset1
-00031054: 09DEDD8C          call    ffe1ede0                   ; clear screen
-00031058: 09DEDEC8          call    ffe1ef20                   ; clear tilemap mask1
-0003105C: 09DEDE24          call    ffe1ee80                   ; clear tilemap3
+00031050: 09DD4CAC          call    00005cfc                   ; reset and load charset1
+00031054: 09DEDD8C          call    0001ede0                   ; clear screen
+00031058: 09DEDEC8          call    0001ef20                   ; clear tilemap mask1
+0003105C: 09DEDE24          call    0001ee80                   ; clear tilemap3
 00031060: 5C801E00          mov     0x0,g0
-00031064: 09DD17D0          call    ffe02834                   ; set background to g0
+00031064: 09DD17D0          call    00002834                   ; set background to g0
 00031068: 5880198F          setbit  0xf,0x0,g0
-0003106C: 0BDEE0FC          bal     ffe1f168                   ; set text color g0
+0003106C: 0BDEE0FC          bal     0001f168                   ; set text color g0
 00031070: 5C801E19          mov     0x19,g0
 00031074: 5C881E03          mov     0x3,g1
-00031078: 0BDEE0C0          bal     ffe1f138                   ; set cursor to g0, g1
+00031078: 0BDEE0C0          bal     0001f138                   ; set cursor to g0, g1
 0003107C: 8C803000 0023F830 lda     0x23f830,g0
-00031084: 08DEE0FC          b       ffe1f180                   ; print string from g0
+00031084: 08DEE0FC          b       0001f180                   ; print string from g0
 }
 
 00031088: 00000000          ? 00:0 00000000 0 0
@@ -46765,7 +46765,7 @@
 000310F4: 8C203000 005FE560 lda     0x5fe560,r4
 000310FC: 5C801604          mov     r4,g0
 00031100: 5C901E03          mov     0x3,g2
-00031104: 09DCFFD0          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+00031104: 09DCFFD0          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 00031108: 80A03000 005FE560 ldob    0x5fe560,g4
 00031110: 3A05201C          cmpibe  0x0,g4,0x3112c
 00031114: 80A11000          ldob    (r4),g4
@@ -46819,7 +46819,7 @@
 000311F8: 8C203000 005FE560 lda     0x5fe560,r4
 00031200: 5C801604          mov     r4,g0
 00031204: 5C901E03          mov     0x3,g2
-00031208: 09DCFECC          call    ffe010d4                   ; dec to string (dec g1, len g2, str g0)
+00031208: 09DCFECC          call    000010d4                   ; dec to string (dec g1, len g2, str g0)
 0003120C: 80A03000 005FE560 ldob    0x5fe560,g4
 00031214: 3A05201C          cmpibe  0x0,g4,0x31230
 00031218: 80A11000          ldob    (r4),g4
@@ -58503,7 +58503,7 @@
 0003C77C: A9ABB98A          ? a9:3 a9abb98a 3 2
 0003C780: 48655844          ? 48:0 48655844 1 2
 0003C784: 68277806          atanr   0x6,0x1d
-0003C788: 08E118C0          b       ffe4e048
+0003C788: 08E118C0          b       0004e048
 0003C78C: 28A33882          ? 28:1 28a33882 3 2
 0003C790: DB5CCB7D          ? db:6 db5ccb7d 0 2
 0003C794: FB1EEB3F          ? fb:6 fb1eeb3f 2 2

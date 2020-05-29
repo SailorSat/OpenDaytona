@@ -557,9 +557,9 @@
 
 ; MAIN: burst copy 0x20000 bytes from 0x0+ to 0x200000+
 00000890: 59805E11          shlo    17,1,g0                    ; g0 = 0x20000
-00000894: 8CA00000          lda     0x0,g4
-00000898: 8C880000          lda     0x0,g1
-0000089C: 8C903000 00200000 lda     0x200000,g2
+00000894: 8CA00000          lda     0x0,g4                     ; g4 = 0x0
+00000898: 8C880000          lda     0x0,g1                     ; g1 = 0x1
+0000089C: 8C903000 00200000 lda     0x200000,g2                ; g2 = 0x200000
 000008A4: 0B00006C          bal     00000910                   ; burstcopy(g0 longs from g1 to g2)
 
 ; MAIN: f80000=0x3 (unmapped in MAME)
@@ -587,7 +587,7 @@
 ; MAIN: reset game
 000008F8: 8CA83000 FF000010 lda     0xff000010,g5
 00000900: 8CB03000 00000C80 lda     0xc80,g6
-00000908: 6005A115          synmovq g5,g6                      ; hm... magic jump table @ 0xc80 - jumps to 0x924
+00000908: 6005A115          synmovq g5,g6                      ; IAC table @ 0xc80 - jumps to 0x924
 0000090C: 08000000          b       0000090c                   ; causes a loop - should never be reached on real hardware
 
 {
@@ -673,10 +673,10 @@
 00000A28: 5A318B01          cmpdeco 1,r6,r6                    ; r6 -= 1
 00000A2C: 14FFFFE0          bl      00000a0c                   ; while r6 > 0 loop to 00000a0c
 
-; MAIN: read pfp from 0x854
+; MAIN: read from 0x850
 00000A30: 8C203000 FF000004 lda     0xff000004,r4
 00000A38: 8C283000 00000850 lda     0x850,r5                   ; r5 = 0x850
-00000A40: 60016004          synmov  r4,r5                      ; read pfp from r5 + 0x04
+00000A40: 60016004          synmov  r4,r5                      ; read from r5
 
 ; MAIN: clear and enable irq 0
 00000A44: 8C203000 00E80000 lda     0xe80000,r4                ; r4 = 0xe80000
@@ -735,7 +735,7 @@
 
 00000AFC: 5C401E00          mov     0,r8                       ; r8 = 0
 00000B00: 70314089          mulo    r9,r5,r6                   ; r6 = r5 * r9
-00000B04: 3201A00C          cmpobe  0,r6,0xb10                 ; if r6 = 0x0 goto 00000B10
+00000B04: 3201A00C          cmpobe  0,r6,0xb10                 ; if 0x0 = r6 goto 00000B10
 
 00000B08: 5939800D          addo    r13,r6,r7
 00000B0C: 5941CC01          shro    1,r7,r8

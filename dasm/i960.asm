@@ -536,7 +536,9 @@
 00000844: 00000B82          ? 00000b82
 00000848: 00000B8E          ? 00000b8e
 0000084C: 00000B9A          ? 00000b9a
-00000850: 0F0E0D0C          ? 0f0e0d0c
+
+00000850: 0F0E0D0C          ? 0f0e0d0c                         ; interrupt-control register values
+
 00000854: 00000000          ? 00000000
 00000858: 00000000          ? 00000000
 0000085C: 00000000          ? 00000000
@@ -547,7 +549,7 @@
 00000868: 8C883000 00000C90 lda     0xc90,g1
 00000870: 59981901          subo    1,0,g3
 
-00000874: 90945000          ld      (g1),g2
+00000874: 90945000          ld      (g1),g2                    ; while (g2 != 0xffffffff) {}
 00000878: 5A04E012          cmpo    g2,g3
 0000087C: 12000014          be      00000890
 00000880: 92941000          st      g2,(g0)
@@ -560,7 +562,7 @@
 00000894: 8CA00000          lda     0x0,g4                     ; g4 = 0x0
 00000898: 8C880000          lda     0x0,g1                     ; g1 = 0x1
 0000089C: 8C903000 00200000 lda     0x200000,g2                ; g2 = 0x200000
-000008A4: 0B00006C          bal     00000910                   ; burstcopy(g0 longs from g1 to g2)
+000008A4: 0B00006C          bal     00000910                   ; burstcopy(g0 longs from g1 to g2, offset g4)
 
 ; MAIN: f80000=0x3 (unmapped in MAME)
 000008A8: 5C181E03          mov     3,r3
@@ -571,14 +573,14 @@
 000008B8: 8CA00000          lda     0x0,g4
 000008BC: 8C883000 02802040 lda     0x2802040,g1
 000008C4: 8C903000 005FF000 lda     0x5ff000,g2
-000008CC: 0B000044          bal     00000910                   ; burstcopy(g0 longs from g1 to g2)
+000008CC: 0B000044          bal     00000910                   ; burstcopy(g0 longs from g1 to g2, offset g4)
 
 ; MAIN: burst copy 0xb0 bytes from 0xc0 to 0x5ff400 (prcb data)
 000008D0: 8C8000B0          lda     0xb0,g0
 000008D4: 8CA00000          lda     0x0,g4
 000008D8: 8C883000 000000C0 lda     0xc0,g1
 000008E0: 8C903000 005FF400 lda     0x5ff400,g2
-000008E8: 0B000028          bal     00000910                   ; burstcopy(g0 longs from g1 to g2)
+000008E8: 0B000028          bal     00000910                   ; burstcopy(g0 longs from g1 to g2, offset g4)
 
 ; MAIN: store pointer to interupt vector table in prcb data
 000008EC: 8CE03000 005FF000 lda     0x5ff000,g12
@@ -591,7 +593,7 @@
 0000090C: 08000000          b       0000090c                   ; causes a loop - should never be reached on real hardware
 
 {
-; burstcopy(g0 longs from g1 to g2)
+; burstcopy(g0 longs from g1 to g2, offset g4)
 00000910: B0C45C14          ldq     (g1)[g4],g8
 00000914: B2C49C14          stq     g8,(g2)[g4]
 00000918: 59A41094          addi    g4,16,g4
@@ -600,19 +602,24 @@
 }
 
 ; MAIN: init serial 00,00,00,40,4e
+; 8251 compatible
+; 00 @ MOD = sync mode, 5 bits, no parity, invalid stop bits
+; 00 @ CMD = tx off, rx off, ...
+; 40 @ CMD = internal reset
+; 4e @ MOD = 16x rate, 8 bits, no parity, 1 stop bit (asuming 10 bits on the line and a 5 MHz clock (20/4) we get 31250 baud - midi?)
 00000924: 8C203000 01C80000 lda     0x1c80000,r4               ; r4 = 0x1c80000
 0000092C: 5C281E00          mov     0,r5                       ; r5 = 0x0
-00000930: 8A292002          stos    r5,0x2(r4)                 ; write2 r5 to r5+0x2
+00000930: 8A292002          stos    r5,0x2(r4)                 ; write2 r5 to r4+0x2
 00000934: 0B0002A8          bal     00000bdc                   ; waste 4 cycles
-00000938: 8A292002          stos    r5,0x2(r4)                 ; write2 r5 to r5+0x2
+00000938: 8A292002          stos    r5,0x2(r4)                 ; write2 r5 to r4+0x2
 0000093C: 0B0002A0          bal     00000bdc                   ; waste 4 cycles
-00000940: 8A292002          stos    r5,0x2(r4)                 ; write2 r5 to r5+0x2
+00000940: 8A292002          stos    r5,0x2(r4)                 ; write2 r5 to r4+0x2
 00000944: 59285E06          shlo    6,1,r5                     ; r5 = 0x40
 00000948: 0B000294          bal     00000bdc                   ; waste 4 cycles
-0000094C: 8A292002          stos    r5,0x2(r4)                 ; write2 r5 to r5+0x2
+0000094C: 8A292002          stos    r5,0x2(r4)                 ; write2 r5 to r4+0x2
 00000950: 8C28004E          lda     0x4e,r5                    ; r5 = 0x4e
 00000954: 0B000288          bal     00000bdc                   ; waste 4 cycles
-00000958: 8A292002          stos    r5,0x2(r4)                 ; write2 r5 to r5+0x2
+00000958: 8A292002          stos    r5,0x2(r4)                 ; write2 r5 to r4+0x2
 
 0000095C: 0B01DA5C          bal     0001e3b8                   ; init io ports
 
@@ -673,8 +680,8 @@
 00000A28: 5A318B01          cmpdeco 1,r6,r6                    ; r6 -= 1
 00000A2C: 14FFFFE0          bl      00000a0c                   ; while r6 > 0 loop to 00000a0c
 
-; MAIN: read from 0x850
-00000A30: 8C203000 FF000004 lda     0xff000004,r4
+; MAIN: read interrupt-control register from 0x850
+00000A30: 8C203000 FF000004 lda     0xff000004,r4              ; r4 = 0xff000004 ( interrupt-control register )
 00000A38: 8C283000 00000850 lda     0x850,r5                   ; r5 = 0x850
 00000A40: 60016004          synmov  r4,r5                      ; read from r5
 
@@ -687,7 +694,7 @@
 
 ; MAIN: setup arithmetic controls
 00000A5C: 8C203000 FF1F917F lda     0xff1f917f,r4
-00000A64: 8C283000 3F001000 lda     0x3f001000,r5
+00000A64: 8C283000 3F001000 lda     0x3f001000,r5              ; 0x3f001000 (00 1 1 1 1 1 1 xxx 0 0 0 0 0 0 xx 1 xxx 0 x 0000 000)
 00000A6C: 64294284          modac   r4,r5,r5
 00000A70: 080006CC          b       0000113c
 
@@ -700,14 +707,14 @@
 00000A84: C8183000 005FE602 ldis    0x5fe602,r3                ; read2 r3 from 0x5fe602			; (cabinet type)
 00000A8C: 3000E01C          bbc     0,r3,0xaa8                 ; if not bit0 set goto 00000AA8
 
-; deluxe / special cabinet
+; (bit 0 set) deluxe / special cabinet
 00000A90: 5C481E0A          mov     10,r9                      ; r9 = 0xa
 00000A94: 59595E07          shlo    7,5,r11                    ; r11 = 0x280
 00000A98: 8C603000 00001920 lda     0x1920,r12                 ; r12 = 0x1920
 00000AA0: 8C6800C9          lda     0xc9,r13                   ; r13 = 0xc9
 00000AA4: 08000018          b       00000abc
 
-; twin / upright cabinet
+; (bit 0 clear) twin / upright cabinet
 00000AA8: 5C481E0C          mov     12,r9                      ; r9 = 0xc
 00000AAC: 5958DE08          shlo    8,3,r11                    ; r11 = 0x300
 00000AB0: 8C603000 00001160 lda     0x1160,r12                 ; r12 = 0x1160
@@ -942,7 +949,7 @@
 00000DFC: 00000000          ? 00000000
 
 {
-; IRQ0
+; IRQ0 - VINT
 00000E00: 80183000 01A14002 ldob    0x1a14002,r3
 00000E08: 82183000 00540054 stob    r3,0x540054                ; read FG from comm board
 
@@ -985,7 +992,7 @@
 00000E8C: 00000000          ? 00000000
 
 {
-; IRQ1
+; IRQ1 - ?
 00000E90: 8C203000 00E80000 lda     0xe80000,r4
 00000E98: 59281905          subo    5,0,r5
 00000E9C: 92291000          st      r5,(r4)                    ; clear/ack irq?
@@ -997,7 +1004,7 @@
 00000EAC: 00000000          ? 00000000
 
 {
-; IRQ2
+; IRQ2 - exception
 00000EB0: 8C203000 00E80000 lda     0xe80000,r4
 00000EB8: 90291000          ld      (r4),r5
 00000EBC: 5C301E02          mov     2,r6
@@ -1048,7 +1055,7 @@
 00000F5C: 00000000          ? 00000000
 
 {
-; IRQ3
+; IRQ3 - serial
 00000F60: 09019528          call    0001a488                   ; handle serial on IRQ3
 00000F64: 0A000000          ret
 }
@@ -1108,14 +1115,14 @@
 00001008: 8C283000 02801FC0 lda     0x2801fc0,r5
 00001010: 5C381E00          mov     0,r7
 
-00001014: 88195C87          ldos    (r5)[r7*2],r3
-00001018: 92192004          st      r3,0x4(r4)
+00001014: 88195C87          ldos    (r5)[r7*2],r3              ; read2 r3 from r4 + r7*2
+00001018: 92192004          st      r3,0x4(r4)                 ; write r3 to r4 + 4
 0000101C: 5918CC08          shro    8,r3,r3
 00001020: 92192008          st      r3,0x8(r4)
 00001024: 59210810          addo    16,r4,r4
 00001028: 8C18003F          lda     0x3f,r3
 0000102C: 5A39C203          cmpinco r3,r7,r7
-00001030: 11FFFFE4          bg      00001014
+00001030: 11FFFFE4          bg      00001014                   ; while r3 > r7 loop to 00001014
 
 00001034: 0A000000          ret
 }
@@ -1206,11 +1213,12 @@
 00001138: 0A000000          ret
 }
 
-; MAIN: init geo engine
+; MAIN: init variables & geo engine
 0000113C: 59185E06          shlo    6,1,r3                     ; r3 = 0x40
 00001140: 59084003          addo    r3,sp,sp                   ; increase stack pointer
-00001144: 59D05E17          shlo    23,1,g10                   ; g10 = 0x800000
-00001148: 59DC5E13          shlo    19,17,g11                  ; g11 = 0x880000
+
+00001144: 59D05E17          shlo    23,1,g10                   ; g10 = 0x800000 (geo_r/w)
+00001148: 59DC5E13          shlo    19,17,g11                  ; g11 = 0x880000 (copro function port)
 0000114C: 59E05E0E          shlo    14,1,g12                   ; g12 = 0x4000
 00001150: 5CF01E00          mov     0,g14                      ; g14 = 0x0
 00001154: 09000640          call    00001794                   ; reset main ram & geo list
@@ -1222,11 +1230,11 @@
 00001164: 59181901          subo    1,0,r3
 00001168: 82183000 005FE626 stob    r3,0x5fe626                ; write 0xff to 0x5fe626			; (main status flag?)
 
-00001170: 09227DD0          call    00228f40                   ; backup config check
-00001174: 092283EC          call    00229560                   ; backup times check
-00001178: 09228688          call    00229800                   ; backup coincounter check
+00001170: 09227DD0          call    00028f40                   ; backup config check
+00001174: 092283EC          call    00029560                   ; backup times check
+00001178: 09228688          call    00029800                   ; backup coincounter check
 
-0000117C: 09230124          call    002312a0                   ; switch process controls priority low
+0000117C: 09230124          call    000312a0                   ; switch process controls priority low
 00001180: 09FFF8F4          call    00000a74                   ; build color translation
 
 00001184: 09004B3C          call    00005cc0                   ; copy palette data
@@ -1242,7 +1250,7 @@
 
 000011A8: 090186F0          call    00019898                   ; setup serial
 000011AC: 09004874          call    00005a20                   ; set gamestate defaults
-000011B0: 09229F30          call    0022b0e0                   ; show config
+000011B0: 09229F30          call    0002b0e0                   ; show config
 
 000011B4: 09000258          call    0000140c                   ; setup luma ram
 000011B8: 090002B0          call    00001468                   ; init t-ram1
@@ -1270,7 +1278,7 @@
 ; MAIN: check link mode
 000011FC: 5C181E00          mov     0,r3
 00001200: C0203000 005FE5A8 ldib    0x5fe5a8,r4
-00001208: 3D190038          cmpibne r3,r4,0x1240               ; if 0x5fe5a8 != 0 goto 00001240
+00001208: 3D190038          cmpibne r3,r4,0x1240               ; if 0 != 0x5fe5a8 goto 00001240
 
 ; MAIN: single mode
 0000120C: 90183000 00501220 ld      0x501220,r3
@@ -2071,7 +2079,7 @@
 00001D3C: 3500E014          cmpobne 0,r3,0x1d50                ; if r3 != 0 goto 00001D50
 
 ; sound on
-00001D40: 8C803000 00AE1008 lda     0xae1008,g0
+00001D40: 8C803000 00AE1008 lda     0xae1008,g0                ; AE 10 08 - advertise music
 00001D48: 0901880C          call    0001a554                   ; push g0 to serial buffer
 00001D4C: 08000010          b       00001d5c
 
@@ -2905,7 +2913,7 @@
 00002928: 80203000 005FE5A8 ldob    0x5fe5a8,r4
 00002930: 3520C010          cmpobne r4,r3,0x2940
 
-00002934: 8C803000 00AE1001 lda     0xae1001,g0
+00002934: 8C803000 00AE1001 lda     0xae1001,g0                ; AE 10 01 - selection
 0000293C: 09017C18          call    0001a554                   ; push g0 to serial buffer
 00002940: 0A000000          ret
 }
@@ -3111,7 +3119,7 @@
 ; gamestate 0x10 - 0
 00002BCC: 8C803000 01002000 lda     0x1002000,g0
 00002BD4: 09016B68          call    0001973c                   ; clear tilemap g0
-00002BD8: 8C803000 00BE1A10 lda     0xbe1a10,g0
+00002BD8: 8C803000 00BE1A10 lda     0xbe1a10,g0                ; BE 1A 10 - stop music?
 00002BE0: 09017974          call    0001a554                   ; push g0 to serial buffer
 00002BE4: 5C201E01          mov     1,r4
 00002BE8: 90183000 00501244 ld      0x501244,r3
@@ -3134,7 +3142,7 @@
 00002C30: 5923DE06          shlo    6,15,r4
 00002C34: 59190183          subi    r3,r4,r3
 00002C38: 3EF8E02C          cmpible 31,r3,0x2c64
-00002C3C: 8C803000 00AE102B lda     0xae102b,g0
+00002C3C: 8C803000 00AE102B lda     0xae102b,g0                ; AE 10 2B - waiting for entry
 00002C44: 09017910          call    0001a554                   ; push g0 to serial buffer
 00002C48: 5919DE08          shlo    8,7,r3
 00002C4C: 92183000 00501758 st      r3,0x501758
@@ -3229,7 +3237,7 @@
 00002DA8: 5C181E01          mov     1,r3
 00002DAC: 82183000 00540C19 stob    r3,0x540c19
 
-00002DB4: 8C803000 00AE207C lda     0xae207c,g0
+00002DB4: 8C803000 00AE207C lda     0xae207c,g0                ; AE 20 7C - 
 00002DBC: 09017798          call    0001a554                   ; push g0 to serial buffer
 00002DC0: 09016B98          call    00019958                   ; setup audio (initialize)
 00002DC4: 09FFF980          call    00002744                   ; clear all tilemaps
@@ -3935,7 +3943,7 @@
 000038AC: 59210801          addo    1,r4,r4
 000038B0: 82203000 005028FE stob    r4,0x5028fe                ; push 0x07 to drive board, increase pointer
 
-000038B8: 8C803000 00BE1A10 lda     0xbe1a10,g0
+000038B8: 8C803000 00BE1A10 lda     0xbe1a10,g0                ; BE 1A 10 - music off?
 000038C0: 09016C94          call    0001a554                   ; push g0 to serial buffer
 
 000038C4: 80183000 00501460 ldob    0x501460,r3
@@ -5860,7 +5868,7 @@
 00005554: 90183000 00501398 ld      0x501398,r3
 0000555C: 3200E05C          cmpobe  0,r3,0x55b8                ; 000055B8
 
-00005560: 8C803000 00AE1005 lda     0xae1005,g0
+00005560: 8C803000 00AE1005 lda     0xae1005,g0                ; AE 10 05 - name entry
 00005568: 09014FEC          call    0001a554                   ; push g0 to serial buffer
 
 ; enable "dummy handler" 0x227718
@@ -5950,7 +5958,7 @@
 000056B8: 921BD000          st      r3,(r15)
 000056BC: 15000018          bne     000056d4                   ; 000056D4
 
-000056C0: 8C803000 00AE102B lda     0xae102b,g0
+000056C0: 8C803000 00AE102B lda     0xae102b,g0                ; AE 10 2B - waiting for entry
 000056C8: 09014E8C          call    0001a554                   ; push g0 to serial buffer
 
 000056CC: 5919DE08          shlo    8,7,r3                     ; 0x0700
@@ -24912,6 +24920,13 @@
 
 {
 ; setup serial
+; 8251 compatible
+; 00 @ MOD = sync mode, 5 bits, no parity, invalid stop bits
+; 00 @ CMD = tx off, rx off, ...
+; 40 @ CMD = internal reset
+; 4e @ MOD = 16x rate, 8 bits, no parity, 1 stop bit (asuming 10 bits on the line and a 5 MHz clock (20/4) we get 31250 baud - midi?)
+; 37 @ CMD = tx enable, rx enable, rts low
+
 00019898: 5C181E00          mov     0,r3
 0001989C: 8A183000 01C80002 stos    r3,0x1c80002
 000198A4: 09000148          call    000199ec                   ; wait 5000 cycles
@@ -25534,8 +25549,8 @@
 ; serial on irq3
 0001A488: 8C303000 00E80004 lda     0xe80004,r6
 0001A490: 5C181E01          mov     1,r3
-0001A494: 92199000          st      r3,(r6)
-0001A498: 92199000          st      r3,(r6)
+0001A494: 92199000          st      r3,(r6)                    ; enable irq0, disable irq3
+0001A498: 92199000          st      r3,(r6)                    ; enable irq0, disable irq3
 0001A49C: 8C183000 00E80000 lda     0xe80000,r3
 0001A4A4: 8C203000 FFFFFBFF lda     0xfffffbff,r4
 
@@ -25566,8 +25581,8 @@
 0001A520: 59294981          subi    1,r5,r5
 0001A524: C2283000 00503014 stib    r5,0x503014
 0001A52C: 8C180401          lda     0x401,r3
-0001A530: 92199000          st      r3,(r6)
-0001A534: 92199000          st      r3,(r6)
+0001A530: 92199000          st      r3,(r6)                    ; enable irq0 & irq3
+0001A534: 92199000          st      r3,(r6)                    ; enable irq0 & irq3
 0001A538: 0A000000          ret
 
 0001A53C: 90183000 00501090 ld      0x501090,r3
@@ -25833,15 +25848,15 @@
 0001A99C: 584A4883          and     3,r9,r9
 0001A9A0: 59481109          subo    r9,0,r9
 0001A9A4: 594A4805          addo    5,r9,r9
-0001A9A8: 3201E028          cmpobe  0,r7,0x1a9d0               ; if ? goto 0001A9D0
+0001A9A8: 3201E028          cmpobe  0,r7,0x1a9d0               ; if 0 == r7 goto 0001A9D0
 0001A9AC: 8818388B 028F0006 ldos    0x28f0006[r11*2],r3
-0001A9B4: 351D401C          cmpobne r3,g5,0x1a9d0              ; if ? goto 0001A9D0
+0001A9B4: 351D401C          cmpobne r3,g5,0x1a9d0              ; if r3 != g5 goto 0001A9D0
 0001A9B8: 8A4C6000          stos    r9,0x0(g1)
 0001A9BC: 8A546002          stos    r10,0x2(g1)
 0001A9C0: 8A5C6004          stos    r11,0x4(g1)
 0001A9C4: 8A646006          stos    r12,0x6(g1)
 0001A9C8: 598C4808          addo    8,g1,g1
-0001A9CC: 338CC030          cmpobge g1,g3,0x1a9fc              ; if ? goto 0001A9FC
+0001A9CC: 338CC030          cmpobge g1,g3,0x1a9fc              ; if g1 >= g3 goto 0001A9FC
 
 0001A9D0: 5952880A          addo    10,r10,r10
 0001A9D4: 74420884          muli    4,r8,r8
@@ -34540,7 +34555,7 @@
 00024038: 921F607C          st      r3,0x7c(g13)
 0002403C: 921F6080          st      r3,0x80(g13)
 00024040: 5C181E00          mov     0,r3
-00024044: 8C803000 00AE1002 lda     0xae1002,g0
+00024044: 8C803000 00AE1002 lda     0xae1002,g0                ; AE 10 02 - game over
 0002404C: 09DF6508          call    0001a554                   ; push g0 to serial buffer
 00024050: 0A000000          ret
 
@@ -34820,7 +34835,7 @@
 00024514: 1100001C          bg      00024530
 00024518: 8C183000 00224054 lda     0x224054,r3
 00024520: 921F600C          st      r3,0xc(g13)
-00024524: 8C803000 00AE1002 lda     0xae1002,g0
+00024524: 8C803000 00AE1002 lda     0xae1002,g0                ; AE 10 02 - game over
 0002452C: 09DF6028          call    0001a554                   ; push g0 to serial buffer
 00024530: 09FFFF60          call    00024490
 00024534: 0A000000          ret
@@ -34918,7 +34933,7 @@
 00024730: 90183000 00501A98 ld      0x501a98,r3
 00024738: 90803903 02812E3C ld      0x2812e3c[r3*4],g0
 00024740: 09DF5E14          call    0001a554                   ; push g0 to serial buffer
-00024744: 8C803000 00AE211C lda     0xae211c,g0
+00024744: 8C803000 00AE211C lda     0xae211c,g0                ; AE 21 1C - ?
 0002474C: 09DF5E08          call    0001a554                   ; push g0 to serial buffer
 
 00024750: 5C201E00          mov     0,r4

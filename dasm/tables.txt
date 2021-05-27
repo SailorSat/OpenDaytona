@@ -1,3 +1,11 @@
+-- t-ram data (t0 for tracks, t1 for common)
+02200000 beginner
+02400000 expert
+02300000 advanced
+02200000 test
+02500000 common (hud etc)
+
+
 -- raw data (gamestate handler)
 000019AC: 00001A28          ? 00:4 00001a28 1 2			00 bootup
 000019B0: 00001A28          ? 00:4 00001a28 1 2			01 bootup

@@ -1,0 +1,5 @@
+﻿  i960_code.cpp
+d:\privat\opendaytona\cpp\game\src\i960_code.cpp(10): error C3861: "ld": Bezeichner wurde nicht gefunden.
+d:\privat\opendaytona\cpp\game\src\i960_code.cpp(12): error C3861: "st": Bezeichner wurde nicht gefunden.
+  main.cpp
+  Code wird generiert...

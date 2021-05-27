@@ -1,0 +1,12 @@
+coreMain = 52, 52, 1462, 532, 
+gameMain = 26, 26, 1436, 506, Z
+videoMain = 78, 78, 1488, 558, 
+audioMain = 104, 104, 1514, 584, 
+netMain = 130, 130, 1540, 610, 
+coreAPI = 156, 156, 1566, 636, 
+coreIRQ = 208, 208, 1618, 688, 
+ioMain = 208, 208, 1618, 688, 
+gameBackup = 260, 260, 1644, 840, 
+zzUtil = 0, 0, 1384, 580, 
+gameMemory = 0, 0, 1384, 580, 
+coproMain = 26, 26, 1410, 606, 

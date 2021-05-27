@@ -680,7 +680,7 @@
 00000A28: 5A318B01          cmpdeco 1,r6,r6                    ; r6 -= 1
 00000A2C: 14FFFFE0          bl      00000a0c                   ; while r6 > 0 loop to 00000a0c
 
-; MAIN: read interrupt-control register from 0x850
+; MAIN: setup interrupt-control register from 0x850
 00000A30: 8C203000 FF000004 lda     0xff000004,r4              ; r4 = 0xff000004 ( interrupt-control register )
 00000A38: 8C283000 00000850 lda     0x850,r5                   ; r5 = 0x850
 00000A40: 60016004          synmov  r4,r5                      ; read from r5
@@ -1227,8 +1227,8 @@
 00001158: 5C401E00          mov     0,r8
 0000115C: 92403000 005FE604 st      r8,0x5fe604                ; write 0x0 to 0x5fe604			; (track data offset)
 
-00001164: 59181901          subo    1,0,r3
-00001168: 82183000 005FE626 stob    r3,0x5fe626                ; write 0xff to 0x5fe626			; (main status flag?)
+00001164: 59181901          subo    1,0,r3                     ; r3 = 0xffffffff
+00001168: 82183000 005FE626 stob    r3,0x5fe626                ; write 0xff to 0x5fe626			; (mainstate)
 
 00001170: 09227DD0          call    00028f40                   ; backup config check
 00001174: 092283EC          call    00029560                   ; backup times check
@@ -1347,7 +1347,7 @@
 
 ; MAIN: start of main loop
 00001330: 5CF01E00          mov     0,g14
-00001334: 80A03000 005FE626 ldob    0x5fe626,g4
+00001334: 80A03000 005FE626 ldob    0x5fe626,g4                ; mainstate
 0000133C: 5A052880          cmpi    0,g4
 00001340: 15228BA0          bne     00229ee0                   ; if g4 != 0 goto 00029ee0 ; enter service mode
 
@@ -1378,20 +1378,20 @@
 
 {
 ; wait frame and count
-000013A0: 80803000 00500000 ldob    0x500000,g0
+000013A0: 80803000 00500000 ldob    0x500000,g0                ; read frame counter
 
-000013A8: 80183000 00500000 ldob    0x500000,r3
+000013A8: 80183000 00500000 ldob    0x500000,r3                ; read frame counter
 000013B0: 3A1C1FF8          cmpibe  r3,g0,0x13a8               ; while r3 == g0 loop to 000013A8
 
 000013B4: 80203000 00500000 ldob    0x500000,r4
-000013BC: 31112018          cmpobg  2,r4,0x13d4                ; 000013D4
+000013BC: 31112018          cmpobg  2,r4,0x13d4                ; if 2 > r4 goto 000013D4
 
 000013C0: 90183000 005010B4 ld      0x5010b4,r3
 000013C8: 5918C801          addo    1,r3,r3
-000013CC: 92183000 005010B4 st      r3,0x5010b4
+000013CC: 92183000 005010B4 st      r3,0x5010b4                ; count up 0x5010b4
 
 000013D4: 5C181E00          mov     0,r3
-000013D8: 82183000 00500000 stob    r3,0x500000
+000013D8: 82183000 00500000 stob    r3,0x500000                ; reset frame counter
 
 000013E0: 0901703C          call    0001841c                   ; flip geo list
 000013E4: 0A000000          ret
@@ -1400,8 +1400,8 @@
 {
 ; wait even frame
 000013E8: 80203000 00500000 ldob    0x500000,r4                ; read frame counter
-000013F0: 31113FF8          cmpobg  2,r4,0x13e8                ; if 0x2 > r4 loop (0, 1)
-000013F4: 37013FF4          bbs     0,r4,0x13e8                ; if r4 bit0 set loop (1)
+000013F0: 31113FF8          cmpobg  2,r4,0x13e8                ; if 2 > r4 loop to 000013E8 (0, 1)
+000013F4: 37013FF4          bbs     0,r4,0x13e8                ; if r4 bit0 set loop to 000013E8 (1)
 
 000013F8: 5C181E00          mov     0,r3
 000013FC: 82183000 00500000 stob    r3,0x500000                ; reset frame counter
@@ -1457,21 +1457,25 @@
 00001494: 5948DE11          shlo    17,3,r9                    ; 0x60000
 00001498: 3D036010          cmpibne 0,r13,0x14a8               ; if r13 != 0 goto 000014A8
 
+; t-ram0
 0000149C: 8C283000 12200000 lda     0x12200000,r5
 000014A4: 08000030          b       000014d4
 
+; t-ram1
 000014A8: 8C283000 12600000 lda     0x12600000,r5
-000014B0: 881D5000          ldos    (g5),r3
-000014B4: 92195000          st      r3,(r5)
-000014B8: 59AD4802          addo    2,g5,g5
-000014BC: 59294804          addo    4,r5,r5
+
+000014B0: 881D5000          ldos    (g5),r3                    ; read short from g5
+000014B4: 92195000          st      r3,(r5)                    ; store long at r5
+000014B8: 59AD4802          addo    2,g5,g5                    ; increase source pointer by 2
+000014BC: 59294804          addo    4,r5,r5                    ; increase destination pointer by 4
 000014C0: 5939C804          addo    4,r7,r7
 000014C4: 59420804          addo    4,r8,r8
 000014C8: 5A4A4B01          cmpdeco 1,r9,r9
-000014CC: 14FFFFE4          bl      000014b0                   ; loop until r9 = 0
+000014CC: 14FFFFE4          bl      000014b0                   ; loop to 000014B0 until r9 = 0
 
 000014D0: 08000024          b       000014f4
 
+; t-ram0 cont.
 000014D4: 881D5000          ldos    (g5),r3
 000014D8: 8A195000          stos    r3,(r5)
 000014DC: 59AD4802          addo    2,g5,g5
@@ -1479,22 +1483,25 @@
 000014E4: 5939C804          addo    4,r7,r7
 000014E8: 59420804          addo    4,r8,r8
 000014EC: 5A4A4B01          cmpdeco 1,r9,r9
-000014F0: 14FFFFE4          bl      000014d4
+000014F0: 14FFFFE4          bl      000014d4                   ; loop to 000014D4 until r9 = 0
 
+; after t-ram0/1
 000014F4: 58C81519          not     g9,g9                      ; flip g9
 000014F8: 5C481E00          mov     0,r9
 000014FC: 59205E07          shlo    7,1,r4                     ; 0x80
-00001500: 5C301604          mov     r4,r6
+00001500: 5C301604          mov     r4,r6                      ; r6 = r4
 
 00001504: 59605E09          shlo    9,1,r12                    ; 0x200
-00001508: 5C501E01          mov     1,r10
-0000150C: 5C681619          mov     g9,r13
+00001508: 5C501E01          mov     1,r10                      ; r10 = 1
+0000150C: 5C681619          mov     g9,r13                     ; r13 = g9
 00001510: 9058390A 0000158C ld      0x158c[r10*4],r11
 
 00001518: 881D5000          ldos    (g5),r3
 0000151C: 3D03600C          cmpibne 0,r13,0x1528
+
 00001520: 8A19D000          stos    r3,(r7)
 00001524: 08000008          b       0000152c
+
 00001528: 921A1000          st      r3,(r8)
 0000152C: 59AD4802          addo    2,g5,g5
 00001530: 5939C804          addo    4,r7,r7
@@ -1523,7 +1530,7 @@
 00001588: 0A000000          ret
 }
 
-; raw data
+; raw data (some table)
 0000158C: 00000200          ? 00000200
 00001590: 00000100          ? 00000100
 00001594: 00000080          ? 00000080
@@ -1534,7 +1541,7 @@
 000015A8: 00000004          ? 00000004
 000015AC: 00000002          ? 00000002
 000015B0: 00000001          ? 00000001
-; raw data
+; raw data (some table)
 
 ; raw data (track texture offset)
 000015B4: 02200000          ? 02200000
@@ -2338,7 +2345,7 @@
 000020EC: C2203000 00501460 stib    r4,0x501460
 
 000020F4: 5C181E00          mov     0,r3
-000020F8: 92183000 005FE604 st      r3,0x5fe604
+000020F8: 92183000 005FE604 st      r3,0x5fe604                ; track data offset
 
 00002100: 5C181E08          mov     8,r3
 00002104: 82183000 005010A4 stob    r3,0x5010a4
@@ -4929,27 +4936,35 @@
 ; load track data
 000047B0: C0803000 00501460 ldib    0x501460,g0
 000047B8: 90803910 00004838 ld      0x4838[g0*4],g0            ; load table offset based on track number
-000047C0: 92803000 005FE604 st      g0,0x5fe604
+000047C0: 92803000 005FE604 st      g0,0x5fe604                ; track data offset
+
 000047C8: 5C201E00          mov     0,r4
 000047CC: 82203000 005FE5B8 stob    r4,0x5fe5b8
+
 000047D4: 901C1000          ld      (g0),r3
 000047D8: 59840884          addi    4,g0,g0
 000047DC: 92183000 00501400 st      r3,0x501400
+
 000047E4: 901C1000          ld      (g0),r3
 000047E8: 59840884          addi    4,g0,g0
 000047EC: 92183000 00501404 st      r3,0x501404
+
 000047F4: 901C1000          ld      (g0),r3
 000047F8: 59840884          addi    4,g0,g0
 000047FC: 92183000 00501408 st      r3,0x501408
+
 00004804: 901C1000          ld      (g0),r3
 00004808: 59840884          addi    4,g0,g0
 0000480C: 92183000 0050140C st      r3,0x50140c
+
 00004814: 901C1000          ld      (g0),r3
 00004818: 59840884          addi    4,g0,g0
 0000481C: 92183000 00501410 st      r3,0x501410
+
 00004824: 901C1000          ld      (g0),r3
 00004828: 59840884          addi    4,g0,g0
 0000482C: 92183000 00501414 st      r3,0x501414
+
 00004834: 0A000000          ret
 }
 
@@ -26877,7 +26892,7 @@
 
 0001BA30: 09000370          call    0001bda0                   ; wait frame
 0001BA34: 09FFFB7C          call    0001b5b0                   ; burst copy buffers to/from comm
-0001BA38: 80183000 005FE626 ldob    0x5fe626,r3
+0001BA38: 80183000 005FE626 ldob    0x5fe626,r3                ; mainstate
 0001BA40: 3D00E0A0          cmpibne 0,r3,0x1bae0               ; if 0x5fe626 != 0x0 goto 0001BAE0 (check mainstate)
 
 0001BA44: 80203000 00540002 ldob    0x540002,r4
@@ -26963,7 +26978,7 @@
 0001BB84: 090001D8          call    0001bd5c                   ; clear comm tx
 0001BB88: 09000230          call    0001bdb8                   ; print "NETWORK CHECKING"
 
-0001BB8C: 80183000 005FE626 ldob    0x5fe626,r3
+0001BB8C: 80183000 005FE626 ldob    0x5fe626,r3                ; mainstate
 0001BB94: 3D00E178          cmpibne 0,r3,0x1bd0c               ; if r3 != 0 goto 0001BD0C
 
 0001BB98: 802B3400 00004002 ldob    0x4002(r12),r5
@@ -27069,7 +27084,7 @@
 0001BD2C: 09000074          call    0001bda0                   ; wait frame
 0001BD30: 59C95E06          shlo    6,5,g9
 0001BD34: 0900006C          call    0001bda0                   ; wait frame
-0001BD38: 80183000 005FE626 ldob    0x5fe626,r3
+0001BD38: 80183000 005FE626 ldob    0x5fe626,r3                ; mainstate
 0001BD40: 3D00E014          cmpibne 0,r3,0x1bd54               ; if r3 != 0x0 goto 0001BD54
 0001BD44: 5ACE4B01          cmpdeco 1,g9,g9
 0001BD48: 14FFFFEC          bl      0001bd34
@@ -29405,7 +29420,7 @@
 ; ?
 0001E344: 0B000124          bal     0001e468                   ; read io (short digital)
 
-0001E348: 80A03000 005FE626 ldob    0x5fe626,g4
+0001E348: 80A03000 005FE626 ldob    0x5fe626,g4                ; mainstate
 0001E350: 3D052014          cmpibne 0,g4,0x1e364               ; 0x0 != g4 goto 0001E364
 
 ; if game mode
@@ -29455,6 +29470,7 @@
 0001E3D4: 82A83000 01C00014 stob    g5,0x1c00014               ; write 0xff to 0x1c00014
 0001E3DC: 82A83000 01C00012 stob    g5,0x1c00012               ; write 0xff to 0x1c00012
 0001E3E4: 82A83000 01C00010 stob    g5,0x1c00010               ; write 0xff to 0x1c00010
+
 0001E3EC: 80A03000 01C0001E ldob    0x1c0001e,g4               ; read g4 from 0x1c0001e
 0001E3F4: 59ABDE04          shlo    4,15,g5                    ; g5 = 0xf0
 0001E3F8: 58A54094          and     g4,g5,g4                   ; g4 AND 0xf0
@@ -29462,6 +29478,7 @@
 
 0001E404: 8CA800FF          lda     0xff,g5
 0001E408: 82A83000 01C00022 stob    g5,0x1c00022               ; write 0xff to 0x1c00022
+
 0001E410: 5CA81E01          mov     1,g5
 0001E414: 8AA83000 01C00024 stos    g5,0x1c00024               ; write 0x01 to 0x1c00024
 0001E41C: 8CA80053          lda     0x53,g5
@@ -29472,6 +29489,7 @@
 0001E438: 8AA83000 01C00038 stos    g5,0x1c00038               ; write 0x47 to 0x1c00038	; "G"
 0001E440: 8CA80041          lda     0x41,g5
 0001E444: 8AA83000 01C0003A stos    g5,0x1c0003a               ; write 0x41 to 0x1c0003a	; "A"
+
 0001E44C: 5CA81E01          mov     1,g5
 0001E450: 82A83000 01C00040 stob    g5,0x1c00040               ; write 0x01 to 0x1c00040
 
@@ -29622,7 +29640,7 @@
 
 ; buttons pressed
 0001E6A4: 5CA81E01          mov     1,g5
-0001E6A8: 82A83000 005FE626 stob    g5,0x5fe626                ; enter service mode
+0001E6A8: 82A83000 005FE626 stob    g5,0x5fe626                ; set mainstate 1 - enter service mode
 
 0001E6B0: 84041000          bx      (g0)
 0001E6B4: 0A000000          ret
@@ -29839,7 +29857,7 @@
 0001E9C0: 80A03000 005FE5B8 ldob    0x5fe5b8,g4
 0001E9C8: 3D0520D4          cmpibne 0,g4,0x1ea9c               ; 0001EA9C
 
-0001E9CC: 90203000 005FE604 ld      0x5fe604,r4
+0001E9CC: 90203000 005FE604 ld      0x5fe604,r4                ; track data offset
 0001E9D4: 3A0120C8          cmpibe  0,r4,0x1ea9c               ; 0001EA9C
 
 0001E9D8: 90211000          ld      (r4),r4
@@ -29933,7 +29951,7 @@
 
 {
 ; something background/sky related (returns g0)
-0001EB50: 90A03000 005FE604 ld      0x5fe604,g4
+0001EB50: 90A03000 005FE604 ld      0x5fe604,g4                ; track data offset
 0001EB58: 3D05200C          cmpibne 0,g4,0x1eb64               ; 0001EB64
 0001EB5C: 5C801E01          mov     1,g0
 0001EB60: 0A000000          ret
@@ -36427,9 +36445,11 @@
 00025FA0: 09DDB4AC          call    0000144c                   ; init t-ram0 (based on track)
 00025FA4: 5C181E10          mov     16,r3
 00025FA8: 821F6062          stob    r3,0x62(g13)
+
 00025FAC: 80183000 00501460 ldob    0x501460,r3
 00025FB4: 90803903 00239C70 ld      0x239c70[r3*4],g0
-00025FBC: 92803000 005FE604 st      g0,0x5fe604
+00025FBC: 92803000 005FE604 st      g0,0x5fe604                ; track data offset
+
 00025FC4: 5C201E00          mov     0,r4
 00025FC8: 82203000 005FE5B8 stob    r4,0x5fe5b8
 
@@ -38975,7 +38995,7 @@
 00028CCC: 0A000000          ret
 
 {
-;
+; backup config2 check
 00028CD0: 98B03000 01D00080 ldl     0x1d00080,g6
 00028CD8: 98A03000 0023C570 ldl     0x23c570,g4
 00028CE0: 3DB50114          cmpibne g6,g4,0x28df4              ; goto 00028DF4
@@ -38983,7 +39003,7 @@
 00028CE8: 8C803000 01D0008A lda     0x1d0008a,g0
 00028CF0: 5C881E01          mov     1,g1
 00028CF4: 8C900076          lda     0x76,g2
-00028CF8: 0B000AA0          bal     00029798                   ; calculate checksum (offset g0, step g1, len g2)
+00028CF8: 0B000AA0          bal     00029798                   ; calculate checksum (offset g0, step g1, len g2 -- returns g0)
 00028CFC: 88A03000 01D00088 ldos    0x1d00088,g4
 00028D04: 8C283000 0000FFFF lda     0xffff,r5
 00028D0C: 58814090          and     g0,r5,g0
@@ -39097,7 +39117,7 @@
 00028F8C: 8C803000 01D0000A lda     0x1d0000a,g0               ; g0 = 0x1d0000a
 00028F94: 5C881E01          mov     1,g1                       ; g1 = 0x01
 00028F98: 8C900076          lda     0x76,g2                    ; g2 = 0x76
-00028F9C: 0B0007FC          bal     00029798                   ; calculate checksum (offset g0, step g1, len g2)
+00028F9C: 0B0007FC          bal     00029798                   ; calculate checksum (offset g0, step g1, len g2 -- returns g0)
 
 ; compare lower 16 bits of checksum1
 00028FA0: 88A83000 01D00008 ldos    0x1d00008,g5               ; read2 g5 from 0x1d00008
@@ -39128,7 +39148,7 @@
 00029038: 8C803000 01D0008A lda     0x1d0008a,g0
 00029040: 5C881E01          mov     1,g1
 00029044: 8C900076          lda     0x76,g2
-00029048: 0B000750          bal     00029798                   ; calculate checksum (offset g0, step g1, len g2)
+00029048: 0B000750          bal     00029798                   ; calculate checksum (offset g0, step g1, len g2 -- returns g0)
 
 ; compare lower 16 bits of checksum2
 0002904C: 88A83000 01D00088 ldos    0x1d00088,g5
@@ -39205,7 +39225,7 @@
 }
 
 {
-; copy nvram to backupram (80 bytes)
+; copy nvram to backupram (128 bytes)
 00029220: 8CF03000 002292D4 lda     0x2292d4,g14
 00029228: 5C88161E          mov     g14,g1
 0002922C: 5CF01E00          mov     0,g14
@@ -39266,7 +39286,7 @@
 000292F8: 8CA52001          lda     0x1(g4),g4
 000292FC: 8C900076          lda     0x76,g2
 00029300: 92A03000 01D0007C st      g4,0x1d0007c
-00029308: 0B000490          bal     00029798                   ; calculate checksum (offset g0, step g1, len g2)
+00029308: 0B000490          bal     00029798                   ; calculate checksum (offset g0, step g1, len g2 -- returns g0)
 
 0002930C: 8CA83000 01C00200 lda     0x1c00200,g5
 00029314: 8A803000 01D00008 stos    g0,0x1d00008
@@ -39393,7 +39413,7 @@
 00029560: 8C803000 01D00106 lda     0x1d00106,g0
 00029568: 5C881E01          mov     1,g1
 0002956C: 8C90007A          lda     0x7a,g2
-00029570: 0B000228          bal     00029798                   ; calculate checksum (offset g0, step g1, len g2)
+00029570: 0B000228          bal     00029798                   ; calculate checksum (offset g0, step g1, len g2 -- returns g0)
 
 00029574: 88A83000 01D00104 ldos    0x1d00104,g5
 0002957C: 8C283000 0000FFFF lda     0xffff,r5
@@ -39403,7 +39423,7 @@
 0002958C: 8C803000 01D00186 lda     0x1d00186,g0
 00029594: 5C881E01          mov     1,g1
 00029598: 8C90007A          lda     0x7a,g2
-0002959C: 0B0001FC          bal     00029798                   ; calculate checksum (offset g0, step g1, len g2)
+0002959C: 0B0001FC          bal     00029798                   ; calculate checksum (offset g0, step g1, len g2 -- returns g0)
 
 000295A0: 88A83000 01D00184 ldos    0x1d00184,g5
 000295A8: 58A14090          and     g0,r5,g4
@@ -39472,7 +39492,7 @@
 000296F0: 8C803000 01D00106 lda     0x1d00106,g0
 000296F8: 5C881E01          mov     1,g1
 000296FC: 8C90007A          lda     0x7a,g2
-00029700: 0B000098          bal     00029798                   ; calculate checksum (offset g0, step g1, len g2)
+00029700: 0B000098          bal     00029798                   ; calculate checksum (offset g0, step g1, len g2 -- returns g0)
 
 00029704: B0203000 01D00120 ldq     0x1d00120,r4
 0002970C: B0A03000 01D00110 ldq     0x1d00110,g4
@@ -39495,7 +39515,7 @@
 }
 
 {
-; calculate checksum (offset g0, step g1, len g2)
+; calculate checksum (offset g0, step g1, len g2 -- returns g0)
 00029790: 8CF03000 002297E8 lda     0x2297e8,g14
 00029798: 5C98161E          mov     g14,g3
 0002979C: 5CF01E00          mov     0,g14
@@ -39546,12 +39566,12 @@
 0002983C: 82F03000 005FE040 stob    g14,0x5fe040               ; byte write g14 to 0x5fe040
 00029844: 3DB5C014          cmpibne g6,g7,0x29858              ; if g6 != g7 goto 00029858
 
-; unequal chutes
+; equal chutes
 00029848: 5C801E01          mov     1,g0                       ; g0 = 0x1
 0002984C: 82803000 005FE041 stob    g0,0x5fe041                ; byte write g0 to 0x5fe041
 00029854: 0800000C          b       00029860
 
-; equal chutes
+; unequal chutes
 00029858: 82F03000 005FE041 stob    g14,0x5fe041               ; byte write 0x0 to 0x5fe041
 
 ;
@@ -40008,7 +40028,7 @@
 {
 ; enter service mode
 00029EE0: 5CA81E01          mov     1,g5
-00029EE4: 82A83000 005FE626 stob    g5,0x5fe626
+00029EE4: 82A83000 005FE626 stob    g5,0x5fe626                ; set mainstate 1
 00029EEC: 5CA81E0B          mov     11,g5
 00029EF0: 82A83000 005FE5C0 stob    g5,0x5fe5c0
 00029EF8: 0B000460          bal     0002a358
@@ -40034,7 +40054,7 @@
 00029F4C: 09DEE4A4          call    000183f0                   ; process geo list
 00029F50: 09DD7450          call    000013a0                   ; wait frame and count
 
-00029F54: 80A03000 005FE626 ldob    0x5fe626,g4
+00029F54: 80A03000 005FE626 ldob    0x5fe626,g4                ; check mainstate
 00029F5C: 3D053FD4          cmpibne 0,g4,0x29f30               ; if g4 != 0x00 goto 00029F30
 00029F60: 08DD6998          b       000008f8
 }
@@ -40294,7 +40314,7 @@
 0002A324: 58AD0096          and     g6,g4,g5
 0002A328: 8AA03000 005FE62C stos    g4,0x5fe62c
 0002A330: 3D056010          cmpibne 0,g5,0x2a340               ; if g5 != 0x0 goto 0002A340
-0002A334: 82F03000 005FE626 stob    g14,0x5fe626
+0002A334: 82F03000 005FE626 stob    g14,0x5fe626               ; set mainstate
 0002A33C: 08000014          b       0002a350                   ; service mode exit
 0002A340: 0A000000          ret
 }
@@ -55928,10 +55948,14 @@
 00039C64: 00239DD0          ? 00239dd0
 00039C68: 01800C00          ? 01800c00
 00039C6C: 00000000          ? 00000000
+
+; raw data (offset table)
 00039C70: 02600008          ? 02600008
 00039C74: 02600010          ? 02600010
 00039C78: 0260000C          ? 0260000c
 00039C7C: 02600008          ? 02600008
+; raw data (offset table)
+
 00039C80: 0282FD4C          ? 0282fd4c
 00039C84: 02832BE4          ? 02832be4
 00039C88: 02831498          ? 02831498
@@ -58693,6 +58717,8 @@
 0003C7E4: 5E744E55          ? 5e744e55
 0003C7E8: 3EB22E93          cmpible 22,sf8,0x3d678
 0003C7EC: 1EF00ED1          ? 1ef00ed1
+; raw data
+
 0003C7F0: 002297F0          ? 002297f0
 0003C7F4: 00000000          ? 00000000
 0003C7F8: 00000000          ? 00000000

@@ -1,0 +1,26 @@
+-- cpu board --
+i960 running "main" code.
+  - irq0 is triggered from video board, possibly VINT
+  - irq1 ?
+  - irq2 is triggered from exceptions
+  - irq3 is triggered from audio board, via i8250
+tgps running "geo" and "math" code.
+
+-- video board --
+tilemaps and rasterizer
+  - generates VINT
+
+-- audio board --
+m68k running "audio" code.
+  - irq? is triggered from cpu board, via i8250
+
+-- i/o board --
+nothing too special here.
+
+-- drive board --
+z80 running "feedback" code.
+  - 
+
+-- comm board --
+z80 running "comm" code.
+  - irq5 is triggered from video board, via VINT

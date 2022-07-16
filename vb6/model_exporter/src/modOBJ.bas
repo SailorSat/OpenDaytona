@@ -102,7 +102,7 @@ Public Sub OBJ_EndExport(ByVal poly_adr As Long)
   For Index = 1 To OBJ_Vcnt
     ' "v <float x> <float y> <float z>"
     With OBJ_V(Index)
-      Print #OBJ_Handle, Replace("v " & .X & " " & .Y & " " & .Z, ",", ".")
+      Print #OBJ_Handle, Replace("v " & -.X & " " & .Y & " " & .Z, ",", ".")
     End With
   Next
 
@@ -156,8 +156,8 @@ Public Sub OBJ_EndExport(ByVal poly_adr As Long)
       Print #MTL_Handle, Replace("Ka " & .R * 0.5 & " " & .G * 0.5 & " " & .B * 0.5, ",", ".")
       Print #MTL_Handle, Replace("Kd " & .R & " " & .G & " " & .B, ",", ".")
       Print #MTL_Handle, Replace("Ks " & .R * 2 & " " & .G * 2 & " " & .B * 2, ",", ".")
-      Print #MTL_Handle, Replace("d " & 1 - .A, ",", ".")
-      Print #MTL_Handle, Replace("Tr " & .A, ",", ".")
+      Print #MTL_Handle, Replace("d " & .A, ",", ".")
+      'Print #MTL_Handle, Replace("Tr " & .A, ",", ".")
       Print #MTL_Handle, "Ns 0"
       Print #MTL_Handle, "illum 2"
     End With

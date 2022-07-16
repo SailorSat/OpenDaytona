@@ -21,6 +21,7 @@ End Type
 
 
 ' -- the roms --
+Public TGP_DATA(0 To &HFFFFFF) As Byte
 Public TGP_POLYGON(0 To &HFFFFFF) As Byte
 Public TGP_TEXTURE(0 To &H7FFFFF) As Byte
 
@@ -32,9 +33,16 @@ Public RGB555to888Table(0 To &H7FFF) As Long
 
 ' -- logic starts here --
 Public Sub LoadTGP()
+TGP_LoadDATA
   TGP_LoadPOLYGON
   TGP_LoadTEXTURE
   TGP_LoadPALETTE
+End Sub
+
+  Private Sub TGP_LoadDATA()
+  Open App.Path & "\..\..\rom\rom_data.bin" For Binary As #1
+  Get #1, , TGP_DATA
+  Close #1
 End Sub
 
 Private Sub TGP_LoadPOLYGON()
@@ -59,43 +67,68 @@ Private Sub TGP_LoadPALETTE()
   Close #1
 End Sub
 
-Private Function TGP_Read32I_POLYGON(ByVal offset As Long) As Long
+Private Function TGP_Read32I_DATA(ByVal Offset As Long) As Long
   Dim Index As Long
   Dim Data As Long
-  Index = offset * 4
+  Index = Offset * 4
+  
+  RtlMoveMemory Data, TGP_DATA(Index), 4
+  
+  TGP_Read32I_DATA = Data
+End Function
+
+Private Function TGP_Read32I_POLYGON(ByVal Offset As Long) As Long
+  Dim Index As Long
+  Dim Data As Long
+  Index = Offset * 4
   
   RtlMoveMemory Data, TGP_POLYGON(Index), 4
   
   TGP_Read32I_POLYGON = Data
 End Function
-Private Function TGP_Read32F_POLYGON(ByVal offset As Long) As Single
+Private Function TGP_Read32F_POLYGON(ByVal Offset As Long) As Single
   Dim Index As Long
   Dim Data As Single
-  Index = offset * 4
+  Index = Offset * 4
   
   RtlMoveMemory Data, TGP_POLYGON(Index), 4
   
   TGP_Read32F_POLYGON = Data
 End Function
 
-Private Function TGP_Read16I_TEXTURE(ByVal offset As Long) As Long
+Private Function TGP_Read16I_TEXTURE(ByVal Offset As Long) As Long
   Dim Index As Long
   Dim Data As Long
-  Index = offset * 2
+  Index = Offset * 2
   
+  Index = Index Mod &H800000
+
   RtlMoveMemory Data, TGP_TEXTURE(Index), 2
   
   TGP_Read16I_TEXTURE = Data
 End Function
 
 Function GetPaletteEntry(Index As Long) As Long
-  Dim Data As Long, offset As Long
-  offset = Index * 2&
+  Dim Data As Long, Offset As Long
+  Offset = Index * 2&
   
   
-  RtlMoveMemory Data, TGP_PALETTE(offset), 2
+  RtlMoveMemory Data, TGP_PALETTE(Offset), 2
   GetPaletteEntry = RGB555to888Table(Data And &H7FFF)
 End Function
+
+Public Sub TGP_ExportObjectByAddress(ByVal data_adr As Long)
+  data_adr = data_adr And &HFFFFFF
+  data_adr = data_adr / 4
+  
+  Dim poly_adr As Long, tex_adr As Long, head_adr As Long, size As Long
+  poly_adr = TGP_Read32I_DATA(data_adr + 0)
+  tex_adr = TGP_Read32I_DATA(data_adr + 1)
+  head_adr = TGP_Read32I_DATA(data_adr + 2)
+  size = &H1388
+  
+  TGP_ExportObject tex_adr, head_adr, poly_adr, size
+End Sub
 
 Public Sub TGP_ExportObject(ByVal tex_adr As Long, ByVal head_adr As Long, ByVal poly_adr As Long, ByVal size As Long)
   ' sanity check for texture ram

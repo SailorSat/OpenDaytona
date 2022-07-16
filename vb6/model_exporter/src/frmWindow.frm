@@ -28,8 +28,13 @@ Option Explicit
 Private Sub cmdExport_Click()
   cmdExport.Enabled = False
   
-  TGP_ExportObject &H1EDBA6, &H149A28, &H95E28A, &H1388 ' Daytona Player Car
-  TGP_ExportObject &H168A2E, &H1091E8, &H8D6A24, &H1388 ' Virtua Racing Countdown
+  Dim Offset As Long
+  For Offset = &H284A8FC To &H284B98C Step &H14&
+    TGP_ExportObjectByAddress Offset
+  Next
+  
+  'TGP_ExportObject &H1EDBA6, &H149A28, &H95E28A, &H1388 ' Daytona Player Car
+  'TGP_ExportObject &H168A2E, &H1091E8, &H8D6A24, &H1388 ' Virtua Racing Countdown
 
   cmdExport.Enabled = True
 End Sub
